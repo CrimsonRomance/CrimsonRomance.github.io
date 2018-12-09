@@ -1,205 +1,328 @@
 <!DOCTYPE html>
-<html lang="en">
 
-<!-- Head tag -->
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
 <head><meta name="generator" content="Hexo 3.8.0">
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!--Description-->
-
-    
-
-    
-        <meta name="description" content="什么是 Hexo？Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。
-安装 Hexo 相当简单然而在安装前，您必须检查电脑中是否已安装下列应用程序：
-
-Node.jshttps://nodejs.org/">
-    
-
-    <!--Author-->
-    
-        <meta name="author" content="戴树谦">
-    
-
-    <!--Open Graph Title-->
-    
-        <meta property="og:title" content="亲测Hexo+Github个人博客搭建">
-    
-
-    <!--Open Graph Description-->
-    
-        <meta property="og:description" content="什么是 Hexo？Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。
-安装 Hexo 相当简单然而在安装前，您必须检查电脑中是否已安装下列应用程序：
-
-Node.jshttps://nodejs.org/">
-    
-
-    <!--Open Graph Site Name-->
-        <meta property="og:site_name" content="戴树谦的博客">
-
-    <!--Type page-->
-    
-        <meta property="og:type" content="article">
-    
-
-    <!--Page Cover-->
-    
-    
-        <meta property="og:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
-    
-
-        <meta name="twitter:card" content="summary_large_image">
-
-    
-
-    
-        <meta name="twitter:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg">
-    
-
-    <!-- Title -->
-    
-    <title>亲测Hexo+Github个人博客搭建 - 戴树谦的博客</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/style.css">
-
-    <!-- Custom Fonts -->
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- Gallery -->
-    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
-
-    <!-- Google Analytics -->
-    
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
 
 
-    <!-- favicon -->
-    
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="什么是 Hexo？Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。 安装 Hexo 相当简单然而在安装前，您必须检查电脑中是否已安装下列应用程序：  Node.jshttps://nodejs.org/dist/v10.13.0/node-v10.13.0-x64.msi(Winx64) Githtt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="亲测Hexo+Github个人博客搭建">
+<meta property="og:url" content="http://yoursite.com/2018/11/15/亲测Hexo-Github个人博客搭建/index.html">
+<meta property="og:site_name" content="戴树谦的博客">
+<meta property="og:description" content="什么是 Hexo？Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。 安装 Hexo 相当简单然而在安装前，您必须检查电脑中是否已安装下列应用程序：  Node.jshttps://nodejs.org/dist/v10.13.0/node-v10.13.0-x64.msi(Winx64) Githtt">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/亲测Hexo-Github个人博客搭建/1.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/亲测Hexo-Github个人博客搭建/2.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/亲测Hexo-Github个人博客搭建/3.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/亲测Hexo-Github个人博客搭建/4.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/亲测Hexo-Github个人博客搭建/5.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/亲测Hexo-Github个人博客搭建/6.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/亲测Hexo-Github个人博客搭建/7.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/亲测Hexo-Github个人博客搭建/8.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/亲测Hexo-Github个人博客搭建/9.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/亲测Hexo-Github个人博客搭建/10.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/亲测Hexo-Github个人博客搭建/11.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/亲测Hexo-Github个人博客搭建/12.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/亲测Hexo-Github个人博客搭建/13.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/亲测Hexo-Github个人博客搭建/14.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/亲测Hexo-Github个人博客搭建/15.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/亲测Hexo-Github个人博客搭建/16.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/亲测Hexo-Github个人博客搭建/17.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/亲测Hexo-Github个人博客搭建/18.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/亲测Hexo-Github个人博客搭建/19.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/亲测Hexo-Github个人博客搭建/20.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/亲测Hexo-Github个人博客搭建/21.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/15/亲测Hexo-Github个人博客搭建/22.jpg">
+<meta property="og:updated_time" content="2018-11-15T13:11:49.188Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="亲测Hexo+Github个人博客搭建">
+<meta name="twitter:description" content="什么是 Hexo？Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。 安装 Hexo 相当简单然而在安装前，您必须检查电脑中是否已安装下列应用程序：  Node.jshttps://nodejs.org/dist/v10.13.0/node-v10.13.0-x64.msi(Winx64) Githtt">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/15/亲测Hexo-Github个人博客搭建/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/15/亲测Hexo-Github个人博客搭建/">
+
+
+
+
+
+  <title>亲测Hexo+Github个人博客搭建 | 戴树谦的博客</title>
+  
+
+
+
+
+
+
+
 
 </head>
 
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
 
-<body>
+  
+  
+    
+  
 
-    <!-- Menu -->
-    <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">谦谦君子，温润如玉。</a>
-        </div>
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                
-                    <li>
-                        <a href="/">
-                            
-                                Home
-                            
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="/archives">
-                            
-                                Archives
-                            
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="/tags">
-                            
-                                Tags
-                            
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="/categories">
-                            
-                                Categories
-                            
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="https://github.com/CrimsonRomance/CrimsonRomance.github.io">
-                            
-                                <i class="fa fa-github fa-stack-2x"></i>
-                            
-                        </a>
-                    </li>
-                
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">戴树谦的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
-    <!-- /.container -->
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
 </nav>
 
-    <!-- Main Content -->
-    <!-- Page Header -->
-<!-- Set your background image for this header in your post front-matter: cover -->
 
-<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <h1>亲测Hexo+Github个人博客搭建</h1>
-                    
-                    <span class="meta">
-                        <!-- Date and Author -->
-                        
-                        
-                            2018-11-15
-                        
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
 
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
+ </div>
+    </header>
 
-            <!-- Tags and categories -->
-           
-
-            <!-- Gallery -->
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
             
 
-            <!-- Post Main Content -->
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <h3 id="什么是-Hexo？"><a href="#什么是-Hexo？" class="headerlink" title="什么是 Hexo？"></a><strong>什么是 Hexo？</strong></h3><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/15/亲测Hexo-Github个人博客搭建/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="戴树谦">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="戴树谦的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">亲测Hexo+Github个人博客搭建</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-15T20:11:19+08:00">
+                2018-11-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="什么是-Hexo？"><a href="#什么是-Hexo？" class="headerlink" title="什么是 Hexo？"></a><strong>什么是 Hexo？</strong></h3><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
 <p>安装 Hexo 相当简单<br>然而在安装前，您必须检查电脑中是否已安装下列应用程序：</p>
 <ul>
 <li>Node.js<br><a href="https://nodejs.org/dist/v10.13.0/node-v10.13.0-x64.msi(Winx64)" target="_blank" rel="noopener">https://nodejs.org/dist/v10.13.0/node-v10.13.0-x64.msi(Winx64)</a></li>
@@ -265,76 +388,355 @@ Node.jshttps://nodejs.org/">
 <p>然后访问网站（<a href="https://youname.github.io/）即可" target="_blank" rel="noopener">https://youname.github.io/）即可</a></p>
 <img src="/2018/11/15/亲测Hexo-Github个人博客搭建/22.jpg">
 
-
-                
-            </div>
-
-            <!-- Comments -->
-            
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    
-
-
-                </div>
-            
-        </div>
+      
     </div>
-</article>
-
-    <!-- Footer -->
-    <hr>
-
-<!-- Footer -->
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <ul class="list-inline text-center">
-                    
-
-                    
-
-                    
-                        <li>
-                            <a href="https://github.com/CrimsonRomance/CrimsonRomance.github.io" target="_blank">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    
-
-                    
-
-                    
-
-                    
-                </ul>
-                <p class="copyright text-muted">&copy; 2018 戴树谦<br></p>
-                <p class="copyright text-muted"><a target="_blank" href="http://www.heuet.edu.cn/">河北经贸大学</a></p>
-                <p class="copyright text-muted"><a target="_blank" href="https://hexo.io/"></a><a href="http://www.codeblocq.com/" target="_blank"></a></p>
-            </div>
-        </div>
-    </div>
-</footer>
-
-
-    <!-- After footer scripts -->
     
-<!-- jQuery -->
-<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+    
+    
 
-<!-- Bootstrap -->
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    
 
-<!-- Gallery -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+    
 
-<!-- Disqus Comments -->
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/12/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">戴树谦</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是-Hexo？"><span class="nav-number">1.</span> <span class="nav-text">什么是 Hexo？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo的配置"><span class="nav-number">2.</span> <span class="nav-text">Hexo的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注册GitHub账号与配置"><span class="nav-number">3.</span> <span class="nav-text">注册GitHub账号与配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将GitHub-Page与Hexo关联"><span class="nav-number">4.</span> <span class="nav-text">将GitHub Page与Hexo关联</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#配置Git个人信息"><span class="nav-number">4.1.</span> <span class="nav-text">配置Git个人信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#成功。"><span class="nav-number">4.1.1.</span> <span class="nav-text">成功。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编辑-hexo下的blog下的-config-yml"><span class="nav-number">5.</span> <span class="nav-text">编辑 hexo下的blog下的_config.yml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编辑daemon-git-下的config"><span class="nav-number">6.</span> <span class="nav-text">编辑daemon.git 下的config</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">戴树谦</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
 
 </body>
-
 </html>
