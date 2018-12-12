@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Docker,">
 
 
 
@@ -79,13 +79,57 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="戴树谦的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="安装docker-ce（设置清华大学镜像站为镜像源) 在centos7 yum仓库 的extras仓库中自带了docker源,都是docker 1.13版本，不建议使用老版本docker.清华大学在镜像站中给docker做了镜像在此目录下找到docker的repo文件我们可以自己建一个docker镜像源仓库，首先要把该repo文件下载到/etc/yum.repos.d 中下载后打开docker-">
+<meta name="keywords" content="Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker-ce安装 与docker镜像（Centos7)">
+<meta property="og:url" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/index.html">
 <meta property="og:site_name" content="戴树谦的博客">
+<meta property="og:description" content="安装docker-ce（设置清华大学镜像站为镜像源) 在centos7 yum仓库 的extras仓库中自带了docker源,都是docker 1.13版本，不建议使用老版本docker.清华大学在镜像站中给docker做了镜像在此目录下找到docker的repo文件我们可以自己建一个docker镜像源仓库，首先要把该repo文件下载到/etc/yum.repos.d 中下载后打开docker-">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/2.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/3.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/4.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/5.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/6.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/7.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/8.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/9.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/10.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/11.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/12.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/13.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/14.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/15.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/16.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/17.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/18.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/19.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/20.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/21.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/22.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/23.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/24.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/25.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/26.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/27.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/28.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/29.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/30.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/31.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/32.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/33.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/34.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/35.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/36.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/37.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/38.png">
+<meta property="og:updated_time" content="2018-12-12T06:39:46.187Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="戴树谦的博客">
+<meta name="twitter:title" content="docker-ce安装 与docker镜像（Centos7)">
+<meta name="twitter:description" content="安装docker-ce（设置清华大学镜像站为镜像源) 在centos7 yum仓库 的extras仓库中自带了docker源,都是docker 1.13版本，不建议使用老版本docker.清华大学在镜像站中给docker做了镜像在此目录下找到docker的repo文件我们可以自己建一个docker镜像源仓库，首先要把该repo文件下载到/etc/yum.repos.d 中下载后打开docker-">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/1.png">
 
 
 
@@ -115,13 +159,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/">
 
 
 
 
 
-  <title>戴树谦的博客</title>
+  <title>docker-ce安装 与docker镜像（Centos7) | 戴树谦的博客</title>
   
 
 
@@ -140,8 +184,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -256,9 +299,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -288,9 +331,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/12/docker-ce安装-与docker镜像（Centos7/" itemprop="url">docker-ce安装 与docker镜像（Centos7)</a></h1>
+          <h1 class="post-title" itemprop="name headline">docker-ce安装 与docker镜像（Centos7)</h1>
         
 
         <div class="post-meta">
@@ -371,9 +412,7 @@
       
 
       
-        
-          
-            <blockquote>
+        <blockquote>
 <h3 id="安装docker-ce（设置清华大学镜像站为镜像源"><a href="#安装docker-ce（设置清华大学镜像站为镜像源" class="headerlink" title="安装docker-ce（设置清华大学镜像站为镜像源)"></a>安装docker-ce（设置清华大学镜像站为镜像源)</h3></blockquote>
 <p>在centos7 yum仓库 的extras仓库中自带了docker源,都是docker 1.13版本，不建议使用老版本docker.<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/1.png"><br>清华大学在镜像站中给docker做了镜像<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/2.png"><br>在此目录下找到docker的repo文件<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/3.png"><br>我们可以自己建一个docker镜像源仓库，首先要把该repo文件下载到/etc/yum.repos.d 中<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/4.png"><br>下载后打开docker-ce.repo文件，文件中指向的地址是docker官方站点，这个下载速度是很慢的，因此还要修改下载路径<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/5.png"><br>仍然选择清华大学镜像站，来到这个目录下，选择稳定版<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/6.png"><br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/7.png"><br>可以看到这里有最新版本18.06<br>选择复制链接中的linux父目录<a href="https://mirrors.tuna.tsinghua.edu.cn/docker-ce/然后全局替换docker-ce.repo中的官方地址的linux的父目录" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/docker-ce/然后全局替换docker-ce.repo中的官方地址的linux的父目录</a><br>用vim打开，在末行模式下进行替换<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/8.png"><br>可以看到替换成功<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/9.png"><br>yum repolist  显示所有仓库，可以看到存在docker-ce的程序包<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/10.png"><br>yum install docker-ce ，完成<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/11.png"></p>
 <blockquote>
@@ -481,8 +520,6 @@
 <p>Java和Tomcat程序的安装包下载地址可能会发生变化，因此使用该脚本时先根据实际下载地址对其进行修改，包括解压后的生成路径也会有改变</p>
 <p>运行镜像，启动一个基于镜像tomcat的容器，宿主机输入<a href="http://localhost:8090" target="_blank" rel="noopener">http://localhost:8090</a>  即可访问tomcat</p>
 
-          
-        
       
     </div>
     
@@ -497,392 +534,36 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-<div>
-    
- </div>
- 
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/15/亲测Hexo-Github个人博客搭建/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="戴树谦">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile_photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="戴树谦的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/15/亲测Hexo-Github个人博客搭建/" itemprop="url">亲测Hexo+Github个人博客搭建</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-15T20:11:19+08:00">
-                2018-11-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/Docker/" rel="tag"># Docker</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  1k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="什么是-Hexo？"><a href="#什么是-Hexo？" class="headerlink" title="什么是 Hexo？"></a><strong>什么是 Hexo？</strong></h3><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
-<p>安装 Hexo 相当简单<br>然而在安装前，您必须检查电脑中是否已安装下列应用程序：</p>
-<ul>
-<li>Node.js<br><a href="https://nodejs.org/dist/v10.13.0/node-v10.13.0-x64.msi(Winx64)" target="_blank" rel="noopener">https://nodejs.org/dist/v10.13.0/node-v10.13.0-x64.msi(Winx64)</a></li>
-<li>Git<br><a href="https://github.com/git-for-windows/git/releases/download/v2.19.1.windows.1/Git-2.19.1-64-bit.exe（Win" target="_blank" rel="noopener">https://github.com/git-for-windows/git/releases/download/v2.19.1.windows.1/Git-2.19.1-64-bit.exe（Win</a> x64）</li>
-</ul>
-<p>输入 ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br><span class="line">git --version</span><br></pre></td></tr></table></figure>
-<p>检查Node.js 和 Git 是否 安装成功<br><img src="/2018/11/15/亲测Hexo-Github个人博客搭建/1.jpg"></p>
-<p>在此处，如果Node.js 版本低，在后面的搭建过程中无法顺利执行，建议各位在官网下载最新版本；Git如果没有加入环境变量需要将Git添加到环境变量</p>
-<p>在自己认为合适的位置创建一个个文件夹，我的是E:\Personal-blog\hexo ，在命令行界面进入该文件夹，然后使用 npm 即可完成 Hexo 的安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<img src="/2018/11/15/亲测Hexo-Github个人博客搭建/2.jpg">
-<p>安装完成，可能会有WARN，但不会影响正常使用<br>然后输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo --save</span><br></pre></td></tr></table></figure>
-<p>在这一步时，我遇到如下报错<br><img src="/2018/11/15/亲测Hexo-Github个人博客搭建/3.jpg"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm WARN deprecated titlecase@1.1.2: no longer maintained</span><br><span class="line">npm ERR! Unexpected end of JSON input while parsing near &apos;...&quot;:&quot;^0.3.1&quot;,&quot;benchmark&apos;</span><br><span class="line"></span><br><span class="line">npm ERR! A complete log of this run can be found in:</span><br><span class="line">npm ERR!     C:\Users\dell\AppData\Roaming\npm-cache\_logs\2018-11-12T15_46_56_713Z-debug.log</span><br></pre></td></tr></table></figure></p>
-<p>解决办法：<br>更新npm源即可</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
-<p>Hexo安装完成，检测是否正确安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo -v</span><br></pre></td></tr></table></figure>
-<img src="/2018/11/15/亲测Hexo-Github个人博客搭建/4.jpg">
-<h3 id="Hexo的配置"><a href="#Hexo的配置" class="headerlink" title="Hexo的配置"></a>Hexo的配置</h3><p>在当前目录下新建一个名为blog的文件夹，用于存放博客网站的信息<br>在命令行进入blog，初始化该文件夹，并安装所需组件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init </span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<p>安装完成后，检测是否安装成功</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-<img src="/2018/11/15/亲测Hexo-Github个人博客搭建/5.jpg">
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<img src="/2018/11/15/亲测Hexo-Github个人博客搭建/6.jpg">
-<p>根据提示访问<a href="https://localhost:4000/" target="_blank" rel="noopener">https://localhost:4000/</a>  </p>
-<img src="/2018/11/15/亲测Hexo-Github个人博客搭建/7.jpg">
-<p>出现该界面说明Hexo在本地的配置完成了。（因为我改了配置文件，所以显示出我的名字，原位置应为Hexo）</p>
-<h3 id="注册GitHub账号与配置"><a href="#注册GitHub账号与配置" class="headerlink" title="注册GitHub账号与配置"></a>注册GitHub账号与配置</h3><p><a href="https://note.youdao.com/" target="_blank" rel="noopener">https://github.com/ </a><br>进入网站后，点击Sign up 进行注册， 填写自己的用户名，邮箱，密码（邮箱后面会用到验证账户）  </p>
-<img src="/2018/11/15/亲测Hexo-Github个人博客搭建/8.jpg">
-<p>注册完成后，新建代码仓库<br>点击网页右上角”+” 中的New repo  ，新建仓库  </p>
-<img src="/2018/11/15/亲测Hexo-Github个人博客搭建/9.jpg">
-<p>在该界面输入仓库名，描述信息，选择共有或私有仓库<br>注意仓库名要和你的用户名一致(yourname.github.io)，否则后面会访问错误<br><img src="/2018/11/15/亲测Hexo-Github个人博客搭建/10.jpg"></p>
-<p>创建完成后会自动显示你的仓库界面</p>
-<img src="/2018/11/15/亲测Hexo-Github个人博客搭建/11.jpg">
-<p>点击选项栏 Setting ，向下拖至此处，将none 选项选为第一个选项，开启GitHub Pages功能 并Save，可以暂时Change theme，以供暂时访问，但是后面我们使用的是Hexo主题，两者并不冲突<br><img src="/2018/11/15/亲测Hexo-Github个人博客搭建/12.jpg"></p>
-<p>一段时间后即可看到提示创建成功<br><img src="/2018/11/15/亲测Hexo-Github个人博客搭建/13.jpg"></p>
-<p><strong>那么Github一侧的配置已经全部结束了。</strong></p>
-<h3 id="将GitHub-Page与Hexo关联"><a href="#将GitHub-Page与Hexo关联" class="headerlink" title="将GitHub Page与Hexo关联"></a>将GitHub Page与Hexo关联</h3><h4 id="配置Git个人信息"><a href="#配置Git个人信息" class="headerlink" title="配置Git个人信息"></a>配置Git个人信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --golbal user.name &quot;username&quot;</span><br><span class="line">git config --global user.email &quot;xxx@example.com&quot;</span><br><span class="line">git config --list  //查看用户信息</span><br></pre></td></tr></table></figure>
-<p>可以看到如下信息<br><img src="/2018/11/15/亲测Hexo-Github个人博客搭建/14.jpg"></p>
-<p>在合适的位置新建文件夹daemon ，进入到该文件夹中<br>右击进入 Git Bash </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$  git init</span><br></pre></td></tr></table></figure>
-<p>该命令将创建一个名为 .git 的子目录，这个子目录含有你初始化的 Git 仓库中所有的必须文件，这些文件是 Git 仓库的骨干<br><img src="/2018/11/15/亲测Hexo-Github个人博客搭建/15.jpg"></p>
-<img src="/2018/11/15/亲测Hexo-Github个人博客搭建/16.jpg">
-<p>在Git bash中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh  </span><br><span class="line">ls</span><br><span class="line">cat id_rsa.pub</span><br></pre></td></tr></table></figure>
-<img src="/2018/11/15/亲测Hexo-Github个人博客搭建/17.jpg">
-<p>就可以看到你自己的公钥，复制下来，进入Github的个人设置界面</p>
-<p>点击New Ssh Key<br><img src="/2018/11/15/亲测Hexo-Github个人博客搭建/18.jpg"></p>
-<p>将密钥粘贴上，添加就可以了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
-<img src="/2018/11/15/亲测Hexo-Github个人博客搭建/19.jpg">
-<h5 id="成功。"><a href="#成功。" class="headerlink" title="成功。"></a>成功。</h5><h3 id="编辑-hexo下的blog下的-config-yml"><a href="#编辑-hexo下的blog下的-config-yml" class="headerlink" title="编辑 hexo下的blog下的_config.yml"></a>编辑 hexo下的blog下的_config.yml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https://hexo.io/docs/deployment.html</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/CrimsonRomance/CrimsonRomance.github.io</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-<h3 id="编辑daemon-git-下的config"><a href="#编辑daemon-git-下的config" class="headerlink" title="编辑daemon.git 下的config"></a>编辑daemon.git 下的config</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[core]</span><br><span class="line">    repositoryformatversion = 0</span><br><span class="line">    filemode = false</span><br><span class="line">    bare = false</span><br><span class="line">    logallrefupdates = true</span><br><span class="line">    symlinks = false</span><br><span class="line">    ignorecase = true</span><br><span class="line">[branch &quot;master&quot;] </span><br><span class="line">    remote = https://github.com/CrimsonRomance/CrimsonRomance.github.io</span><br><span class="line">    merge = refs/heads/master</span><br></pre></td></tr></table></figure>
-<p>然后进入 hexo\blog  ，右击进入 git bash</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g   //  生成</span><br><span class="line">hexo d   //  部署</span><br></pre></td></tr></table></figure>
-<img src="/2018/11/15/亲测Hexo-Github个人博客搭建/20.jpg">
-<p>如果在 hexo d 出现下面的 错误，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
-<p>安装此扩展即可 ，然后重新 hexo g ， hexo  d<br><img src="/2018/11/15/亲测Hexo-Github个人博客搭建/21.jpg"></p>
-<p>然后访问网站（<a href="https://youname.github.io/）即可" target="_blank" rel="noopener">https://youname.github.io/）即可</a></p>
-<img src="/2018/11/15/亲测Hexo-Github个人博客搭建/22.jpg">
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-<div>
-    
- </div>
- 
-    
       
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/12/hello-world/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="戴树谦">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile_photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="戴树谦的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/12/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-12T23:58:49+08:00">
-                2018-11-12
-              </time>
+              <a href="/2018/11/15/亲测Hexo-Github个人博客搭建/" rel="next" title="亲测Hexo+Github个人博客搭建">
+                <i class="fa fa-chevron-left"></i> 亲测Hexo+Github个人博客搭建
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  73
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -892,12 +573,21 @@
   </article>
 <div>
     
+    <div>
+    
+        <div style="text-align:center;color: #000000;font-size:18px;">------ end ------</div>
+    
+</div>
+
+
+    
  </div>
  
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -905,6 +595,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -927,8 +621,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -997,6 +700,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装docker-ce（设置清华大学镜像站为镜像源"><span class="nav-number">1.</span> <span class="nav-text">安装docker-ce（设置清华大学镜像站为镜像源)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动docker"><span class="nav-number">2.</span> <span class="nav-text">启动docker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搜索并下载镜像（例如调用ubuntu镜像）"><span class="nav-number">3.</span> <span class="nav-text">搜索并下载镜像（例如调用ubuntu镜像）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#参数含义："><span class="nav-number">3.1.</span> <span class="nav-text">参数含义：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动一个基于该ubuntu镜像的容器，并进入该容器"><span class="nav-number">4.</span> <span class="nav-text">启动一个基于该ubuntu镜像的容器，并进入该容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保存和载入镜像"><span class="nav-number">5.</span> <span class="nav-text">保存和载入镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除镜像"><span class="nav-number">6.</span> <span class="nav-text">删除镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建镜像"><span class="nav-number">7.</span> <span class="nav-text">创建镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建镜像有三种方法，分别是基于本地模板导入镜像、基于已有镜像的容器创建镜像，基于Dockerfile-创建镜像"><span class="nav-number">7.1.</span> <span class="nav-text">创建镜像有三种方法，分别是基于本地模板导入镜像、基于已有镜像的容器创建镜像，基于Dockerfile 创建镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-gt-基于本地模板导入镜像"><span class="nav-number">7.1.1.</span> <span class="nav-text">1&gt; 基于本地模板导入镜像</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-gt-基于已有的镜像容器创建镜像"><span class="nav-number">7.1.2.</span> <span class="nav-text">2&gt;基于已有的镜像容器创建镜像</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-gt-基于Dockerfile-创建镜像"><span class="nav-number">7.1.3.</span> <span class="nav-text">3&gt; 基于Dockerfile 创建镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#（1）FROM"><span class="nav-number">7.1.3.1.</span> <span class="nav-text">（1）FROM</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#（2）MAINTAINER"><span class="nav-number">7.1.3.2.</span> <span class="nav-text">（2）MAINTAINER</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#（3）RUN"><span class="nav-number">7.1.3.3.</span> <span class="nav-text">（3）RUN</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#（4）CMD"><span class="nav-number">7.1.3.4.</span> <span class="nav-text">（4）CMD</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#（5）ENTRYPOINT-（entrypoint）"><span class="nav-number">7.1.3.5.</span> <span class="nav-text">（5）ENTRYPOINT （entrypoint）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#（6）USER"><span class="nav-number">7.1.3.6.</span> <span class="nav-text">（6）USER</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#（7）EXPOSE"><span class="nav-number">7.1.3.7.</span> <span class="nav-text">（7）EXPOSE</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#（8）-ENV-（environment）"><span class="nav-number">7.1.3.8.</span> <span class="nav-text">（8） ENV  （environment）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#（9）ADD"><span class="nav-number">7.1.3.9.</span> <span class="nav-text">（9）ADD</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#（10）VOLUME"><span class="nav-number">7.1.3.10.</span> <span class="nav-text">（10）VOLUME</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#（11）WORKDIR"><span class="nav-number">7.1.3.11.</span> <span class="nav-text">（11）WORKDIR</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#12-COPY-src-…-dest"><span class="nav-number">7.1.3.12.</span> <span class="nav-text">(12) COPY (src)…(dest)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#下面展示一则使用Dockerfile创建Tomcat镜像的实例"><span class="nav-number">7.1.3.13.</span> <span class="nav-text">下面展示一则使用Dockerfile创建Tomcat镜像的实例</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1128,6 +847,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
