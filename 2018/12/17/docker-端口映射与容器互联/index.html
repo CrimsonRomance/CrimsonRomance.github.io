@@ -79,30 +79,27 @@
 
 
 
-<meta name="description" content="前言 容器中管理数据主要有两种方式：  数据卷：容器内数据直接映射到本地主机环境 数据卷容器：使用特定容器维护数据卷  数据卷可以提供很多有用的特性：  数据卷可以在容器间共享和重用，容器间传递数据变得高效方便 对数据卷内数据的修改即刻生效，无论容器内操作还是本地操作 对数据卷的更新不会影响镜像，解耦了应用和数据 卷会一直存在，知道没有容器使用，可以安全卸载   在容器内创建一个数据卷 1doc">
+<meta name="description" content="端口映射 当容器中运行一些应用，可以通过-p ，-P 参数来指定端口映射使用-P时，Docker会随机映射一个49000~49900的端口到内部容器开放的端口如果一个镜像中没有可以对外提供的服务，使用-P参数基于该镜像启动容器后，不会有端口的映射   12例如：docker run -idt -P centos /bin/bash        docker run -idt -P httpd">
 <meta name="keywords" content="Docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="docker-数据卷">
-<meta property="og:url" content="http://yoursite.com/2018/12/16/docker-数据卷/index.html">
+<meta property="og:title" content="docker-端口映射与容器互联">
+<meta property="og:url" content="http://yoursite.com/2018/12/17/docker-端口映射与容器互联/index.html">
 <meta property="og:site_name" content="戴树谦的博客">
-<meta property="og:description" content="前言 容器中管理数据主要有两种方式：  数据卷：容器内数据直接映射到本地主机环境 数据卷容器：使用特定容器维护数据卷  数据卷可以提供很多有用的特性：  数据卷可以在容器间共享和重用，容器间传递数据变得高效方便 对数据卷内数据的修改即刻生效，无论容器内操作还是本地操作 对数据卷的更新不会影响镜像，解耦了应用和数据 卷会一直存在，知道没有容器使用，可以安全卸载   在容器内创建一个数据卷 1doc">
+<meta property="og:description" content="端口映射 当容器中运行一些应用，可以通过-p ，-P 参数来指定端口映射使用-P时，Docker会随机映射一个49000~49900的端口到内部容器开放的端口如果一个镜像中没有可以对外提供的服务，使用-P参数基于该镜像启动容器后，不会有端口的映射   12例如：docker run -idt -P centos /bin/bash        docker run -idt -P httpd">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2018/12/16/docker-数据卷/1.png">
-<meta property="og:image" content="http://yoursite.com/2018/12/16/docker-数据卷/2.png">
-<meta property="og:image" content="http://yoursite.com/2018/12/16/docker-数据卷/3.png">
-<meta property="og:image" content="http://yoursite.com/2018/12/16/docker-数据卷/4.png">
-<meta property="og:image" content="http://yoursite.com/2018/12/16/docker-数据卷/5.png">
-<meta property="og:image" content="http://yoursite.com/2018/12/16/docker-数据卷/6.png">
-<meta property="og:image" content="http://yoursite.com/2018/12/16/docker-数据卷/7.png">
-<meta property="og:image" content="http://yoursite.com/2018/12/16/docker-数据卷/8.png">
-<meta property="og:image" content="http://yoursite.com/2018/12/16/docker-数据卷/9.png">
-<meta property="og:image" content="http://yoursite.com/2018/12/16/docker-数据卷/10.png">
-<meta property="og:image" content="http://yoursite.com/2018/12/16/docker-数据卷/11.png">
-<meta property="og:updated_time" content="2018-12-16T14:49:02.539Z">
+<meta property="og:image" content="http://yoursite.com/2018/12/17/docker-端口映射与容器互联/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/17/docker-端口映射与容器互联/2.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/17/docker-端口映射与容器互联/3.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/17/docker-端口映射与容器互联/4.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/17/docker-端口映射与容器互联/5.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/17/docker-端口映射与容器互联/6.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/17/docker-端口映射与容器互联/7.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/17/docker-端口映射与容器互联/8.png">
+<meta property="og:updated_time" content="2018-12-17T02:35:57.059Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="docker-数据卷">
-<meta name="twitter:description" content="前言 容器中管理数据主要有两种方式：  数据卷：容器内数据直接映射到本地主机环境 数据卷容器：使用特定容器维护数据卷  数据卷可以提供很多有用的特性：  数据卷可以在容器间共享和重用，容器间传递数据变得高效方便 对数据卷内数据的修改即刻生效，无论容器内操作还是本地操作 对数据卷的更新不会影响镜像，解耦了应用和数据 卷会一直存在，知道没有容器使用，可以安全卸载   在容器内创建一个数据卷 1doc">
-<meta name="twitter:image" content="http://yoursite.com/2018/12/16/docker-数据卷/1.png">
+<meta name="twitter:title" content="docker-端口映射与容器互联">
+<meta name="twitter:description" content="端口映射 当容器中运行一些应用，可以通过-p ，-P 参数来指定端口映射使用-P时，Docker会随机映射一个49000~49900的端口到内部容器开放的端口如果一个镜像中没有可以对外提供的服务，使用-P参数基于该镜像启动容器后，不会有端口的映射   12例如：docker run -idt -P centos /bin/bash        docker run -idt -P httpd">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/17/docker-端口映射与容器互联/1.png">
 
 
 
@@ -132,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/16/docker-数据卷/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/17/docker-端口映射与容器互联/">
 
 
 
 
 
-  <title>docker-数据卷 | 戴树谦的博客</title>
+  <title>docker-端口映射与容器互联 | 戴树谦的博客</title>
   
 
 
@@ -287,7 +284,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/16/docker-数据卷/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/17/docker-端口映射与容器互联/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="戴树谦">
@@ -304,7 +301,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">docker-数据卷</h1>
+          <h1 class="post-title" itemprop="name headline">docker-端口映射与容器互联</h1>
         
 
         <div class="post-meta">
@@ -316,8 +313,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-16T22:47:35+08:00">
-                2018-12-16
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-17T10:02:46+08:00">
+                2018-12-17
               </time>
             
 
@@ -348,7 +345,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  903
+                  441
                 </span>
               
 
@@ -364,7 +361,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  3
+                  1
                 </span>
               
             </div>
@@ -386,75 +383,33 @@
 
       
         <blockquote>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3></blockquote>
-<p><strong>容器中管理数据主要有两种方式：</strong></p>
-<ul>
-<li>数据卷：容器内数据直接映射到本地主机环境</li>
-<li>数据卷容器：使用特定容器维护数据卷</li>
-</ul>
-<p><strong>数据卷可以提供很多有用的特性</strong>：</p>
-<ul>
-<li>数据卷可以在容器间共享和重用，容器间传递数据变得高效方便</li>
-<li>对数据卷内数据的修改即刻生效，无论容器内操作还是本地操作</li>
-<li>对数据卷的更新不会影响镜像，解耦了应用和数据</li>
-<li>卷会一直存在，知道没有容器使用，可以安全卸载</li>
-</ul>
+<h3 id="端口映射"><a href="#端口映射" class="headerlink" title="端口映射"></a>端口映射</h3></blockquote>
+<p>当容器中运行一些应用，可以通过-p ，-P 参数来指定端口映射<br>使用-P时，Docker会随机映射一个49000~49900的端口到内部容器开放的端口<br>如果一个镜像中没有可以对外提供的服务，使用-P参数基于该镜像启动容器后，不会有端口的映射  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">例如：docker run -idt -P centos /bin/bash  </span><br><span class="line">      docker run -idt -P httpd /bin/bash</span><br></pre></td></tr></table></figure>
+<img src="/2018/12/17/docker-端口映射与容器互联/1.png">
+<img src="/2018/12/17/docker-端口映射与容器互联/2.png">  
+<p><strong>另外几种查看端口映射的方法</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker  port  ID</span><br><span class="line">docker inspect -f &#123;&#123;.NetworkSettings.Ports&#125;&#125;  ID</span><br></pre></td></tr></table></figure>
+<img src="/2018/12/17/docker-端口映射与容器互联/3.png">
+<p>使用-p(小写)可以指定要映射的端口使用<strong>HostPort : ContainPort</strong>将本地的5000映射到容器的5000，会默认绑定本地所有接口上的所有地址  </p>
+<p>可以多次使用-p参数绑定多个端口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 80:80 httpd </span><br><span class="line">docker run -d -p 80:80 -p 8080:8080 httpd</span><br></pre></td></tr></table></figure>
+<p>使用<strong>IP:HostPort:ContainPort</strong>格式指定映射使用一个特定地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 127.0.0.1:80:80 httpd</span><br></pre></td></tr></table></figure>
+<p>使用<strong>IP::ContainerPort</strong>  映射到指定地址的任意端口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 127.0.0.1::80 httpd</span><br><span class="line"></span><br><span class="line">还可以使用udp标记来指定udp端口</span><br><span class="line"></span><br><span class="line">docker run -d -p 127.0.0.1:80:80/udp httpd</span><br></pre></td></tr></table></figure>
 <blockquote>
-<h3 id="在容器内创建一个数据卷"><a href="#在容器内创建一个数据卷" class="headerlink" title="在容器内创建一个数据卷"></a>在容器内创建一个数据卷</h3></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -P --name web -v /webapp training/webapp python app.py</span><br></pre></td></tr></table></figure>
-<p>使用training/webapp  创建一个名为web的容器，在后台运行，自动映射到主机端口，创建一个数据卷挂载到容器的 /webapp 下，并执行app.py文件  </p>
-<img src="/2018/12/16/docker-数据卷/1.png">  
-<p>可以看到 /webapp 的时间戳发生了变化</p>
-<blockquote>
-<h4 id="挂载一个主机目录作为数据卷"><a href="#挂载一个主机目录作为数据卷" class="headerlink" title="挂载一个主机目录作为数据卷"></a>挂载一个主机目录作为数据卷</h4></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -P --name web -v /src/webapp:/opt/webapp training/webapp python app.py</span><br></pre></td></tr></table></figure>
-<p>使用training/webapp  创建一个名为web的容器，在后台运行，自动映射到主机端口，加载主机的/src/webapp到容器的/opt/webapp 下，并执行app.py文件  </p>
-<p><strong>挂载数据卷时，要使用绝对路径，如果目录不存在则会自动创建</strong></p>
-<img src="/2018/12/16/docker-数据卷/2.png">  
-<img src="/2018/12/16/docker-数据卷/3.png">
-<p>可以在容器中看到在宿主机上新建的hello_world文件</p>
-<blockquote>
-<h4 id="挂载一个主机文件作为数据卷"><a href="#挂载一个主机文件作为数据卷" class="headerlink" title="挂载一个主机文件作为数据卷"></a>挂载一个主机文件作为数据卷</h4></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --rm -it -v ~/.bash_history:/.bash_history centos /bin/bash</span><br></pre></td></tr></table></figure>
-<p>使用centos镜像创建一个容器，当容器为退出状态时自动删除，加载本机的.bash_history 到容器的.bash_history 中  </p>
-<p>如果直接挂载一个文件到容器，使用文件编辑工具（vim ,sed等等）时，可能造成文件inode变化，造成报错</p>
-<img src="/2018/12/16/docker-数据卷/4.png">  
-<img src="/2018/12/16/docker-数据卷/5.png">
-<p>加载到容器中的文件仍能使用，但是和本机的文件不同步了（具体问题我也没有找到）</p>
-<blockquote>
-<h3 id="数据卷容器"><a href="#数据卷容器" class="headerlink" title="数据卷容器"></a>数据卷容器</h3><p>数据卷容器也是一个容器，专门用来提供数据卷供其他容器挂载，使得多个容器间共享一些持续更新的数据</p>
-</blockquote>
-<img src="/2018/12/16/docker-数据卷/6.png">  
-<img src="/2018/12/16/docker-数据卷/7.png">  
-<img src="/2018/12/16/docker-数据卷/8.png">   
-<p>db1和db2 中都可以看到dbdata 创建的test文件  </p>
-<p>可以多次使用–volumes-from   参数来从多个容器挂载多个数据卷，还可以从其他已经挂载了容器卷的容器来挂载数据卷</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name db3 --volumes-from db1 training/postgres</span><br></pre></td></tr></table></figure>
-<p><strong>使用–volumes-from 参数所挂载数据卷的容器自身并不需要保持在运行状态</strong>  </p>
-<p>删除了挂载的容器，数据卷并不会被自动删除挂载信息,数据卷信息会保存在/var/lib/docker/volumes下</p>
-<img src="/2018/12/16/docker-数据卷/9.png">
-<blockquote>
-<h4 id="利用数据卷容器迁移数据"><a href="#利用数据卷容器迁移数据" class="headerlink" title="利用数据卷容器迁移数据"></a>利用数据卷容器迁移数据</h4></blockquote>
-<p>可以利用数据卷容器对其中的数据卷备份、恢复，以实现数据的迁移</p>
-<blockquote>
-<h5 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h5></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --volumes-from dbdata -v $(pwd):/backup --name worker centos tar -cvf /backup/backup.tar /dbdata</span><br></pre></td></tr></table></figure>
-<p>使用centos 镜像创建 ，根据数据卷容器dbdata来挂载数据卷，将本地当前目录挂载到容器worker的/backup，并将/dbdata 归档为/backup下的backup.tar </p>
-<img src="/2018/12/16/docker-数据卷/10.png">
-<blockquote>
-<h5 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h5></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --volumes-from dbdata -v $(pwd):/backup --name backup centos tar-xvf  /backup/backup.tar</span><br></pre></td></tr></table></figure>
-<img src="/2018/12/16/docker-数据卷/11.png">
-<blockquote>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>挂载宿主机已存在目录后，在容器内对其进行操作，报“Permission denied”。</p>
-</blockquote>
-<p>可通过两种方式解决：</p>
-<blockquote>
-<h4 id="关闭selinux。"><a href="#关闭selinux。" class="headerlink" title="关闭selinux。"></a>关闭selinux。</h4></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">临时关闭：setenforce 0</span><br><span class="line">永久关闭：修改/etc/sysconfig/selinux文件，将SELINUX的值设置为disabled。</span><br></pre></td></tr></table></figure>
-<blockquote>
-<h4 id="以特权方式启动容器"><a href="#以特权方式启动容器" class="headerlink" title="以特权方式启动容器"></a>以特权方式启动容器</h4></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">指定--privileged参数</span><br><span class="line">docker run -it --privileged=true -v /test:/soft centos /usr/bin/init</span><br></pre></td></tr></table></figure>
+<h3 id="容器互联"><a href="#容器互联" class="headerlink" title="容器互联"></a>容器互联</h3></blockquote>
+<p>创建一个数据库容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -idt --name db postgres</span><br></pre></td></tr></table></figure>
+<img src="/2018/12/17/docker-端口映射与容器互联/4.png">
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -idt -P --name web --link db:db httpd /bin/bash</span><br></pre></td></tr></table></figure>
+<p>使用–link 选项，参数格式为name:alias 即要连接的容器名称 : 这个连接的别名<br><img src="/2018/12/17/docker-端口映射与容器互联/5.png"></p>
+<p>再建立一个web2容器，同web的配置，查看环境变量，可以看到与db容器的连接，以DB_开头的环境变量都是提供web连接db的<br><img src="/2018/12/17/docker-端口映射与容器互联/6.png"></p>
+<p>进入到web容器中查看/etc/hosts .可以看到db容器的信息<br><img src="/2018/12/17/docker-端口映射与容器互联/7.png"></p>
+<p>在web容器中安装ping命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get update 更新源</span><br><span class="line">apt-get install inetutils-ping</span><br></pre></td></tr></table></figure>
+<img src="/2018/12/17/docker-端口映射与容器互联/8.png">
 
       
     </div>
@@ -485,8 +440,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/13/docker-容器/" rel="next" title="docker 容器">
-                <i class="fa fa-chevron-left"></i> docker 容器
+              <a href="/2018/12/16/docker-数据卷/" rel="next" title="docker-数据卷">
+                <i class="fa fa-chevron-left"></i> docker-数据卷
               </a>
             
           </div>
@@ -494,10 +449,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/17/docker-端口映射与容器互联/" rel="prev" title="docker-端口映射与容器互联">
-                docker-端口映射与容器互联 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -650,7 +601,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在容器内创建一个数据卷"><span class="nav-number">2.</span> <span class="nav-text">在容器内创建一个数据卷</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#挂载一个主机目录作为数据卷"><span class="nav-number">2.1.</span> <span class="nav-text">挂载一个主机目录作为数据卷</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#挂载一个主机文件作为数据卷"><span class="nav-number">2.2.</span> <span class="nav-text">挂载一个主机文件作为数据卷</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据卷容器"><span class="nav-number">3.</span> <span class="nav-text">数据卷容器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#利用数据卷容器迁移数据"><span class="nav-number">3.1.</span> <span class="nav-text">利用数据卷容器迁移数据</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#备份"><span class="nav-number">3.1.1.</span> <span class="nav-text">备份</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#恢复"><span class="nav-number">3.1.2.</span> <span class="nav-text">恢复</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-number">4.</span> <span class="nav-text">注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关闭selinux。"><span class="nav-number">4.1.</span> <span class="nav-text">关闭selinux。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#以特权方式启动容器"><span class="nav-number">4.2.</span> <span class="nav-text">以特权方式启动容器</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#端口映射"><span class="nav-number">1.</span> <span class="nav-text">端口映射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器互联"><span class="nav-number">2.</span> <span class="nav-text">容器互联</span></a></li></ol></div>
             
 
           </div>
