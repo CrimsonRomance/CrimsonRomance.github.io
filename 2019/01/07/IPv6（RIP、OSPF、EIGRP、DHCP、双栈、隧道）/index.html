@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="IPv6,">
 
 
 
@@ -79,13 +79,68 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="戴树谦的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="本篇博客介绍了Ipv6 的各种基本配置，也是本学期本门课的一个总结，使用Cisco Packet Tracer7.0 和GNS3 0.8 模拟器进行的以下实验 ，路由器选型为cisco 2911，Gns3中是c2691。 实验一  IPv6 IP地址配置方法（2911）    设备 接口 IP地址     &amp;emsp;Router0&amp;emsp; &amp;emsp;g0/0 &amp;emsp; &amp;emsp;&amp;e">
+<meta name="keywords" content="IPv6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）">
+<meta property="og:url" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/index.html">
 <meta property="og:site_name" content="戴树谦的博客">
+<meta property="og:description" content="本篇博客介绍了Ipv6 的各种基本配置，也是本学期本门课的一个总结，使用Cisco Packet Tracer7.0 和GNS3 0.8 模拟器进行的以下实验 ，路由器选型为cisco 2911，Gns3中是c2691。 实验一  IPv6 IP地址配置方法（2911）    设备 接口 IP地址     &amp;emsp;Router0&amp;emsp; &amp;emsp;g0/0 &amp;emsp; &amp;emsp;&amp;e">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/4.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/5.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/6.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/7.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/8.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/9.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/9.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/10.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/11.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/12.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/13.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/14.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/15.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/16.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/17.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/18.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/19.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/20.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/21.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/22.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/23.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/24.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/25.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/26.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/27.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/28.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/29.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/30.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/31.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/32.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/33.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/34.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/35.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/36.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/37.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/38.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/39.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/40.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/41.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/42.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/43.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/44.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/45.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/46.png">
+<meta property="og:updated_time" content="2019-01-07T14:17:35.064Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="戴树谦的博客">
+<meta name="twitter:title" content="IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）">
+<meta name="twitter:description" content="本篇博客介绍了Ipv6 的各种基本配置，也是本学期本门课的一个总结，使用Cisco Packet Tracer7.0 和GNS3 0.8 模拟器进行的以下实验 ，路由器选型为cisco 2911，Gns3中是c2691。 实验一  IPv6 IP地址配置方法（2911）    设备 接口 IP地址     &amp;emsp;Router0&amp;emsp; &amp;emsp;g0/0 &amp;emsp; &amp;emsp;&amp;e">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/1.png">
 
 
 
@@ -115,13 +170,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/">
 
 
 
 
 
-  <title>戴树谦的博客</title>
+  <title>IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道） | 戴树谦的博客</title>
   
 
 
@@ -140,8 +195,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -256,9 +310,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -288,9 +342,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/" itemprop="url">IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）</a></h1>
+          <h1 class="post-title" itemprop="name headline">IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）</h1>
         
 
         <div class="post-meta">
@@ -371,9 +423,7 @@
       
 
       
-        
-          
-            <p>本篇博客介绍了Ipv6 的各种基本配置，也是本学期本门课的一个总结，使用Cisco Packet Tracer7.0 和GNS3 0.8 模拟器进行的以下实验 ，路由器选型为cisco 2911，Gns3中是c2691。</p>
+        <p>本篇博客介绍了Ipv6 的各种基本配置，也是本学期本门课的一个总结，使用Cisco Packet Tracer7.0 和GNS3 0.8 模拟器进行的以下实验 ，路由器选型为cisco 2911，Gns3中是c2691。</p>
 <h3 id="实验一-IPv6-IP地址配置方法（2911）"><a href="#实验一-IPv6-IP地址配置方法（2911）" class="headerlink" title="实验一  IPv6 IP地址配置方法（2911）"></a>实验一  IPv6 IP地址配置方法（2911）</h3><img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/1.png">
 <table>
 <thead>
@@ -548,8 +598,6 @@
 <img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/46.png">
 <p>特别说明：1、如果你的操作系统是win10，请下载win10关于IPv6的补丁.<br>2、为了用ping命令测试是否互通，请暂时关闭计算机防火墙或者通过设置防火墙规则允许ping命令数据包通过。</p>
 
-          
-        
       
     </div>
     
@@ -564,416 +612,36 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-<div>
-    
- </div>
- 
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/17/docker-端口映射与容器互联/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="戴树谦">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile_photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="戴树谦的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/17/docker-端口映射与容器互联/" itemprop="url">docker-端口映射与容器互联</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-17T10:02:46+08:00">
-                2018-12-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/IPv6/" rel="tag"># IPv6</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  441
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<h3 id="端口映射"><a href="#端口映射" class="headerlink" title="端口映射"></a>端口映射</h3></blockquote>
-<p>当容器中运行一些应用，可以通过-p ，-P 参数来指定端口映射<br>使用-P时，Docker会随机映射一个49000~49900的端口到内部容器开放的端口<br>如果一个镜像中没有可以对外提供的服务，使用-P参数基于该镜像启动容器后，不会有端口的映射  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">例如：docker run -idt -P centos /bin/bash  </span><br><span class="line">      docker run -idt -P httpd /bin/bash</span><br></pre></td></tr></table></figure>
-<img src="/2018/12/17/docker-端口映射与容器互联/1.png">
-<img src="/2018/12/17/docker-端口映射与容器互联/2.png">  
-<p><strong>另外几种查看端口映射的方法</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker  port  ID</span><br><span class="line">docker inspect -f &#123;&#123;.NetworkSettings.Ports&#125;&#125;  ID</span><br></pre></td></tr></table></figure>
-<img src="/2018/12/17/docker-端口映射与容器互联/3.png">
-<p>使用-p(小写)可以指定要映射的端口使用<strong>HostPort : ContainPort</strong>将本地的5000映射到容器的5000，会默认绑定本地所有接口上的所有地址  </p>
-<p>可以多次使用-p参数绑定多个端口</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 80:80 httpd </span><br><span class="line">docker run -d -p 80:80 -p 8080:8080 httpd</span><br></pre></td></tr></table></figure>
-<p>使用<strong>IP:HostPort:ContainPort</strong>格式指定映射使用一个特定地址</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 127.0.0.1:80:80 httpd</span><br></pre></td></tr></table></figure>
-<p>使用<strong>IP::ContainerPort</strong>  映射到指定地址的任意端口</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 127.0.0.1::80 httpd</span><br><span class="line"></span><br><span class="line">还可以使用udp标记来指定udp端口</span><br><span class="line"></span><br><span class="line">docker run -d -p 127.0.0.1:80:80/udp httpd</span><br></pre></td></tr></table></figure>
-<blockquote>
-<h3 id="容器互联"><a href="#容器互联" class="headerlink" title="容器互联"></a>容器互联</h3></blockquote>
-<p>创建一个数据库容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -idt --name db postgres</span><br></pre></td></tr></table></figure>
-<img src="/2018/12/17/docker-端口映射与容器互联/4.png">
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -idt -P --name web --link db:db httpd /bin/bash</span><br></pre></td></tr></table></figure>
-<p>使用–link 选项，参数格式为name:alias 即要连接的容器名称 : 这个连接的别名<br><img src="/2018/12/17/docker-端口映射与容器互联/5.png"></p>
-<p>再建立一个web2容器，同web的配置，查看环境变量，可以看到与db容器的连接，以DB_开头的环境变量都是提供web连接db的<br><img src="/2018/12/17/docker-端口映射与容器互联/6.png"></p>
-<p>进入到web容器中查看/etc/hosts .可以看到db容器的信息<br><img src="/2018/12/17/docker-端口映射与容器互联/7.png"></p>
-<p>在web容器中安装ping命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get update 更新源</span><br><span class="line">apt-get install inetutils-ping</span><br></pre></td></tr></table></figure>
-<img src="/2018/12/17/docker-端口映射与容器互联/8.png">
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-<div>
-    
- </div>
- 
-    
       
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/16/docker-数据卷/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="戴树谦">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile_photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="戴树谦的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/16/docker-数据卷/" itemprop="url">docker-数据卷</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-16T22:47:35+08:00">
-                2018-12-16
-              </time>
+              <a href="/2018/12/17/docker-端口映射与容器互联/" rel="next" title="docker-端口映射与容器互联">
+                <i class="fa fa-chevron-left"></i> docker-端口映射与容器互联
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  903
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <blockquote>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3></blockquote>
-<p><strong>容器中管理数据主要有两种方式：</strong></p>
-<ul>
-<li>数据卷：容器内数据直接映射到本地主机环境</li>
-<li>数据卷容器：使用特定容器维护数据卷</li>
-</ul>
-<p><strong>数据卷可以提供很多有用的特性</strong>：</p>
-<ul>
-<li>数据卷可以在容器间共享和重用，容器间传递数据变得高效方便</li>
-<li>对数据卷内数据的修改即刻生效，无论容器内操作还是本地操作</li>
-<li>对数据卷的更新不会影响镜像，解耦了应用和数据</li>
-<li>卷会一直存在，知道没有容器使用，可以安全卸载</li>
-</ul>
-<blockquote>
-<h3 id="在容器内创建一个数据卷"><a href="#在容器内创建一个数据卷" class="headerlink" title="在容器内创建一个数据卷"></a>在容器内创建一个数据卷</h3></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -P --name web -v /webapp training/webapp python app.py</span><br></pre></td></tr></table></figure>
-<p>使用training/webapp  创建一个名为web的容器，在后台运行，自动映射到主机端口，创建一个数据卷挂载到容器的 /webapp 下，并执行app.py文件  </p>
-<img src="/2018/12/16/docker-数据卷/1.png">  
-<p>可以看到 /webapp 的时间戳发生了变化</p>
-<blockquote>
-<h4 id="挂载一个主机目录作为数据卷"><a href="#挂载一个主机目录作为数据卷" class="headerlink" title="挂载一个主机目录作为数据卷"></a>挂载一个主机目录作为数据卷</h4></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -P --name web -v /src/webapp:/opt/webapp training/webapp python app.py</span><br></pre></td></tr></table></figure>
-<p>使用training/webapp  创建一个名为web的容器，在后台运行，自动映射到主机端口，加载主机的/src/webapp到容器的/opt/webapp 下，并执行app.py文件  </p>
-<p><strong>挂载数据卷时，要使用绝对路径，如果目录不存在则会自动创建</strong></p>
-<img src="/2018/12/16/docker-数据卷/2.png">  
-<img src="/2018/12/16/docker-数据卷/3.png">
-<p>可以在容器中看到在宿主机上新建的hello_world文件</p>
-<blockquote>
-<h4 id="挂载一个主机文件作为数据卷"><a href="#挂载一个主机文件作为数据卷" class="headerlink" title="挂载一个主机文件作为数据卷"></a>挂载一个主机文件作为数据卷</h4></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --rm -it -v ~/.bash_history:/.bash_history centos /bin/bash</span><br></pre></td></tr></table></figure>
-<p>使用centos镜像创建一个容器，当容器为退出状态时自动删除，加载本机的.bash_history 到容器的.bash_history 中  </p>
-<p>如果直接挂载一个文件到容器，使用文件编辑工具（vim ,sed等等）时，可能造成文件inode变化，造成报错</p>
-<img src="/2018/12/16/docker-数据卷/4.png">  
-<img src="/2018/12/16/docker-数据卷/5.png">
-<p>加载到容器中的文件仍能使用，但是和本机的文件不同步了（具体问题我也没有找到）</p>
-<blockquote>
-<h3 id="数据卷容器"><a href="#数据卷容器" class="headerlink" title="数据卷容器"></a>数据卷容器</h3><p>数据卷容器也是一个容器，专门用来提供数据卷供其他容器挂载，使得多个容器间共享一些持续更新的数据</p>
-</blockquote>
-<img src="/2018/12/16/docker-数据卷/6.png">  
-<img src="/2018/12/16/docker-数据卷/7.png">  
-<img src="/2018/12/16/docker-数据卷/8.png">   
-<p>db1和db2 中都可以看到dbdata 创建的test文件  </p>
-<p>可以多次使用–volumes-from   参数来从多个容器挂载多个数据卷，还可以从其他已经挂载了容器卷的容器来挂载数据卷</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name db3 --volumes-from db1 training/postgres</span><br></pre></td></tr></table></figure>
-<p><strong>使用–volumes-from 参数所挂载数据卷的容器自身并不需要保持在运行状态</strong>  </p>
-<p>删除了挂载的容器，数据卷并不会被自动删除挂载信息,数据卷信息会保存在/var/lib/docker/volumes下</p>
-<img src="/2018/12/16/docker-数据卷/9.png">
-<blockquote>
-<h4 id="利用数据卷容器迁移数据"><a href="#利用数据卷容器迁移数据" class="headerlink" title="利用数据卷容器迁移数据"></a>利用数据卷容器迁移数据</h4></blockquote>
-<p>可以利用数据卷容器对其中的数据卷备份、恢复，以实现数据的迁移</p>
-<blockquote>
-<h5 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h5></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --volumes-from dbdata -v $(pwd):/backup --name worker centos tar -cvf /backup/backup.tar /dbdata</span><br></pre></td></tr></table></figure>
-<p>使用centos 镜像创建 ，根据数据卷容器dbdata来挂载数据卷，将本地当前目录挂载到容器worker的/backup，并将/dbdata 归档为/backup下的backup.tar </p>
-<img src="/2018/12/16/docker-数据卷/10.png">
-<blockquote>
-<h5 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h5></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --volumes-from dbdata -v $(pwd):/backup --name backup centos tar-xvf  /backup/backup.tar</span><br></pre></td></tr></table></figure>
-<img src="/2018/12/16/docker-数据卷/11.png">
-<blockquote>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>挂载宿主机已存在目录后，在容器内对其进行操作，报“Permission denied”。</p>
-</blockquote>
-<p>可通过两种方式解决：</p>
-<blockquote>
-<h4 id="关闭selinux。"><a href="#关闭selinux。" class="headerlink" title="关闭selinux。"></a>关闭selinux。</h4></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">临时关闭：setenforce 0</span><br><span class="line">永久关闭：修改/etc/sysconfig/selinux文件，将SELINUX的值设置为disabled。</span><br></pre></td></tr></table></figure>
-<blockquote>
-<h4 id="以特权方式启动容器"><a href="#以特权方式启动容器" class="headerlink" title="以特权方式启动容器"></a>以特权方式启动容器</h4></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">指定--privileged参数</span><br><span class="line">docker run -it --privileged=true -v /test:/soft centos /usr/bin/init</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -983,882 +651,21 @@
   </article>
 <div>
     
+    <div>
+    
+        <div style="text-align:center;color: #000000;font-size:18px;">------ end ------</div>
+    
+</div>
+
+
+    
  </div>
  
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/13/docker-容器/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="戴树谦">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile_photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="戴树谦的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/13/docker-容器/" itemprop="url">docker 容器</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-13T00:02:15+08:00">
-                2018-12-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  1.4k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  5
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>&nbsp;&nbsp;&nbsp;docker容器是docker的运行实例，在镜像文件上带有<strong>可写的文件层</strong>。docker容器是一个轻量级应用，能够随时创建和部署、启动、停止</p>
-<blockquote>
-<h3 id="1-使用docker-creat-创建新的容器"><a href="#1-使用docker-creat-创建新的容器" class="headerlink" title="1.使用docker creat 创建新的容器"></a>1.使用docker creat 创建新的容器</h3></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker create -it centos  创建以个新的Centos容器</span><br></pre></td></tr></table></figure>
-<img src="/2018/12/13/docker-容器/1.png">
-<p>使用docker ps -a 查看容器信息</p>
-<img src="/2018/12/13/docker-容器/2.png">
-<p>STATUS 为容器运行状态，UP为正常运行，Exited为停止，Created为尚未启动   </p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;creat 命令和后续的run命令支持的选项都十分复杂，主要包括几大类：与容器运行模式相关，与容器和环境配置相关，与容器资源限制和安全保护相关</p>
-<blockquote>
-<h3 id="2-使用docker-start-启动容器"><a href="#2-使用docker-start-启动容器" class="headerlink" title="2.使用docker start 启动容器"></a>2.使用docker start 启动容器</h3></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker start 10f</span><br></pre></td></tr></table></figure>
-<img src="/2018/12/13/docker-容器/3.png">
-<p>可以看到容器状态为UP  代表已经启动。</p>
-<blockquote>
-<h3 id="3-使用-docker-run-新建并启动容器"><a href="#3-使用-docker-run-新建并启动容器" class="headerlink" title="3. 使用 docker run  新建并启动容器"></a>3. 使用 docker run  新建并启动容器</h3></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run centos /bin/echo &quot;this is new centos &quot;</span><br></pre></td></tr></table></figure>
-<img src="/2018/12/13/docker-容器/4.png">
-<p><strong>当利用docker run 来创建并启动容器时，docker在后台运行的标准操作包括：</strong></p>
-<ol>
-<li>检查本地是否存在指定的镜像，不存在就从共有仓库下载</li>
-<li>利用镜像创建一个容器，并启动该容器</li>
-<li>分配一个文件系统给容器，并在只读的镜像层外面挂载一层可读写层</li>
-<li>从宿主主机配置的网桥接口中桥接一个虚拟接口到容器</li>
-<li>从网桥的地址池配置一个ip 地址给容器</li>
-<li>执行用户指定的应用程序</li>
-<li>执行完毕后容器被自动终止</li>
-</ol>
-<img src="/2018/12/13/docker-容器/5.png">
-<img src="/2018/12/13/docker-容器/6.png">
-<p>&nbsp;&nbsp;&nbsp;&nbsp;使用ps命令，可以看到只运行了bash应用，并无其他进程,用户可以输入exit 命令来退出容器  </p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;对于所创建的bash容器，当使用exit命令退出后，容器就自动处于退出(Exited)状态，对于docker 容器来说， 当运行的应用退出后容器也就没有继续运行的必要了  </p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;有时执行docker  run会出错，因为命令无法正常执行容器会退出，可以查看默认返回的错误码</p>
-<p><strong>常见的有以下几个</strong></p>
-<ol>
-<li>125   Docker daemon 执行出错，例如指定不支持的参数</li>
-<li>126  指定命令无法执行  例如权限出错</li>
-<li>127  容器内命令无法找到   </li>
-</ol>
-<blockquote>
-<h3 id="4-守护状态运行"><a href="#4-守护状态运行" class="headerlink" title="4. 守护状态运行"></a>4. 守护状态运行</h3></blockquote>
-<p>使docker容器在后台以守护状态运行（Daemonized） 使用-d 参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run -d centos /bin/bash -c &quot;while ture ; do echo hello world ; sleep 2;done&quot; </span><br><span class="line">docker ps ###  查看容器信息</span><br><span class="line">docker logs ###  获取容器输出信息</span><br><span class="line">docker stop ###   停止容器</span><br></pre></td></tr></table></figure>
-<img src="/2018/12/13/docker-容器/7.png">
-<blockquote>
-<h3 id="5-终止容器"><a href="#5-终止容器" class="headerlink" title="5. 终止容器"></a>5. 终止容器</h3></blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;docker stop 会终止一个运行中的容器，命令格式为 docker stop [-t | –time=[10]] [container]  </p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;首先向容器发送SIGTERM 信号，等待一段超时时间后（默认10秒 ） 在发送信号来终止容器<br>&nbsp;&nbsp;&nbsp;&nbsp;docker kill  会 直接发送  SIGKILL  信号来终止容器</p>
-<p><strong>&nbsp;当Docker容器中指定的应用终结时，容器也会自动终止</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -qa 查看所有容器的id</span><br></pre></td></tr></table></figure>
-<img src="/2018/12/13/docker-容器/8.png">
-<p>&nbsp;&nbsp;&nbsp;&nbsp;处于终止状态的容器可以通过 docker start命令重新启动,docker restart 会将一个运行态容器先终止再重新启动</p>
-<blockquote>
-<h3 id="6-进入容器"><a href="#6-进入容器" class="headerlink" title="6.进入容器"></a>6.进入容器</h3></blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;在使用-d参数后，容器会进入后台，用户无法操作，如果需要进入可以使用官方的attach、exec，和第三方的nsenter</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker attach [--detach-keys[ = [ ] ] ] [--no-stdin] [--sig-proxy[=ture]] container </span><br><span class="line">--detach-keys[ = [ ] ] : 指定退出attach模式的快捷键，默认是ctrl+q 和ctrl+p</span><br><span class="line">--no-stdin=true|false  ： 是否关闭从标准输入，默认是打开</span><br><span class="line">--sig-proxy=true|false  ： 是否代理收到的系统信给应用进程，默认true</span><br></pre></td></tr></table></figure>
-<p>多个窗口同时使用attach模式连接到同一容器时，所有窗口都会同步显示<br><img src="/2018/12/13/docker-容器/9.png"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker exec [-d|--detach] [--detach-keys[=[ ] ] ] [-i|--interactive] [--privileged] [-t|--tty] [-u|--user[=USER] container COMMAND [ARG..]</span><br><span class="line">-i ,--interactive=true|false  :  打开标准输入接受用户输入命令，默认false </span><br><span class="line">--privileged-true|false  ： 是否给执行命令以最高权限 ，默认false</span><br><span class="line">-t，--tty=true|false  ; 分配伪终端，默认false</span><br><span class="line">-u ，--user=&quot; &quot;  : 执行命令的用户或ID</span><br></pre></td></tr></table></figure>
-<img src="/2018/12/13/docker-容器/10.png">
-<p>&nbsp;&nbsp;&nbsp;通过指定-it 参数来保持标准输入打开，并且分配一个为终端，推荐使用exec命令对容器进行操作</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker nsenter 第三方工具</span><br></pre></td></tr></table></figure>
-<blockquote>
-<h3 id="7-删除容器"><a href="#7-删除容器" class="headerlink" title="7.删除容器"></a>7.删除容器</h3></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm [-f|--force] [-l | --link] [-v|--volumes] container [container……]</span><br></pre></td></tr></table></figure>
-<p>使用该命令来删除处于终止或退出状态的容器  </p>
-<p>-f ，–force=false ：是否强制终止并删除一个运行中的容器  </p>
-<p>-l，–link=false ：删除容器的连接，但是保留容器  </p>
-<p>-v，–volumes=false ： 删除容器挂载的数据卷<br><img src="/2018/12/13/docker-容器/11.png"><br><img src="/2018/12/13/docker-容器/12.png"></p>
-<blockquote>
-<h3 id="8-导入导出容器"><a href="#8-导入导出容器" class="headerlink" title="8. 导入导出容器"></a>8. 导入导出容器</h3></blockquote>
-<p>用于容器的系统迁移  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker export [-o|--output[=&quot; &quot; ] ] container</span><br></pre></td></tr></table></figure>
-<p>可以通过-o 来指定导出的tar文件名，也可以直接重定向实现<br><img src="/2018/12/13/docker-容器/13.png"><br><img src="/2018/12/13/docker-容器/14.png"></p>
-<p>导出的文件可以使用docker import 命令导入变成镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker import [-c|--change[=[]]] [-m|--message[=MESSAGE]] file|URL|-[REPOSITORY[:TAG]]</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>docker save ：将一个镜像导出为文件，再使用docker<br>load –input 命令将文件导入为一个镜像，会保存该镜像的的所有历史记录。比docker<br>export命令导出的文件大，很好理解，因为会保存镜像的所有历史记录。  </p>
-</li>
-<li><p>docker export ：将一个容器导出为文件，再使用docker import命令将容器导入成为一个新的镜像，但是相比docker save命令，容器文件会丢失所有元数据和历史记录，仅保存容器当时的状态，相当于虚拟机快照。</p>
-</li>
-</ul>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-<div>
-    
- </div>
- 
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="戴树谦">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile_photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="戴树谦的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/12/docker-ce安装-与docker镜像（Centos7/" itemprop="url">docker-ce安装 与docker镜像（Centos7)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-12T10:40:27+08:00">
-                2018-12-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  3.2k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  13
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<h3 id="安装docker-ce（设置清华大学镜像站为镜像源"><a href="#安装docker-ce（设置清华大学镜像站为镜像源" class="headerlink" title="安装docker-ce（设置清华大学镜像站为镜像源)"></a>安装docker-ce（设置清华大学镜像站为镜像源)</h3></blockquote>
-<p>在centos7 yum仓库 的extras仓库中自带了docker源,都是docker 1.13版本，不建议使用老版本docker.<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/1.png"><br>清华大学在镜像站中给docker做了镜像<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/2.png"><br>在此目录下找到docker的repo文件<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/3.png"><br>我们可以自己建一个docker镜像源仓库，首先要把该repo文件下载到/etc/yum.repos.d 中<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/4.png"><br>下载后打开docker-ce.repo文件，文件中指向的地址是docker官方站点，这个下载速度是很慢的，因此还要修改下载路径<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/5.png"><br>仍然选择清华大学镜像站，来到这个目录下，选择稳定版<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/6.png"><br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/7.png"><br>可以看到这里有最新版本18.06<br>选择复制链接中的linux父目录<a href="https://mirrors.tuna.tsinghua.edu.cn/docker-ce/然后全局替换docker-ce.repo中的官方地址的linux的父目录" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/docker-ce/然后全局替换docker-ce.repo中的官方地址的linux的父目录</a><br>用vim打开，在末行模式下进行替换<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/8.png"><br>可以看到替换成功<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/9.png"><br>yum repolist  显示所有仓库，可以看到存在docker-ce的程序包<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/10.png"><br>yum install docker-ce ，完成<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/11.png"></p>
-<blockquote>
-<h3 id="启动docker"><a href="#启动docker" class="headerlink" title="启动docker"></a>启动docker</h3></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl  start  docker</span><br></pre></td></tr></table></figure>
-<p>设置开机自启动</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl  enable  docker</span><br></pre></td></tr></table></figure>
-<p>很简单<br>镜像是运行docker容器的基础，容器运行前，必须存在对应的镜像，如果本地没有对应的镜像，docker会自动从默认仓库（DockerHub） 下载镜像,如果有本地镜像，也可以从本地仓库下载镜像<br>获取镜像的主要方式是从共有仓库（DockerHub）下载</p>
-<blockquote>
-<h3 id="搜索并下载镜像（例如调用ubuntu镜像）"><a href="#搜索并下载镜像（例如调用ubuntu镜像）" class="headerlink" title="搜索并下载镜像（例如调用ubuntu镜像）"></a>搜索并下载镜像（例如调用ubuntu镜像）</h3></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1.docker  search  ubuntu  搜索ubuntu镜像</span><br></pre></td></tr></table></figure>
-<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/12.png">
-<p>其中列出了查找到的镜像名称、描述、星级、官方 、自动化的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2.docker pull  ubuntu 下载镜像</span><br></pre></td></tr></table></figure>
-<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/13.png">
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3.docker images  查看已经下载的镜像文件</span><br></pre></td></tr></table></figure>
-<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/14.png">
-<h4 id="参数含义："><a href="#参数含义：" class="headerlink" title="参数含义："></a>参数含义：</h4><p><strong>REPOSITORY : 镜像来源于哪个仓库<br>TAG : 镜像标签<br>IMAGE ID  : 镜像id(唯一标识镜像)<br>CREATED  :  镜像创建时间<br>SIZE  :  镜像大小，优秀的镜像往往体积小</strong></p>
-<ul>
-<li>如果不指定镜像系统版本，则会下载最新版本镜像，也可以通过指定TAG的方法来下载特定版本的镜像,在生产中不应忽略镜像标签信息或使用默认的latest标签，内容是不稳定的。  </li>
-<li>docker pull 默认从Docker Hub Registry仓库下载镜像，如果从非官方仓库下载，则需要在仓库名称前指定完整的仓库地址 例如docker pull hub.c.163.com/public/ubuntu14.04   即从网易下载 </li>
-</ul>
-<p>docker tag 为本地镜像任意添加新的标签<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4.docker tag ubuntu:latest  myubuntu:latest</span><br></pre></td></tr></table></figure></p>
-<p>该命令添加的标签实际起到了类似链接的作用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5.docker inspect 获取镜像详细信息(元数据)</span><br></pre></td></tr></table></figure>
-<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/15.png">
-<p>返回的时json格式信息，如果想要其中一项内容时，使用-f参数来指定  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inspect -f &#123;&#123;.RepoTag&#125;&#125; ImageID</span><br></pre></td></tr></table></figure>
-<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/16.png">
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">6.docker history 查看镜像历史</span><br></pre></td></tr></table></figure>
-<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/17.png">
-<p>镜像文件由多个层组成，docker history 可以查看镜像的创建过程  </p>
-<blockquote>
-<h3 id="启动一个基于该ubuntu镜像的容器，并进入该容器"><a href="#启动一个基于该ubuntu镜像的容器，并进入该容器" class="headerlink" title="启动一个基于该ubuntu镜像的容器，并进入该容器"></a>启动一个基于该ubuntu镜像的容器，并进入该容器</h3></blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">7.docker run -idt ubuntu /bin/bash</span><br><span class="line">8.docker exec -it /bin/bash</span><br></pre></td></tr></table></figure>
-<p>-i是为了让容器能接受用户的输入，-t是指定docker为容器创建一个tty<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/18.png"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">9.df -TH  查看容器文件系统的磁盘使用</span><br></pre></td></tr></table></figure></p>
-<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/19.png">
-<blockquote>
-<h3 id="保存和载入镜像"><a href="#保存和载入镜像" class="headerlink" title="保存和载入镜像"></a>保存和载入镜像</h3></blockquote>
-<p>用户可以将镜像保存到本地以载入使用，或者将其复制到另外的文件系统<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.docker save -o ubuntu_latest_save.tar ubuntu:latest 保存镜像</span><br></pre></td></tr></table></figure></p>
-<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/20.png">  
-<p>可以把保存的镜像文件载入到系统中，并载入标签等镜像文件的元数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">11.docker load &lt; ubuntu_latest_save.tar  载入镜像</span><br><span class="line">12.docker load --input ubuntu_latest_save.tar</span><br></pre></td></tr></table></figure>
-<blockquote>
-<h3 id="删除镜像"><a href="#删除镜像" class="headerlink" title="删除镜像"></a>删除镜像</h3><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/21.png">
-</blockquote>
-<p>查询后可以看到镜像id </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">13.docker rmi IMAGE ID</span><br></pre></td></tr></table></figure>
-<p>报错为该镜像被683容器所使用，需要先删除基于这个镜像所创建的容器 </p>
-<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/22.png">  
-<p>docker ps -a 查询容器可以看到存在基于镜像ubuntu的容器<br>状态为UP ，表示正在运行<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/23.png"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">14.docker stop CONTAINER ID  停止容器</span><br></pre></td></tr></table></figure>
-<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/24.png">
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">15.docker rm  CONTAINER ID删除该容器</span><br></pre></td></tr></table></figure>
-<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/25.png">
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">16.docker rmi IMAGE ID</span><br></pre></td></tr></table></figure>
-<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/26.png">
-<p>镜像已经删除。其中删除容器为rm  删除镜像为rmi。可以在待删除的镜像名称前面加参数-f ，强制删除。<br>后来在DockerFile中推荐以下的命令写法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">17.docker container stop</span><br><span class="line">18.docker container rm</span><br><span class="line">19.docker images rm</span><br></pre></td></tr></table></figure>
-<blockquote>
-<h3 id="创建镜像"><a href="#创建镜像" class="headerlink" title="创建镜像"></a>创建镜像</h3></blockquote>
-<h4 id="创建镜像有三种方法，分别是基于本地模板导入镜像、基于已有镜像的容器创建镜像，基于Dockerfile-创建镜像"><a href="#创建镜像有三种方法，分别是基于本地模板导入镜像、基于已有镜像的容器创建镜像，基于Dockerfile-创建镜像" class="headerlink" title="创建镜像有三种方法，分别是基于本地模板导入镜像、基于已有镜像的容器创建镜像，基于Dockerfile 创建镜像"></a>创建镜像有三种方法，分别是基于本地模板导入镜像、基于已有镜像的容器创建镜像，基于Dockerfile 创建镜像</h4><h5 id="1-gt-基于本地模板导入镜像"><a href="#1-gt-基于本地模板导入镜像" class="headerlink" title="1&gt; 基于本地模板导入镜像"></a>1&gt; 基于本地模板导入镜像</h5><p>如果本地有镜像的模板文件，可以基于该模板创建镜像，镜像模板文件也可以从OpenVZ下载</p>
-<p>wget <a href="http://download.openvz.org/template/precreated/ubuntu-14.04-x86_64-minimal.tar.gz" target="_blank" rel="noopener">http://download.openvz.org/template/precreated/ubuntu-14.04-x86_64-minimal.tar.gz</a>   下载模板文件</p>
-<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/27.png">  
-<p>下载完成后，执行以下命令，可以用该模板文件创建文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">20.cat ubuntu-14.04-x86_64-minimal.tar.gz | docker import - ubuntu-14.04_minimal_amd64</span><br></pre></td></tr></table></figure>
-<p>其中 docker import：从归档文件中创建镜像<br>用法：docker import [OPTIONS]  file|URL|-   [REPOSITORY[:TAG]]<br>-c :应用docker 指令创建镜像；<br>-m :提交时的说明文字；  </p>
-<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/28.png">
-<p>可以看到刚刚导出的镜像，启动并运行</p>
-<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/29.png">
-<h5 id="2-gt-基于已有的镜像容器创建镜像"><a href="#2-gt-基于已有的镜像容器创建镜像" class="headerlink" title="2&gt;基于已有的镜像容器创建镜像"></a>2&gt;基于已有的镜像容器创建镜像</h5><p>接上图<br>在容器中新建一个for_new_image 目录<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/30.png"></p>
-<p>与原容器相比此时已经发生变化，，可以提交为新镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">21.docker commit -m &quot;creatd new dir&quot; -a &quot;root&quot; 87acd63067e1 new_ubuntu</span><br></pre></td></tr></table></figure>
-<p>其中 docker commit ：从容器创建一个新的镜像。<br>语法： docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]<br>-a :提交的镜像作者；<br>-c :使用Dockerfile指令来创建镜像；<br>-m :提交时的说明文字；<br>-p :在commit时，将容器暂停。  </p>
-<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/31.png">
-<p>提交成功后会返回镜像ID，可以看到新镜像已经存在</p>
-<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/32.png">
-<h5 id="3-gt-基于Dockerfile-创建镜像"><a href="#3-gt-基于Dockerfile-创建镜像" class="headerlink" title="3&gt; 基于Dockerfile 创建镜像"></a>3&gt; 基于Dockerfile 创建镜像</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;Dockerfile 是一种被Docker程序解释的脚本，每条指令对应linux下的一条命令， Docker程序可以读取Dockerfile脚本，根据指令生成定制的镜像。<br>Dockerfile指令分为构建指令和设置指令。构建指令用于构建镜像，不会在容器的镜像上运行；设置指令用于设置镜像属性，其操作可以在容器的镜像上执行  </p>
-<h6 id="（1）FROM"><a href="#（1）FROM" class="headerlink" title="（1）FROM"></a>（1）FROM</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;构建指令，用于指定基础镜像，必须指定，且必须在Dockerfile所有指令之前指定，因为后续指令都依赖该指令指定的镜像，，可以指定DockerHub中的镜像，也可以指定本地仓库中的</p>
-<h6 id="（2）MAINTAINER"><a href="#（2）MAINTAINER" class="headerlink" title="（2）MAINTAINER"></a>（2）MAINTAINER</h6><p>  &nbsp;&nbsp;&nbsp;&nbsp;构建指令，用于将镜像制作者相关信息写入镜像中，当我们对该镜像执行docker inspect 命令时，会显示该字段</p>
-<h6 id="（3）RUN"><a href="#（3）RUN" class="headerlink" title="（3）RUN"></a>（3）RUN</h6><p>  &nbsp;&nbsp;&nbsp;&nbsp;构建指令，用于执行任何被基础镜像所支持的命令，例如ubuntu基础镜像只能使用ubuntu命令，centos基础镜像只能使用centos命令 </p>
-<h6 id="（4）CMD"><a href="#（4）CMD" class="headerlink" title="（4）CMD"></a>（4）CMD</h6><p>  &nbsp;&nbsp;&nbsp;&nbsp;设置指令，用于指定容器启动时执行的操作，可以执行自定义脚本，亦可以执行系统命令，，此命令只能在Dockerfile脚本中设置一次，设置多个只会执行最后一个</p>
-<h6 id="（5）ENTRYPOINT-（entrypoint）"><a href="#（5）ENTRYPOINT-（entrypoint）" class="headerlink" title="（5）ENTRYPOINT （entrypoint）"></a>（5）ENTRYPOINT （entrypoint）</h6><p>  &nbsp;&nbsp;&nbsp;&nbsp;设置指令，用于指定容器启动时执行的命令，可以在Dockerfile脚本中设置多次，只有最后一个有效 </p>
-<p> ENTRYPOINT 使用分两种情况 ：   </p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;独自使用时，如果同时使用了CMD命令，且CMD指定的是一个完整可执行命令，那么二者会互相覆盖，只有写在最后的那条指令有效；<br>与CMD指令配合使用，CMD指令可以指定ENTRYPOINT的默认参数，此时CMD指令指定的仅仅是参数部分，而ENTRYPOINT需要使用JSON方式指定需要执行的命令但不能使用参数</p>
-<h6 id="（6）USER"><a href="#（6）USER" class="headerlink" title="（6）USER"></a>（6）USER</h6><p>  设置指令，用于设置启动容器的用户，默认为root</p>
-<h6 id="（7）EXPOSE"><a href="#（7）EXPOSE" class="headerlink" title="（7）EXPOSE"></a>（7）EXPOSE</h6><p>  &nbsp;&nbsp;&nbsp;&nbsp;设置指令，用于将容器中的端口映射称为宿主机中的摸个端口。极大方便了访问容器   。    宿主机IP：PORT</p>
-<p>  &nbsp;&nbsp;&nbsp;&nbsp;需要两步操作，首先在Docerfile中使用 EXPOSE设置需要映射的容器端口号，然后在 docker run 中使用参数 -p 指定前面的端口号，该端口号就会被随机映射称为宿主机中的一个端口号，也可以指定需要映射到宿主机的哪个端口，但要注意指定的端口没有被占用。</p>
-<p>  &nbsp;&nbsp;&nbsp;&nbsp;端口映射是Docker比较重要的一个功能，因为每次运行容器时，容器IP不能被指定，而是桥接模式网卡随机生成的，但是宿主机IP地址是固定的，将容器端口映射称为宿主机上的一个端口，可以免去每次访问容器时都要查看容器IP的麻烦</p>
-<p> &nbsp;&nbsp;&nbsp;&nbsp;一个运行中的容器，使用 ==docker port CONTAINER ID== 查看该端口号在宿主机上的映射端口</p>
-<h6 id="（8）-ENV-（environment）"><a href="#（8）-ENV-（environment）" class="headerlink" title="（8） ENV  （environment）"></a>（8） ENV  （environment）</h6><p>   &nbsp;&nbsp;&nbsp;&nbsp;构建指令，用于在镜像中设置一个环境变量，设置成功后，后续的RUN 指令都可以使用该指令设置的环境</p>
-<h6 id="（9）ADD"><a href="#（9）ADD" class="headerlink" title="（9）ADD"></a>（9）ADD</h6><p>  &nbsp;&nbsp;&nbsp;&nbsp;构建指令，用于把本地文件添加到容器，默认所有拷贝到容器中文件和文件夹权限为755（-rwxr-xr-x），UID和GID为0，如果是一个目录，那么会将该目录下的所有文件添加到容器，但不包括目录；如果文件是可识别的压缩格式，则docker会进行解压缩 </p>
-<h6 id="（10）VOLUME"><a href="#（10）VOLUME" class="headerlink" title="（10）VOLUME"></a>（10）VOLUME</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;设置指令， 指定挂载点，用于使容器中某个目录具有持久化存储数据的功能，该目录可以被容器本身使用，也可以共享给其他容器使用<br>由于容器使用AUFS文件系统，不能持久化数据，容器关闭后，所有更改也会消失，因此容器有应用持久化数据存储的需求时，可以使用该指令</p>
-<h6 id="（11）WORKDIR"><a href="#（11）WORKDIR" class="headerlink" title="（11）WORKDIR"></a>（11）WORKDIR</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;设置指令，可以多次切换目录（cd），可以在RUN,  CMD,    ENTRYPOINT  命令前使用</p>
-<h6 id="12-COPY-src-…-dest"><a href="#12-COPY-src-…-dest" class="headerlink" title="(12) COPY (src)…(dest)"></a>(12) COPY (src)…(dest)</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;复制本地主机 src (为Dockerfile所在目录的相对路径、文件或目标）下的内容到镜像中的 dest 下。路径不存在时会自动创建。支持正则。 </p>
-<h6 id="下面展示一则使用Dockerfile创建Tomcat镜像的实例"><a href="#下面展示一则使用Dockerfile创建Tomcat镜像的实例" class="headerlink" title="下面展示一则使用Dockerfile创建Tomcat镜像的实例"></a>下面展示一则使用Dockerfile创建Tomcat镜像的实例</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">#Pull base image    // 获取基础镜像</span><br><span class="line">FROM ubuntu:latest</span><br><span class="line">MAINTAINER XXX</span><br><span class="line"># LABEL maintainer=&quot;XXX&quot;</span><br><span class="line"></span><br><span class="line">#update source      //更新镜像源</span><br><span class="line">RUN echo &quot;deb http://cn.archive.ubuntu.com/ubuntu xenial main universe&quot;&gt;/etc/apt/sources.list</span><br><span class="line">RUN apt-get update</span><br><span class="line"></span><br><span class="line">#Install curl            // 安装curl</span><br><span class="line">RUN apt-get -y install curl</span><br><span class="line"></span><br><span class="line">#Install JDK 8         //安装JDK,其中的cookie使用burpsuit获取</span><br><span class="line">RUN cd /tmp &amp;&amp; curl -L &apos;http://download.oracle.com/otn-pub/java/jdk/8u191-b12/2787e4a523244c269598db4e85c51e0c/jdk-8u191-linux-i586.tar.gz&apos;   </span><br><span class="line">-H &apos;Cookie:s_fid=1CC16A1445A28C96-0DF2FFDC49166DB3; ELOQUA=GUID=25787B725D6B4A1E98D0D92A1C00A0F7; s_nr=1540978397285-Repeat;   </span><br><span class="line">RT=&quot;sl=23&amp;ss=1540977568733&amp;tt=40261&amp;obo=21&amp;sh=1540977921638%3D23%3A2  1%3A40261%2C1540977919016%3D22%3A21%3A37654%2C1540977918989%3D21%3A20%3A3  </span><br><span class="line">7654%2C1540977913741%3D20%3A19%3A37654%2C1540977913712%3D19%3A18%3A37654&amp;dm=oracle.com&amp;si=6be7a975-8d66-41f3-92c8-a5748709fec8&amp;bcn=%2F%2F1288af  </span><br><span class="line">19.akstat.io%2F&amp;nu=http%3A%2F%2Fdownload.oracle.com%2Fotn-pub%2Fjava%2Fjdk%2F8u191-b12%2F2787e4a523244c269598db4e85c51e0c%2Fjdk-8u191-linux-i586  </span><br><span class="line">.tar.gz&amp;cl=1540978405737&quot;;atgRecVisitorId=127AFu33Mp_NNJQHlgn2ZpQPg5vZT6c4TietQ0-KTTWmfuc8127; gpw_e24=https%3A%2F%2Fwww.oracle.com%2Ftechnetwork  </span><br><span class="line">%2Fjava%2Fjavase%2Fdownloads%2Fjdk8-downloads-2133151.html; s_cc=true; s_sq=%5B%5BB%5D%5D; oraclelicense=accept-securebackup-cookie&apos;|tar -zx</span><br><span class="line">RUN mkdir -p /usr/lib/jvm</span><br><span class="line">RUN mv /tmp/jdk1.8.0_191 /usr/lib/jvm/java-8-oracle/</span><br><span class="line"></span><br><span class="line">#Set Oracle JDK 8 as default Java    //配置Java环境</span><br><span class="line">RUN update-alternatives --install /usr/bin/java java /usr/lib/jvm/java-8-oracle/bin/java 300</span><br><span class="line">RUN update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/java-8-oracle/bin/javac 300</span><br><span class="line"></span><br><span class="line">ENV JAVA_HOME /usr/lib/jvm/java-8-oracle/</span><br><span class="line"></span><br><span class="line">#Install Tomcat8        //安装Tomcat</span><br><span class="line">RUN cd /tmp &amp;&amp; curl -L &apos;https://mirror.bit.edu.cn/apache/tomcat/tomcat-8/v8.5.34/bin/apache-tomcat-8.5.34.tar.gz&apos;| tar -xz</span><br><span class="line">RUN mv /tmp/apache-tomcat-8.5.34/ /opt/tomcat8/</span><br><span class="line"></span><br><span class="line">ENV CATALINA_HOME /opt/tomcat8</span><br><span class="line">ENV PATH $PATH:$CATALINA_HOME/bin</span><br><span class="line"></span><br><span class="line">#Expose ports       </span><br><span class="line">EXPOSE 8090:8080    //设置映射端口，tomcat的8080端口映射为宿主机的8090端口</span><br><span class="line"></span><br><span class="line">#Define default command      //运行tomcat，查看日志</span><br><span class="line">ENTRYPOINT /opt/tomcat8/bin/startup.sh &amp;&amp; tail -f /opt/tomcat8/logs/catalina.out</span><br></pre></td></tr></table></figure>
-<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/33.png">
-<p>或<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/34.png"></p>
-<p>运行Dockerfile要在Dockerfile所在的目录，”./“应为Dockerfile脚本所在目录，否则就会报上下文环境的错误,MV、COPY、ADD的文件位置都是相对于/root  来说的<br>第一遍执行(使用的第一条命令)时出现很多错误，最后修改成功了，以下截图是第二遍执行(第二条命令) 因此会报使用缓存</p>
-<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/35.png">
-<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/36.png">
-<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/37.png">
-<p>在下载jdk的时候，需要加上cookie，没加时出现以下报错</p>
-<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/38.png">
-<p>Java和Tomcat程序的安装包下载地址可能会发生变化，因此使用该脚本时先根据实际下载地址对其进行修改，包括解压后的生成路径也会有改变</p>
-<p>运行镜像，启动一个基于镜像tomcat的容器，宿主机输入<a href="http://localhost:8090" target="_blank" rel="noopener">http://localhost:8090</a>  即可访问tomcat</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-<div>
-    
- </div>
- 
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/15/亲测Hexo-Github个人博客搭建/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="戴树谦">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile_photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="戴树谦的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/15/亲测Hexo-Github个人博客搭建/" itemprop="url">亲测Hexo+Github个人博客搭建</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-15T20:11:19+08:00">
-                2018-11-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  1k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="什么是-Hexo？"><a href="#什么是-Hexo？" class="headerlink" title="什么是 Hexo？"></a><strong>什么是 Hexo？</strong></h3><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
-<p>安装 Hexo 相当简单<br>然而在安装前，您必须检查电脑中是否已安装下列应用程序：</p>
-<ul>
-<li>Node.js<br><a href="https://nodejs.org/dist/v10.13.0/node-v10.13.0-x64.msi(Winx64)" target="_blank" rel="noopener">https://nodejs.org/dist/v10.13.0/node-v10.13.0-x64.msi(Winx64)</a></li>
-<li>Git<br><a href="https://github.com/git-for-windows/git/releases/download/v2.19.1.windows.1/Git-2.19.1-64-bit.exe（Win" target="_blank" rel="noopener">https://github.com/git-for-windows/git/releases/download/v2.19.1.windows.1/Git-2.19.1-64-bit.exe（Win</a> x64）</li>
-</ul>
-<p>输入 ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br><span class="line">git --version</span><br></pre></td></tr></table></figure>
-<p>检查Node.js 和 Git 是否 安装成功<br><img src="/2018/11/15/亲测Hexo-Github个人博客搭建/1.jpg"></p>
-<p>在此处，如果Node.js 版本低，在后面的搭建过程中无法顺利执行，建议各位在官网下载最新版本；Git如果没有加入环境变量需要将Git添加到环境变量</p>
-<p>在自己认为合适的位置创建一个个文件夹，我的是E:\Personal-blog\hexo ，在命令行界面进入该文件夹，然后使用 npm 即可完成 Hexo 的安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<img src="/2018/11/15/亲测Hexo-Github个人博客搭建/2.jpg">
-<p>安装完成，可能会有WARN，但不会影响正常使用<br>然后输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo --save</span><br></pre></td></tr></table></figure>
-<p>在这一步时，我遇到如下报错<br><img src="/2018/11/15/亲测Hexo-Github个人博客搭建/3.jpg"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm WARN deprecated titlecase@1.1.2: no longer maintained</span><br><span class="line">npm ERR! Unexpected end of JSON input while parsing near &apos;...&quot;:&quot;^0.3.1&quot;,&quot;benchmark&apos;</span><br><span class="line"></span><br><span class="line">npm ERR! A complete log of this run can be found in:</span><br><span class="line">npm ERR!     C:\Users\dell\AppData\Roaming\npm-cache\_logs\2018-11-12T15_46_56_713Z-debug.log</span><br></pre></td></tr></table></figure></p>
-<p>解决办法：<br>更新npm源即可</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
-<p>Hexo安装完成，检测是否正确安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo -v</span><br></pre></td></tr></table></figure>
-<img src="/2018/11/15/亲测Hexo-Github个人博客搭建/4.jpg">
-<h3 id="Hexo的配置"><a href="#Hexo的配置" class="headerlink" title="Hexo的配置"></a>Hexo的配置</h3><p>在当前目录下新建一个名为blog的文件夹，用于存放博客网站的信息<br>在命令行进入blog，初始化该文件夹，并安装所需组件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init </span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<p>安装完成后，检测是否安装成功</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-<img src="/2018/11/15/亲测Hexo-Github个人博客搭建/5.jpg">
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<img src="/2018/11/15/亲测Hexo-Github个人博客搭建/6.jpg">
-<p>根据提示访问<a href="https://localhost:4000/" target="_blank" rel="noopener">https://localhost:4000/</a>  </p>
-<img src="/2018/11/15/亲测Hexo-Github个人博客搭建/7.jpg">
-<p>出现该界面说明Hexo在本地的配置完成了。（因为我改了配置文件，所以显示出我的名字，原位置应为Hexo）</p>
-<h3 id="注册GitHub账号与配置"><a href="#注册GitHub账号与配置" class="headerlink" title="注册GitHub账号与配置"></a>注册GitHub账号与配置</h3><p><a href="https://note.youdao.com/" target="_blank" rel="noopener">https://github.com/ </a><br>进入网站后，点击Sign up 进行注册， 填写自己的用户名，邮箱，密码（邮箱后面会用到验证账户）  </p>
-<img src="/2018/11/15/亲测Hexo-Github个人博客搭建/8.jpg">
-<p>注册完成后，新建代码仓库<br>点击网页右上角”+” 中的New repo  ，新建仓库  </p>
-<img src="/2018/11/15/亲测Hexo-Github个人博客搭建/9.jpg">
-<p>在该界面输入仓库名，描述信息，选择共有或私有仓库<br>注意仓库名要和你的用户名一致(yourname.github.io)，否则后面会访问错误<br><img src="/2018/11/15/亲测Hexo-Github个人博客搭建/10.jpg"></p>
-<p>创建完成后会自动显示你的仓库界面</p>
-<img src="/2018/11/15/亲测Hexo-Github个人博客搭建/11.jpg">
-<p>点击选项栏 Setting ，向下拖至此处，将none 选项选为第一个选项，开启GitHub Pages功能 并Save，可以暂时Change theme，以供暂时访问，但是后面我们使用的是Hexo主题，两者并不冲突<br><img src="/2018/11/15/亲测Hexo-Github个人博客搭建/12.jpg"></p>
-<p>一段时间后即可看到提示创建成功<br><img src="/2018/11/15/亲测Hexo-Github个人博客搭建/13.jpg"></p>
-<p><strong>那么Github一侧的配置已经全部结束了。</strong></p>
-<h3 id="将GitHub-Page与Hexo关联"><a href="#将GitHub-Page与Hexo关联" class="headerlink" title="将GitHub Page与Hexo关联"></a>将GitHub Page与Hexo关联</h3><h4 id="配置Git个人信息"><a href="#配置Git个人信息" class="headerlink" title="配置Git个人信息"></a>配置Git个人信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --golbal user.name &quot;username&quot;</span><br><span class="line">git config --global user.email &quot;xxx@example.com&quot;</span><br><span class="line">git config --list  //查看用户信息</span><br></pre></td></tr></table></figure>
-<p>可以看到如下信息<br><img src="/2018/11/15/亲测Hexo-Github个人博客搭建/14.jpg"></p>
-<p>在合适的位置新建文件夹daemon ，进入到该文件夹中<br>右击进入 Git Bash </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$  git init</span><br></pre></td></tr></table></figure>
-<p>该命令将创建一个名为 .git 的子目录，这个子目录含有你初始化的 Git 仓库中所有的必须文件，这些文件是 Git 仓库的骨干<br><img src="/2018/11/15/亲测Hexo-Github个人博客搭建/15.jpg"></p>
-<img src="/2018/11/15/亲测Hexo-Github个人博客搭建/16.jpg">
-<p>在Git bash中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh  </span><br><span class="line">ls</span><br><span class="line">cat id_rsa.pub</span><br></pre></td></tr></table></figure>
-<img src="/2018/11/15/亲测Hexo-Github个人博客搭建/17.jpg">
-<p>就可以看到你自己的公钥，复制下来，进入Github的个人设置界面</p>
-<p>点击New Ssh Key<br><img src="/2018/11/15/亲测Hexo-Github个人博客搭建/18.jpg"></p>
-<p>将密钥粘贴上，添加就可以了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
-<img src="/2018/11/15/亲测Hexo-Github个人博客搭建/19.jpg">
-<h5 id="成功。"><a href="#成功。" class="headerlink" title="成功。"></a>成功。</h5><h3 id="编辑-hexo下的blog下的-config-yml"><a href="#编辑-hexo下的blog下的-config-yml" class="headerlink" title="编辑 hexo下的blog下的_config.yml"></a>编辑 hexo下的blog下的_config.yml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https://hexo.io/docs/deployment.html</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/CrimsonRomance/CrimsonRomance.github.io</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-<h3 id="编辑daemon-git-下的config"><a href="#编辑daemon-git-下的config" class="headerlink" title="编辑daemon.git 下的config"></a>编辑daemon.git 下的config</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[core]</span><br><span class="line">    repositoryformatversion = 0</span><br><span class="line">    filemode = false</span><br><span class="line">    bare = false</span><br><span class="line">    logallrefupdates = true</span><br><span class="line">    symlinks = false</span><br><span class="line">    ignorecase = true</span><br><span class="line">[branch &quot;master&quot;] </span><br><span class="line">    remote = https://github.com/CrimsonRomance/CrimsonRomance.github.io</span><br><span class="line">    merge = refs/heads/master</span><br></pre></td></tr></table></figure>
-<p>然后进入 hexo\blog  ，右击进入 git bash</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g   //  生成</span><br><span class="line">hexo d   //  部署</span><br></pre></td></tr></table></figure>
-<img src="/2018/11/15/亲测Hexo-Github个人博客搭建/20.jpg">
-<p>如果在 hexo d 出现下面的 错误，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
-<p>安装此扩展即可 ，然后重新 hexo g ， hexo  d<br><img src="/2018/11/15/亲测Hexo-Github个人博客搭建/21.jpg"></p>
-<p>然后访问网站（<a href="https://youname.github.io/）即可" target="_blank" rel="noopener">https://youname.github.io/）即可</a></p>
-<img src="/2018/11/15/亲测Hexo-Github个人博客搭建/22.jpg">
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-<div>
-    
- </div>
- 
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/12/hello-world/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="戴树谦">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile_photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="戴树谦的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/12/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-12T23:58:49+08:00">
-                2018-11-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  73
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-<div>
-    
- </div>
- 
-    
-  </section>
-
-  
 
 
           </div>
@@ -1866,6 +673,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -1888,8 +699,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -1958,6 +778,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#实验一-IPv6-IP地址配置方法（2911）"><span class="nav-number">1.</span> <span class="nav-text">实验一  IPv6 IP地址配置方法（2911）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验二-静态路由配置"><span class="nav-number">2.</span> <span class="nav-text">实验二 静态路由配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-直连静态路由"><span class="nav-number">2.1.</span> <span class="nav-text">1. 直连静态路由</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-递归静态路由"><span class="nav-number">2.2.</span> <span class="nav-text">2.递归静态路由</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-完全静态路由"><span class="nav-number">2.3.</span> <span class="nav-text">3.完全静态路由</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验三-IPv6-RIP-RIPng-基础实验"><span class="nav-number">3.</span> <span class="nav-text">实验三  IPv6 RIP (RIPng)基础实验</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#以Route2为例"><span class="nav-number">3.1.</span> <span class="nav-text">以Route2为例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验四-OSPFv3基础实验"><span class="nav-number">4.</span> <span class="nav-text">实验四  OSPFv3基础实验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验五-IPv6-EIGRP实验"><span class="nav-number">5.</span> <span class="nav-text">实验五  IPv6 EIGRP实验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验七-IPv6地址SLAAC与有状态自动配置"><span class="nav-number">6.</span> <span class="nav-text">实验七 IPv6地址SLAAC与有状态自动配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验八-DHCPv6分配"><span class="nav-number">7.</span> <span class="nav-text">实验八.DHCPv6分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验九-DHCPv6前缀代表"><span class="nav-number">8.</span> <span class="nav-text">实验九 DHCPv6前缀代表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验十-IPv6、IPv4双栈实验"><span class="nav-number">9.</span> <span class="nav-text">实验十 IPv6、IPv4双栈实验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验十一-手工隧道"><span class="nav-number">10.</span> <span class="nav-text">实验十一  手工隧道</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验十二-6to4隧道的配置"><span class="nav-number">11.</span> <span class="nav-text">实验十二  6to4隧道的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验十三-ISATAP隧道"><span class="nav-number">12.</span> <span class="nav-text">实验十三 ISATAP隧道</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验十四-ISATAP隧道（二）"><span class="nav-number">13.</span> <span class="nav-text">实验十四 ISATAP隧道（二）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -2089,6 +925,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
