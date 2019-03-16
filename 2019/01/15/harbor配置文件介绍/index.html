@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Docker,">
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="There are two categories of parameters in harbor.cfg, required parameters and optional parameters.在harbor.cfg中有两类参数，必需参数和可选参数。 required parameters: These parameters are required to be set in the confi">
+<meta name="keywords" content="Docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2018/11/12/hello-world/index.html">
+<meta property="og:title" content="harbor配置文件介绍">
+<meta property="og:url" content="http://yoursite.com/2019/01/15/harbor配置文件介绍/index.html">
 <meta property="og:site_name" content="戴树谦的博客">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="There are two categories of parameters in harbor.cfg, required parameters and optional parameters.在harbor.cfg中有两类参数，必需参数和可选参数。 required parameters: These parameters are required to be set in the confi">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-12T15:58:49.491Z">
+<meta property="og:updated_time" content="2019-03-16T05:05:47.525Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="harbor配置文件介绍">
+<meta name="twitter:description" content="There are two categories of parameters in harbor.cfg, required parameters and optional parameters.在harbor.cfg中有两类参数，必需参数和可选参数。 required parameters: These parameters are required to be set in the confi">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/12/hello-world/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/15/harbor配置文件介绍/">
 
 
 
 
 
-  <title>Hello World | 戴树谦的博客</title>
+  <title>harbor配置文件介绍 | 戴树谦的博客</title>
   
 
 
@@ -274,7 +275,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/12/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/15/harbor配置文件介绍/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="戴树谦">
@@ -291,7 +292,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">harbor配置文件介绍</h1>
         
 
         <div class="post-meta">
@@ -303,8 +304,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-12T23:58:49+08:00">
-                2018-11-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-15T13:01:34+08:00">
+                2019-01-15
               </time>
             
 
@@ -335,7 +336,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  73
+                  2.9k
                 </span>
               
 
@@ -351,7 +352,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1
+                  13
                 </span>
               
             </div>
@@ -372,15 +373,51 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <p>There are two categories of parameters in harbor.cfg, required parameters and optional parameters.<br>在harbor.cfg中有两类参数，必需参数和可选参数。</p>
+<p>required parameters: These parameters are required to be set in the configuration file. They will take effect if a user updates them in  harbor.cfg  and run the   install.sh   script to reinstall Harbor.<br>required参数：需要在配置文件中设置这些参数。如果用户更新它们harbor.cfg 并运行 install.sh 脚本以重新安装Harbor，它们将生效。</p>
+<p>optional parameters: These parameters are optional for updating, i.e. user can leave them as default and update them on Web Portal after Harbor is started. If they are set in harbor.cfg, they only take effect in the first launch of Harbor. Subsequent update to these parameters in harbor.cfg will be ignored.<br>可选参数：这些参数对于更新是可选的，即用户可以将它们保留为默认值，并在启动Harbour后在Web Portal(门户网站)上更新它们。如果它们已经启用harbor.cfg，它们只会在首次启动Harbour时生效。harbor.cfg将忽略对这些参数的后续更新。</p>
+<p>Note: If you choose to set these parameters via the Portal, be sure to do so right after Harbor is started. In particular, you must set the desired auth_mode before registering or creating any new users in Harbor. When there are users in the system (besides the default admin user), auth_mode cannot be changed.<br>注意：如果你选择通过Portal设置这些参数，请务必在Harbour启动后立即执行此操作。特别是，你必须在Harbour中注册或创建任何新用户之前设置auth_mode。当系统中有用户时（除默认管理员用户外）， 无法更改auth_mode。</p>
+<h3 id="Required-parameters-必须参数"><a href="#Required-parameters-必须参数" class="headerlink" title="Required parameters:  必须参数"></a>Required parameters:  必须参数</h3><p>hostname: The target host’s hostname, which is used to access the Portal and the registry service. It should be the IP address or the fully qualified domain name (FQDN) of your target machine, e.g., 192.168.1.10 or reg.yourdomain.com. Do NOT use localhost or 127.0.0.1 for the hostname - the registry service needs to be accessible by external clients!<br><strong>hostname</strong>：目标主机的主机名，用于访问Portal和registry服务。它应该是目标计算机的IP地址或完全限定的域名（FQDN），例如，192.168.1.10或reg.yourdomain.com。不要使用localhost或127.0.0.1作为主机名 - 外部客户端需要访问registry服务！</p>
+<p>ui_url_protocol: (http or https. Default is http) The protocol used to access the Portal and the token/notification service. If Notary is enabled, this parameter has to be https. By default, this is http.<br><strong>ui_url_protocol</strong> :( http或https。默认为http）用于访问Portal和令牌/通知服务的协议。如果启用了公证，则此参数必须为https。默认情况下是http。</p>
+<p>db_password: The root password for the PostgreSQL database used for db_auth. Change this password for any production use!<br><strong>db_password</strong>：用于db_auth的PostgreSQL数据库的root密码。生产环境中要修改密码！</p>
+<p>max_job_workers: (default value is 10) The maximum number of replication workers in job service. For each image replication job, a worker synchronizes all tags of a repository to the remote destination. Increasing this number allows more concurrent replication jobs in the system. However, since each worker consumes a certain amount of network/CPU/IO resources, please carefully pick the value of this attribute based on the hardware resource of the host.<br><strong>max_job_workers</strong> :(默认值为10）作业服务中的最大复制工作数。对于每个镜像复制作业，工作程序将存储库的所有标记同步到远程目标。增加此数量可以在系统中实现更多并发复制作业。但是，由于每个工作者都消耗一定量的网络/ CPU / IO资源，请根据主机的硬件资源仔细选择该属性的值。</p>
+<p>customize_crt: (on or off. Default is on) When this attribute is on, the prepare script creates private key and root certificate for the generation/verification of the registry’s token. Set this attribute to off when the key and root certificate are supplied by external sources.<br><strong>customize_crt</strong>：（开启或关闭，默认为开启），如果此属性开启，在准备脚本创建registry的令牌生成/验证私钥和根证书。当外部源提供密钥和根证书时，将此属性设置为off。</p>
+<p>ssl_cert: The path of SSL certificate, it’s applied only when the protocol is set to https.<br><strong>ssl_cert</strong>：SSL证书的路径，仅在协议设置为https时应用。  </p>
+<p>ssl_cert_key: The path of SSL key, it’s applied only when the protocol is set to https.<br><strong>ssl_cert_key</strong>：SSL密钥的路径，仅在协议设置为https时应用。  </p>
+<p>secretkey_path: The path of key for encrypt or decrypt the password of a remote registry in a replication policy.<br><strong>secretkey_path</strong>：用于加密或解密复制策略中远程registry密码的密钥路径。  </p>
+<p>log_rotate_count: Log files are rotated log_rotate_count times before being removed. If count is 0, old versions are removed rather than rotated.<br><strong>log_rotate_count</strong>：日志文件在被删除之前会被轮换log_rotate_count次。如果count为0，则删除旧版本而不会轮转。</p>
+<p>log_rotate_size: Log files are rotated only if they grow bigger than log_rotate_size bytes. If size is followed by k, the size is assumed to be in kilobytes. If the M is used, the size is in megabytes, and if G is used, the size is in gigabytes. So size 100, size 100k, size 100M and size 100G are all valid.<br><strong>log_rotate_size</strong>：仅当日志文件大于log_rotate_size字节时才会轮换日志文件。如果大小后跟k，则假定大小以千字节为单位。如果使用M，则大小以兆字节为单位，如果使用G，则大小为千兆字节。尺寸100，尺寸100k，尺寸100M和尺寸100G都是有效的。 </p>
+<p>http_proxy: Config http proxy for Clair, e.g. <a href="http://my.proxy.com:3128" target="_blank" rel="noopener">http://my.proxy.com:3128</a>.<br><strong>http_proxy</strong>：为Clair配置http代理，例如<a href="http://my.proxy.com:3128。" target="_blank" rel="noopener">http://my.proxy.com:3128。</a></p>
+<p>https_proxy: Config https proxy for Clair, e.g. <a href="http://my.proxy.com:3128" target="_blank" rel="noopener">http://my.proxy.com:3128</a>.<br><strong>https_proxy</strong>：为Clair配置https代理，例如<a href="http://my.proxy.com:3128。" target="_blank" rel="noopener">http://my.proxy.com:3128。</a></p>
+<p>no_proxy: Config no proxy for Clair, e.g. 127.0.0.1,localhost,core,registry.<br><strong>no_proxy</strong>：为Clair配置无代理，例如127.0.0.1,localhost,core,registry。</p>
+<h3 id="Optional-parameters-可选参数"><a href="#Optional-parameters-可选参数" class="headerlink" title="Optional parameters 可选参数"></a>Optional parameters 可选参数</h3><p>Email settings: These parameters are needed for Harbor to be able to send a user a “password reset” email, and are only necessary if that functionality is needed. Also, do note that by default SSL connectivity is not enabled - if your SMTP server requires SSL, but does not support STARTTLS, then you should enable SSL by setting email_ssl = true. Setting email_insecure = true if the email server uses a self-signed or untrusted certificate.<br><strong>电子邮件设置</strong>：Harbor需要这些参数才能向用户发送“密码重置”电子邮件，并且仅在需要该功能时才需要。另外，请注意，在默认情况下SSL连接是禁用的，如果你的SMTP服务器需要SSL，但不支持STARTTLS，那么你应该通过设置启用SSL email_ssl = TRUE。如果电子邮件服务器使用自签名证书或不受信任证书，则设置email_insecure = true。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">email_server = smtp.mydomain.com</span><br><span class="line">email_server_port = 25</span><br><span class="line">email_identity =</span><br><span class="line">email_username = sample_admin@mydomain.com</span><br><span class="line">email_password = abc</span><br><span class="line">email_from = admin sample_admin@mydomain.com</span><br><span class="line">email_ssl = false</span><br><span class="line">email_insecure = false</span><br></pre></td></tr></table></figure>
+<p>harbor_admin_password: The administrator’s initial password. This password only takes effect for the first time Harbor launches. After that, this setting is ignored and the administrator’s password should be set in the Portal. Note that the default username/password are admin/Harbor12345 .<br><strong>harbor_admin_password</strong>：管理员的初始密码。此密码仅在Harbor首次启动时生效。之后，将忽略此设置，并且应在Portal中设置管理员密码。请注意，默认用户名/密码为admin / Harbor12345。</p>
+<p>auth_mode: The type of authentication that is used. By default, it is db_auth, i.e. the credentials are stored in a database. For LDAP authentication, set this to ldap_auth.<br><strong>auth_mode</strong>：使用的身份验证类型。默认情况下，它是db_auth，即凭据存储在数据库中。对于LDAP身份验证，请将其设置为ldap_auth.<br>IMPORTANT: When upgrading from an existing Harbor instance, you must make sure auth_mode is the same in harbor.cfg before launching the new version of Harbor. Otherwise, users may not be able to log in after the upgrade.<br>重要信息：从现有Harbor实例升级时，必须确保在启动新版本的Harbor之前harbor.cfg中的auth_mode相同。否则，用户可能无法在升级后登录。</p>
+<p>ldap_url: The LDAP endpoint URL (e.g. ldaps://ldap.mydomain.com). Only used when auth_mode is set to ldap_auth .<br><strong>ldap_url</strong>：LDAP端点URL（例如ldaps://ldap.mydomain.com）。 仅在auth_mode设置为ldap_auth时使用。  </p>
+<p>ldap_searchdn: The DN of a user who has the permission to search an LDAP/AD server (e.g. uid=admin,ou=people,dc=mydomain,dc=com).<br><strong>ldap_searchdn</strong>：具有搜索LDAP/AD服务器权限的用户的DN（例如uid=admin,ou=people,dc=mydomain,dc=com）。  </p>
+<p>ldap_search_pwd: The password of the user specified by ldap_searchdn.<br><strong>ldap_search_pwd</strong>：ldap_searchdn指定的用户密码。</p>
+<p>ldap_basedn: The base DN to look up a user, e.g. ou=people,dc=mydomain,dc=com. Only used when auth_mode is set to ldap_auth .<br><strong>ldap_basedn</strong>：查找用户的基本DN，例如ou=people,dc=mydomain,dc=com。 仅在auth_mode设置为ldap_auth时使用。</p>
+<p>ldap_filter: The search filter for looking up a user, e.g. (objectClass=person).<br><strong>ldap_filter</strong>：用于查找用户的搜索过滤器，例如(objectClass=person)</p>
+<p>ldap_uid: The attribute used to match a user during a LDAP search, it could be uid, cn, email or other attributes.<br><strong>ldap_uid</strong>：用于在LDAP搜索期间匹配用户的属性，它可以是uid，cn，email或其他属性。</p>
+<p>ldap_scope: The scope to search for a user, 0-LDAP_SCOPE_BASE, 1-LDAP_SCOPE_ONELEVEL, 2-LDAP_SCOPE_SUBTREE. Default is 2.<br><strong>ldap_scope</strong>：搜索用户的范围，0-LDAP_SCOPE_BASE，1-LDAP_SCOPE_ONELEVEL，2-LDAP_SCOPE_SUBTREE。默认值为2。</p>
+<p>ldap_timeout: Timeout (in seconds) when connecting to an LDAP Server. Default is 5.<br><strong>ldap_timeout</strong>：连接LDAP服务器时超时（以秒为单位）。默认值为5。</p>
+<p>ldap_verify_cert: Verify certificate from LDAP server. Default is true.<br><strong>ldap_verify_cert</strong>：验证来自LDAP服务器的证书。默认为true。</p>
+<p>ldap_group_basedn: The base dn from which to lookup a group in LDAP/AD, e.g. ou=group,dc=mydomain,dc=com.<br><strong>ldap_group_basedn</strong>：在LDAP / AD中查找组的基本dn，例如ou=group,dc=mydomain,dc=com。</p>
+<p>ldap_group_filter: The filter to search LDAP/AD group, e.g. objectclass=group.<br><strong>ldap_group_filter</strong>：搜索LDAP / AD组的过滤器，例如objectclass=group。</p>
+<p>ldap_group_gid: The attribute used to name a LDAP/AD group, it could be cn, name.<br><strong>ldap_group_gid</strong>：用于命名LDAP / AD组的属性，它可以是cn，name。</p>
+<p>ldap_group_scope: The scope to search for ldap groups. 0-LDAP_SCOPE_BASE, 1-LDAP_SCOPE_ONELEVEL, 2-LDAP_SCOPE_SUBTREE. Default is 2.<br><strong>ldap_group_scope</strong>：搜索ldap组的范围。0-LDAP_SCOPE_BASE，1-LDAP_SCOPE_ONELEVEL，2-LDAP_SCOPE_SUBTREE。默认值为2。</p>
+<p>self_registration: (on or off. Default is on) Enable / Disable the ability for a user to register himself/herself. When disabled, new users can only be created by the Admin user, only an admin user can create new users in Harbor. NOTE: When auth_mode is set to ldap_auth, self-registration feature is always disabled, and this flag is ignored.<br><strong>self_registration</strong> :( 打开或关闭。默认打开）启用/禁用用户注册功能。禁用时，新用户只能由管理员用户创建，只有管理员用户可以在Harbor中创建新用户。注意：当auth_mode设置为ldap_auth时，始终禁用自注册功能，并忽略此标志。</p>
+<p>token_expiration: The expiration time (in minutes) of a token created by token service, default is 30 minutes.<br><strong>token_expiration</strong>：令牌服务创建的令牌的到期时间（以分钟为单位），默认为30分钟。</p>
+<p>project_creation_restriction: The flag to control what users have permission to create projects. By default everyone can create a project, set to “adminonly” such that only admin can create project.<br><strong>project_creation_restriction</strong>：用于控制用户有权创建项目的标志。默认情况下，每个人都可以创建一个项目；设置为“adminonly”，则只有管理员才能创建项目。</p>
+<h3 id="Configuring-storage-backend-optional-配置存储后端（可选）"><a href="#Configuring-storage-backend-optional-配置存储后端（可选）" class="headerlink" title="Configuring storage backend (optional) 配置存储后端（可选）"></a>Configuring storage backend (optional) 配置存储后端（可选）</h3><p>By default, Harbor stores images on your local filesystem. In a production environment, you may consider using other storage backend instead of the local filesystem, like S3, OpenStack Swift, Ceph, etc. These parameters are configurations for registry.<br>默认情况下，Harbor将镜像存储在本地文件系统中。在生产环境中，您可以考虑使用其他存储后端而不是本地文件系统，如S3，OpenStack Swift，Ceph等。这些参数是registry的配置。</p>
+<p>registry_storage_provider_name: Storage provider name of registry, it can be filesystem, s3, gcs, azure, etc. Default is filesystem.<br><strong>registry_storage_provider_name</strong>：存储仓库名称，可以是filesystem，s3，gcs，azure等。默认为filesystem。</p>
+<p>registry_storage_provider_config: Comma separated “key: value” pairs for storage provider config, e.g. “key1: value, key2: value2”. Default is empty string.<br><strong>registry_storage_provider_config</strong>：配置分隔键值对，例如“key1：value，key2：value2”。默认为空字符串。</p>
+<p>registry_custom_ca_bundle: The path to the custom root ca certificate, which will be injected into the truststore of registry’s and chart repository’s containers. This is usually needed when the user hosts a internal storage with self signed certificate.<br><strong>registry_custom_ca_bundle</strong>：当用户使用自签名证书托管内部存储时，通常需要自定义根ca证书的路径，它将注入到registry和image存储库容器的信任库中。<br>例如，如果使用Openstack Swift作为存储后端，则参数可能如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">registry_storage_provider_name = swift</span><br><span class="line">registry_storage_provider_config = “ username：admin，password：ADMIN_PASS，authurl：http：// kestone_addr：35357 / v3 / auth，tenant：admin，domain：default，region：regionOne，container：docker_images ”</span><br></pre></td></tr></table></figure>
+<ul>
+<li style="list-style: none"><input type="checkbox"> 对于LADP以及证书不理解，需要加入到后续的学习计划。</li>
+</ul>
 
       
     </div>
@@ -396,6 +433,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Docker/" rel="tag"># Docker</a>
+          
+        </div>
+      
 
       
       
@@ -405,15 +448,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/01/12/harbor-企业级docker-registry/" rel="next" title="harbor  企业级docker registry">
+                <i class="fa fa-chevron-left"></i> harbor  企业级docker registry
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/15/亲测Hexo-Github个人博客搭建/" rel="prev" title="亲测Hexo+Github个人博客搭建">
-                亲测Hexo+Github个人博客搭建 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -566,7 +609,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Required-parameters-必须参数"><span class="nav-number">1.</span> <span class="nav-text">Required parameters:  必须参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Optional-parameters-可选参数"><span class="nav-number">2.</span> <span class="nav-text">Optional parameters 可选参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Configuring-storage-backend-optional-配置存储后端（可选）"><span class="nav-number">3.</span> <span class="nav-text">Configuring storage backend (optional) 配置存储后端（可选）</span></a></li></ol></div>
             
 
           </div>
