@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="服务器,">
 
 
 
@@ -79,13 +79,27 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="戴树谦的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2018/12/index.html">
+<meta name="description" content="由于项目需要，要求把上图系统更换为 CentOS7. 踩了不少坑，折腾一天。 服务器的型号为UCS B200 M2 ,需要在网页登录他的管理器，本地的java环境为jdk-6u10。6版本的每一个我都试了，只有这个可以。在kvm manager的页面可以下载kvm console 的java程序，在本地运行就可以了   该刀片服务器重装\安装系统需要从本地映射镜像到服务器，也是在网上看的服务器配">
+<meta name="keywords" content="服务器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cisco UCS B200 M2安装操作系统">
+<meta property="og:url" content="http://yoursite.com/2019/01/19/Cisco-UCS-B200-M2安装操作系统/index.html">
 <meta property="og:site_name" content="戴树谦的博客">
+<meta property="og:description" content="由于项目需要，要求把上图系统更换为 CentOS7. 踩了不少坑，折腾一天。 服务器的型号为UCS B200 M2 ,需要在网页登录他的管理器，本地的java环境为jdk-6u10。6版本的每一个我都试了，只有这个可以。在kvm manager的页面可以下载kvm console 的java程序，在本地运行就可以了   该刀片服务器重装\安装系统需要从本地映射镜像到服务器，也是在网上看的服务器配">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2019/01/19/Cisco-UCS-B200-M2安装操作系统/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/19/Cisco-UCS-B200-M2安装操作系统/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/19/Cisco-UCS-B200-M2安装操作系统/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/19/Cisco-UCS-B200-M2安装操作系统/4.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/19/Cisco-UCS-B200-M2安装操作系统/5.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/19/Cisco-UCS-B200-M2安装操作系统/6.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/19/Cisco-UCS-B200-M2安装操作系统/7.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/19/Cisco-UCS-B200-M2安装操作系统/8.png">
+<meta property="og:updated_time" content="2019-03-16T05:29:28.246Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="戴树谦的博客">
+<meta name="twitter:title" content="Cisco UCS B200 M2安装操作系统">
+<meta name="twitter:description" content="由于项目需要，要求把上图系统更换为 CentOS7. 踩了不少坑，折腾一天。 服务器的型号为UCS B200 M2 ,需要在网页登录他的管理器，本地的java环境为jdk-6u10。6版本的每一个我都试了，只有这个可以。在kvm manager的页面可以下载kvm console 的java程序，在本地运行就可以了   该刀片服务器重装\安装系统需要从本地映射镜像到服务器，也是在网上看的服务器配">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/19/Cisco-UCS-B200-M2安装操作系统/1.png">
 
 
 
@@ -115,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2018/12/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/19/Cisco-UCS-B200-M2安装操作系统/">
 
 
 
 
 
-  <title>Archive | 戴树谦的博客</title>
+  <title>Cisco UCS B200 M2安装操作系统 | 戴树谦的博客</title>
   
 
 
@@ -140,7 +154,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -256,177 +270,203 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/19/Cisco-UCS-B200-M2安装操作系统/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="戴树谦">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile_photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="戴树谦的博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">Cisco UCS B200 M2安装操作系统</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-19T20:18:53+08:00">
+                2019-01-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        Um..! 12 posts in total. Keep on posting.
-      </span>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
+            
+          
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/17/docker-端口映射与容器互联/" itemprop="url">
+          
+            <div class="post-wordcount">
               
-                <span itemprop="name">docker-端口映射与容器互联</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  304
+                </span>
               
-            </a>
-        
-      </h2>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-17T10:02:46+08:00" content="2018-12-17">
-          12-17
-        </time>
-      </div>
+              
+                <span class="post-meta-divider">|</span>
+              
 
-    </header>
-  </article>
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  1
+                </span>
+              
+            </div>
+          
 
+          
 
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/16/docker-数据卷/" itemprop="url">
-              
-                <span itemprop="name">docker-数据卷</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-16T22:47:35+08:00" content="2018-12-16">
-          12-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/13/docker-容器/" itemprop="url">
-              
-                <span itemprop="name">docker 容器</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-13T00:02:15+08:00" content="2018-12-13">
-          12-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/12/docker-ce安装-与docker镜像（Centos7/" itemprop="url">
-              
-                <span itemprop="name">docker-ce安装 与docker镜像（Centos7)</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-12T10:40:27+08:00" content="2018-12-12">
-          12-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+        <img src="/2019/01/19/Cisco-UCS-B200-M2安装操作系统/1.png">
+<p>由于项目需要，要求把上图系统更换为 CentOS7. 踩了不少坑，折腾一天。<br> 服务器的型号为UCS B200 M2 ,需要在网页登录他的管理器，本地的java环境为jdk-6u10。6版本的每一个我都试了，只有这个可以。<br>在kvm manager的页面可以下载kvm console 的java程序，在本地运行就可以了  </p>
+<p>该刀片服务器重装\安装系统需要从本地映射镜像到服务器，也是在网上看的服务器配置指导才知道，我还想着拿个显示屏怼上呢。映射步骤如下：</p>
+<p>1.点击virtual Medis （如果报错虚拟磁盘本地库无法加载，那就是java版本的问题了）</p>
+<img src="/2019/01/19/Cisco-UCS-B200-M2安装操作系统/2.png">
+<p>2.左侧有”Add Images”，选中需要安装的系统就可以了</p>
+<img src="/2019/01/19/Cisco-UCS-B200-M2安装操作系统/3.png">
+<p>3.勾选上第一列的Mapped ，即将本地镜像文件映射到 “Virtual CD/DVD”</p>
+<img src="/2019/01/19/Cisco-UCS-B200-M2安装操作系统/4.png">
+<p>4.重启</p>
+<img src="/2019/01/19/Cisco-UCS-B200-M2安装操作系统/5.png">
+<p>5.在该界面进入boot menu ，更改启动顺序</p>
+<img src="/2019/01/19/Cisco-UCS-B200-M2安装操作系统/6.png">
+<p>6.选择”Cisco Virtual CD/DVD  1.22”，不要选择EFI那一项</p>
+<img src="/2019/01/19/Cisco-UCS-B200-M2安装操作系统/7.png">
+<p>之后就是安装CentOS的步骤了，除了在分盘的时候把之前的分区先删除干净之外，其他步骤都相同了</p>
+<img src="/2019/01/19/Cisco-UCS-B200-M2安装操作系统/8.png">
       
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/服务器/" rel="tag"># 服务器</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/15/harbor配置文件介绍/" rel="next" title="harbor配置文件介绍">
+                <i class="fa fa-chevron-left"></i> harbor配置文件介绍
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
+<div>
+    
+    <div>
+    
+        <div style="text-align:center;color: #000000;font-size:18px;">------ end ------</div>
+    
+</div>
 
-  
 
+    
+ </div>
+ 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -434,6 +474,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -657,6 +701,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
