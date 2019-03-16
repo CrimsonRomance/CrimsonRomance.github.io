@@ -271,6 +271,265 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/12/docker-ce安装-与docker镜像（Centos7/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="戴树谦">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile_photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="戴树谦的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/12/docker-ce安装-与docker镜像（Centos7/" itemprop="url">docker-ce安装 与docker镜像（Centos7)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-12T10:40:27+08:00">
+                2018-12-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  3.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  13
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<h3 id="安装docker-ce（设置清华大学镜像站为镜像源"><a href="#安装docker-ce（设置清华大学镜像站为镜像源" class="headerlink" title="安装docker-ce（设置清华大学镜像站为镜像源)"></a>安装docker-ce（设置清华大学镜像站为镜像源)</h3></blockquote>
+<p>在centos7 yum仓库 的extras仓库中自带了docker源,都是docker 1.13版本，不建议使用老版本docker.<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/1.png"><br>清华大学在镜像站中给docker做了镜像<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/2.png"><br>在此目录下找到docker的repo文件<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/3.png"><br>我们可以自己建一个docker镜像源仓库，首先要把该repo文件下载到/etc/yum.repos.d 中<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/4.png"><br>下载后打开docker-ce.repo文件，文件中指向的地址是docker官方站点，这个下载速度是很慢的，因此还要修改下载路径<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/5.png"><br>仍然选择清华大学镜像站，来到这个目录下，选择稳定版<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/6.png"><br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/7.png"><br>可以看到这里有最新版本18.06<br>选择复制链接中的linux父目录<a href="https://mirrors.tuna.tsinghua.edu.cn/docker-ce/然后全局替换docker-ce.repo中的官方地址的linux的父目录" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/docker-ce/然后全局替换docker-ce.repo中的官方地址的linux的父目录</a><br>用vim打开，在末行模式下进行替换<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/8.png"><br>可以看到替换成功<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/9.png"><br>yum repolist  显示所有仓库，可以看到存在docker-ce的程序包<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/10.png"><br>yum install docker-ce ，完成<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/11.png"></p>
+<blockquote>
+<h3 id="启动docker"><a href="#启动docker" class="headerlink" title="启动docker"></a>启动docker</h3></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl  start  docker</span><br></pre></td></tr></table></figure>
+<p>设置开机自启动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl  enable  docker</span><br></pre></td></tr></table></figure>
+<p>很简单<br>镜像是运行docker容器的基础，容器运行前，必须存在对应的镜像，如果本地没有对应的镜像，docker会自动从默认仓库（DockerHub） 下载镜像,如果有本地镜像，也可以从本地仓库下载镜像<br>获取镜像的主要方式是从共有仓库（DockerHub）下载</p>
+<blockquote>
+<h3 id="搜索并下载镜像（例如调用ubuntu镜像）"><a href="#搜索并下载镜像（例如调用ubuntu镜像）" class="headerlink" title="搜索并下载镜像（例如调用ubuntu镜像）"></a>搜索并下载镜像（例如调用ubuntu镜像）</h3></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1.docker  search  ubuntu  搜索ubuntu镜像</span><br></pre></td></tr></table></figure>
+<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/12.png">
+<p>其中列出了查找到的镜像名称、描述、星级、官方 、自动化的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2.docker pull  ubuntu 下载镜像</span><br></pre></td></tr></table></figure>
+<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/13.png">
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3.docker images  查看已经下载的镜像文件</span><br></pre></td></tr></table></figure>
+<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/14.png">
+<h4 id="参数含义："><a href="#参数含义：" class="headerlink" title="参数含义："></a>参数含义：</h4><p><strong>REPOSITORY : 镜像来源于哪个仓库<br>TAG : 镜像标签<br>IMAGE ID  : 镜像id(唯一标识镜像)<br>CREATED  :  镜像创建时间<br>SIZE  :  镜像大小，优秀的镜像往往体积小</strong></p>
+<ul>
+<li>如果不指定镜像系统版本，则会下载最新版本镜像，也可以通过指定TAG的方法来下载特定版本的镜像,在生产中不应忽略镜像标签信息或使用默认的latest标签，内容是不稳定的。  </li>
+<li>docker pull 默认从Docker Hub Registry仓库下载镜像，如果从非官方仓库下载，则需要在仓库名称前指定完整的仓库地址 例如docker pull hub.c.163.com/public/ubuntu14.04   即从网易下载 </li>
+</ul>
+<p>docker tag 为本地镜像任意添加新的标签<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4.docker tag ubuntu:latest  myubuntu:latest</span><br></pre></td></tr></table></figure></p>
+<p>该命令添加的标签实际起到了类似链接的作用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5.docker inspect 获取镜像详细信息(元数据)</span><br></pre></td></tr></table></figure>
+<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/15.png">
+<p>返回的时json格式信息，如果想要其中一项内容时，使用-f参数来指定  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inspect -f &#123;&#123;.RepoTag&#125;&#125; ImageID</span><br></pre></td></tr></table></figure>
+<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/16.png">
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">6.docker history 查看镜像历史</span><br></pre></td></tr></table></figure>
+<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/17.png">
+<p>镜像文件由多个层组成，docker history 可以查看镜像的创建过程  </p>
+<blockquote>
+<h3 id="启动一个基于该ubuntu镜像的容器，并进入该容器"><a href="#启动一个基于该ubuntu镜像的容器，并进入该容器" class="headerlink" title="启动一个基于该ubuntu镜像的容器，并进入该容器"></a>启动一个基于该ubuntu镜像的容器，并进入该容器</h3></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">7.docker run -idt ubuntu /bin/bash</span><br><span class="line">8.docker exec -it /bin/bash</span><br></pre></td></tr></table></figure>
+<p>-i是为了让容器能接受用户的输入，-t是指定docker为容器创建一个tty<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/18.png"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">9.df -TH  查看容器文件系统的磁盘使用</span><br></pre></td></tr></table></figure></p>
+<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/19.png">
+<blockquote>
+<h3 id="保存和载入镜像"><a href="#保存和载入镜像" class="headerlink" title="保存和载入镜像"></a>保存和载入镜像</h3></blockquote>
+<p>用户可以将镜像保存到本地以载入使用，或者将其复制到另外的文件系统<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.docker save -o ubuntu_latest_save.tar ubuntu:latest 保存镜像</span><br></pre></td></tr></table></figure></p>
+<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/20.png">  
+<p>可以把保存的镜像文件载入到系统中，并载入标签等镜像文件的元数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">11.docker load &lt; ubuntu_latest_save.tar  载入镜像</span><br><span class="line">12.docker load --input ubuntu_latest_save.tar</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h3 id="删除镜像"><a href="#删除镜像" class="headerlink" title="删除镜像"></a>删除镜像</h3><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/21.png">
+</blockquote>
+<p>查询后可以看到镜像id </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">13.docker rmi IMAGE ID</span><br></pre></td></tr></table></figure>
+<p>报错为该镜像被683容器所使用，需要先删除基于这个镜像所创建的容器 </p>
+<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/22.png">  
+<p>docker ps -a 查询容器可以看到存在基于镜像ubuntu的容器<br>状态为UP ，表示正在运行<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/23.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">14.docker stop CONTAINER ID  停止容器</span><br></pre></td></tr></table></figure>
+<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/24.png">
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">15.docker rm  CONTAINER ID删除该容器</span><br></pre></td></tr></table></figure>
+<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/25.png">
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">16.docker rmi IMAGE ID</span><br></pre></td></tr></table></figure>
+<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/26.png">
+<p>镜像已经删除。其中删除容器为rm  删除镜像为rmi。可以在待删除的镜像名称前面加参数-f ，强制删除。<br>后来在DockerFile中推荐以下的命令写法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">17.docker container stop</span><br><span class="line">18.docker container rm</span><br><span class="line">19.docker images rm</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h3 id="创建镜像"><a href="#创建镜像" class="headerlink" title="创建镜像"></a>创建镜像</h3></blockquote>
+<h4 id="创建镜像有三种方法，分别是基于本地模板导入镜像、基于已有镜像的容器创建镜像，基于Dockerfile-创建镜像"><a href="#创建镜像有三种方法，分别是基于本地模板导入镜像、基于已有镜像的容器创建镜像，基于Dockerfile-创建镜像" class="headerlink" title="创建镜像有三种方法，分别是基于本地模板导入镜像、基于已有镜像的容器创建镜像，基于Dockerfile 创建镜像"></a>创建镜像有三种方法，分别是基于本地模板导入镜像、基于已有镜像的容器创建镜像，基于Dockerfile 创建镜像</h4><h5 id="1-gt-基于本地模板导入镜像"><a href="#1-gt-基于本地模板导入镜像" class="headerlink" title="1&gt; 基于本地模板导入镜像"></a>1&gt; 基于本地模板导入镜像</h5><p>如果本地有镜像的模板文件，可以基于该模板创建镜像，镜像模板文件也可以从OpenVZ下载</p>
+<p>wget <a href="http://download.openvz.org/template/precreated/ubuntu-14.04-x86_64-minimal.tar.gz" target="_blank" rel="noopener">http://download.openvz.org/template/precreated/ubuntu-14.04-x86_64-minimal.tar.gz</a>   下载模板文件</p>
+<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/27.png">  
+<p>下载完成后，执行以下命令，可以用该模板文件创建文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">20.cat ubuntu-14.04-x86_64-minimal.tar.gz | docker import - ubuntu-14.04_minimal_amd64</span><br></pre></td></tr></table></figure>
+<p>其中 docker import：从归档文件中创建镜像<br>用法：docker import [OPTIONS]  file|URL|-   [REPOSITORY[:TAG]]<br>-c :应用docker 指令创建镜像；<br>-m :提交时的说明文字；  </p>
+<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/28.png">
+<p>可以看到刚刚导出的镜像，启动并运行</p>
+<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/29.png">
+<h5 id="2-gt-基于已有的镜像容器创建镜像"><a href="#2-gt-基于已有的镜像容器创建镜像" class="headerlink" title="2&gt;基于已有的镜像容器创建镜像"></a>2&gt;基于已有的镜像容器创建镜像</h5><p>接上图<br>在容器中新建一个for_new_image 目录<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/30.png"></p>
+<p>与原容器相比此时已经发生变化，，可以提交为新镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">21.docker commit -m &quot;creatd new dir&quot; -a &quot;root&quot; 87acd63067e1 new_ubuntu</span><br></pre></td></tr></table></figure>
+<p>其中 docker commit ：从容器创建一个新的镜像。<br>语法： docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]<br>-a :提交的镜像作者；<br>-c :使用Dockerfile指令来创建镜像；<br>-m :提交时的说明文字；<br>-p :在commit时，将容器暂停。  </p>
+<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/31.png">
+<p>提交成功后会返回镜像ID，可以看到新镜像已经存在</p>
+<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/32.png">
+<h5 id="3-gt-基于Dockerfile-创建镜像"><a href="#3-gt-基于Dockerfile-创建镜像" class="headerlink" title="3&gt; 基于Dockerfile 创建镜像"></a>3&gt; 基于Dockerfile 创建镜像</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;Dockerfile 是一种被Docker程序解释的脚本，每条指令对应linux下的一条命令， Docker程序可以读取Dockerfile脚本，根据指令生成定制的镜像。<br>Dockerfile指令分为构建指令和设置指令。构建指令用于构建镜像，不会在容器的镜像上运行；设置指令用于设置镜像属性，其操作可以在容器的镜像上执行  </p>
+<h6 id="（1）FROM"><a href="#（1）FROM" class="headerlink" title="（1）FROM"></a>（1）FROM</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;构建指令，用于指定基础镜像，必须指定，且必须在Dockerfile所有指令之前指定，因为后续指令都依赖该指令指定的镜像，，可以指定DockerHub中的镜像，也可以指定本地仓库中的</p>
+<h6 id="（2）MAINTAINER"><a href="#（2）MAINTAINER" class="headerlink" title="（2）MAINTAINER"></a>（2）MAINTAINER</h6><p>  &nbsp;&nbsp;&nbsp;&nbsp;构建指令，用于将镜像制作者相关信息写入镜像中，当我们对该镜像执行docker inspect 命令时，会显示该字段</p>
+<h6 id="（3）RUN"><a href="#（3）RUN" class="headerlink" title="（3）RUN"></a>（3）RUN</h6><p>  &nbsp;&nbsp;&nbsp;&nbsp;构建指令，用于执行任何被基础镜像所支持的命令，例如ubuntu基础镜像只能使用ubuntu命令，centos基础镜像只能使用centos命令 </p>
+<h6 id="（4）CMD"><a href="#（4）CMD" class="headerlink" title="（4）CMD"></a>（4）CMD</h6><p>  &nbsp;&nbsp;&nbsp;&nbsp;设置指令，用于指定容器启动时执行的操作，可以执行自定义脚本，亦可以执行系统命令，，此命令只能在Dockerfile脚本中设置一次，设置多个只会执行最后一个</p>
+<h6 id="（5）ENTRYPOINT-（entrypoint）"><a href="#（5）ENTRYPOINT-（entrypoint）" class="headerlink" title="（5）ENTRYPOINT （entrypoint）"></a>（5）ENTRYPOINT （entrypoint）</h6><p>  &nbsp;&nbsp;&nbsp;&nbsp;设置指令，用于指定容器启动时执行的命令，可以在Dockerfile脚本中设置多次，只有最后一个有效 </p>
+<p> ENTRYPOINT 使用分两种情况 ：   </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;独自使用时，如果同时使用了CMD命令，且CMD指定的是一个完整可执行命令，那么二者会互相覆盖，只有写在最后的那条指令有效；<br>与CMD指令配合使用，CMD指令可以指定ENTRYPOINT的默认参数，此时CMD指令指定的仅仅是参数部分，而ENTRYPOINT需要使用JSON方式指定需要执行的命令但不能使用参数</p>
+<h6 id="（6）USER"><a href="#（6）USER" class="headerlink" title="（6）USER"></a>（6）USER</h6><p>  设置指令，用于设置启动容器的用户，默认为root</p>
+<h6 id="（7）EXPOSE"><a href="#（7）EXPOSE" class="headerlink" title="（7）EXPOSE"></a>（7）EXPOSE</h6><p>  &nbsp;&nbsp;&nbsp;&nbsp;设置指令，用于将容器中的端口映射称为宿主机中的摸个端口。极大方便了访问容器   。    宿主机IP：PORT</p>
+<p>  &nbsp;&nbsp;&nbsp;&nbsp;需要两步操作，首先在Docerfile中使用 EXPOSE设置需要映射的容器端口号，然后在 docker run 中使用参数 -p 指定前面的端口号，该端口号就会被随机映射称为宿主机中的一个端口号，也可以指定需要映射到宿主机的哪个端口，但要注意指定的端口没有被占用。</p>
+<p>  &nbsp;&nbsp;&nbsp;&nbsp;端口映射是Docker比较重要的一个功能，因为每次运行容器时，容器IP不能被指定，而是桥接模式网卡随机生成的，但是宿主机IP地址是固定的，将容器端口映射称为宿主机上的一个端口，可以免去每次访问容器时都要查看容器IP的麻烦</p>
+<p> &nbsp;&nbsp;&nbsp;&nbsp;一个运行中的容器，使用 ==docker port CONTAINER ID== 查看该端口号在宿主机上的映射端口</p>
+<h6 id="（8）-ENV-（environment）"><a href="#（8）-ENV-（environment）" class="headerlink" title="（8） ENV  （environment）"></a>（8） ENV  （environment）</h6><p>   &nbsp;&nbsp;&nbsp;&nbsp;构建指令，用于在镜像中设置一个环境变量，设置成功后，后续的RUN 指令都可以使用该指令设置的环境</p>
+<h6 id="（9）ADD"><a href="#（9）ADD" class="headerlink" title="（9）ADD"></a>（9）ADD</h6><p>  &nbsp;&nbsp;&nbsp;&nbsp;构建指令，用于把本地文件添加到容器，默认所有拷贝到容器中文件和文件夹权限为755（-rwxr-xr-x），UID和GID为0，如果是一个目录，那么会将该目录下的所有文件添加到容器，但不包括目录；如果文件是可识别的压缩格式，则docker会进行解压缩 </p>
+<h6 id="（10）VOLUME"><a href="#（10）VOLUME" class="headerlink" title="（10）VOLUME"></a>（10）VOLUME</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;设置指令， 指定挂载点，用于使容器中某个目录具有持久化存储数据的功能，该目录可以被容器本身使用，也可以共享给其他容器使用<br>由于容器使用AUFS文件系统，不能持久化数据，容器关闭后，所有更改也会消失，因此容器有应用持久化数据存储的需求时，可以使用该指令</p>
+<h6 id="（11）WORKDIR"><a href="#（11）WORKDIR" class="headerlink" title="（11）WORKDIR"></a>（11）WORKDIR</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;设置指令，可以多次切换目录（cd），可以在RUN,  CMD,    ENTRYPOINT  命令前使用</p>
+<h6 id="12-COPY-src-…-dest"><a href="#12-COPY-src-…-dest" class="headerlink" title="(12) COPY (src)…(dest)"></a>(12) COPY (src)…(dest)</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;复制本地主机 src (为Dockerfile所在目录的相对路径、文件或目标）下的内容到镜像中的 dest 下。路径不存在时会自动创建。支持正则。 </p>
+<h6 id="下面展示一则使用Dockerfile创建Tomcat镜像的实例"><a href="#下面展示一则使用Dockerfile创建Tomcat镜像的实例" class="headerlink" title="下面展示一则使用Dockerfile创建Tomcat镜像的实例"></a>下面展示一则使用Dockerfile创建Tomcat镜像的实例</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">#Pull base image    // 获取基础镜像</span><br><span class="line">FROM ubuntu:latest</span><br><span class="line">MAINTAINER XXX</span><br><span class="line"># LABEL maintainer=&quot;XXX&quot;</span><br><span class="line"></span><br><span class="line">#update source      //更新镜像源</span><br><span class="line">RUN echo &quot;deb http://cn.archive.ubuntu.com/ubuntu xenial main universe&quot;&gt;/etc/apt/sources.list</span><br><span class="line">RUN apt-get update</span><br><span class="line"></span><br><span class="line">#Install curl            // 安装curl</span><br><span class="line">RUN apt-get -y install curl</span><br><span class="line"></span><br><span class="line">#Install JDK 8         //安装JDK,其中的cookie使用burpsuit获取</span><br><span class="line">RUN cd /tmp &amp;&amp; curl -L &apos;http://download.oracle.com/otn-pub/java/jdk/8u191-b12/2787e4a523244c269598db4e85c51e0c/jdk-8u191-linux-i586.tar.gz&apos;   </span><br><span class="line">-H &apos;Cookie:s_fid=1CC16A1445A28C96-0DF2FFDC49166DB3; ELOQUA=GUID=25787B725D6B4A1E98D0D92A1C00A0F7; s_nr=1540978397285-Repeat;   </span><br><span class="line">RT=&quot;sl=23&amp;ss=1540977568733&amp;tt=40261&amp;obo=21&amp;sh=1540977921638%3D23%3A2  1%3A40261%2C1540977919016%3D22%3A21%3A37654%2C1540977918989%3D21%3A20%3A3  </span><br><span class="line">7654%2C1540977913741%3D20%3A19%3A37654%2C1540977913712%3D19%3A18%3A37654&amp;dm=oracle.com&amp;si=6be7a975-8d66-41f3-92c8-a5748709fec8&amp;bcn=%2F%2F1288af  </span><br><span class="line">19.akstat.io%2F&amp;nu=http%3A%2F%2Fdownload.oracle.com%2Fotn-pub%2Fjava%2Fjdk%2F8u191-b12%2F2787e4a523244c269598db4e85c51e0c%2Fjdk-8u191-linux-i586  </span><br><span class="line">.tar.gz&amp;cl=1540978405737&quot;;atgRecVisitorId=127AFu33Mp_NNJQHlgn2ZpQPg5vZT6c4TietQ0-KTTWmfuc8127; gpw_e24=https%3A%2F%2Fwww.oracle.com%2Ftechnetwork  </span><br><span class="line">%2Fjava%2Fjavase%2Fdownloads%2Fjdk8-downloads-2133151.html; s_cc=true; s_sq=%5B%5BB%5D%5D; oraclelicense=accept-securebackup-cookie&apos;|tar -zx</span><br><span class="line">RUN mkdir -p /usr/lib/jvm</span><br><span class="line">RUN mv /tmp/jdk1.8.0_191 /usr/lib/jvm/java-8-oracle/</span><br><span class="line"></span><br><span class="line">#Set Oracle JDK 8 as default Java    //配置Java环境</span><br><span class="line">RUN update-alternatives --install /usr/bin/java java /usr/lib/jvm/java-8-oracle/bin/java 300</span><br><span class="line">RUN update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/java-8-oracle/bin/javac 300</span><br><span class="line"></span><br><span class="line">ENV JAVA_HOME /usr/lib/jvm/java-8-oracle/</span><br><span class="line"></span><br><span class="line">#Install Tomcat8        //安装Tomcat</span><br><span class="line">RUN cd /tmp &amp;&amp; curl -L &apos;https://mirror.bit.edu.cn/apache/tomcat/tomcat-8/v8.5.34/bin/apache-tomcat-8.5.34.tar.gz&apos;| tar -xz</span><br><span class="line">RUN mv /tmp/apache-tomcat-8.5.34/ /opt/tomcat8/</span><br><span class="line"></span><br><span class="line">ENV CATALINA_HOME /opt/tomcat8</span><br><span class="line">ENV PATH $PATH:$CATALINA_HOME/bin</span><br><span class="line"></span><br><span class="line">#Expose ports       </span><br><span class="line">EXPOSE 8090:8080    //设置映射端口，tomcat的8080端口映射为宿主机的8090端口</span><br><span class="line"></span><br><span class="line">#Define default command      //运行tomcat，查看日志</span><br><span class="line">ENTRYPOINT /opt/tomcat8/bin/startup.sh &amp;&amp; tail -f /opt/tomcat8/logs/catalina.out</span><br></pre></td></tr></table></figure>
+<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/33.png">
+<p>或<br><img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/34.png"></p>
+<p>运行Dockerfile要在Dockerfile所在的目录，”./“应为Dockerfile脚本所在目录，否则就会报上下文环境的错误,MV、COPY、ADD的文件位置都是相对于/root  来说的<br>第一遍执行(使用的第一条命令)时出现很多错误，最后修改成功了，以下截图是第二遍执行(第二条命令) 因此会报使用缓存</p>
+<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/35.png">
+<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/36.png">
+<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/37.png">
+<p>在下载jdk的时候，需要加上cookie，没加时出现以下报错</p>
+<img src="/2018/12/12/docker-ce安装-与docker镜像（Centos7/38.png">
+<p>Java和Tomcat程序的安装包下载地址可能会发生变化，因此使用该脚本时先根据实际下载地址对其进行修改，包括解压后的生成路径也会有改变</p>
+<p>运行镜像，启动一个基于镜像tomcat的容器，宿主机输入<a href="http://localhost:8090" target="_blank" rel="noopener">http://localhost:8090</a>  即可访问tomcat</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+<div>
+    
+ </div>
+ 
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/15/亲测Hexo-Github个人博客搭建/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -690,7 +949,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -703,7 +962,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
