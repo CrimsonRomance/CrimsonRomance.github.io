@@ -503,6 +503,230 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/25/使用Docker在linux上部署MySQL/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="戴树谦">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile_photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="戴树谦的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/25/使用Docker在linux上部署MySQL/" itemprop="url">使用Docker在linux上部署MySQL</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-25T12:17:46+08:00">
+                2019-01-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  3.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  14
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="下载MySQL服务器Docker镜像"><a href="#下载MySQL服务器Docker镜像" class="headerlink" title="下载MySQL服务器Docker镜像"></a>下载MySQL服务器Docker镜像</h3><p>使用命令下载MYSQL-Community：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull mysql/mysql-server:tag</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;tag是你想拉的镜像版本的标签（例如5.5， 5.6，5.7， 8.0，或latest）。如果省略则会下载最新GA版本的MySQL-community-server的镜像。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# docker pull mysql/mysql-server:5.6</span><br><span class="line">5.6: Pulling from mysql/mysql-server</span><br><span class="line">a8d84c1f755a: Pull complete </span><br><span class="line">36934cee5f0d: Pull complete </span><br><span class="line">5a6871e55c04: Pull complete </span><br><span class="line">7c67030deb6e: Pull complete </span><br><span class="line">Digest: sha256:5a1cfc50ab8d147cb163c32558c7334519f5bb69ea82587d480f9f7050b77047</span><br><span class="line">Status: Downloaded newer image for mysql/mysql-server:5.6</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;使用以下命令列出下载的Docker镜像：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# docker image ls</span><br><span class="line">REPOSITORY                      TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">mysql/mysql-server              5.6                 ad62049ce4ab        6 weeks ago         217MB</span><br><span class="line">[root@docker-study ~]#</span><br></pre></td></tr></table></figure>
+<h3 id="启动MySQL服务器实例"><a href="#启动MySQL服务器实例" class="headerlink" title="启动MySQL服务器实例"></a>启动MySQL服务器实例</h3><p>&nbsp;&nbsp;&nbsp;将MySQL镜像启动为容器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# docker run --name=mysql1 -d mysql/mysql-server:5.6</span><br><span class="line">321d33b946e7eb8ebea4fe829d1cfb953c6dd5663021088fb9cff21bcea2a112</span><br><span class="line">[root@docker-study ~]#</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;–name用于为容器提供自定义名称，该选项是可选的;，如果没有提供容器名称，则生成随机的名称。如果先前的docker pull或docker run 命令未下载指定名称和标记的镜像， 则现在下载该图像。下载完成后，开始初始化容器，并在运行docker ps命令时容器显示在正在运行的容器列表中 ; 例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# docker container ls</span><br><span class="line">CONTAINER ID        IMAGE                                COMMAND                  CREATED             STATUS                             PORTS                       NAMES</span><br><span class="line">321d33b946e7        mysql/mysql-server:5.6               &quot;/entrypoint.sh mysq…&quot;   3 minutes ago       Up 3 minutes (healthy)             3306/tcp                    mysql1</span><br><span class="line">[root@docker-study ~]#</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;初始化完成后，命令的输出将包含为root用户生成的随机密码; 例如，使用以下命令检查密码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# docker logs mysql1 2&gt;&amp;1 | grep GENERATED</span><br><span class="line">[Entrypoint] GENERATED ROOT PASSWORD: mOkuHorEKBEh4plym@KYsXYk%Ih</span><br><span class="line">[root@docker-study ~]#</span><br></pre></td></tr></table></figure>
+<h3 id="连接到Container内的MySQL服务器"><a href="#连接到Container内的MySQL服务器" class="headerlink" title="连接到Container内的MySQL服务器"></a>连接到Container内的MySQL服务器</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;服务器准备就绪后，可以在刚刚启动的MySQL Server容器中运行 mysql客户端，并将其连接到MySQL服务器。使用<strong>docker exec -it</strong>命令在已启动的Docker容器中进入 mysql客户端，输入生成的root密码。因为<strong>MYSQL_ONETIME_PASSWORD</strong> 默认情况下该选项为true，所以在将mysql客户端连接 到服务器之后，重置服务器root密码，如下所示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# docker exec -it mysql1 mysql -uroot -p</span><br><span class="line">Enter password: </span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 50</span><br><span class="line">Server version: 5.6.43</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type &apos;help;&apos; or &apos;\h&apos; for help. Type &apos;\c&apos; to clear the current input statement.</span><br><span class="line"></span><br><span class="line">mysql&gt;  SET PASSWORD FOR &apos;root&apos;@&apos;localhost&apos; = PASSWORD(&apos;123456&apos;);</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h3 id="容器shell访问"><a href="#容器shell访问" class="headerlink" title="容器shell访问"></a>容器shell访问</h3><p>&nbsp;&nbsp;&nbsp;要使用shell访问MySQL Server容器，请使用 docker exec -it命令在容器内启动bash shell：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# docker exec -it mysql1 bash</span><br><span class="line">bash-4.2#</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;然后可以在容器内运行Linux命令。例如，要查看容器内server数据目录中的内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bash-4.2# ls /var/lib/mysql</span><br><span class="line">auto.cnf  ib_logfile0  ib_logfile1  ibdata1  mysql  mysql.sock  performance_schema  test</span><br><span class="line">bash-4.2#</span><br></pre></td></tr></table></figure>
+<h3 id="停止和删除MySQL容器"><a href="#停止和删除MySQL容器" class="headerlink" title="停止和删除MySQL容器"></a>停止和删除MySQL容器</h3><p>&nbsp;&nbsp;&nbsp;使用以下命令停止创建的MySQL Server容器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# docker stop mysql1</span><br><span class="line">mysql1</span><br><span class="line">[root@docker-study ~]#</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;docker stop向 mysqld进程发送SIGTERM信号 ，以便正常关闭服务器。  </p>
+<p>&nbsp;&nbsp;&nbsp;另请注意，当容器的主进程（MySQL服务器容器中的mysqld）停止时，Docker容器会自动停止。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">要再次启动MySQL Server容器：</span><br><span class="line">docker start mysql1</span><br><span class="line"></span><br><span class="line">使用单个命令停止并重新启动MySQL Server容器：</span><br><span class="line">docker restart mysql1</span><br><span class="line"></span><br><span class="line">要删除MySQL容器，请先将其停止，然后使用 docker rm命令：</span><br><span class="line">docker stop mysql1</span><br><span class="line">docker rm mysql1</span><br><span class="line"></span><br><span class="line">如果希望同时删除服务器数据目录的 Docker卷，请将该-v选项添加到 docker rm命令。</span><br><span class="line">docker rm -v mysql1</span><br></pre></td></tr></table></figure>
+<h3 id="配置MySQL服务器"><a href="#配置MySQL服务器" class="headerlink" title="配置MySQL服务器"></a>配置MySQL服务器</h3><p>&nbsp;&nbsp;&nbsp;启动MySQL Docker容器时，可以通过docker run命令将配置选项传递给服务器; 例如，对于MySQL服务器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# docker run --name mysql1 -d mysql/mysql-server:5.6 --character-set-server=utf8mb4 --collation-server=utf8mb4_col</span><br><span class="line">ae491dde8ad07c8db420facc6a7b6546b3ae375d7e37430e4a01a6b4c34913f3</span><br><span class="line">[root@docker-study ~]#</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;该命令启动MySQL服务器 utf8mb4作为默认字符集和 utf8mb4_col数据库的默认排序规则。  </p>
+<p>&nbsp;&nbsp;&nbsp;配置MySQL服务器的另一种方法是准备配置文件并将其安装在容器内的服务器配置文件的位置。</p>
+<h3 id="持久化数据和配置更改"><a href="#持久化数据和配置更改" class="headerlink" title="持久化数据和配置更改"></a>持久化数据和配置更改</h3><p>&nbsp;&nbsp;&nbsp;Docker容器原则上是短暂的，如果容器被删除或损坏，预计会丢失任何数据或配置。 但是，Docker卷提供了一种机制来保存在Docker容器中创建的数据。在初始化时，MySQL Server容器为服务器数据目录创建一个Docker卷。在容器上运行docker inspect命令的JSON输出有一个 Mount键，其值提供有关数据目录卷的信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# docker inspect mysql1</span><br><span class="line">[</span><br><span class="line">…………</span><br><span class="line">        &quot;Mounts&quot;: [</span><br><span class="line">            &#123;</span><br><span class="line">                &quot;Type&quot;: &quot;volume&quot;,</span><br><span class="line">                &quot;Name&quot;: &quot;4ae57cb3823bf75c18b2212530fee42bc7d851446a5fee48406542c04df62221&quot;,</span><br><span class="line">                &quot;Source&quot;: &quot;/var/lib/docker/volumes/4ae57cb3823bf75c18b2212530fee42bc7d851446a5fee48406542c04df62221/_data&quot;,</span><br><span class="line">                &quot;Destination&quot;: &quot;/var/lib/mysql&quot;,</span><br><span class="line">                &quot;Driver&quot;: &quot;local&quot;,</span><br><span class="line">                &quot;Mode&quot;: &quot;&quot;,</span><br><span class="line">                &quot;RW&quot;: true,</span><br><span class="line">                &quot;Propagation&quot;: &quot;&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        ],…………</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;输出显示/var/lib/docker/volumes/4ae57cb3823bf75c18b2212530fee42bc7d<br>851446a5fee48406542c04df62221/_data主机文件夹（主机上持有数据）已安装在 /var/lib/mysql容器内的服务器数据目录中。  </p>
+<p>&nbsp;&nbsp;&nbsp;保留数据的另一种方法是 在创建容器时 使用–mount绑定安装主机目录。可以使用相同的技术来持久保存服务器的配置。以下命令创建MySQL Server容器并绑定安装数据目录和服务器配置文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]#  ls</span><br><span class="line">anaconda-ks.cfg  datadir  docker  initial-setup-ks.cfg  my.cnf  src</span><br><span class="line">[root@docker-study ~]# cat my.cnf </span><br><span class="line">[client]</span><br><span class="line">default-character-set=utf8</span><br><span class="line">socket = /usr/local/mysql/mysql.sock</span><br><span class="line">[mysql]</span><br><span class="line">default-character-set=utf8</span><br><span class="line">[mysqld]</span><br><span class="line">basedir = /usr/local/mysql</span><br><span class="line">datadir = /var/lib/mysql</span><br><span class="line">port = 3306</span><br><span class="line">socket = /usr/local/mysql/mysql.sock</span><br><span class="line">character-set-server=utf8</span><br><span class="line">sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</span><br><span class="line">[root@docker-study ~]# docker run --name=mysql1 \</span><br><span class="line">--mount type=bind,src=/root/my.cnf,dst=/etc/my.cnf \</span><br><span class="line">--mount type=bind,src=/root/datadir,dst=/var/lib/mysql \</span><br><span class="line">-d mysql/mysql-server:5.6</span><br><span class="line">58d707e7a9f75b38516d17dc54ee3685e00052969c01c887b40f0ac8f819a936</span><br><span class="line">[root@docker-study ~]# ls datadir/</span><br><span class="line">ibdata1  ib_logfile0  ib_logfile1  mysql  performance_schema  test</span><br><span class="line">[root@docker-study ~]#</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;安装 path-on-host-machine/my.cnf 到/etc/my.cnf（容器内部的配置文件），同时 path-on-host-machine/datadir 到/var/lib/mysql（数据容器内的目录）。必须满足以下条件才能使绑定安装正常工作：  </p>
+<p>&nbsp;&nbsp;&nbsp;配置文件 path-on-host-machine/my.cnf 必须已存在，并且必须包含使用用户启动mysql服务器的规范：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">user=mysql</span><br><span class="line">…………</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;数据目录 path-on-host-machine/datadir 必须已存在。要进行服务器初始化，目录必须为空。还可以安装预先填充数据的目录并启动服务器; 但是必须确保使用与创建数据的服务器相同的配置来启动Docker容器，并在启动容器时装入所需的任何主机文件或目录。</p>
+<h3 id="运行其他初始化脚本"><a href="#运行其他初始化脚本" class="headerlink" title="运行其他初始化脚本"></a>运行其他初始化脚本</h3><p>如果在创建数据库后立即要在数据库上运行任何.sh或 .sql脚本，则可以将它们放入主机目录，然后将目录 /docker-entrypoint-initdb.d/挂载在容器内部。例如，对于MySQL Server容器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run --name=mysql1 \</span><br><span class="line">--mount type=bind,src=/path-on-host-machine/scripts/,dst=/docker-entrypoint-initdb.d/ \</span><br><span class="line">-d mysql/mysql-server:tag</span><br></pre></td></tr></table></figure>
+<h3 id="从另一个Docker容器中的应用程序连接到MySQL"><a href="#从另一个Docker容器中的应用程序连接到MySQL" class="headerlink" title="从另一个Docker容器中的应用程序连接到MySQL"></a>从另一个Docker容器中的应用程序连接到MySQL</h3><p>&nbsp;&nbsp;&nbsp;通过设置Docker网络，您可以允许多个Docker容器相互通信，以便另一个Docker容器中的客户端应用程序可以访问服务器容器中的MySQL Server。首先，创建一个Docker网络：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# docker network create my-custom-net</span><br><span class="line">e78c79012d0e865acc06f043f03e9a900a5a478780fc0d7fb30a82ae0c644303</span><br><span class="line">[root@docker-study ~]#</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;然后，在创建和启动服务器和客户端容器时，使用该–network选项将它们放在您创建的网络上。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# docker run --name=mysql2 --network=my-custom-net -d mysql/mysql-server:5.6</span><br><span class="line">80415ae4ba16a3e89f3b7afc5d1f4ffde028fc65a66ff7f03810828070e6a17f</span><br><span class="line">[root@docker-study ~]# docker run --name=web --network=my-custom-net -d  httpd</span><br><span class="line">264833168ac671eda95d0dd10547ce9bfa18bf83bc97531f85de202f72886088</span><br><span class="line">[root@docker-study ~]#</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;在mysql容器中设置web用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create user web@172.19.0.3 identified by &apos;123456&apos;;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;  grant all privileges on *.* to web@172.19.0.3;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;然后，web容器可以使用mysql2主机名连接到mysql2容器， 反之亦然，因为Docker会自动为给定的容器名称设置DNS。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study var]# docker exec -it web  mysql --host=mysql2 --user=web --password</span><br><span class="line">Enter password: </span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 37</span><br><span class="line">Server version: 5.6.43 MySQL Community Server (GPL)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2017, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type &apos;help;&apos; or &apos;\h&apos; for help. Type &apos;\c&apos; to clear the current input statement.</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="服务器错误日志"><a href="#服务器错误日志" class="headerlink" title="服务器错误日志"></a>服务器错误日志</h3><p>&nbsp;&nbsp;&nbsp;首次使用服务器容器启动MySQL服务器时， 如果满足以下任一条件，则不会生成服务器错误日志：</p>
+<ul>
+<li>已装入主机的服务器配置文件，但该文件不包含系统变量 log_error。</li>
+<li>尚未安装主机的服务器配置文件，但Docker环境变量 MYSQL_LOG_CONSOLE 是true（MySQL 5.6服务器容器的变量的默认状态false）。然后将MySQL服务器的错误日志重定向到 stderr，以便错误日志进入Docker容器的日志，并使用docker logs mysqld-container 命令查看 。  </li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;要使MySQL Server在两个条件之一为真时生成错误日志，请使用该 –log-error 选项 ，配置服务器以在容器内的特定位置生成错误日志。要保留错误日志，请将主机文件挂载到容器内错误日志的位置，如上文中所述。但是必须确保其容器内的MySQL Server具有对挂载的主机文件有写访问权。</p>
+<h3 id="Docker环境变量"><a href="#Docker环境变量" class="headerlink" title="Docker环境变量"></a>Docker环境变量</h3><p>&nbsp;&nbsp;&nbsp;创建MySQL Server容器时，可以使用–env选项（-e简而言之）配置MySQL实例，并指定以下一个或多个环境变量。</p>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><p>&nbsp;&nbsp;&nbsp;如果挂载的数据目录不为空，则以下变量都不会产生任何影响，因为之后不会尝试进行服务器初始化。在容器启动期间，不会修改文件夹中任何预先存在的内容，包括任何旧服务器设置。</p>
+<p>&nbsp;&nbsp;&nbsp;布尔变量包括 MYSQL_RANDOM_ROOT_PASSWORD, MYSQL_ONETIME_PASSWORD和MYSQL_ALLOW_EMPTY_PASSWORD， MYSQL_LOG_CONSOLE 通过使用任何非零长度的字符串设置它们来实现。<br>例如”0”，”false”或 “no”不会使它们为假，但实际上使它们成立。这是MySQL Server容器的已知问题。</p>
+<ul>
+<li>MYSQL_RANDOM_ROOT_PASSWORD：当此变量为true（这是默认状态，除非 MYSQL_ROOT_PASSWORD 或MYSQL_ALLOW_EMPTY_PASSWORD 设置为true）时，将在启动Docker容器时生成服务器root用户的随机密码。密码打印到stdout容器中，可以通过查看容器的日志找到。</li>
+<li>MYSQL_ONETIME_PASSWORD：当变量为true（这是默认状态，除非 MYSQL_ROOT_PASSWORD 已设置或MYSQL_ALLOW_EMPTY_PASSWORD 设置为true）时，root用户的密码设置为expired，必须先更改才能正常使用MySQL。</li>
+<li>MYSQL_DATABASE：此变量允许指定要在镜像启动时创建的数据库的名称。如果用户名和密码均由 MYSQL_USER 和MYSQL_PASSWORD提供，创建用户并授予该数据库（对应于超级用户权限GRANT ALL）。指定的数据库由 CREATE DATABASE IF NOT EXIST语句创建，因此如果数据库已存在，则该变量无效。</li>
+<li>MYSQL_USER， MYSQL_PASSWORD：这些变量结合使用来创建用户并设置该用户的密码，并为该用户授予该MYSQL_DATABASE 变量指定的数据库的超级用户权限 。MYSQL_USER 和 MYSQL_PASSWORD 用于创建用户，如果这两个变量没有设置，则忽略。如果两个变量都已设置但未设置 MYSQL_DATABASE ，则创建用户时没有任何权限。</li>
+</ul>
+<h4 id="注意-1"><a href="#注意-1" class="headerlink" title="注意"></a>注意</h4><p>&nbsp;&nbsp;没有必要使用这种机制创建root用户，这是MYSQL_ROOT_PASSWORD 和 MYSQL_RANDOM_ROOT_PASSWORD两种机制默认创建的，除非 MYSQL_ALLOW_EMPTY_PASSWORD = ture。</p>
+<ul>
+<li>MYSQL_ROOT_HOST：默认情况下，MySQL会创建 ‘root‘@’localhost’帐户。此帐户只能从容器内部连接。要允许来自其他主机的根连接，请设置此环境变量。例如，该值 为172.17.0.1允许来自运行容器的主机的连接。该选项仅接受一个参数，但允许使用通配符（例如， MYSQL_ROOT_HOST=172.<em>.</em>.*或MYSQL_ROOT_HOST=%）。</li>
+<li>MYSQL_LOG_CONSOLE：当变量为true（变量的MySQL 5.6服务器容器的默认状态为false）时，MySQL服务器的错误日志被重定向到 stderr，以便错误日志进入Docker容器的日志，并且可以使用docker logs mysqld-container 命令查看 。  </li>
+</ul>
+<h4 id="注意-2"><a href="#注意-2" class="headerlink" title="注意"></a>注意</h4><p>&nbsp;&nbsp;&nbsp;如果已挂载主机的服务器配置文件，则该变量无效。<br>MYSQL_ROOT_PASSWORD：此变量指定为MySQL root帐户设置的密码。</p>
+<h4 id="警告"><a href="#警告" class="headerlink" title="警告"></a>警告</h4><p>&nbsp;&nbsp;&nbsp;在命令行上设置MySQL root用户密码是不安全的。作为显式指定密码的替代方法，可以使用容器文件路径为密码文件设置变量，然后从主机中装入包含容器文件路径密码的文件。这仍然不是很安全，因为密码文件的位置仍然暴露。最好使用默认设置， MYSQL_RANDOM_ROOT_PASSWORD=true 并且 MYSQL_ONETIME_PASSWORD=true。</p>
+<ul>
+<li>MYSQL_ALLOW_EMPTY_PASSWORD。将其设置为true以允许使用root用户的空密码启动容器。  </li>
+</ul>
+<h4 id="警告-1"><a href="#警告-1" class="headerlink" title="警告"></a>警告</h4><p>&nbsp;&nbsp;&nbsp;将此变量设置为true是不安全的，因为它会使MySQL实例完全不受保护，从而允许任何人获得完整的超级用户访问权限。最好使用默认设置， MYSQL_RANDOM_ROOT_PASSWORD=true 并且MYSQL_ONETIME_PASSWORD=true 。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+<div>
+    
+ </div>
+ 
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/23/MySQL介绍/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2152,186 +2376,6 @@
  </div>
  
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/17/docker-端口映射与容器互联/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="戴树谦">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile_photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="戴树谦的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/17/docker-端口映射与容器互联/" itemprop="url">docker-端口映射与容器互联</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-17T10:02:46+08:00">
-                2018-12-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  441
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<h3 id="端口映射"><a href="#端口映射" class="headerlink" title="端口映射"></a>端口映射</h3></blockquote>
-<p>当容器中运行一些应用，可以通过-p ，-P 参数来指定端口映射<br>使用-P时，Docker会随机映射一个49000~49900的端口到内部容器开放的端口<br>如果一个镜像中没有可以对外提供的服务，使用-P参数基于该镜像启动容器后，不会有端口的映射  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">例如：docker run -idt -P centos /bin/bash  </span><br><span class="line">      docker run -idt -P httpd /bin/bash</span><br></pre></td></tr></table></figure>
-<img src="/2018/12/17/docker-端口映射与容器互联/1.png">
-<img src="/2018/12/17/docker-端口映射与容器互联/2.png">  
-<p><strong>另外几种查看端口映射的方法</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker  port  ID</span><br><span class="line">docker inspect -f &#123;&#123;.NetworkSettings.Ports&#125;&#125;  ID</span><br></pre></td></tr></table></figure>
-<img src="/2018/12/17/docker-端口映射与容器互联/3.png">
-<p>使用-p(小写)可以指定要映射的端口使用<strong>HostPort : ContainPort</strong>将本地的5000映射到容器的5000，会默认绑定本地所有接口上的所有地址  </p>
-<p>可以多次使用-p参数绑定多个端口</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 80:80 httpd </span><br><span class="line">docker run -d -p 80:80 -p 8080:8080 httpd</span><br></pre></td></tr></table></figure>
-<p>使用<strong>IP:HostPort:ContainPort</strong>格式指定映射使用一个特定地址</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 127.0.0.1:80:80 httpd</span><br></pre></td></tr></table></figure>
-<p>使用<strong>IP::ContainerPort</strong>  映射到指定地址的任意端口</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 127.0.0.1::80 httpd</span><br><span class="line"></span><br><span class="line">还可以使用udp标记来指定udp端口</span><br><span class="line"></span><br><span class="line">docker run -d -p 127.0.0.1:80:80/udp httpd</span><br></pre></td></tr></table></figure>
-<blockquote>
-<h3 id="容器互联"><a href="#容器互联" class="headerlink" title="容器互联"></a>容器互联</h3></blockquote>
-<p>创建一个数据库容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -idt --name db postgres</span><br></pre></td></tr></table></figure>
-<img src="/2018/12/17/docker-端口映射与容器互联/4.png">
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -idt -P --name web --link db:db httpd /bin/bash</span><br></pre></td></tr></table></figure>
-<p>使用–link 选项，参数格式为name:alias 即要连接的容器名称 : 这个连接的别名<br><img src="/2018/12/17/docker-端口映射与容器互联/5.png"></p>
-<p>再建立一个web2容器，同web的配置，查看环境变量，可以看到与db容器的连接，以DB_开头的环境变量都是提供web连接db的<br><img src="/2018/12/17/docker-端口映射与容器互联/6.png"></p>
-<p>进入到web容器中查看/etc/hosts .可以看到db容器的信息<br><img src="/2018/12/17/docker-端口映射与容器互联/7.png"></p>
-<p>在web容器中安装ping命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get update 更新源</span><br><span class="line">apt-get install inetutils-ping</span><br></pre></td></tr></table></figure>
-<img src="/2018/12/17/docker-端口映射与容器互联/8.png">
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-<div>
-    
- </div>
- 
-    
   </section>
 
   
@@ -2386,7 +2430,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -2399,7 +2443,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -2472,6 +2516,26 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
 
 
 
