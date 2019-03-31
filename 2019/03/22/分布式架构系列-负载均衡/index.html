@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="架构,收藏,">
 
 
 
@@ -79,17 +79,26 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="&amp;ensp;&amp;ensp;面对大量用户访问、高并发请求，海量数据，可以使用高性能的服务器、大型数据库，存储设备，高性能Web服务器，采用高效率的编程语言比如(Go，Scala)等，当单机容量达到极限时，我们需要考虑业务拆分和分布式部署，来解决大型网站访问量大，并发量高，海量数据的问题。 &amp;ensp;&amp;ensp;从单机网站到分布式网站，很重要的区别是业务拆分和分布式部署，将应用拆分后，部署到不同的机器">
+<meta name="keywords" content="架构,收藏">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2018/11/12/hello-world/index.html">
+<meta property="og:title" content="分布式架构系列-负载均衡">
+<meta property="og:url" content="http://yoursite.com/2019/03/22/分布式架构系列-负载均衡/index.html">
 <meta property="og:site_name" content="戴树谦的博客">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="&amp;ensp;&amp;ensp;面对大量用户访问、高并发请求，海量数据，可以使用高性能的服务器、大型数据库，存储设备，高性能Web服务器，采用高效率的编程语言比如(Go，Scala)等，当单机容量达到极限时，我们需要考虑业务拆分和分布式部署，来解决大型网站访问量大，并发量高，海量数据的问题。 &amp;ensp;&amp;ensp;从单机网站到分布式网站，很重要的区别是业务拆分和分布式部署，将应用拆分后，部署到不同的机器">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-12T15:58:49.491Z">
+<meta property="og:image" content="http://yoursite.com/2019/03/22/分布式架构系列-负载均衡/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/22/分布式架构系列-负载均衡/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/22/分布式架构系列-负载均衡/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/22/分布式架构系列-负载均衡/4.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/22/分布式架构系列-负载均衡/5.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/22/分布式架构系列-负载均衡/6.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/22/分布式架构系列-负载均衡/7.png">
+<meta property="og:updated_time" content="2019-03-31T03:22:48.401Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="分布式架构系列-负载均衡">
+<meta name="twitter:description" content="&amp;ensp;&amp;ensp;面对大量用户访问、高并发请求，海量数据，可以使用高性能的服务器、大型数据库，存储设备，高性能Web服务器，采用高效率的编程语言比如(Go，Scala)等，当单机容量达到极限时，我们需要考虑业务拆分和分布式部署，来解决大型网站访问量大，并发量高，海量数据的问题。 &amp;ensp;&amp;ensp;从单机网站到分布式网站，很重要的区别是业务拆分和分布式部署，将应用拆分后，部署到不同的机器">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/22/分布式架构系列-负载均衡/1.png">
 
 
 
@@ -119,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/12/hello-world/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/22/分布式架构系列-负载均衡/">
 
 
 
 
 
-  <title>Hello World | 戴树谦的博客</title>
+  <title>分布式架构系列-负载均衡 | 戴树谦的博客</title>
   
 
 
@@ -274,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/12/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/22/分布式架构系列-负载均衡/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="戴树谦">
@@ -291,7 +300,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">分布式架构系列-负载均衡</h1>
         
 
         <div class="post-meta">
@@ -303,8 +312,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-12T23:58:49+08:00">
-                2018-11-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-22T11:10:10+08:00">
+                2019-03-22
               </time>
             
 
@@ -340,7 +349,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  73
+                  2.9k
                 </span>
               
 
@@ -356,7 +365,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1
+                  10
                 </span>
               
             </div>
@@ -377,15 +386,93 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <p>&ensp;&ensp;面对大量用户访问、高并发请求，海量数据，可以使用高性能的服务器、大型数据库，存储设备，高性能Web服务器，采用高效率的编程语言比如(Go，Scala)等，当单机容量达到极限时，我们需要考虑业务拆分和分布式部署，来解决大型网站访问量大，并发量高，海量数据的问题。</p>
+<p>&ensp;&ensp;从单机网站到分布式网站，很重要的区别是业务拆分和分布式部署，将应用拆分后，部署到不同的机器上，实现大规模分布式系统。分布式和业务拆分解决了，从集中到分布的问题，但是每个部署的独立业务还存在单点的问题和访问统一入口问题，为解决单点故障，我们可以采取冗余的方式。将相同的应用部署到多台机器上。解决访问统一入口问题，我们可以在集群前面增加负载均衡设备，实现流量分发。</p>
+<p>&ensp;&ensp;负载均衡（Load Balance），意思是将负载（工作任务，访问请求）进行平衡、分摊到多个操作单元（服务器，组件）上进行执行。是解决高性能，单点故障（高可用），扩展性（水平伸缩）的终极解决方案。<br>本文是负载均衡详解的第一篇文章，介绍负载均衡的原理，负载均衡分类（DNS负载均衡,HTTP负载均衡，IP负载均衡，链路层负载均衡,混合型P负载均衡）。部分内容摘自读书笔记。</p>
+<h3 id="一、负载均衡原理"><a href="#一、负载均衡原理" class="headerlink" title="一、负载均衡原理"></a>一、负载均衡原理</h3><p>&ensp;&ensp;系统的扩展可分为纵向（垂直）扩展和横向（水平）扩展。纵向扩展，是从单机的角度通过增加硬件处理能力，比如CPU处理能力，内存容量，磁盘等方面，实现服务器处理能力的提升，不能满足大型分布式系统（网站），大流量，高并发，海量数据的问题。因此需要采用横向扩展的方式，通过添加机器来满足大型网站服务的处理能力。比如：一台机器不能满足，则增加两台或者多台机器，共同承担访问压力。这就是典型的集群和负载均衡架构：如下图：</p>
+<img src="/2019/03/22/分布式架构系列-负载均衡/1.png"> 
+<p>&ensp;&ensp;应用集群：将同一应用部署到多台机器上，组成处理集群，接收负载均衡设备分发的请求，进行处理，并返回相应数据。</p>
+<p>&ensp;&ensp;负载均衡设备：将用户访问的请求，根据负载均衡算法，分发到集群中的一台处理服务器。（一种把网络请求分散到一个服务器集群中的可用服务器上去的设备）</p>
+<p>负载均衡的作用（解决的问题）：</p>
+<pre><code>解决并发压力，提高应用处理性能（增加吞吐量，加强网络处理能力）；
+提供故障转移，实现高可用；
+通过添加或减少服务器数量，提供网站伸缩性（扩展性）；
+安全防护；（负载均衡设备上做一些过滤，黑白名单等处理）
+</code></pre><h3 id="二、负载均衡分类"><a href="#二、负载均衡分类" class="headerlink" title="二、负载均衡分类"></a>二、负载均衡分类</h3><p>&ensp;&ensp;根据实现技术不同，可分为DNS负载均衡，HTTP负载均衡，IP负载均衡，链路层负载均衡等。</p>
+<h4 id="2-1-DNS负载均衡"><a href="#2-1-DNS负载均衡" class="headerlink" title="2.1 DNS负载均衡"></a>2.1 DNS负载均衡</h4><p>最早的负载均衡技术，利用域名解析实现负载均衡，在DNS服务器，配置多个A记录，这些A记录对应的服务器构成集群。大型网站总是部分使用DNS解析，作为第一级负载均衡。如下图：</p>
+<img src="/2019/03/22/分布式架构系列-负载均衡/2.png"> 
+<p><strong>优点</strong></p>
+<p>&ensp;&ensp;1. 使用简单：负载均衡工作，交给DNS服务器处理，省掉了负载均衡服务器维护的麻烦  </p>
+<p> &ensp;&ensp;2.提高性能：可以支持基于地址的域名解析，解析成距离用户最近的服务器地址，可以加快访问速度，改善性能；  </p>
+<p><strong>缺点</strong></p>
+<p>&ensp;&ensp;1.可用性差：DNS解析是多级解析，新增/修改DNS后，解析时间较长；解析过程中，用户访问网站将失败；</p>
+<p>&ensp;&ensp;2.扩展性低：DNS负载均衡的控制权在域名商那里，无法对其做更多的改善和扩展；</p>
+<p>&ensp;&ensp;3.维护性差：也不能反映服务器的当前运行状态；支持的算法少；不能区分服务器的差异（不能根据系统与服务的状态来判断负载）</p>
+<p><strong>实践建议</strong></p>
+<p>&ensp;&ensp;将DNS作为第一级负载均衡，A记录对应着内部负载均衡的IP地址，通过内部负载均衡将请求分发到真实的Web服务器上。一般用于互联网公司，复杂的业务系统不合适使用。如下图：</p>
+<img src="/2019/03/22/分布式架构系列-负载均衡/3.png"> 
+<h4 id="2-2-IP负载均衡"><a href="#2-2-IP负载均衡" class="headerlink" title="2.2  IP负载均衡"></a>2.2  IP负载均衡</h4><p>&ensp;&ensp;在网络层通过修改请求目标地址进行负载均衡。</p>
+<p>&ensp;&ensp;用户请求数据包，到达负载均衡服务器后，负载均衡服务器在操作系统内核进程获取网络数据包，根据负载均衡算法得到一台真实服务器地址，然后将请求目的地址修改为，获得的真实ip地址，不需要经过用户进程处理。</p>
+<p>&ensp;&ensp;真实服务器处理完成后，响应数据包回到负载均衡服务器，负载均衡服务器，再将数据包源地址修改为自身的ip地址，发送给用户浏览器。如下图：</p>
+<img src="/2019/03/22/分布式架构系列-负载均衡/4.png"> 
+<p>&ensp;&ensp;IP负载均衡，真实物理服务器返回给负载均衡服务器，存在两种方式：（1）负载均衡服务器在修改目的ip地址的同时修改源地址。将数据包源地址设为自身盘，即源地址转换（snat）。（2）将负载均衡服务器同时作为真实物理服务器集群的网关服务器。</p>
+<p><strong>优点：</strong></p>
+<p>&ensp;&ensp;在内核进程完成数据分发，比在应用层分发性能更好；</p>
+<p><strong>缺点：</strong></p>
+<p>&ensp;&ensp;所有请求响应都需要经过负载均衡服务器，集群最大吞吐量受限于负载均衡服务器网卡带宽；</p>
+<h4 id="2-3-链路层负载均衡"><a href="#2-3-链路层负载均衡" class="headerlink" title="2.3 链路层负载均衡"></a>2.3 链路层负载均衡</h4><p>&ensp;&ensp;在通信协议的数据链路层修改mac地址，进行负载均衡。</p>
+<p>&ensp;&ensp;数据分发时，不修改ip地址，指修改目标mac地址，配置真实物理服务器集群所有机器虚拟ip和负载均衡服务器ip地址一致，达到不修改数据包的源地址和目标地址，进行数据分发的目的。</p>
+<p>&ensp;&ensp;实际处理服务器ip和数据请求目的ip一致，不需要经过负载均衡服务器进行地址转换，可将响应数据包直接返回给用户浏览器，避免负载均衡服务器网卡带宽成为瓶颈。也称为直接路由模式（DR模式）。如下图：</p>
+<img src="/2019/03/22/分布式架构系列-负载均衡/5.png"> 
+<p><strong>优点</strong>：性能好；</p>
+<p><strong>缺点</strong>：配置复杂；</p>
+<p><strong>实践建议</strong>：DR模式是目前使用最广泛的一种负载均衡方式。</p>
+<h4 id="2-4-混合型负载均衡"><a href="#2-4-混合型负载均衡" class="headerlink" title="2.4 混合型负载均衡"></a>2.4 混合型负载均衡</h4><p> &ensp;&ensp;由于多个服务器群内硬件设备、各自的规模、提供的服务等的差异，可以考虑给每个服务器群采用最合适的负载均衡方式，然后又在这多个服务器群间再一次负载均衡或群集起来以一个整体向外界提供服务（即把这多个服务器群当做一个新的服务器群），从而达到最佳的性能。将这种方式称之为混合型负载均衡。</p>
+<p> &ensp;&ensp;此种方式有时也用于单台均衡设备的性能不能满足大量连接请求的情况下。是目前大型互联网公司，普遍使用的方式。</p>
+<p>方式一，如下图：</p>
+<img src="/2019/03/22/分布式架构系列-负载均衡/6.png"> 
+<p> &ensp;&ensp;以上模式适合有动静分离的场景，反向代理服务器（集群）可以起到缓存和动态请求分发的作用，当时静态资源缓存在代理服务器时，则直接返回到浏览器。如果动态页面则请求后面的应用负载均衡（应用集群）。</p>
+<p>方式二，如下图：</p>
+<img src="/2019/03/22/分布式架构系列-负载均衡/7.png"> 
+<p> &ensp;&ensp;以上模式，适合动态请求场景。</p>
+<p> &ensp;&ensp;因混合模式，可以根据具体场景，灵活搭配各种方式，以上两种方式仅供参考。</p>
+<h3 id="三、负载均衡算法"><a href="#三、负载均衡算法" class="headerlink" title="三、负载均衡算法"></a>三、负载均衡算法</h3><p>常用的负载均衡算法有，轮询，随机，最少链接，源地址散列，加权等方式；</p>
+<h4 id="3-1-轮询"><a href="#3-1-轮询" class="headerlink" title="3.1 轮询"></a>3.1 轮询</h4><p>将所有请求，依次分发到每台服务器上，适合服务器硬件同相同的场景。</p>
+<p>优点：服务器请求数目相同；</p>
+<p>缺点：服务器压力不一样，不适合服务器配置不同的情况；</p>
+<h4 id="3-2-随机"><a href="#3-2-随机" class="headerlink" title="3.2 随机"></a>3.2 随机</h4><p>请求随机分配到各个服务器。</p>
+<p>优点：使用简单；</p>
+<p>缺点：不适合机器配置不同的场景；</p>
+<h4 id="3-3-最少链接"><a href="#3-3-最少链接" class="headerlink" title="3.3 最少链接"></a>3.3 最少链接</h4><p>将请求分配到连接数最少的服务器（目前处理请求最少的服务器）。</p>
+<p>优点：根据服务器当前的请求处理情况，动态分配；</p>
+<p>缺点：算法实现相对复杂，需要监控服务器请求连接数；</p>
+<h4 id="3-4-Hash（源地址散列）"><a href="#3-4-Hash（源地址散列）" class="headerlink" title="3.4 Hash（源地址散列）"></a>3.4 Hash（源地址散列）</h4><p>根据IP地址进行Hash计算，得到IP地址。</p>
+<p>优点：将来自同一IP地址的请求，同一会话期内，转发到相同的服务器；实现会话粘滞。</p>
+<p>缺点：目标服务器宕机后，会话会丢失；</p>
+<h4 id="3-5-加权"><a href="#3-5-加权" class="headerlink" title="3.5 加权"></a>3.5 加权</h4><p>在轮询，随机，最少链接，Hash’等算法的基础上，通过加权的方式，进行负载服务器分配。</p>
+<p>优点：根据权重，调节转发服务器的请求数目；</p>
+<p>缺点：使用相对复杂；</p>
+<h3 id="四、硬件负载均衡"><a href="#四、硬件负载均衡" class="headerlink" title="四、硬件负载均衡"></a>四、硬件负载均衡</h3><p>采用硬件的方式实现负载均衡，一般是单独的负载均衡服务器，价格昂贵，一般土豪级公司可以考虑，业界领先的有两款，F5和A10。<br>使用硬件负载均衡，主要考虑一下几个方面：</p>
+<ul>
+<li>功能考虑：功能全面支持各层级的负载均衡，支持全面的负载均衡算法，支持全局负载均衡；</li>
+<li>性能考虑：一般软件负载均衡支持到5万级并发已经很困难了，硬件负载均衡可以支持</li>
+<li>稳定性：商用硬件负载均衡，经过了良好的严格的测试，从经过大规模使用，在稳定性方面高；</li>
+<li>安全防护：硬件均衡设备除具备负载均衡功能外，还具备防火墙，防DDOS攻击等安全功能；</li>
+<li>维护角度：提供良好的维护管理界面，售后服务和技术支持；</li>
+<li>土豪公司：F5 Big Ip 价格：15w~55w不等；A10 价格：55w-100w不等；</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>价格昂贵；</li>
+<li>扩展能力差；</li>
+</ul>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>一般硬件的负载均衡也要做双机高可用，因此成本会比较高。</li>
+<li><p>互联网公司一般使用开源软件，因此大部分应用采用软件负载均衡；部分采用硬件负载均衡。</p>
+<p>&ensp;&ensp;比如某互联网公司，目前是使用几台F5做全局负载均衡，内部使用Nginx等软件负载均衡。</p>
+<p>  摘自： <a href="https://mp.weixin.qq.com/s/WG0oj-g8VuVfdIffgJhYWA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/WG0oj-g8VuVfdIffgJhYWA</a><br>  原作者：<a href="http://www.cnblogs.com/itfly8/p/5043435.html" target="_blank" rel="noopener">http://www.cnblogs.com/itfly8/p/5043435.html</a>  </p>
+</li>
+</ul>
 
       
     </div>
@@ -401,6 +488,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/架构/" rel="tag"># 架构</a>
+          
+            <a href="/tags/收藏/" rel="tag"># 收藏</a>
+          
+        </div>
+      
 
       
       
@@ -410,15 +505,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/03/20/省科协高可用负载均衡集群/" rel="next" title="省科协高可用负载均衡集群">
+                <i class="fa fa-chevron-left"></i> 省科协高可用负载均衡集群
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/15/亲测Hexo-Github个人博客搭建/" rel="prev" title="亲测Hexo+Github个人博客搭建">
-                亲测Hexo+Github个人博客搭建 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -571,7 +666,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、负载均衡原理"><span class="nav-number">1.</span> <span class="nav-text">一、负载均衡原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、负载均衡分类"><span class="nav-number">2.</span> <span class="nav-text">二、负载均衡分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-DNS负载均衡"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 DNS负载均衡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-IP负载均衡"><span class="nav-number">2.2.</span> <span class="nav-text">2.2  IP负载均衡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-链路层负载均衡"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 链路层负载均衡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-混合型负载均衡"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 混合型负载均衡</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、负载均衡算法"><span class="nav-number">3.</span> <span class="nav-text">三、负载均衡算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-轮询"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 轮询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-随机"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 随机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-最少链接"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 最少链接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-Hash（源地址散列）"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 Hash（源地址散列）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-加权"><span class="nav-number">3.5.</span> <span class="nav-text">3.5 加权</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、硬件负载均衡"><span class="nav-number">4.</span> <span class="nav-text">四、硬件负载均衡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number">5.</span> <span class="nav-text">小结</span></a></li></ol></div>
             
 
           </div>

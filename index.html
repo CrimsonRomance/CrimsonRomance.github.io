@@ -271,6 +271,245 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/22/分布式架构系列-负载均衡/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="戴树谦">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile_photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="戴树谦的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/22/分布式架构系列-负载均衡/" itemprop="url">分布式架构系列-负载均衡</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-22T11:10:10+08:00">
+                2019-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  2.9k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&ensp;&ensp;面对大量用户访问、高并发请求，海量数据，可以使用高性能的服务器、大型数据库，存储设备，高性能Web服务器，采用高效率的编程语言比如(Go，Scala)等，当单机容量达到极限时，我们需要考虑业务拆分和分布式部署，来解决大型网站访问量大，并发量高，海量数据的问题。</p>
+<p>&ensp;&ensp;从单机网站到分布式网站，很重要的区别是业务拆分和分布式部署，将应用拆分后，部署到不同的机器上，实现大规模分布式系统。分布式和业务拆分解决了，从集中到分布的问题，但是每个部署的独立业务还存在单点的问题和访问统一入口问题，为解决单点故障，我们可以采取冗余的方式。将相同的应用部署到多台机器上。解决访问统一入口问题，我们可以在集群前面增加负载均衡设备，实现流量分发。</p>
+<p>&ensp;&ensp;负载均衡（Load Balance），意思是将负载（工作任务，访问请求）进行平衡、分摊到多个操作单元（服务器，组件）上进行执行。是解决高性能，单点故障（高可用），扩展性（水平伸缩）的终极解决方案。<br>本文是负载均衡详解的第一篇文章，介绍负载均衡的原理，负载均衡分类（DNS负载均衡,HTTP负载均衡，IP负载均衡，链路层负载均衡,混合型P负载均衡）。部分内容摘自读书笔记。</p>
+<h3 id="一、负载均衡原理"><a href="#一、负载均衡原理" class="headerlink" title="一、负载均衡原理"></a>一、负载均衡原理</h3><p>&ensp;&ensp;系统的扩展可分为纵向（垂直）扩展和横向（水平）扩展。纵向扩展，是从单机的角度通过增加硬件处理能力，比如CPU处理能力，内存容量，磁盘等方面，实现服务器处理能力的提升，不能满足大型分布式系统（网站），大流量，高并发，海量数据的问题。因此需要采用横向扩展的方式，通过添加机器来满足大型网站服务的处理能力。比如：一台机器不能满足，则增加两台或者多台机器，共同承担访问压力。这就是典型的集群和负载均衡架构：如下图：</p>
+<img src="/2019/03/22/分布式架构系列-负载均衡/1.png"> 
+<p>&ensp;&ensp;应用集群：将同一应用部署到多台机器上，组成处理集群，接收负载均衡设备分发的请求，进行处理，并返回相应数据。</p>
+<p>&ensp;&ensp;负载均衡设备：将用户访问的请求，根据负载均衡算法，分发到集群中的一台处理服务器。（一种把网络请求分散到一个服务器集群中的可用服务器上去的设备）</p>
+<p>负载均衡的作用（解决的问题）：</p>
+<pre><code>解决并发压力，提高应用处理性能（增加吞吐量，加强网络处理能力）；
+提供故障转移，实现高可用；
+通过添加或减少服务器数量，提供网站伸缩性（扩展性）；
+安全防护；（负载均衡设备上做一些过滤，黑白名单等处理）
+</code></pre><h3 id="二、负载均衡分类"><a href="#二、负载均衡分类" class="headerlink" title="二、负载均衡分类"></a>二、负载均衡分类</h3><p>&ensp;&ensp;根据实现技术不同，可分为DNS负载均衡，HTTP负载均衡，IP负载均衡，链路层负载均衡等。</p>
+<h4 id="2-1-DNS负载均衡"><a href="#2-1-DNS负载均衡" class="headerlink" title="2.1 DNS负载均衡"></a>2.1 DNS负载均衡</h4><p>最早的负载均衡技术，利用域名解析实现负载均衡，在DNS服务器，配置多个A记录，这些A记录对应的服务器构成集群。大型网站总是部分使用DNS解析，作为第一级负载均衡。如下图：</p>
+<img src="/2019/03/22/分布式架构系列-负载均衡/2.png"> 
+<p><strong>优点</strong></p>
+<p>&ensp;&ensp;1. 使用简单：负载均衡工作，交给DNS服务器处理，省掉了负载均衡服务器维护的麻烦  </p>
+<p> &ensp;&ensp;2.提高性能：可以支持基于地址的域名解析，解析成距离用户最近的服务器地址，可以加快访问速度，改善性能；  </p>
+<p><strong>缺点</strong></p>
+<p>&ensp;&ensp;1.可用性差：DNS解析是多级解析，新增/修改DNS后，解析时间较长；解析过程中，用户访问网站将失败；</p>
+<p>&ensp;&ensp;2.扩展性低：DNS负载均衡的控制权在域名商那里，无法对其做更多的改善和扩展；</p>
+<p>&ensp;&ensp;3.维护性差：也不能反映服务器的当前运行状态；支持的算法少；不能区分服务器的差异（不能根据系统与服务的状态来判断负载）</p>
+<p><strong>实践建议</strong></p>
+<p>&ensp;&ensp;将DNS作为第一级负载均衡，A记录对应着内部负载均衡的IP地址，通过内部负载均衡将请求分发到真实的Web服务器上。一般用于互联网公司，复杂的业务系统不合适使用。如下图：</p>
+<img src="/2019/03/22/分布式架构系列-负载均衡/3.png"> 
+<h4 id="2-2-IP负载均衡"><a href="#2-2-IP负载均衡" class="headerlink" title="2.2  IP负载均衡"></a>2.2  IP负载均衡</h4><p>&ensp;&ensp;在网络层通过修改请求目标地址进行负载均衡。</p>
+<p>&ensp;&ensp;用户请求数据包，到达负载均衡服务器后，负载均衡服务器在操作系统内核进程获取网络数据包，根据负载均衡算法得到一台真实服务器地址，然后将请求目的地址修改为，获得的真实ip地址，不需要经过用户进程处理。</p>
+<p>&ensp;&ensp;真实服务器处理完成后，响应数据包回到负载均衡服务器，负载均衡服务器，再将数据包源地址修改为自身的ip地址，发送给用户浏览器。如下图：</p>
+<img src="/2019/03/22/分布式架构系列-负载均衡/4.png"> 
+<p>&ensp;&ensp;IP负载均衡，真实物理服务器返回给负载均衡服务器，存在两种方式：（1）负载均衡服务器在修改目的ip地址的同时修改源地址。将数据包源地址设为自身盘，即源地址转换（snat）。（2）将负载均衡服务器同时作为真实物理服务器集群的网关服务器。</p>
+<p><strong>优点：</strong></p>
+<p>&ensp;&ensp;在内核进程完成数据分发，比在应用层分发性能更好；</p>
+<p><strong>缺点：</strong></p>
+<p>&ensp;&ensp;所有请求响应都需要经过负载均衡服务器，集群最大吞吐量受限于负载均衡服务器网卡带宽；</p>
+<h4 id="2-3-链路层负载均衡"><a href="#2-3-链路层负载均衡" class="headerlink" title="2.3 链路层负载均衡"></a>2.3 链路层负载均衡</h4><p>&ensp;&ensp;在通信协议的数据链路层修改mac地址，进行负载均衡。</p>
+<p>&ensp;&ensp;数据分发时，不修改ip地址，指修改目标mac地址，配置真实物理服务器集群所有机器虚拟ip和负载均衡服务器ip地址一致，达到不修改数据包的源地址和目标地址，进行数据分发的目的。</p>
+<p>&ensp;&ensp;实际处理服务器ip和数据请求目的ip一致，不需要经过负载均衡服务器进行地址转换，可将响应数据包直接返回给用户浏览器，避免负载均衡服务器网卡带宽成为瓶颈。也称为直接路由模式（DR模式）。如下图：</p>
+<img src="/2019/03/22/分布式架构系列-负载均衡/5.png"> 
+<p><strong>优点</strong>：性能好；</p>
+<p><strong>缺点</strong>：配置复杂；</p>
+<p><strong>实践建议</strong>：DR模式是目前使用最广泛的一种负载均衡方式。</p>
+<h4 id="2-4-混合型负载均衡"><a href="#2-4-混合型负载均衡" class="headerlink" title="2.4 混合型负载均衡"></a>2.4 混合型负载均衡</h4><p> &ensp;&ensp;由于多个服务器群内硬件设备、各自的规模、提供的服务等的差异，可以考虑给每个服务器群采用最合适的负载均衡方式，然后又在这多个服务器群间再一次负载均衡或群集起来以一个整体向外界提供服务（即把这多个服务器群当做一个新的服务器群），从而达到最佳的性能。将这种方式称之为混合型负载均衡。</p>
+<p> &ensp;&ensp;此种方式有时也用于单台均衡设备的性能不能满足大量连接请求的情况下。是目前大型互联网公司，普遍使用的方式。</p>
+<p>方式一，如下图：</p>
+<img src="/2019/03/22/分布式架构系列-负载均衡/6.png"> 
+<p> &ensp;&ensp;以上模式适合有动静分离的场景，反向代理服务器（集群）可以起到缓存和动态请求分发的作用，当时静态资源缓存在代理服务器时，则直接返回到浏览器。如果动态页面则请求后面的应用负载均衡（应用集群）。</p>
+<p>方式二，如下图：</p>
+<img src="/2019/03/22/分布式架构系列-负载均衡/7.png"> 
+<p> &ensp;&ensp;以上模式，适合动态请求场景。</p>
+<p> &ensp;&ensp;因混合模式，可以根据具体场景，灵活搭配各种方式，以上两种方式仅供参考。</p>
+<h3 id="三、负载均衡算法"><a href="#三、负载均衡算法" class="headerlink" title="三、负载均衡算法"></a>三、负载均衡算法</h3><p>常用的负载均衡算法有，轮询，随机，最少链接，源地址散列，加权等方式；</p>
+<h4 id="3-1-轮询"><a href="#3-1-轮询" class="headerlink" title="3.1 轮询"></a>3.1 轮询</h4><p>将所有请求，依次分发到每台服务器上，适合服务器硬件同相同的场景。</p>
+<p>优点：服务器请求数目相同；</p>
+<p>缺点：服务器压力不一样，不适合服务器配置不同的情况；</p>
+<h4 id="3-2-随机"><a href="#3-2-随机" class="headerlink" title="3.2 随机"></a>3.2 随机</h4><p>请求随机分配到各个服务器。</p>
+<p>优点：使用简单；</p>
+<p>缺点：不适合机器配置不同的场景；</p>
+<h4 id="3-3-最少链接"><a href="#3-3-最少链接" class="headerlink" title="3.3 最少链接"></a>3.3 最少链接</h4><p>将请求分配到连接数最少的服务器（目前处理请求最少的服务器）。</p>
+<p>优点：根据服务器当前的请求处理情况，动态分配；</p>
+<p>缺点：算法实现相对复杂，需要监控服务器请求连接数；</p>
+<h4 id="3-4-Hash（源地址散列）"><a href="#3-4-Hash（源地址散列）" class="headerlink" title="3.4 Hash（源地址散列）"></a>3.4 Hash（源地址散列）</h4><p>根据IP地址进行Hash计算，得到IP地址。</p>
+<p>优点：将来自同一IP地址的请求，同一会话期内，转发到相同的服务器；实现会话粘滞。</p>
+<p>缺点：目标服务器宕机后，会话会丢失；</p>
+<h4 id="3-5-加权"><a href="#3-5-加权" class="headerlink" title="3.5 加权"></a>3.5 加权</h4><p>在轮询，随机，最少链接，Hash’等算法的基础上，通过加权的方式，进行负载服务器分配。</p>
+<p>优点：根据权重，调节转发服务器的请求数目；</p>
+<p>缺点：使用相对复杂；</p>
+<h3 id="四、硬件负载均衡"><a href="#四、硬件负载均衡" class="headerlink" title="四、硬件负载均衡"></a>四、硬件负载均衡</h3><p>采用硬件的方式实现负载均衡，一般是单独的负载均衡服务器，价格昂贵，一般土豪级公司可以考虑，业界领先的有两款，F5和A10。<br>使用硬件负载均衡，主要考虑一下几个方面：</p>
+<ul>
+<li>功能考虑：功能全面支持各层级的负载均衡，支持全面的负载均衡算法，支持全局负载均衡；</li>
+<li>性能考虑：一般软件负载均衡支持到5万级并发已经很困难了，硬件负载均衡可以支持</li>
+<li>稳定性：商用硬件负载均衡，经过了良好的严格的测试，从经过大规模使用，在稳定性方面高；</li>
+<li>安全防护：硬件均衡设备除具备负载均衡功能外，还具备防火墙，防DDOS攻击等安全功能；</li>
+<li>维护角度：提供良好的维护管理界面，售后服务和技术支持；</li>
+<li>土豪公司：F5 Big Ip 价格：15w~55w不等；A10 价格：55w-100w不等；</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>价格昂贵；</li>
+<li>扩展能力差；</li>
+</ul>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>一般硬件的负载均衡也要做双机高可用，因此成本会比较高。</li>
+<li><p>互联网公司一般使用开源软件，因此大部分应用采用软件负载均衡；部分采用硬件负载均衡。</p>
+<p>&ensp;&ensp;比如某互联网公司，目前是使用几台F5做全局负载均衡，内部使用Nginx等软件负载均衡。</p>
+<p>  摘自： <a href="https://mp.weixin.qq.com/s/WG0oj-g8VuVfdIffgJhYWA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/WG0oj-g8VuVfdIffgJhYWA</a><br>  原作者：<a href="http://www.cnblogs.com/itfly8/p/5043435.html" target="_blank" rel="noopener">http://www.cnblogs.com/itfly8/p/5043435.html</a>  </p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+<div>
+    
+ </div>
+ 
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/20/省科协高可用负载均衡集群/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2050,332 +2289,6 @@
  </div>
  
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="戴树谦">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile_photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="戴树谦的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/" itemprop="url">IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-07T22:16:06+08:00">
-                2019-01-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  5.3k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  29
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>本篇博客介绍了Ipv6 的各种基本配置，也是本学期本门课的一个总结，使用Cisco Packet Tracer7.0 和GNS3 0.8 模拟器进行的以下实验 ，路由器选型为cisco 2911，Gns3中是c2691。</p>
-<h3 id="实验一-IPv6-IP地址配置方法（2911）"><a href="#实验一-IPv6-IP地址配置方法（2911）" class="headerlink" title="实验一  IPv6 IP地址配置方法（2911）"></a>实验一  IPv6 IP地址配置方法（2911）</h3><img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/1.png">
-<table>
-<thead>
-<tr>
-<th>设备</th>
-<th>接口</th>
-<th>IP地址</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>&emsp;Router0&emsp;</td>
-<td>&emsp;g0/0 &emsp;</td>
-<td>&emsp;&emsp;2001:0db8:cafe:A001::2/64&emsp;&emsp;</td>
-</tr>
-<tr>
-<td>&emsp;</td>
-<td>&emsp;g0/1</td>
-<td>&emsp;&emsp;2001:0db8:cafe:A002::2/64</td>
-</tr>
-<tr>
-<td>&emsp;</td>
-<td>&emsp;g0/2</td>
-<td>&emsp;&emsp;2001:0db8:cafe:0002::1/64</td>
-</tr>
-<tr>
-<td>&emsp;Router1</td>
-<td>&emsp;g0/0</td>
-<td>&emsp;&emsp;2001:0db8:cafe:A001::1/64</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>&emsp;g0/1</td>
-<td>&emsp;&emsp;2001:0db8:cafe:A003::1/64</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>&emsp;g0/2</td>
-<td>&emsp;&emsp;2001:0db8:cafe:0001::1/64</td>
-</tr>
-<tr>
-<td>&emsp;Router2</td>
-<td>&emsp;g0/0</td>
-<td>&emsp;&emsp;2001:0db8:cafe:A003::2/64</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>&emsp;g0/1</td>
-<td>&emsp;&emsp;2001:0db8:cafe:A002::1/64</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>&emsp;g0/2</td>
-<td>&emsp;&emsp;2001:0db8:feed:0001::1/64</td>
-</tr>
-<tr>
-<td>&emsp;Router3</td>
-<td>&emsp;g0/0</td>
-<td>&emsp;&emsp;2001:0db8:feed:0001::2/64</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>&emsp;g0/1</td>
-<td>&emsp;&emsp;2001:0db8:face:c0de::1/64</td>
-</tr>
-<tr>
-<td>&emsp;PC 0</td>
-<td>&nbsp;</td>
-<td>&emsp;&emsp;2001:0db8:cafe:0001::2/64</td>
-</tr>
-<tr>
-<td>&emsp;PC 1</td>
-<td>&nbsp;</td>
-<td>&emsp;&emsp;2001:0db8:face:c0de::2/64</td>
-</tr>
-<tr>
-<td>&emsp;PC2</td>
-<td>&nbsp;</td>
-<td>&emsp;&emsp;2001:0db8:cafe:0002::2/64</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">Route1</span><br><span class="line">Router&gt;enable</span><br><span class="line">Router#config terminal</span><br><span class="line">Router(config)#ipv6 unicast-routing  // 开启 IPV6流量转发</span><br><span class="line">Router(config)#int g0/0</span><br><span class="line">Router(config)#no shutdown</span><br><span class="line">Router(config-if)#ipv6 add 2001:0db8:cafe:A001::1/64 //前64位为网络地址；后64位为主机位</span><br><span class="line">Router#show ipv6 interface brief</span><br><span class="line"></span><br><span class="line">使用EUI-64格式配置静态地址：</span><br><span class="line">Router(config)#int g0/1</span><br><span class="line">Router(config)#no shutdown</span><br><span class="line">Router(config-if)#ipv6 address 2001:0db8:cafe:A003::1/64 eu</span><br><span class="line">Router(config-if)#ipv6 address 2001:0db8:cafe:A003::1/64 eui-64</span><br><span class="line"></span><br><span class="line">仅启用接口IPv6功能</span><br><span class="line">Router#conf t</span><br><span class="line">Router(config)#int g0/2</span><br><span class="line">Router(config)#no shutdown</span><br><span class="line">Router(config-if)#ipv</span><br><span class="line">Router(config-if)#ipv6 enable  //会自动分配Ipv6地址</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">配置无编号地址</span><br><span class="line">Router(config)#interface f0/3/0</span><br><span class="line">Router(config)#no shutdown</span><br><span class="line">Router(config-if)#ipv6 unnumbered g0/0  // 结果显示为接口f0/3/0借用g0/0的地址</span><br></pre></td></tr></table></figure>
-<h3 id="实验二-静态路由配置"><a href="#实验二-静态路由配置" class="headerlink" title="实验二 静态路由配置"></a>实验二 静态路由配置</h3><img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/1.png">
-<h4 id="1-直连静态路由"><a href="#1-直连静态路由" class="headerlink" title="1. 直连静态路由"></a>1. 直连静态路由</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">r1(config)#ipv6 route 2022:2:2:22::/64 e1/1</span><br><span class="line">到达目标网络2022:2:2:22::/64 的数据包从接口e1/1发出去</span><br></pre></td></tr></table></figure>
-<h4 id="2-递归静态路由"><a href="#2-递归静态路由" class="headerlink" title="2.递归静态路由"></a>2.递归静态路由</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">r1(config)#ipv6 route 2022:2:2:22::/64 2012:1:1:11::2 </span><br><span class="line">到达目标网络2022:2:2:22::/64 的数据包发给下一跳地址2012:1:1:11::2</span><br></pre></td></tr></table></figure>
-<h4 id="3-完全静态路由"><a href="#3-完全静态路由" class="headerlink" title="3.完全静态路由"></a>3.完全静态路由</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">r1(config)#ipv6 route 2022:2:2:22::/64 f0/0 2012:1:1:11::2  </span><br><span class="line">到达目标网络2022:2:2:22::/64 的数据包从接口F0/0发出去，并且交给下一跳地址2012:1:1:11::2</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">配置递归路由(pc0 ping  pc1)</span><br><span class="line">pc0至pc1</span><br><span class="line">Router1(config)#ipv6 unicast-routing</span><br><span class="line">Router1(config)#ipv6 route 2001:0db8:face:c0de::/64(pc1网段) 2001:0db8:cafe:A003::2(Route2g0/0)</span><br><span class="line">Router2(config)#ipv6 unicast-routing</span><br><span class="line">Router2(config)#ipv6 route 2001:0db8:face:c0de::/64(pc1网段) 2001:0db8:feed:0001::2(Route3g0/0)</span><br><span class="line">pc1 至PC0</span><br><span class="line">Router3(config)#ipv6 unicast-routing</span><br><span class="line">Router3(config)#ipv6 route 2001:0db8:cafe:1::/64(pc0网段) 2001:0db8:feed:0001::1(Route2g0/2)</span><br><span class="line">Router3(config)#ipv6 unicast-routing</span><br><span class="line">Router(config)#ipv6 route 2001:0db8:cafe:1::/64(pc0网段) 2001:0db8:cafe:A003::1(Route1g0/1)**</span><br></pre></td></tr></table></figure>
-<p>PC0 ping  PC1  </p>
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/2.png">
-<h3 id="实验三-IPv6-RIP-RIPng-基础实验"><a href="#实验三-IPv6-RIP-RIPng-基础实验" class="headerlink" title="实验三  IPv6 RIP (RIPng)基础实验"></a>实验三  IPv6 RIP (RIPng)基础实验</h3><img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/1.png">
-<h4 id="以Route2为例"><a href="#以Route2为例" class="headerlink" title="以Route2为例"></a>以Route2为例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Router2&gt;en</span><br><span class="line">Router2#conf t</span><br><span class="line">Router1(config)#ipv6 unicast-routing  // 开启IPv6路由转发</span><br><span class="line">Router2(config)#ipv6 router rip test  //启动IPv6 RIPng进程，RIP进程名字为test</span><br><span class="line">Router2(config-rtr)#int g0/0</span><br><span class="line">Router2(config-if)#no shutdown</span><br><span class="line">Router2(config-if)#ipv6 rip test enable</span><br><span class="line">Router2(config-if)#int g0/1</span><br><span class="line">Router2(config-if)#no shutdown</span><br><span class="line">Router2(config-if)#ipv6 rip test enable</span><br><span class="line">Router2(config-if)#int g0/2</span><br><span class="line">Router2(config-if)#no shutdown</span><br><span class="line">Router2(config-if)#ipv rip test enable</span><br></pre></td></tr></table></figure>
-<p><strong>所有路由器的所有接口都要进行配置!</strong></p>
-<p><strong>下面查看Route2的RIP数据库</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Router2#show ipv6 rip database  //查看IPv6数据库</span><br><span class="line">RIP process &quot;test&quot; local RIB</span><br><span class="line">2001:DB8:CAFE:1::/64, metric 2, installed  // 路由条目装入路由表</span><br><span class="line">GigabitEthernet0/0/FE80::2E0:F7FF:FE48:CB02, expires in 151 sec</span><br><span class="line">2001:DB8:CAFE:2::/64, metric 2, installed</span><br><span class="line">GigabitEthernet0/1/FE80::2E0:8FFF:FE67:C502, expires in 161 sec</span><br><span class="line">2001:DB8:CAFE:A001::/64, metric 2, installed</span><br><span class="line">GigabitEthernet0/0/FE80::2E0:F7FF:FE48:CB02, expires in 151 sec</span><br><span class="line">2001:DB8:CAFE:A001::/64, metric 2, installed</span><br><span class="line">GigabitEthernet0/0/FE80::2E0:F7FF:FE48:CB02, expires in 151 sec2, installed</span><br><span class="line">GigabitEthernet0/1/FE80::2E0:8FFF:FE67:C502, expires in 161 sec</span><br><span class="line">2001:DB8:CAFE:A002::/64, metric 2</span><br><span class="line">GigabitEthernet0/1/FE80::2E0:8FFF:FE67:C502, expires in 161 sec</span><br><span class="line">2001:DB8:CAFE:A003::/64, metric 2</span><br><span class="line">GigabitEthernet0/0/FE80::2E0:F7FF:FE48:CB02, expires in 151 sec</span><br><span class="line">2001:DB8:FACE:C0DE::/64, metric 2, installed</span><br><span class="line">GigabitEthernet0/2/FE80::2D0:BAFF:FE71:9201, expires in 166 sec</span><br><span class="line">2001:DB8:FEED:1::/64, metric 2</span><br><span class="line">GigabitEthernet0/2/FE80::2D0:BAFF:FE71:9201, expires in 166 sec</span><br><span class="line">Router2#</span><br></pre></td></tr></table></figure>
-<p>在Pc0上进行检测  </p>
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/3.png">
-<h3 id="实验四-OSPFv3基础实验"><a href="#实验四-OSPFv3基础实验" class="headerlink" title="实验四  OSPFv3基础实验"></a>实验四  OSPFv3基础实验</h3><img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/4.png">
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">以Route1为例</span><br><span class="line">Router1&gt;en</span><br><span class="line">Router1#conf t</span><br><span class="line">Router1(config)#ipv6 unicast-routing  // 开启Ipv6路由转发</span><br><span class="line">Router1(config)#ipv6 router ospf 2  // 启动OSPFv3进程</span><br><span class="line">%OSPFv3-4-NORTRID: OSPFv3 process 2 could not pick a router-id,please configure manually //要求手工指定router-id</span><br><span class="line">Router1(config-rtr)#router-id 1.1.1.1 //给OSPF路由器指定身份，每个路由器的route-id都是唯一的</span><br><span class="line">Router1(config-rtr)#int g0/0</span><br><span class="line">Router1(config-if)#no shutdown</span><br><span class="line">Router1(config-if)#ipv6 ospf 2 area 0</span><br><span class="line">Router1(config-if)#int g0/1</span><br><span class="line">Router1(config-if)#no shutdown</span><br><span class="line">Router1(config-if)#ipv6 ospf 2 area 0</span><br><span class="line">Router1(config-if)#int g0/2</span><br><span class="line">Router1(config-if)#no shutdown</span><br><span class="line">Router1(config-if)#ipv6 ospf 2 area 0</span><br><span class="line">在Route 0 路由器</span><br><span class="line">Router&gt;en</span><br><span class="line">Router#conf t</span><br><span class="line">Router(config)#ipv6 unicast-routing</span><br><span class="line">Router(config)#ipv6 router ospf 2</span><br><span class="line">%OSPFv3-4-NORTRID: OSPFv3 process 2 could not pick a router-id,please configure manually</span><br><span class="line">Router(config-rtr)#router-id 4.4.4.4</span><br><span class="line">Router(config-rtr)#int g0/0</span><br><span class="line">Router(config-if)#no shutdown</span><br><span class="line">Router(config-if)#ipv6 ospf 2 area 0</span><br><span class="line">Router(config-if)#int g0/1</span><br><span class="line">Router(config-if)#no shutdown</span><br><span class="line">Router(config-if)#ipv6 ospf 2 area 0</span><br><span class="line">Router(config-if)#int g0/2</span><br><span class="line">Router(config-if)#no shutdown</span><br><span class="line">Router(config-if)#ipv6 ospf 2 area 0</span><br></pre></td></tr></table></figure>
-<p>Route2，Route3同理  </p>
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/5.png">  
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/6.png">
-<h3 id="实验五-IPv6-EIGRP实验"><a href="#实验五-IPv6-EIGRP实验" class="headerlink" title="实验五  IPv6 EIGRP实验"></a>实验五  IPv6 EIGRP实验</h3><img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/7.png">
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">R1  // R2 同理，此处不再进行配置演示</span><br><span class="line">R1#conf t // R1初始配置</span><br><span class="line">R1(config)#ipv6 unicast-routing</span><br><span class="line">R1(config)#int g0/0</span><br><span class="line">R1(config-if)#no shutdown</span><br><span class="line">R1(config-if)#ipv6 add 2012:1:1:11::1/64</span><br><span class="line">R1(config-if)#exit</span><br><span class="line">R1(config)#int loopback 1</span><br><span class="line">R1(config-if)#no shutdown</span><br><span class="line">R1(config-if)#ipv6 add 3001:1:1:11::1/64</span><br><span class="line">R1(config-if)#exit</span><br><span class="line">R1(config)#int loopback 2</span><br><span class="line">R1(config-if)#no shutdown</span><br><span class="line">R1(config-if)#ipv6 add 3002:1:1:11::1/64</span><br><span class="line">R1(config-if)#exit</span><br><span class="line">R1(config)#int loopback 3</span><br><span class="line">R1(config-if)#no sh</span><br><span class="line">R1(config-if)#ipv6 add 3003:1:1:11::1/64</span><br><span class="line">R1#show ipv6 interface bri</span><br><span class="line">FastEthernet0/0            [up/up]</span><br><span class="line">    FE80::C204:8FF:FEB8:0</span><br><span class="line">    2012:1:1:11::1</span><br><span class="line">FastEthernet0/1            [administratively down/down]</span><br><span class="line">    unassigned</span><br><span class="line">Loopback1                  [up/up]</span><br><span class="line">    FE80::C204:8FF:FEB8:0</span><br><span class="line">    3001:1:1:11::1</span><br><span class="line">Loopback2                  [up/up]</span><br><span class="line">    FE80::C204:8FF:FEB8:0</span><br><span class="line">    3002:1:1:11::1</span><br><span class="line">Loopback3                  [up/up]</span><br><span class="line">    FE80::C204:8FF:FEB8:0</span><br><span class="line">    3003:1:1:11::1</span><br><span class="line">R1(config)#ipv6 router eigrp 10 // 在R1上启动EIGRP v6进程</span><br><span class="line">R1(config-rtr)#no shutdown  //EIGRP v6进程默认是shutdown的，必须手工开启</span><br><span class="line">R1(config-rtr)#eigrp router-id 1.1.1.1</span><br><span class="line">R1(config)#int g0/0  //将 R1上的接口放进EIGRP v6进程</span><br><span class="line">R1(config-if)#ipv6 eigrp 10 </span><br><span class="line">R1(config-if)#exit</span><br><span class="line">R1(config)#int loopback 1</span><br><span class="line">R1(config-if)#ipv6 eigrp 10</span><br></pre></td></tr></table></figure>
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/8.png">
-<p>重分布IPv6网段  </p>
-<p>将R1上的剩余网段重分布进EIGRP v6</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">r1(config)#route-map con permit 10  //在R1上配置重分布剩余网段进EIGRP v6</span><br><span class="line">r1(config-route-map)#match interface loopback 2</span><br><span class="line">r1(config-route-map)#exit</span><br><span class="line">r1(config)#route-map con permit 20   </span><br><span class="line">r1(config-route-map)#match interface loopback 3</span><br><span class="line"> r1(config)#ipv6 router eigrp 10</span><br><span class="line">r1(config-rtr)#redistribute connected route-map con</span><br><span class="line">r1(config-rtr)#exit</span><br><span class="line">在R2上查看重分布进EIGRP v6的剩余网段</span><br><span class="line">r2#sh ipv6 route eigrp </span><br><span class="line">IPv6 Routing Table - 9 entries</span><br><span class="line">Codes: C - Connected, L - Local, S - Static, R - RIP, B - BGP</span><br><span class="line">       U - Per-user Static route</span><br><span class="line">       I1 - ISIS L1, I2 - ISIS L2, IA - ISIS interarea, IS - ISIS summary</span><br><span class="line">       O - OSPF intra, OI - OSPF inter, OE1 - OSPF ext 1, OE2 - OSPF ext 2</span><br><span class="line">       ON1 - OSPF NSSA ext 1, ON2 - OSPF NSSA ext 2</span><br><span class="line">       D - EIGRP, EX - EIGRP external</span><br><span class="line">D   3001:1:1:11::/64 [90/409600]</span><br><span class="line">     via FE80::C200:9FF:FE54:0, FastEthernet0/0</span><br><span class="line">EX  3002:1:1:11::/64 [170/409600]</span><br><span class="line">     via FE80::C200:9FF:FE54:0, FastEthernet0/0</span><br><span class="line">EX  3003:1:1:11::/64 [170/409600]</span><br><span class="line">     via FE80::C200:9FF:FE54:0, FastEthernet0/0</span><br><span class="line">r2#</span><br></pre></td></tr></table></figure>
-<p>过滤IPv6路由  </p>
-<p>在R2上过滤掉IPv6路由，只留想要的网段，使用distribute-list过滤</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">r2(config)#ipv6 prefix-list abc permit 3002:1:1:11::/64  //配置只留3002:1:1:11::/64网段</span><br><span class="line">r2(config)#ipv6 router eigrp 10</span><br><span class="line">r2(config-rtr)#distribute-list prefix-list abc in f0/0</span><br><span class="line">r2#sh ipv6 route eigrp </span><br><span class="line">IPv6 Routing Table - 7 entries</span><br><span class="line">Codes: C - Connected, L - Local, S - Static, R - RIP, B - BGP</span><br><span class="line">       U - Per-user Static route</span><br><span class="line">       I1 - ISIS L1, I2 - ISIS L2, IA - ISIS interarea, IS - ISIS summary</span><br><span class="line">       O - OSPF intra, OI - OSPF inter, OE1 - OSPF ext 1, OE2 - OSPF ext 2</span><br><span class="line">       ON1 - OSPF NSSA ext 1, ON2 - OSPF NSSA ext 2</span><br><span class="line">       D - EIGRP, EX - EIGRP external</span><br><span class="line">EX  3002:1:1:11::/64 [170/409600]</span><br><span class="line">     via FE80::C200:9FF:FE54:0, FastEthernet0/0</span><br><span class="line">r2#</span><br></pre></td></tr></table></figure>
-<h3 id="实验七-IPv6地址SLAAC与有状态自动配置"><a href="#实验七-IPv6地址SLAAC与有状态自动配置" class="headerlink" title="实验七 IPv6地址SLAAC与有状态自动配置"></a>实验七 IPv6地址SLAAC与有状态自动配置</h3><img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/9.png">
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">1.配置无状态自动获得IP地址（SLAAC）</span><br><span class="line"></span><br><span class="line">R1</span><br><span class="line">Router&gt;en</span><br><span class="line">Router#conf t</span><br><span class="line">Router(config)#ipv6 unicast-routing</span><br><span class="line">Router(config)#int g0/0</span><br><span class="line">Router(config-if)#ipv6 address 2023::2/64</span><br><span class="line">Router(config-if)#no shutdown</span><br><span class="line"></span><br><span class="line">R2</span><br><span class="line">Router&gt;en</span><br><span class="line">Router#conf t</span><br><span class="line">Router(config)#int g0/0</span><br><span class="line">Router(config-if)#ipv6 address autoconfig</span><br><span class="line">Router(config-if)#no sh</span><br><span class="line">Router#show ipv6 int g0/0</span><br><span class="line">GigabitEthernet0/0 is up, line protocol is up</span><br><span class="line">IPv6 is enabled, link-local address is FE80::230:F2FF:FEC9:1D01</span><br><span class="line">No Virtual link-local address(es):</span><br><span class="line">Global unicast address(es):</span><br><span class="line">2023::230:F2FF:FEC9:1D01, subnet is 2023::/64</span><br><span class="line">Joined group address(es):</span><br><span class="line">FF02::1</span><br><span class="line">FF02::1:FFC9:1D01</span><br><span class="line">MTU is 1500 bytes</span><br><span class="line">ICMP error messages limited to one every 100 milliseconds</span><br><span class="line">ICMP redirects are enabled</span><br><span class="line">ICMP unreachables are sent</span><br><span class="line">ND DAD is enabled, number of DAD attempts: 1</span><br><span class="line">ND reachable time is 30000 milliseconds</span><br><span class="line">Router#</span><br><span class="line"></span><br><span class="line">2.调整ND</span><br><span class="line">Router1：</span><br><span class="line">interface g0/0</span><br><span class="line">ipv6 address 2023::2/64</span><br><span class="line">no shutdown</span><br><span class="line">ipv6 nd ra-interval 5   //每5s通告一次RA</span><br><span class="line">ipv6 nd ra-lifetime 1000  //RA的lifetime</span><br><span class="line">ipv6 nd prefix 2023::/64 5000 4000   //修改valid time和preferred time</span><br><span class="line"></span><br><span class="line">3.不希望SLAAC</span><br><span class="line">抑制RA消息：</span><br><span class="line">ipv6 nd ra suppress  //对IOS版本有要求</span><br></pre></td></tr></table></figure>
-<h3 id="实验八-DHCPv6分配"><a href="#实验八-DHCPv6分配" class="headerlink" title="实验八.DHCPv6分配"></a>实验八.DHCPv6分配</h3><img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/9.png">
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">1.无状态自动配置</span><br><span class="line">注：此时地址是EUI/64获取的，而其他信息是由DHCP获取的</span><br><span class="line">Router1:</span><br><span class="line">Ipv6 unicast-routing</span><br><span class="line">ipv6 dhcp pool cafe-1</span><br><span class="line">dns-server 2022::2</span><br><span class="line">domain-name www.heuet.edu.cn</span><br><span class="line">interface G0/0</span><br><span class="line">ipv6 address 2023::2/64</span><br><span class="line">ipv6 dhcp server café-1</span><br><span class="line">ipv6 nd other-config-flag  //O置位</span><br><span class="line"></span><br><span class="line">Router2:</span><br><span class="line">interface g0/0</span><br><span class="line">ipv6 address autoconfig</span><br><span class="line"></span><br><span class="line">2.有状态自动配置</span><br><span class="line">Router1:</span><br><span class="line">Ipv6 unicast-route</span><br><span class="line">ipv6 dhcp pool cafe-1</span><br><span class="line">dns-server 2022::2</span><br><span class="line">domain-name www.heuet.edu.cn</span><br><span class="line">address prefix 2023:2323::/64</span><br><span class="line">interface g0/0</span><br><span class="line">ipv6 address 2023::2/64</span><br><span class="line">ipv6 dhcp server cafe-1</span><br><span class="line">ipv6 nd other-config-flag</span><br><span class="line">ipv6 nd managed-config-flag  //M置位</span><br><span class="line"></span><br><span class="line">Router2:</span><br><span class="line">interface g0/0</span><br><span class="line">ipv6 enable  //让接口获得link-local地址作为DHCP源来发送DHCP报文</span><br><span class="line">ipv6 address dhcp</span><br><span class="line"></span><br><span class="line">查看：</span><br><span class="line">Router1#sh ipv6 dhcp pool</span><br><span class="line">DHCPv6 pool: cafe-1</span><br><span class="line">DNS server: 2022::2</span><br><span class="line">Domain name: www.heuet.edu.cn</span><br><span class="line">Active clients: 1   //一个client</span><br></pre></td></tr></table></figure>
-<h3 id="实验九-DHCPv6前缀代表"><a href="#实验九-DHCPv6前缀代表" class="headerlink" title="实验九 DHCPv6前缀代表"></a>实验九 DHCPv6前缀代表</h3><img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/10.png">
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">DHCP  SERVER</span><br><span class="line"></span><br><span class="line">Router&gt;en</span><br><span class="line">Router#conf t</span><br><span class="line">Router(config)#ipv6 unicast-routing </span><br><span class="line">Router(config)#ipv6 dhcp pool dhcpv6  //定义DHCP服务的名字</span><br><span class="line">Router(config-dhcpv6)#prefix-delegation pool dhcpv6-pool lifetime 1800 600  //创建DHCPV6-pool的前缀代</span><br><span class="line">//表地址池，并定义有效期</span><br><span class="line">Router(config-dhcpv6)#dns-server 2001:db8:3000:3000::42</span><br><span class="line">Router(config-dhcpv6)#domain-name www.heuet.edu.cn</span><br><span class="line">Router(config-dhcpv6)#exit l</span><br><span class="line">Router(config)#int g0/0</span><br><span class="line">Router(config-if)#ipv6 dhcp server dhcpv6  //在接口上启动DHCP服务对象</span><br><span class="line">Router(config-if)#exit </span><br><span class="line">Router(config)#ipv6 local pool dhcpv6-pool 2001:db8:1200::/40 48  //定义一个前缀长度为40的本地前缀代表</span><br><span class="line">//地址池,并且定义分配给DHCPv6-PD Client的前缀长度是48位</span><br><span class="line">Router(config)#int g0/0</span><br><span class="line">Router(config-if)#ipv6 add 2010:AB8::1/64</span><br><span class="line">Router(config-if)#ipv6 enable </span><br><span class="line">Router(config-if)#no shutdown</span><br></pre></td></tr></table></figure>
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/11.png">
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/12.png">
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">DHCP Client</span><br><span class="line"></span><br><span class="line">Router&gt;en</span><br><span class="line">Router#conf t</span><br><span class="line">Router(config)#ipv6 unicast-routing </span><br><span class="line">Router(config)#int g0/0</span><br><span class="line">Router(config-if)#no sh</span><br><span class="line">Router(config-if)#ipv6 add autoconfig //无状态自动配置IPv6地址</span><br><span class="line">Router(config-if)#ipv6 enable </span><br><span class="line">Router(config-if)#ipv6 dhcp client pd prefix-from-pr  //在接口上启用PD，将PD命名为prefix-from-pr</span><br><span class="line">Router(config-if)#</span><br><span class="line">Router(config-if)#int g0/1</span><br><span class="line">Router(config-if)#no sh</span><br><span class="line">Router(config-if)#ipv6 address prefix-from-pr ::1:0:0:0:1/64 配置接口从名字prefix-from-pr那里取得前缀，</span><br><span class="line">然后附加上1:0:0:0:1，最后形成接口的地址是2001：DB8:1200:1::1/64</span><br><span class="line">Router(config-if)#int g0/2</span><br><span class="line">Router(config-if)#no sh</span><br><span class="line">Router(config-if)#ipv6 address prefix-from-pr ::1/64 //接口地址为2001：DB8:1200:::1/64</span><br><span class="line">Router(config-if)#</span><br></pre></td></tr></table></figure>
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/13.png">
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/14.png">
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Client1</span><br><span class="line">Router&gt;en</span><br><span class="line">Router#conf t</span><br><span class="line">Router(config)#ipv6 unicast-routing </span><br><span class="line">Router(config)#</span><br><span class="line">Router(config)#int g0/0</span><br><span class="line">Router(config-if)#no sh</span><br><span class="line">Router(config-if)#ipv6 address autoconfig  //启用无状态自动获得IP地址</span><br><span class="line">Router#show ipv6 interface brief</span><br></pre></td></tr></table></figure>
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/15.png">
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Client2</span><br><span class="line">Router&gt;en</span><br><span class="line">Router#conf t</span><br><span class="line">Router(config)#ipv6 unicast-routing </span><br><span class="line">Router(config)#int g0/0</span><br><span class="line">Router(config-if)#no sh</span><br><span class="line">Router(config-if)#ipv6 add autoconfig  //启用无状态自动获得IP地址</span><br><span class="line">Router#show ipv6 inter bri</span><br></pre></td></tr></table></figure>
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/16.png">
-<h3 id="实验十-IPv6、IPv4双栈实验"><a href="#实验十-IPv6、IPv4双栈实验" class="headerlink" title="实验十 IPv6、IPv4双栈实验"></a>实验十 IPv6、IPv4双栈实验</h3><img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/17.png">
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">R0</span><br><span class="line">Router&gt;en</span><br><span class="line">Router#conf t</span><br><span class="line">Router(config)#ipv6 unicast-routing </span><br><span class="line">Router(config)#ipv6 router ospf 1</span><br><span class="line">Router(config-rtr)#router-id 10.1.1.1</span><br><span class="line">Router(config-rtr)#int g0/0</span><br><span class="line">Router(config-if)#no sh</span><br><span class="line">Router(config-if)#ip add 10.10.10.1 255.255.255.252</span><br><span class="line">Router(config-if)#duplex auto </span><br><span class="line">Router(config-if)#speed auto </span><br><span class="line">Router(config-if)#</span><br><span class="line">Router(config-if)#ipv6 add 2001:DB8:CAFE:A001::1/64</span><br><span class="line">Router(config-if)#ipv6 ospf 1 area 0</span><br><span class="line">Router(config-if)#exit </span><br><span class="line">Router(config)#int g0/1</span><br><span class="line">Router(config-if)#no sh</span><br><span class="line">Router(config-if)#ip add 10.10.10.9 255.255.255.252</span><br><span class="line">Router(config-if)#duplex auto </span><br><span class="line">Router(config-if)#speed au</span><br><span class="line">Router(config-if)#ipv6 address 2001:DB8:CAFE:A003::1/64</span><br><span class="line">Router(config-if)#ipv6 ospf 1 area 0</span><br><span class="line">Router(config-if)#exit </span><br><span class="line">Router(config)#int g0/2</span><br><span class="line">Router(config-if)#no sh</span><br><span class="line">Router(config-if)#ip add 10.1.0.1 255.255.0.0</span><br><span class="line">Router(config-if)#duplex auto </span><br><span class="line">Router(config-if)#speed auto </span><br><span class="line">Router(config-if)#ipv6 add 2001:DB8:CAFE::1/64</span><br><span class="line">Router(config-if)#ipv6 address 2001:DB8:CAFE:1::1/64</span><br><span class="line">Router(config-if)#ipv</span><br><span class="line">Router(config-if)#ipv6 os</span><br><span class="line">Router(config-if)#ipv6 ospf 1 ar</span><br><span class="line">Router(config-if)#ipv6 ospf 1 area 0</span><br><span class="line">Router(config-if)#router ospf 2</span><br><span class="line">Router(config-router)#log-adjacency-changes </span><br><span class="line">Router(config-router)#network 10.1.0.0 0.0.255.255 area 0</span><br><span class="line">Router(config-router)#network 10.10.10.0 0.0.0.3 area 0</span><br><span class="line">Router(config-router)#network 10.10.10.8 0.0.0.3 area 0</span><br><span class="line">Router(config-router)#</span><br></pre></td></tr></table></figure>
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/18.png">
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/19.png">
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">R1</span><br><span class="line">Router&gt;en</span><br><span class="line">Router#conf t</span><br><span class="line">Router(config)#ipv unicast-routing </span><br><span class="line">Router(config)#ipv6 router ospf 1</span><br><span class="line">Router(config-rtr)#router-id 10.3.3.3</span><br><span class="line">Router(config-rtr)#log-adjacency-changes </span><br><span class="line">Router(config-rtr)#int g0/0</span><br><span class="line">Router(config-if)#no sh</span><br><span class="line">Router(config-if)#ip address 10.10.10.6 255.255.255.252</span><br><span class="line">Router(config-if)#duplex au</span><br><span class="line">Router(config-if)#speed au</span><br><span class="line">Router(config-if)#ipv6 address 2001:DB8:CAFE:A002::2/64</span><br><span class="line">Router(config-if)#ipv6 ospf 1 area 0</span><br><span class="line">Router(config-if)#int g0/1</span><br><span class="line">Router(config-if)#no sh</span><br><span class="line">Router(config-if)#ip address 10.10.10.10 255.255.255.252</span><br><span class="line">Router(config-if)#duplex auto </span><br><span class="line">Router(config-if)#speed auto </span><br><span class="line">Router(config-if)#ipv6 address 2001:DB8:CAFE:A003::2/64</span><br><span class="line">Router(config-if)#ipv6 ospf 1 area 0</span><br><span class="line">Router(config-if)#int g0/2</span><br><span class="line">Router(config-if)#no sh</span><br><span class="line">Router(config-if)#ip address 10.3.0.1 255.255.0.0</span><br><span class="line">Router(config-if)#duplex auto </span><br><span class="line">Router(config-if)#speed auto </span><br><span class="line">Router(config-if)#ipv6 address 2001:DB8:CAFE:3::1/64</span><br><span class="line">Router(config-if)#ipv6 ospf 1 area 0</span><br><span class="line">Router(config-if)#router ospf 2</span><br><span class="line">Router(config-router)#log-adjacency-changes</span><br><span class="line">Router(config-router)#network 10.10.10.8 0.0.0.3 area 0</span><br><span class="line">Router(config-router)#network 10.10.10.4 0.0.0.3 area 0</span><br><span class="line">Router(config-router)#network 10.3.0.0 0.0.255.255 area 0</span><br><span class="line">Router(config-router)#</span><br></pre></td></tr></table></figure>
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/20.png">
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/21.png">
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">R2</span><br><span class="line">Router&gt;en</span><br><span class="line">Router#conf t</span><br><span class="line">Router(config)#ipv6 unicast-routing </span><br><span class="line">Router(config)#ipv6 router ospf 1</span><br><span class="line">Router(config-rtr)#router-id 10.2.2.2</span><br><span class="line">Router(config-rtr)#int g0/0</span><br><span class="line">Router(config-if)#no sh</span><br><span class="line">Router(config-if)#ip address 10.10.10.2 255.255.255.252</span><br><span class="line">Router(config-if)#duplex auto</span><br><span class="line">Router(config-if)#speed auto</span><br><span class="line">Router(config-if)#ipv6 address 2001:DB8:CAFE:A001::2/64</span><br><span class="line">Router(config-if)#ipv6 ospf 1 area 0</span><br><span class="line">Router(config-if)#interface g0/1</span><br><span class="line">Router(config-if)#no sh</span><br><span class="line">Router(config-if)#ip address 10.10.10.5 255.255.255.252</span><br><span class="line">Router(config-if)#duplex auto</span><br><span class="line">Router(config-if)#speed auto</span><br><span class="line">Router(config-if)#ipv6 address 2001:DB8:CAFE:A002::1/64</span><br><span class="line">Router(config-if)#ipv6 ospf 1 area 0</span><br><span class="line">Router(config-if)#int g0/2</span><br><span class="line">Router(config-if)#no sh</span><br><span class="line">Router(config-if)#ip address 10.2.0.1 255.255.0.0</span><br><span class="line">Router(config-if)#duplex au</span><br><span class="line">Router(config-if)#speed auto</span><br><span class="line">Router(config-if)#ipv6 address 2001:DB8:CAFE:2::1/64</span><br><span class="line">Router(config-if)#ipv6 ospf 1 area 0</span><br><span class="line">Router(config-if)#router ospf 2</span><br><span class="line">Router(config-router)#log-adjacency-changes</span><br><span class="line">Router(config-router)#network 10.10.10.0 0.0.0.3 area 0</span><br><span class="line">Router(config-router)#network 10.10.10.4 0.0.0.3 area 0</span><br><span class="line">Router(config-router)#network 10.2.0.0 0.0.255.255 area 0</span><br></pre></td></tr></table></figure>
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/22.png">
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/23.png">
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/24.png">
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/25.png">
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/26.png">
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/27.png">
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/28.png">
-<h3 id="实验十一-手工隧道"><a href="#实验十一-手工隧道" class="headerlink" title="实验十一  手工隧道"></a>实验十一  手工隧道</h3><img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/29.png">
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">R0</span><br><span class="line">Router&gt;en</span><br><span class="line">Router#conf t</span><br><span class="line">Router(config)#ipv6 UNicast-routing </span><br><span class="line">Router(config)#int g0/0</span><br><span class="line">Router(config-if)#no sh</span><br><span class="line">Router(config-if)#ipv6 address 2001:DB8:CAFE:1::1/64</span><br><span class="line">Router(config-if)#int g0/1</span><br><span class="line">Router(config-if)#no sh</span><br><span class="line">Router(config-if)#ip add 192.168.1.1 255.255.255.0</span><br><span class="line">Router(config-if)#int t0</span><br><span class="line">Router(config-if)#ipv6 address 2001:DB8:CAFF:1::1/64</span><br><span class="line">Router(config-if)#ipv6 en</span><br><span class="line">Router(config-if)#tunnel source g0/1</span><br><span class="line">Router(config-if)#tunnel destination 192.168.1.2</span><br><span class="line">Router(config-if)#tunnel mode ipv6ip</span><br><span class="line">Router(config-if)#ipv6 route 2001:DB8:ACE:2::/64 2001:DB8:CAFF:1::2</span><br><span class="line">Router(config)#</span><br></pre></td></tr></table></figure>
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/30.png">
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">R1</span><br><span class="line">Router&gt;en</span><br><span class="line">Router#conf t</span><br><span class="line">Router(config)#ipv6 unicast-routing </span><br><span class="line">Router(config)#int g0/0</span><br><span class="line">Router(config-if)#ip address 192.168.1.2 255.255.255.0</span><br><span class="line">Router(config-if)#no sh</span><br><span class="line">Router(config-if)#int g0/1</span><br><span class="line">Router(config-if)#ipv6 address 2001:DB8:ACE:2::1/64</span><br><span class="line">Router(config-if)#no sh</span><br><span class="line">Router(config-if)#int t0</span><br><span class="line">Router(config-if)#ipv6 address 2001:DB8:CAFF:1::2/64</span><br><span class="line">Router(config-if)#ipv6 en</span><br><span class="line">Router(config-if)#tunnel source g0/0</span><br><span class="line">Router(config-if)#tunnel destination 192.168.1.1</span><br><span class="line">Router(config-if)#tunnel mode ipv6ip </span><br><span class="line">Router(config-if)#i</span><br></pre></td></tr></table></figure>
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/31.png"> 
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/32.png"> 
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/33.png">
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/34.png">
-<h3 id="实验十二-6to4隧道的配置"><a href="#实验十二-6to4隧道的配置" class="headerlink" title="实验十二  6to4隧道的配置"></a>实验十二  6to4隧道的配置</h3><img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/35.png">  
-<p>需要特别说明的是由于6to4隧道原理的特殊性，隧道端口的IPv4地址与IPv6网络的Ipv6地址有关联，所以分配IPv6网络的IP地址应该注意符合6to4隧道的编码要求。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">R1</span><br><span class="line">R1#conf t</span><br><span class="line">R1(config)#ipv6 unicast-routing  //启用路由器的Ipv6转发功能</span><br><span class="line">R1(config)#int loopback 0</span><br><span class="line">R1(config-if)#ipv add 2002:0a01:0101:1::1/64</span><br><span class="line">R1(config-if)#int f0/1</span><br><span class="line">R1(config-if)#no sh</span><br><span class="line">R1(config-if)#ip add 10.1.1.1 255.255.255.0</span><br><span class="line">R1(config)#router ospf 1  //配置IPv4网络的动态路由协议OSPF</span><br><span class="line">R1(config-router)#network 10.1.1.0 0.0.0.255 area 0</span><br><span class="line">R1(config)#int t0  创建隧道，并配置隧道的IPv6地址及隧道模式</span><br><span class="line">R1(config-if)#no sh</span><br><span class="line">R1(config-if)#ipv en</span><br><span class="line">R1(config-if)#ipv6 address 2002:A01:101::1/64</span><br><span class="line">R1(config-if)#tunnel source f0/1</span><br><span class="line">R1(config-if)#tunnel mode ipv6ip 6to4</span><br><span class="line">R1(config)#ipv6 route 2002::/16 Tunnel0  //配置IPv6路由</span><br><span class="line"></span><br><span class="line">R2</span><br><span class="line">R2#conf t</span><br><span class="line">R2(config)#ipv6 unicast-routing  //启用路由器的Ipv6转发功能</span><br><span class="line">R2(config)#int loopback 0</span><br><span class="line">R2(config-if)#ipv6 add 2002:0a03:0303:1::1/64</span><br><span class="line">R2(config-if)#int f0/1</span><br><span class="line">R2(config-if)#ip add 10.3.3.3 255.255.255.0</span><br><span class="line">R2(config-if)#no sh</span><br><span class="line">R2(config)#router ospf 1  //配置IPv4网络的动态路由协议OSPF</span><br><span class="line">R2(config-router)#network 10.3.3.0 0.0.0.255 area 0</span><br><span class="line">R2(config)#int t0  创建隧道，并配置隧道的IPv6地址及隧道模式</span><br><span class="line">R2(config-if)#no sh</span><br><span class="line">R2(config-if)#ipv en</span><br><span class="line">R2(config-if)#ipv6 address 2002:A03:303::1/64</span><br><span class="line">R2(config-if)# tunnel source f0/1</span><br><span class="line">R2(config-if)# tunnel mode ipv6ip 6to4</span><br><span class="line">R2(config)#ipv6 route 2002::/16 Tunnel0  //配置IPv6路由</span><br><span class="line"></span><br><span class="line">R3</span><br><span class="line">R3#conf t</span><br><span class="line">R3(config)#ipv6 unicast-routing  //启用路由器的Ipv6转发功能</span><br><span class="line">R3(config)#int loopback 0</span><br><span class="line">R3(config-if)#ipv add 2002:0a02:0202:1::1/64</span><br><span class="line">R3(config-if)#int f0/1</span><br><span class="line">R3(config-if)#no sh</span><br><span class="line">R3(config-if)#ip add 10.2.2.2 255.255.255.0</span><br><span class="line">R3(config)#router ospf 1  //配置IPv4网络的动态路由协议OSPF</span><br><span class="line">R3(config-router)#network 10.2.2.0 0.0.0.255 area 0</span><br><span class="line">R3(config)#int t0  创建隧道，并配置隧道的IPv6地址及隧道模式</span><br><span class="line">R3(config-if)#no sh</span><br><span class="line">R3(config-if)#ipv6 address 2002:A02:202::1/64</span><br><span class="line">R3(config-if)#ipv en</span><br><span class="line">R3(config-if)# tunnel source f0/1</span><br><span class="line">R3(config-if)# tunnel mode ipv6ip 6to4</span><br><span class="line">R3(config)#ipv6 route 2002::/16 Tunnel0  //配置IPv6路由</span><br><span class="line"></span><br><span class="line">R4</span><br><span class="line">R4#conf t</span><br><span class="line">R4(config)#ipv un  //启用路由器的Ipv6转发功能</span><br><span class="line">R4(config)#int f0/0</span><br><span class="line">R4(config-if)#no sh</span><br><span class="line">R4(config-if)#ip add 10.1.1.10 255.255.255.0</span><br><span class="line">R4(config-if)#int f0/1</span><br><span class="line">R4(config-if)#ip add 10.3.3.10 255.255.255.0</span><br><span class="line">R4(config-if)#no sh</span><br><span class="line">R4(config-if)#int f1/0</span><br><span class="line">R4(config-if)#no sh</span><br><span class="line">R4(config-if)#ip add 10.2.2.10 255.255.255.0</span><br><span class="line">R4(config)#router ospf 1  //配置IPv4网络的动态路由协议OSPF</span><br><span class="line">R4(config-router)#network 10.1.1.0 0.0.0.255 area 0</span><br><span class="line">R4(config-router)#network 10.2.2.0 0.0.0.255 area 0</span><br><span class="line">R4(config-router)#network 10.3.3.0 0.0.0.255 area 0</span><br></pre></td></tr></table></figure>
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/36.png">
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/37.png">
-<h3 id="实验十三-ISATAP隧道"><a href="#实验十三-ISATAP隧道" class="headerlink" title="实验十三 ISATAP隧道"></a>实验十三 ISATAP隧道</h3><img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/38.png">
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">R1</span><br><span class="line">R1#CONF T</span><br><span class="line">R1(config)#int loopback 0</span><br><span class="line">R1(config-if)#ipv add 2002:303:301::1/64</span><br><span class="line">R1(config-if)#int f0/0</span><br><span class="line">R1(config-if)#no sh</span><br><span class="line">R1(config-if)#ip add 3.3.30.1 255.255.255.0</span><br><span class="line">R1(config-if)#exit</span><br><span class="line">R1(config)#ip route 2.2.20.0 255.255.255.0 3.3.30.2</span><br><span class="line">R1(config)#int t0</span><br><span class="line">R1(config-if)#no sh</span><br><span class="line">R1(config-if)#ipv en</span><br><span class="line">R1(config-if)#tunnel source f0/0</span><br><span class="line">R1(config-if)# tunnel mode ipv6ip isatap</span><br><span class="line">R1(config-if)#exi</span><br><span class="line">R1(config)#ipv unicast-routing</span><br><span class="line">R1(config)#ipv6 router ospf 1</span><br><span class="line">R1(config-rtr)#router-id 1.1.1.1</span><br><span class="line">R1(config-rtr)#int t0  //创建ISATAP隧道，并配置隧道相关参数</span><br><span class="line">R1(config-if)#ipv6 ospf network point-to-multipoint non-broadcast</span><br><span class="line">R1(config-if)#ipv6 ospf neighbor FE80::5EFE:202:1401   //手工指定邻居使用本地链路地址</span><br><span class="line">R1(config-if)#ipv6 ospf 1 area 0</span><br><span class="line">R1(config-if)#exit</span><br><span class="line">R1(config)#int lo 0</span><br><span class="line">R1(config-if)#ipv6 ospf 1 area 0</span><br><span class="line"></span><br><span class="line">R2</span><br><span class="line">R2#conf t</span><br><span class="line">R2(config)#int f0/0</span><br><span class="line">R2(config-if)#no sh</span><br><span class="line">R2(config-if)# ip address 3.3.30.2 255.255.255.0</span><br><span class="line">R2(config-if)#int  f0/1</span><br><span class="line">R2(config-if)#no sh</span><br><span class="line">R2(config-if)# ip address 2.2.20.2 255.255.255.0</span><br><span class="line"></span><br><span class="line">R3</span><br><span class="line">R3#conf t</span><br><span class="line">R3(config)#ipv unicast-routing</span><br><span class="line">R3(config)#int f0/0</span><br><span class="line">R3(config-if)#no sh</span><br><span class="line">R3(config-if)#ip add 2.2.20.1 255.255.255.0</span><br><span class="line">R3(config-if)#int f0/1</span><br><span class="line">R3(config-if)#no sh</span><br><span class="line">R3(config-if)#ipv6 add 2002:202:201::1/64</span><br><span class="line">R3(config-if)#exi</span><br><span class="line">R3(config)#ip route 3.3.30.0 255.255.255.0 2.2.20.2</span><br><span class="line">R3(config)#int t0</span><br><span class="line">R3(config-if)#no sh</span><br><span class="line">R3(config-if)#ipv en</span><br><span class="line">R3(config-if)#tunnel source f0/0</span><br><span class="line">R3(config-if)#tunnel mode ipv6ip isatap</span><br><span class="line">R3(config-if)#exi</span><br><span class="line">R3(config)#ipv6 router ospf 1</span><br><span class="line">R3(config-rtr)# router-id 3.3.3.3</span><br><span class="line">R3(config-rtr)#int t0  //创建ISATAP隧道，并配置隧道相关参数</span><br><span class="line">R3(config-if)#ipv6 ospf network point-to-multipoint non-broadcast  //为简化OSPF的运行，</span><br><span class="line">//避免DR和BDR的选举，在隧道接口上把网络类型改为点到多点广播</span><br><span class="line">R3(config-if)#ipv6 ospf neighbor FE80::5EFE:303:1E01   //手工指定邻居使用本地链路地址</span><br><span class="line">R3(config-if)# ipv6 ospf 1 area 0</span><br><span class="line">R3(config-if)#int f0/1</span><br><span class="line">R3(config-if)#ipv6 ospf 1 area 0</span><br><span class="line">R3(config-if)#</span><br><span class="line"></span><br><span class="line">R4</span><br><span class="line">R4#conf t</span><br><span class="line">R4(config)#ipv un</span><br><span class="line">R4(config)#int f0/0</span><br><span class="line">R4(config-if)#no sh</span><br><span class="line">R4(config-if)#ipv6 address 2002:202:201::2/64</span><br><span class="line">R4(config-if)#exit</span><br><span class="line">R4(config)#ipv6 router ospf 1</span><br><span class="line">R4(config-rtr)#router-id 4.4.4.4</span><br><span class="line">R4(config-rtr)#int f0/0</span><br><span class="line">R4(config-if)#ipv6 ospf 1 area 0</span><br><span class="line">R4(config-if)#</span><br></pre></td></tr></table></figure>
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/39.png">
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/40.png">
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/41.png">
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/42.png">
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/43.png">
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/44.png">
-<h3 id="实验十四-ISATAP隧道（二）"><a href="#实验十四-ISATAP隧道（二）" class="headerlink" title="实验十四 ISATAP隧道（二）"></a>实验十四 ISATAP隧道（二）</h3><img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/45.png">
-<p>C1  桥接本机网卡 ，路由器为C7200</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">R1</span><br><span class="line">R1#conf t</span><br><span class="line">R1(config)#int f0/0</span><br><span class="line">R1(config-if)#ip address 192.168.10.10 255.255.255.0</span><br><span class="line">R1(config-if)#no sh</span><br><span class="line">R1(config-if)#exi</span><br><span class="line">R1(config)#int s2/0</span><br><span class="line">R1(config-if)#clock rate 64000</span><br><span class="line">R1(config-if)#ip add 131.107.0.1 255.255.255.0</span><br><span class="line">R1(config-if)#no sh</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">R2</span><br><span class="line">R2#conf t</span><br><span class="line">R2(config)#ipv un</span><br><span class="line">R2(config)#int s2/0</span><br><span class="line">R2(config-if)#ip address 131.107.0.2 255.255.255.0</span><br><span class="line">R2(config-if)#no sh</span><br><span class="line">R2(config-if)#exi</span><br><span class="line">R2(config)#int s2/1</span><br><span class="line">R2(config-if)#clock rate 64000</span><br><span class="line">R2(config-if)#ipv6 address 2001:2::1/64</span><br><span class="line">R2(config-if)#no sh</span><br><span class="line">R2(config-if)#exi</span><br><span class="line">R2(config)#ip route 192.168.10.0 255.255.255.0 131.107.0.1</span><br><span class="line">R2(config)#ipv6 route 2001:1::/64 2001:2::2</span><br><span class="line">R2(config)#int t0</span><br><span class="line">R2(config-if)#ipv6 address 2001:3::/64 eui-64</span><br><span class="line">R2(config-if)#no ipv6 nd suppress-ra</span><br><span class="line">R2(config-if)#tunnel source 131.107.0.2</span><br><span class="line">R2(config-if)#tunnel mode ipv6ip isatap</span><br><span class="line">R2(config-if)#no sh</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">R3</span><br><span class="line">R3#conf t</span><br><span class="line">R3(config)#ipv un</span><br><span class="line">R3(config)#int s2/1</span><br><span class="line">R3(config-if)#ipv6 address 2001:2::2/64</span><br><span class="line">R3(config-if)#no sh</span><br><span class="line">R3(config-if)#exi</span><br><span class="line">R3(config)#int f0/0</span><br><span class="line">R3(config-if)#ipv6 address 2001:1::1/64</span><br><span class="line">R3(config-if)#no sh</span><br><span class="line">R3(config-if)#exi</span><br><span class="line">R3(config)#ipv6 route 2001:3::/64 2001:2::1</span><br></pre></td></tr></table></figure>
-<p>以管理员身份运行cmd。执行以下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh interface ipv6 isatap set route 131.107.0.2</span><br></pre></td></tr></table></figure>
-<p>（Win10操作系统要先运行：netsh interface isatap set state enable命令）<br>执行以下命令查看结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">C:\WINDOWS\system32&gt; ipconfig /all</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">无线局域网适配器 本地连接* 2:</span><br><span class="line"> </span><br><span class="line">   媒体状态  . . . . . . . . . . . . : 媒体已断开连接</span><br><span class="line">   连接特定的 DNS 后缀 . . . . . . . :</span><br><span class="line">   描述. . . . . . . . . . . . . . . : Microsoft Wi-Fi Direct Virtual Adapter #2</span><br><span class="line">   物理地址. . . . . . . . . . . . . : BC-A8-A6-EB-A1-CD</span><br><span class="line">   DHCP 已启用 . . . . . . . . . . . : 是</span><br><span class="line">   自动配置已启用. . . . . . . . . . : 是</span><br><span class="line"> </span><br><span class="line">隧道适配器 isatap.&#123;331437F1-5F3E-436E-8E71-36228471287E&#125;:</span><br><span class="line"> </span><br><span class="line">   连接特定的 DNS 后缀 . . . . . . . :</span><br><span class="line">   描述. . . . . . . . . . . . . . . : Microsoft ISATAP Adapter</span><br><span class="line">   物理地址. . . . . . . . . . . . . : 00-00-00-00-00-00-00-E0</span><br><span class="line">   DHCP 已启用 . . . . . . . . . . . : 否</span><br><span class="line">   自动配置已启用. . . . . . . . . . : 是</span><br><span class="line">   IPv6 地址 . . . . . . . . . . . . : 2001:3::5efe:192.168.10.20(首选)</span><br><span class="line">   本地链接 IPv6 地址. . . . . . . . : fe80::5efe:192.168.10.20%22(首选)</span><br><span class="line">   默认网关. . . . . . . . . . . . . : fe80::5efe:131.107.0.2%22</span><br><span class="line">   DNS 服务器  . . . . . . . . . . . : fec0:0:0:ffff::1%1</span><br><span class="line">                                       fec0:0:0:ffff::2%1</span><br><span class="line">                                       fec0:0:0:ffff::3%1</span><br><span class="line">   TCPIP 上的 NetBIOS  . . . . . . . : 已禁用</span><br></pre></td></tr></table></figure>
-<p>执行ping命令测试是否能够互通。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">PS C:\WINDOWS\system32&gt; ping 2001:1::1</span><br><span class="line"> </span><br><span class="line">正在 Ping 2001:1::1 具有 32 字节的数据:</span><br><span class="line">来自 2001:1::1 的回复: 时间=74ms</span><br><span class="line">来自 2001:1::1 的回复: 时间=81ms</span><br><span class="line">来自 2001:1::1 的回复: 时间=99ms</span><br><span class="line">来自 2001:1::1 的回复: 时间=61ms</span><br><span class="line"> </span><br><span class="line">2001:1::1 的 Ping 统计信息:</span><br><span class="line">    数据包: 已发送 = 4，已接收 = 4，丢失 = 0 (0% 丢失)，</span><br><span class="line">往返行程的估计时间(以毫秒为单位):</span><br><span class="line">    最短 = 61ms，最长 = 99ms，平均 = 78ms</span><br></pre></td></tr></table></figure>
-<img src="/2019/01/07/IPv6（RIP、OSPF、EIGRP、DHCP、双栈、隧道）/46.png">
-<p>特别说明：1、如果你的操作系统是win10，请下载win10关于IPv6的补丁.<br>2、为了用ping命令测试是否互通，请暂时关闭计算机防火墙或者通过设置防火墙规则允许ping命令数据包通过。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-<div>
-    
- </div>
- 
-    
   </section>
 
   
@@ -2430,7 +2343,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -2443,7 +2356,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
