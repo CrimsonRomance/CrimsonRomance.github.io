@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Firewall,">
 
 
 
@@ -79,14 +79,20 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta name="description" content="概念&amp;ensp;&amp;ensp;Firewall被设计为两层：核心层和D-BUS层。核心层负责处理firewall的配置和iptables, ip6tables, ebtables, ipset，module loader 等底层功能。&amp;ensp;&amp;ensp;Firewalld D-Bus接口是更改和创建防火墙配置的主要方法。该接口被所有firewalld提供的在线工具所使用，例如firewall-c">
+<meta name="keywords" content="Firewall">
+<meta property="og:type" content="article">
+<meta property="og:title" content="firewalld概念及配置项">
+<meta property="og:url" content="http://yoursite.com/2019/04/05/firewalld概念及配置项/index.html">
 <meta property="og:site_name" content="戴树谦的博客">
+<meta property="og:description" content="概念&amp;ensp;&amp;ensp;Firewall被设计为两层：核心层和D-BUS层。核心层负责处理firewall的配置和iptables, ip6tables, ebtables, ipset，module loader 等底层功能。&amp;ensp;&amp;ensp;Firewalld D-Bus接口是更改和创建防火墙配置的主要方法。该接口被所有firewalld提供的在线工具所使用，例如firewall-c">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-10T02:35:57.596Z">
+<meta property="og:image" content="http://yoursite.com/2019/04/05/firewalld概念及配置项/1.png">
+<meta property="og:updated_time" content="2019-04-05T08:51:12.819Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
+<meta name="twitter:title" content="firewalld概念及配置项">
+<meta name="twitter:description" content="概念&amp;ensp;&amp;ensp;Firewall被设计为两层：核心层和D-BUS层。核心层负责处理firewall的配置和iptables, ip6tables, ebtables, ipset，module loader 等底层功能。&amp;ensp;&amp;ensp;Firewalld D-Bus接口是更改和创建防火墙配置的主要方法。该接口被所有firewalld提供的在线工具所使用，例如firewall-c">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/05/firewalld概念及配置项/1.png">
 
 
 
@@ -116,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/05/firewalld概念及配置项/">
 
 
 
 
 
-  <title>tags | 戴树谦的博客</title>
+  <title>firewalld概念及配置项 | 戴树谦的博客</title>
   
 
 
@@ -259,40 +265,216 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/05/firewalld概念及配置项/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="戴树谦">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile_photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="戴树谦的博客">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">tags</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                8 tags in total
+          <h1 class="post-title" itemprop="name headline">firewalld概念及配置项</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-05T16:49:08+08:00">
+                2019-04-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  6
+                </span>
+              
             </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/Docker/" style="font-size: 30px; color: #111">Docker</a> <a href="/tags/Firewall/" style="font-size: 12px; color: #ccc">Firewall</a> <a href="/tags/Hexo-GitHub/" style="font-size: 12px; color: #ccc">Hexo+GitHub</a> <a href="/tags/IPv6/" style="font-size: 12px; color: #ccc">IPv6</a> <a href="/tags/MySQL/" style="font-size: 25.5px; color: #404040">MySQL</a> <a href="/tags/收藏/" style="font-size: 16.5px; color: #9d9d9d">收藏</a> <a href="/tags/服务器/" style="font-size: 12px; color: #ccc">服务器</a> <a href="/tags/架构/" style="font-size: 21px; color: #6f6f6f">架构</a>
-            </div>
-          </div>
-        
-      </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>&ensp;&ensp;Firewall被设计为两层：核心层和D-BUS层。核心层负责处理firewall的配置和iptables, ip6tables, ebtables, ipset，module loader 等底层功能。<br><img src="/2019/04/05/firewalld概念及配置项/1.png"><br>&ensp;&ensp;Firewalld D-Bus接口是更改和创建防火墙配置的主要方法。该接口被所有firewalld提供的在线工具所使用，例如firewall-cmd、firewall-config和firewall-applet。firewall-offline-cmd 并不与Firewalld通信，而是通过带有IO处理程序的Firewalld核心直接修改和创建firewalld配置文件。firewall-offline-cmd可以在Firewalld运行时使用，但不推荐使用它，因为它在大约5秒后才会更改防火墙中可见的永久配置。</p>
+<p>&ensp;&ensp;Firewalld不依赖于NetworkManager组件，但是推荐使用。如果不使用NetworkManager，会有一些限制，例如:Firewalld不会收到关于网络设备重命名的通知。如果在network已经启动之后才启动firewalld，那么连接和手动创建的接口不会绑定到zone。使用<strong>firewall-cmd [–permanent] –zone=zone –add-interface=interface</strong>命令可以将接口添加到zone，但是要确保是否有/etc/sysconfig/network-scripts/ifcfg-*** 的网卡文件，ZONE和zone在这里不区分大小写，默认zone为空。</p>
+<p>&ensp;&ensp;Firewalld支持znoe、service、ipset和icmptype</p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><h4 id="关于目录"><a href="#关于目录" class="headerlink" title="关于目录"></a>关于目录</h4><p>&ensp;&ensp;Firewall 支持两个配置目录：默认和后备配置，系统特定配置</p>
+<h5 id="默认和后备配置"><a href="#默认和后备配置" class="headerlink" title="默认和后备配置"></a>默认和后备配置</h5><p>&ensp;&ensp;/usr/lib/firewalld目录下包含icmptypes, services ,zones等默认和后备配置，Firewall所提供的晚间不应被修改，做出的更改会随着Firewall的更新而消失，Additional icmptypes, services and zones can be provided with packages or by creating files.</p>
+<h5 id="系统特定配置"><a href="#系统特定配置" class="headerlink" title="系统特定配置"></a>系统特定配置</h5><p>&ensp;&ensp;/etc/firewalld中存储的系统或用户配置要么由系统管理员创建，要么使用firewalld的配置接口进行定制，要么手工创建。这些文件将覆盖默认文件。要手动更改预定义的 icmptypes, zones，services的设置，应将文件从默认配置目录复制到系统配置目录中，并相应地进行修改。<br>&ensp;&ensp;如果没有/etc/firewalld目录，Firewalld将使用firewall .conf中的默认配置和默认设置。</p>
+<h4 id="运行性配置和永久配置"><a href="#运行性配置和永久配置" class="headerlink" title="运行性配置和永久配置"></a>运行性配置和永久配置</h4><p>&ensp;&ensp;配置被分为运行时配置和永久配置</p>
+<h5 id="运行时配置"><a href="#运行时配置" class="headerlink" title="运行时配置"></a>运行时配置</h5><p>&ensp;&ensp;运行时配置是实际有效的配置，应用于内核中的防火墙，Firewalld服务启动时，永久配置变为运行时配置，运行时配置中的更改不会自动保存到永久配置。运行时配置将随着Firewalld服务停止而丢失。<br>&ensp;&ensp;Firewalld重载时将用永久配置替换运行时配置。重新加载后，将恢复已更改的zone绑定。</p>
+<h5 id="永久配置"><a href="#永久配置" class="headerlink" title="永久配置"></a>永久配置</h5><p>&ensp;&ensp;永久配置存储在配置文件中，将在每次机器重启或服务重新加载或重新启动时加载并成为新的运行时配置<br>运行时环境同样可用于创建符合需要的防火墙设置，当完成工作时可以和运行时状态一起迁移(When it is complete and working it can be migrated with the runtime to permanent migration).<br>&ensp;&ensp;可以使用<strong>firewall-config和firewall-cmd –runtime-to-permanent</strong>两条命令。<br>如果防火墙设置不工作，一个简单的<strong>firewalld reload/restart</strong> 将重新加载永久配置。</p>
+<h4 id="firewalld-conf"><a href="#firewalld-conf" class="headerlink" title="firewalld.conf"></a>firewalld.conf</h4><p>&ensp;&ensp;/etc/firewalld中的firewall .conf文件提供了firewalld的基本配置。如果不存在该文件或/etc/firewalld缺失，则将使用firewalld内部缺省值。</p>
+<p>&ensp;&ensp;下面列出的为设置默认参数：</p>
+<h5 id="Default-Zone"><a href="#Default-Zone" class="headerlink" title="Default Zone"></a>Default Zone</h5><p>&ensp;&ensp;如果区域字符串为空，则使用默认区域。没有指定绑定到其他区域的所有内容都将由默认区域处理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># default zone</span><br><span class="line"># The default zone used if an empty zone string is used.</span><br><span class="line"># Default: public</span><br><span class="line">DefaultZone=public</span><br></pre></td></tr></table></figure>
+<h5 id="Minimal-Mark"><a href="#Minimal-Mark" class="headerlink" title="Minimal Mark"></a>Minimal Mark</h5><p>&ensp;&ensp;这个最小值以下的标记可以自由使用，例如在direct接口中。如果需要更多的自由数则增加最小值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Minimal mark</span><br><span class="line"># Marks up to this minimum are free for use for example in the direct </span><br><span class="line"># interface. If more free marks are needed, increase the minimum</span><br><span class="line"># Default: 100</span><br><span class="line">MinimalMark=100</span><br></pre></td></tr></table></figure>
+<h5 id="Clean-Up-On-Exit"><a href="#Clean-Up-On-Exit" class="headerlink" title="Clean Up On Exit"></a>Clean Up On Exit</h5><p>&ensp;&ensp;如果设置为no或false，防火墙配置将不会在firewalld退出或停止时清除</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Clean up on exit</span><br><span class="line"># If set to no or false the firewall configuration will not get cleaned up</span><br><span class="line"># on exit or stop of firewalld</span><br><span class="line"># Default: yes</span><br><span class="line">CleanupOnExit=yes</span><br></pre></td></tr></table></figure>
+<h5 id="Lockdown"><a href="#Lockdown" class="headerlink" title="Lockdown"></a>Lockdown</h5><p>&ensp;&ensp;如果设置为”启用”，使用D-Bus接口的防火墙的更改将仅限于锁定白名单中列出的应用程序。锁定白名单文件是lockdown-white.xml。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Lockdown</span><br><span class="line"># If set to enabled, firewall changes with the D-Bus interface will be limited</span><br><span class="line"># to applications that are listed in the lockdown whitelist.</span><br><span class="line"># The lockdown whitelist file is lockdown-whitelist.xml</span><br><span class="line"># Default: no</span><br><span class="line">Lockdown=no</span><br></pre></td></tr></table></figure>
+<h5 id="IPv6-rpfilter"><a href="#IPv6-rpfilter" class="headerlink" title="IPv6_rpfilter"></a>IPv6_rpfilter</h5><p>&ensp;&ensp;对IPv6数据包执行反向路径筛选测试。如果对包的应答通过与包到达时相同的接口发送，那么将被接受，否则将被丢弃(防止DDOS和IP Spoofing)。IPv4的rp_filter是使用sysctl控制的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># IPv6_rpfilter</span><br><span class="line"># Performs a reverse path filter test on a packet for IPv6. If a reply to the</span><br><span class="line"># packet would be sent via the same interface that the packet arrived on, the </span><br><span class="line"># packet will match and be accepted, otherwise dropped.</span><br><span class="line"># The rp_filter for IPv4 is controlled using sysctl.</span><br><span class="line"># Default: yes</span><br><span class="line">IPv6_rpfilter=yes</span><br></pre></td></tr></table></figure>
+<h5 id="Individual-Calls"><a href="#Individual-Calls" class="headerlink" title="Individual Calls"></a>Individual Calls</h5><p>&ensp;&ensp;Do not use combined -restore calls, but individual calls. This increases the time that is needed to apply changes and to start the daemon, but is good for debugging.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># IndividualCalls</span><br><span class="line"># Do not use combined -restore calls, but individual calls. This increases the</span><br><span class="line"># time that is needed to apply changes and to start the daemon, but is good for</span><br><span class="line"># debugging.</span><br><span class="line"># Default: no</span><br><span class="line">IndividualCalls=no</span><br></pre></td></tr></table></figure>
+<h5 id="Log-Denied"><a href="#Log-Denied" class="headerlink" title="Log Denied"></a>Log Denied</h5><p>&ensp;&ensp;在缺省规则的输入、转发和输出链中添加日志记录规则，并在区域中添加最终的拒绝和删除规则。可能的值是: all, unicast, broadcast, multicast,off</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># LogDenied</span><br><span class="line"># Add logging rules right before reject and drop rules in the INPUT, FORWARD</span><br><span class="line"># and OUTPUT chains for the default rules and also final reject and drop rules</span><br><span class="line"># in zones. Possible values are: all, unicast, broadcast, multicast and off.</span><br><span class="line"># Default: off</span><br><span class="line">LogDenied=off</span><br></pre></td></tr></table></figure>
+<h5 id="AutomaticHelpers"><a href="#AutomaticHelpers" class="headerlink" title="AutomaticHelpers"></a>AutomaticHelpers</h5><p>&ensp;&ensp;为了安全使用iptables和连接跟踪助手，建议关闭AutomaticHelpers。但是这可能会对使用netfilter helper作为/proc/sys/net/netfilter/nf_conntrack_helper中的sysctl设置的其他服务产生副作用。对于系统设置，将使用内核或sysctl中设置的默认值。可能的值是:yes、no、system。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># AutomaticHelpers</span><br><span class="line"># For the secure use of iptables and connection tracking helpers it is</span><br><span class="line"># recommended to turn AutomaticHelpers off. But this might have side effects on</span><br><span class="line"># other services using the netfilter helpers as the sysctl setting in</span><br><span class="line"># /proc/sys/net/netfilter/nf_conntrack_helper will be changed.</span><br><span class="line"># With the system setting, the default value set in the kernel or with sysctl</span><br><span class="line"># will be used. Possible values are: yes, no and system.</span><br><span class="line"># Default: system</span><br><span class="line">AutomaticHelpers=system</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Firewall/" rel="tag"># Firewall</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/23/四种软件架构：单体架构、分布式架构、微服务架构、Serverless架构/" rel="next" title="四种软件架构：单体架构、分布式架构、微服务架构、Serverless架构">
+                <i class="fa fa-chevron-left"></i> 四种软件架构：单体架构、分布式架构、微服务架构、Serverless架构
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+<div>
+    
+    <div>
+    
+        <div style="text-align:center;color: #000000;font-size:18px;">------ end ------</div>
+    
+</div>
+
+
+    
+ </div>
+ 
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -327,8 +509,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -397,6 +588,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关于目录"><span class="nav-number">2.1.</span> <span class="nav-text">关于目录</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#默认和后备配置"><span class="nav-number">2.1.1.</span> <span class="nav-text">默认和后备配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#系统特定配置"><span class="nav-number">2.1.2.</span> <span class="nav-text">系统特定配置</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行性配置和永久配置"><span class="nav-number">2.2.</span> <span class="nav-text">运行性配置和永久配置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#运行时配置"><span class="nav-number">2.2.1.</span> <span class="nav-text">运行时配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#永久配置"><span class="nav-number">2.2.2.</span> <span class="nav-text">永久配置</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#firewalld-conf"><span class="nav-number">2.3.</span> <span class="nav-text">firewalld.conf</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Default-Zone"><span class="nav-number">2.3.1.</span> <span class="nav-text">Default Zone</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Minimal-Mark"><span class="nav-number">2.3.2.</span> <span class="nav-text">Minimal Mark</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Clean-Up-On-Exit"><span class="nav-number">2.3.3.</span> <span class="nav-text">Clean Up On Exit</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Lockdown"><span class="nav-number">2.3.4.</span> <span class="nav-text">Lockdown</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#IPv6-rpfilter"><span class="nav-number">2.3.5.</span> <span class="nav-text">IPv6_rpfilter</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Individual-Calls"><span class="nav-number">2.3.6.</span> <span class="nav-text">Individual Calls</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Log-Denied"><span class="nav-number">2.3.7.</span> <span class="nav-text">Log Denied</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#AutomaticHelpers"><span class="nav-number">2.3.8.</span> <span class="nav-text">AutomaticHelpers</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
