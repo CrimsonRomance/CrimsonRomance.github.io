@@ -1143,7 +1143,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/29/MySQL语句/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/15/常见查询示例/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="戴树谦">
@@ -1162,7 +1162,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/29/MySQL语句/" itemprop="url">MySQL语句</a></h1>
+                <a class="post-title-link" href="/2019/02/15/常见查询示例/" itemprop="url">常见查询示例</a></h1>
         
 
         <div class="post-meta">
@@ -1174,8 +1174,430 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-29T22:43:33+08:00">
-                2019-01-29
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-15T22:34:50+08:00">
+                2019-02-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  2.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="常见查询示例"><a href="#常见查询示例" class="headerlink" title="常见查询示例"></a>常见查询示例</h3><p>&ensp;&ensp;假设有一个表格，是商店为某些交易员(经销商)保存每种商品(项目号)的价格。假设每个交易者的每件商品都有一个固定的价格，那么(商品，交易者)就是记录的主键</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create database shop;</span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; use shop;</span><br><span class="line">Database changed</span><br><span class="line"></span><br><span class="line">mysql&gt; create table shop_tab(</span><br><span class="line">    -&gt; article int(4) unsigned zerofill default &apos;0000&apos; not null,</span><br><span class="line">    -&gt; dealer char(20) default &apos;&apos; not null,   </span><br><span class="line">    -&gt; price double(16,2) default &apos;0.00&apos; not null,</span><br><span class="line">    -&gt; primary key(article,dealer));</span><br><span class="line">Query OK, 0 rows affected (0.12 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; insert into shop_tab values</span><br><span class="line">    -&gt; (1,&apos;A&apos;,3.45),(1,&apos;B&apos;,3.99),(2,&apos;A&apos;,10.99),(3,&apos;B&apos;,1.45),(3,&apos;C&apos;,1.69),(3,&apos;D&apos;,1.25),(4,&apos;D&apos;,19.95);</span><br><span class="line">Query OK, 7 rows affected (0.05 sec)</span><br><span class="line">Records: 7  Duplicates: 0  Warnings: 0</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from shop_tab order by article;</span><br><span class="line">+---------+--------+-------+</span><br><span class="line">| article | dealer | price |</span><br><span class="line">+---------+--------+-------+</span><br><span class="line">|    0001 | A      |  3.45 |</span><br><span class="line">|    0001 | B      |  3.99 |</span><br><span class="line">|    0002 | A      | 10.99 |</span><br><span class="line">|    0003 | B      |  1.45 |</span><br><span class="line">|    0003 | C      |  1.69 |</span><br><span class="line">|    0003 | D      |  1.25 |</span><br><span class="line">|    0004 | D      | 19.95 |</span><br><span class="line">+---------+--------+-------+</span><br><span class="line">7 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="1-列的最大值"><a href="#1-列的最大值" class="headerlink" title="1.列的最大值"></a>1.列的最大值</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select max(price) from shop_tab;</span><br><span class="line">+------------+</span><br><span class="line">| max(price) |</span><br><span class="line">+------------+</span><br><span class="line">|      19.95 |</span><br><span class="line">+------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="2-包含某一列的最大值的行"><a href="#2-包含某一列的最大值的行" class="headerlink" title="2.包含某一列的最大值的行"></a>2.包含某一列的最大值的行</h4><p>&ensp;&ensp;使用子查询完成此操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from shop_tab </span><br><span class="line">    -&gt; where price=(select max(price) from shop_tab);</span><br><span class="line">+---------+--------+-------+</span><br><span class="line">| article | dealer | price |</span><br><span class="line">+---------+--------+-------+</span><br><span class="line">|    0004 | D      | 19.95 |</span><br><span class="line">+---------+--------+-------+</span><br><span class="line">1 row in set (0.01 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;按价格降序排序所有行，并使用特定于MySQL的LIMIT子句获取第一行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from shop_tab</span><br><span class="line">    -&gt; order by price desc</span><br><span class="line">    -&gt; limit 1;</span><br><span class="line">+---------+--------+-------+</span><br><span class="line">| article | dealer | price |</span><br><span class="line">+---------+--------+-------+</span><br><span class="line">|    0004 | D      | 19.95 |</span><br><span class="line">+---------+--------+-------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="3-每种商品的最高价格"><a href="#3-每种商品的最高价格" class="headerlink" title="3.每种商品的最高价格"></a>3.每种商品的最高价格</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select article,max(price) as price                                             </span><br><span class="line">    -&gt; from shop_tab</span><br><span class="line">    -&gt; group by article</span><br><span class="line">    -&gt; order by article;</span><br><span class="line">+---------+-------+</span><br><span class="line">| article | price |</span><br><span class="line">+---------+-------+</span><br><span class="line">|    0001 |  3.99 |</span><br><span class="line">|    0002 | 10.99 |</span><br><span class="line">|    0003 |  1.69 |</span><br><span class="line">|    0004 | 19.95 |</span><br><span class="line">+---------+-------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="4-对于每种商品，找到价格最贵的经销商"><a href="#4-对于每种商品，找到价格最贵的经销商" class="headerlink" title="4.对于每种商品，找到价格最贵的经销商"></a>4.对于每种商品，找到价格最贵的经销商</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">1解：以price为条件，使用where s1.article = s2.article或者any操作符使主查询一条记录对应子查询的一天记录。</span><br><span class="line">    ANY 关键字必须接在一个比较操作符的后面，表示与子查询返回的任何值比较为 TRUE ，则返回 TRUE</span><br><span class="line">    主查询的一条记录对应子查询多条记录会产生错误(ERROR 1242 (21000): Subquery returns more than 1 row)。</span><br><span class="line">mysql&gt; select article,dealer,price</span><br><span class="line">    -&gt; from shop_tab as s1</span><br><span class="line">    -&gt; where price=(select max(s2.price)</span><br><span class="line">    -&gt;             from shop_tab as s2</span><br><span class="line">    -&gt;             where s1.article = s2.article</span><br><span class="line">    -&gt;             order by article</span><br><span class="line">    -&gt; );</span><br><span class="line">    或者</span><br><span class="line">    mysql&gt; select article,dealer,price</span><br><span class="line">    -&gt; from shop_tab as s1</span><br><span class="line">    -&gt; where price= any(select max(s2.price)</span><br><span class="line">    -&gt;             from shop_tab as s2</span><br><span class="line">    -&gt;             order by article</span><br><span class="line">    -&gt; );</span><br><span class="line">+---------+--------+-------+</span><br><span class="line">| article | dealer | price |</span><br><span class="line">+---------+--------+-------+</span><br><span class="line">|    0001 | B      |  3.99 |</span><br><span class="line">|    0002 | A      | 10.99 |</span><br><span class="line">|    0003 | C      |  1.69 |</span><br><span class="line">|    0004 | D      | 19.95 |</span><br><span class="line">+---------+--------+-------+</span><br><span class="line"></span><br><span class="line">2解：筛选出每件商品最贵的价格作为s2，与原表S1内连接，显示两边表同时有对应的数据，任何一边缺失数据就不显示</span><br><span class="line">mysql&gt; select s1.article,s1.dealer,s1.price </span><br><span class="line">    -&gt; from shop_tab as s1 join(</span><br><span class="line">    -&gt;                         select article,max(price) as price </span><br><span class="line">    -&gt;                         from shop_tab group by article) as s2 </span><br><span class="line">    -&gt; where s1.article = s2.article and s1.price = s2.price </span><br><span class="line">+---------+--------+-------+</span><br><span class="line">| article | dealer | price |</span><br><span class="line">+---------+--------+-------+</span><br><span class="line">|    0001 | B      |  3.99 |</span><br><span class="line">|    0002 | A      | 10.99 |</span><br><span class="line">|    0003 | C      |  1.69 |</span><br><span class="line">|    0004 | D      | 19.95 |</span><br><span class="line">+---------+--------+-------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">3解：s2左连接s1，通过s1.article = s2.article 两张表进行价格比较</span><br><span class="line">mysql&gt; select * from shop_tab as s1 </span><br><span class="line">    -&gt; left join shop_tab as s2 </span><br><span class="line">    -&gt; on s1.article = s2.article and s1.price &lt; s2.price;</span><br><span class="line">+---------+--------+-------+---------+--------+-------+</span><br><span class="line">| article | dealer | price | article | dealer | price |</span><br><span class="line">+---------+--------+-------+---------+--------+-------+</span><br><span class="line">|    0001 | A      |  3.45 |    0001 | B      |  3.99 |</span><br><span class="line">|    0001 | B      |  3.99 |    NULL | NULL   |  NULL |</span><br><span class="line">|    0002 | A      | 10.99 |    NULL | NULL   |  NULL |</span><br><span class="line">|    0003 | B      |  1.45 |    0003 | C      |  1.69 |</span><br><span class="line">|    0003 | C      |  1.69 |    NULL | NULL   |  NULL |</span><br><span class="line">|    0003 | D      |  1.25 |    0003 | B      |  1.45 |</span><br><span class="line">|    0003 | D      |  1.25 |    0003 | C      |  1.69 |</span><br><span class="line">|    0004 | D      | 19.95 |    NULL | NULL   |  NULL |</span><br><span class="line">+---------+--------+-------+---------+--------+-------+</span><br><span class="line">8 rows in set (0.00 sec)</span><br><span class="line">然后再选取s2中为NULL值的行</span><br><span class="line">mysql&gt; select s1.article,s1.dealer,s1.price </span><br><span class="line">    -&gt; from shop_tab as s1 </span><br><span class="line">    -&gt; left join shop_tab as s2 </span><br><span class="line">    -&gt; on s1.article = s2.article AND s1.price &lt; s2.price </span><br><span class="line">    -&gt; where s2.article is null;</span><br><span class="line">+---------+--------+-------+</span><br><span class="line">| article | dealer | price |</span><br><span class="line">+---------+--------+-------+</span><br><span class="line">|    0001 | B      |  3.99 |</span><br><span class="line">|    0002 | A      | 10.99 |</span><br><span class="line">|    0003 | C      |  1.69 |</span><br><span class="line">|    0004 | D      | 19.95 |</span><br><span class="line">+---------+--------+-------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="5-用户自定义变量"><a href="#5-用户自定义变量" class="headerlink" title="5.用户自定义变量"></a>5.用户自定义变量</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select @min_price:=min(price),@max_price:=max(price)</span><br><span class="line">    -&gt; from shop_tab;</span><br><span class="line">+------------------------+------------------------+</span><br><span class="line">| @min_price:=min(price) | @max_price:=max(price) |</span><br><span class="line">+------------------------+------------------------+</span><br><span class="line">|                   1.25 |                  19.95 |</span><br><span class="line">+------------------------+------------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from shop_tab</span><br><span class="line">    -&gt; where price = @min_price:=min(price)</span><br><span class="line">    -&gt; \c                                  </span><br><span class="line">mysql&gt; select * from shop_tab                                      </span><br><span class="line">    -&gt; where price = @min_price or price = @max_price;</span><br><span class="line">+---------+--------+-------+</span><br><span class="line">| article | dealer | price |</span><br><span class="line">+---------+--------+-------+</span><br><span class="line">|    0003 | D      |  1.25 |</span><br><span class="line">|    0004 | D      | 19.95 |</span><br><span class="line">+---------+--------+-------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="6-使用外键"><a href="#6-使用外键" class="headerlink" title="6.使用外键"></a>6.使用外键</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE person (</span><br><span class="line">    id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,</span><br><span class="line">    name CHAR(60) NOT NULL,</span><br><span class="line">    PRIMARY KEY (id)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">CREATE TABLE shirt (</span><br><span class="line">    id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,</span><br><span class="line">    style ENUM(&apos;t-shirt&apos;, &apos;polo&apos;, &apos;dress&apos;) NOT NULL,</span><br><span class="line">    color ENUM(&apos;red&apos;, &apos;blue&apos;, &apos;orange&apos;, &apos;white&apos;, &apos;black&apos;) NOT NULL,</span><br><span class="line">    owner SMALLINT UNSIGNED NOT NULL REFERENCES person(id),</span><br><span class="line">    PRIMARY KEY (id)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">INSERT INTO person VALUES (NULL, &apos;Antonio Paz&apos;);</span><br><span class="line"></span><br><span class="line">SELECT @last := LAST_INSERT_ID();</span><br><span class="line"></span><br><span class="line">INSERT INTO shirt VALUES</span><br><span class="line">(NULL, &apos;polo&apos;, &apos;blue&apos;, @last),</span><br><span class="line">(NULL, &apos;dress&apos;, &apos;white&apos;, @last),</span><br><span class="line">(NULL, &apos;t-shirt&apos;, &apos;blue&apos;, @last);</span><br><span class="line"></span><br><span class="line">INSERT INTO person VALUES (NULL, &apos;Lilliana Angelovska&apos;);</span><br><span class="line"></span><br><span class="line">SELECT @last := LAST_INSERT_ID();</span><br><span class="line"></span><br><span class="line">INSERT INTO shirt VALUES</span><br><span class="line">(NULL, &apos;dress&apos;, &apos;orange&apos;, @last),</span><br><span class="line">(NULL, &apos;polo&apos;, &apos;red&apos;, @last),</span><br><span class="line">(NULL, &apos;dress&apos;, &apos;blue&apos;, @last),</span><br><span class="line">(NULL, &apos;t-shirt&apos;, &apos;white&apos;, @last);</span><br><span class="line"></span><br><span class="line">SELECT * FROM person;</span><br><span class="line">+----+---------------------+</span><br><span class="line">| id | name                |</span><br><span class="line">+----+---------------------+</span><br><span class="line">|  1 | Antonio Paz         |</span><br><span class="line">|  2 | Lilliana Angelovska |</span><br><span class="line">+----+---------------------+</span><br><span class="line"></span><br><span class="line">SELECT * FROM shirt;</span><br><span class="line">+----+---------+--------+-------+</span><br><span class="line">| id | style   | color  | owner |</span><br><span class="line">+----+---------+--------+-------+</span><br><span class="line">|  1 | polo    | blue   |     1 |</span><br><span class="line">|  2 | dress   | white  |     1 |</span><br><span class="line">|  3 | t-shirt | blue   |     1 |</span><br><span class="line">|  4 | dress   | orange |     2 |</span><br><span class="line">|  5 | polo    | red    |     2 |</span><br><span class="line">|  6 | dress   | blue   |     2 |</span><br><span class="line">|  7 | t-shirt | white  |     2 |</span><br><span class="line">+----+---------+--------+-------+</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">SELECT s.* FROM person p INNER JOIN shirt s</span><br><span class="line">   ON s.owner = p.id</span><br><span class="line"> WHERE p.name LIKE &apos;Lilliana%&apos;</span><br><span class="line">   AND s.color &lt;&gt; &apos;white&apos;;</span><br><span class="line"></span><br><span class="line">+----+-------+--------+-------+</span><br><span class="line">| id | style | color  | owner |</span><br><span class="line">+----+-------+--------+-------+</span><br><span class="line">|  4 | dress | orange |     2 |</span><br><span class="line">|  5 | polo  | red    |     2 |</span><br><span class="line">|  6 | dress | blue   |     2 |</span><br><span class="line">+----+-------+--------+-------+</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">SHOW CREATE TABLE shirt\G</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">Table: shirt</span><br><span class="line">Create Table: CREATE TABLE `shirt` (</span><br><span class="line">`id` smallint(5) unsigned NOT NULL auto_increment,</span><br><span class="line">`style` enum(&apos;t-shirt&apos;,&apos;polo&apos;,&apos;dress&apos;) NOT NULL,</span><br><span class="line">`color` enum(&apos;red&apos;,&apos;blue&apos;,&apos;orange&apos;,&apos;white&apos;,&apos;black&apos;) NOT NULL,</span><br><span class="line">`owner` smallint(5) unsigned NOT NULL,</span><br><span class="line">PRIMARY KEY  (`id`)</span><br><span class="line">) ENGINE=MyISAM DEFAULT CHARSET=latin1</span><br></pre></td></tr></table></figure>
+<h4 id="7-使用两个键搜索"><a href="#7-使用两个键搜索" class="headerlink" title="7.使用两个键搜索"></a>7.使用两个键搜索</h4><p>&ensp;&ensp;逻辑运算符or 使用一个主键能够被很好的优化，就像处理and一样<br>但是使用or去搜索两个不同的主键比较棘手</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT field1_index, field2_index FROM test_table</span><br><span class="line">WHERE field1_index = &apos;1&apos; OR  field2_index = &apos;1&apos;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;可以使用union结合两个单独的select语句进行查询，会更加有效。每个select只搜索一个键则会很好的优化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT field1_index, field2_index</span><br><span class="line">    FROM test_table WHERE field1_index = &apos;1&apos;</span><br><span class="line">UNION</span><br><span class="line">SELECT field1_index, field2_index</span><br><span class="line">    FROM test_table WHERE field2_index = &apos;1&apos;;</span><br></pre></td></tr></table></figure>
+<h4 id="8-计算每日访问量"><a href="#8-计算每日访问量" class="headerlink" title="8.计算每日访问量"></a>8.计算每日访问量</h4><p>以下示例显示如何使用位组功能计算用户访问网页的每月天数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE t1 (year YEAR(4), month INT(2) UNSIGNED ZEROFILL,</span><br><span class="line">             day INT(2) UNSIGNED ZEROFILL);</span><br><span class="line">INSERT INTO t1 VALUES(2000,1,1),(2000,1,20),(2000,1,30),(2000,2,2),</span><br><span class="line">            (2000,2,23),(2000,2,23);</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;示例表包含表示用户对页面的访问的年 - 月 - 日值。要确定这些访问每月发生的天数，请使用以下查询：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">SELECT year,month,BIT_COUNT(BIT_OR(1&lt;&lt;day)) AS days FROM t1</span><br><span class="line">       GROUP BY year,month;</span><br><span class="line"></span><br><span class="line">+------+-------+------+</span><br><span class="line">| year | month | days |</span><br><span class="line">+------+-------+------+</span><br><span class="line">| 2000 |    01 |    3 |</span><br><span class="line">| 2000 |    02 |    2 |</span><br><span class="line">+------+-------+------+</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;该查询计算每个年/月组合在表中显示的天数，并自动删除重复的条目</p>
+<h4 id="9-使用AUTO-INCREMENT"><a href="#9-使用AUTO-INCREMENT" class="headerlink" title="9.使用AUTO_INCREMENT"></a>9.使用AUTO_INCREMENT</h4><p>该AUTO_INCREMENT属性可用于为新行生成唯一标识：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; CREATE TABLE animals (</span><br><span class="line">    -&gt; id MEDIUMINT NOT NULL AUTO_INCREMENT,</span><br><span class="line">    -&gt; name CHAR(30) NOT NULL,</span><br><span class="line">    -&gt; PRIMARY KEY (id)</span><br><span class="line">    -&gt; );</span><br><span class="line">Query OK, 0 rows affected (0.25 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; insert into animals(name) values (&apos;dog&apos;),(&apos;cat&apos;),(&apos;penguin&apos;),(&apos;lax&apos;),(&apos;bird&apos;);</span><br><span class="line">Query OK, 5 rows affected (0.04 sec)</span><br><span class="line">Records: 5  Duplicates: 0  Warnings: 0</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from animals;</span><br><span class="line">+----+---------+</span><br><span class="line">| id | name    |</span><br><span class="line">+----+---------+</span><br><span class="line">|  1 | dog     |</span><br><span class="line">|  2 | cat     |</span><br><span class="line">|  3 | penguin |</span><br><span class="line">|  4 | lax     |</span><br><span class="line">|  5 | bird    |</span><br><span class="line">+----+---------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;AUTO_INCREMENT列没有指定值，因此MySQL自动分配序列号。也可以显式地为列分配0来生成序列号，除非启用了NO_AUTO_VALUE_ON_ZERO SQL模式（NO_AUTO_VALUE_ON_ZERO影响AUTO_INCREMENT列的处理。一般情况下可以向该列插入NULL或0生成下一个序列号）。例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; INSERT INTO animals (id,name) VALUES(0,&apos;groundhog&apos;);</span><br><span class="line">Query OK, 1 row affected (0.02 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from animals;</span><br><span class="line">+----+-----------+</span><br><span class="line">| id | name      |</span><br><span class="line">+----+-----------+</span><br><span class="line">|  1 | dog       |</span><br><span class="line">|  2 | cat       |</span><br><span class="line">|  3 | penguin   |</span><br><span class="line">|  4 | lax       |</span><br><span class="line">|  5 | bird      |</span><br><span class="line">|  6 | groundhog |</span><br><span class="line">+----+-----------+</span><br><span class="line">6 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;如果声明了列NOT NULL，则还可以分配NULL给列以生成序列号。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; INSERT INTO animals (id,name) VALUES(NULL,&apos;squirrel&apos;);</span><br><span class="line">Query OK, 1 row affected (0.04 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from animals;</span><br><span class="line">+----+-----------+</span><br><span class="line">| id | name      |</span><br><span class="line">+----+-----------+</span><br><span class="line">|  1 | dog       |</span><br><span class="line">|  2 | cat       |</span><br><span class="line">|  3 | penguin   |</span><br><span class="line">|  4 | lax       |</span><br><span class="line">|  5 | bird      |</span><br><span class="line">|  6 | groundhog |</span><br><span class="line">|  7 | squirrel  |</span><br><span class="line">+----+-----------+</span><br><span class="line">7 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;将任何其他值插入AUTO_INCREMENT列时，列被设置为该值，序列被重置，以便下一个自动生成的值按照最大列值的顺序生成。例如:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;INSERT INTO animals (id,name) VALUES(100,&apos;rabbit&apos;);</span><br><span class="line">Query OK, 1 row affected (0.04 sec)</span><br><span class="line">mysql&gt;INSERT INTO animals (id,name) VALUES(NULL,&apos;mouse&apos;);</span><br><span class="line">Query OK, 1 row affected (0.04 sec)</span><br><span class="line">SELECT * FROM animals;</span><br><span class="line">+-----+-----------+</span><br><span class="line">| id  | name      |</span><br><span class="line">+-----+-----------+</span><br><span class="line">|   1 | dog       |</span><br><span class="line">|   2 | cat       |</span><br><span class="line">|   3 | penguin   |</span><br><span class="line">|   4 | lax       |</span><br><span class="line">|   5 | whale     |</span><br><span class="line">|   6 | ostrich   |</span><br><span class="line">|   7 | groundhog |</span><br><span class="line">|   8 | squirrel  |</span><br><span class="line">| 100 | rabbit    |</span><br><span class="line">| 101 | mouse     |</span><br><span class="line">+-----+-----------+</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;AUTO_INCREMENT使用LAST_INSERT_ID()  SQL函数或mysql_insert_id()  C API函数检索最新自动生成的值 。这些函数是特定于连接的，因此它们的返回值不受另一个执行插入的连接的影响。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select LAST_INSERT_ID();</span><br><span class="line">+------------------+</span><br><span class="line">| LAST_INSERT_ID() |</span><br><span class="line">+------------------+</span><br><span class="line">|                7 |</span><br><span class="line">+------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong></p>
+<ul>
+<li>对于多行插入，LAST_INSERT_ID()和mysql_insert_id()实际上从插入的第一行返回AUTO_INCREMENT键。</li>
+</ul>
+<p>&ensp;&ensp;要从除1之外的AUTO_INCREMENT值开始，使用CREATE TABLE或ALTER TABLE设置该值，如下所示:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;  ALTER TABLE animals AUTO_INCREMENT = 100;</span><br><span class="line">Query OK, 0 rows affected (0.02 sec)</span><br><span class="line">Records: 0  Duplicates: 0  Warnings: 0</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+<div>
+    
+ </div>
+ 
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/07/MySQL检索信息/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="戴树谦">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile_photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="戴树谦的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/07/MySQL检索信息/" itemprop="url">MySQL检索信息</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-07T18:33:53+08:00">
+                2019-02-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  3.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  15
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="从表中检索信息"><a href="#从表中检索信息" class="headerlink" title="从表中检索信息"></a>从表中检索信息</h3><p>&ensp;&ensp;该SELECT语句用于从表中提取信息。声明的一般形式是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT what_to_select</span><br><span class="line">FROM which_table</span><br><span class="line">WHERE conditions_to_satisfy;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;what_to_select表示你想看到什么，这可以是列表中的一列， *  可以表示“ 所有列”。which_table表示要从中检索数据的表。该WHERE 条款是可选的。如果存在，则 conditions_to_satisfy指定行必须满足的一个或多个条件才有资格进行检索。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select name</span><br><span class="line">    -&gt; from pet</span><br><span class="line">    -&gt; where sex=&apos;m&apos;；</span><br><span class="line">+--------+</span><br><span class="line">| name   |</span><br><span class="line">+--------+</span><br><span class="line">| Claws  |</span><br><span class="line">| Fang   |</span><br><span class="line">| Bowser |</span><br><span class="line">+--------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="1-选择所有数据"><a href="#1-选择所有数据" class="headerlink" title="1.选择所有数据"></a>1.选择所有数据</h4><p>&ensp;&ensp;SELECT最简单的形式从表中检索所有内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from pet;</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">| name   | owner  | species | sex  | birth      | death      |</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">| Fluffy | Harold | cat     | f    | 1999-02-04 | NULL       |</span><br><span class="line">| Claws  | Gwen   | cat     | m    | 1994-03-17 | NULL       |</span><br><span class="line">| Buffy  | Harold | dog     | f    | 1989-05-13 | NULL       |</span><br><span class="line">| Fang   | Benny  | dog     | m    | 1990-08-27 | NULL       |</span><br><span class="line">| Bowser | Diane  | dog     | m    | 1979-08-31 | 1995-07-29 |</span><br><span class="line">| Chirpy | Genw   | bird    | f    | 1998-09-11 | NULL       |</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;UPDATE语句修复错误记录 ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; update pet</span><br><span class="line">    -&gt; set birth=&apos;1990-01-01&apos;</span><br><span class="line">    -&gt; where name=&apos;Bowser&apos;;</span><br><span class="line">Query OK, 1 row affected (0.02 sec)</span><br><span class="line">Rows matched: 1  Changed: 1  Warnings: 0</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="2-选择特定行"><a href="#2-选择特定行" class="headerlink" title="2.选择特定行"></a>2.选择特定行</h4><p>&ensp;&ensp;例如，如果想验证刚才对Bowser出生日期所做的更改，请选择Bowser的记录，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select *     </span><br><span class="line">    -&gt; from pet</span><br><span class="line">    -&gt; where name=&apos;Bowser&apos;;</span><br><span class="line">+--------+-------+---------+------+------------+------------+</span><br><span class="line">| name   | owner | species | sex  | birth      | death      |</span><br><span class="line">+--------+-------+---------+------+------------+------------+</span><br><span class="line">| Bowser | Diane | dog     | m    | 1990-01-01 | 1995-07-29 |</span><br><span class="line">+--------+-------+---------+------+------------+------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;字符串比较通常不区分大小写，因此可以将名称指定为’bowser’， ‘BOWSER’等等。查询结果是一样的。</p>
+<p>&ensp;&ensp;也可以在任何列上指定条件，例如想知道1997年或之后出生的动物：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select *                                       </span><br><span class="line">    -&gt; from pet</span><br><span class="line">    -&gt; where birth &gt;= &apos;1997-02-22&apos;;</span><br><span class="line">+--------+--------+---------+------+------------+-------+</span><br><span class="line">| name   | owner  | species | sex  | birth      | death |</span><br><span class="line">+--------+--------+---------+------+------------+-------+</span><br><span class="line">| Fluffy | Harold | cat     | f    | 1999-02-04 | NULL  |</span><br><span class="line">| Chirpy | Genw   | bird    | f    | 1998-09-11 | NULL  |</span><br><span class="line">+--------+--------+---------+------+------------+-------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;还可以使用  AND  进行组合条件进行查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select *      </span><br><span class="line">    -&gt; from pet </span><br><span class="line">    -&gt; where species = &apos;dog&apos; and sex = &apos;m&apos;;</span><br><span class="line">+--------+-------+---------+------+------------+------------+</span><br><span class="line">| name   | owner | species | sex  | birth      | death      |</span><br><span class="line">+--------+-------+---------+------+------------+------------+</span><br><span class="line">| Fang   | Benny | dog     | m    | 1990-08-27 | NULL       |</span><br><span class="line">| Bowser | Diane | dog     | m    | 1990-01-01 | 1995-07-29 |</span><br><span class="line">+--------+-------+---------+------+------------+------------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;除了AND逻辑运算符还有OR。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select *                                                        </span><br><span class="line">    -&gt; from pet</span><br><span class="line">    -&gt; where species = &apos;dog&apos; or species = &apos;bird&apos;;</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">| name   | owner  | species | sex  | birth      | death      |</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">| Buffy  | Harold | dog     | f    | 1989-05-13 | NULL       |</span><br><span class="line">| Fang   | Benny  | dog     | m    | 1990-08-27 | NULL       |</span><br><span class="line">| Bowser | Diane  | dog     | m    | 1990-01-01 | 1995-07-29 |</span><br><span class="line">| Chirpy | Genw   | bird    | f    | 1998-09-11 | NULL       |</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;AND和OR可以混合，但 AND优先级高于 OR。如果同时使用这两个运算符，最好使用括号明确指出条件应如何分组。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select *     </span><br><span class="line">    -&gt; from pet</span><br><span class="line">    -&gt; where (species=&apos;dog&apos; and sex=&apos;f&apos;) or (species=&apos;bird&apos; and sex=&apos;f&apos;);</span><br><span class="line">+--------+--------+---------+------+------------+-------+</span><br><span class="line">| name   | owner  | species | sex  | birth      | death |</span><br><span class="line">+--------+--------+---------+------+------------+-------+</span><br><span class="line">| Buffy  | Harold | dog     | f    | 1989-05-13 | NULL  |</span><br><span class="line">| Chirpy | Genw   | bird    | f    | 1998-09-11 | NULL  |</span><br><span class="line">+--------+--------+---------+------+------------+-------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="3-选择特定列"><a href="#3-选择特定列" class="headerlink" title="3.选择特定列"></a>3.选择特定列</h4><p>&ensp;&ensp;如果不查看表中的整行，只需将感兴趣的列名进行逗号分隔。例如如果查询谁的动物什么时候出生，请选择name和 birth列：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT name, birth FROM pet;</span><br><span class="line">+--------+------------+</span><br><span class="line">| name   | birth      |</span><br><span class="line">+--------+------------+</span><br><span class="line">| Fluffy | 1999-02-04 |</span><br><span class="line">| Claws  | 1994-03-17 |</span><br><span class="line">| Buffy  | 1989-05-13 |</span><br><span class="line">| Fang   | 1990-08-27 |</span><br><span class="line">| Bowser | 1990-01-01 |</span><br><span class="line">| Chirpy | 1998-09-11 |</span><br><span class="line">+--------+------------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;要找出宠物属于谁，如下查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select owner from pet;</span><br><span class="line">+--------+</span><br><span class="line">| owner  |</span><br><span class="line">+--------+</span><br><span class="line">| Harold |</span><br><span class="line">| Gwen   |</span><br><span class="line">| Harold |</span><br><span class="line">| Benny  |</span><br><span class="line">| Diane  |</span><br><span class="line">| Genw   |</span><br><span class="line">+--------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;要最小化输出，请通过添加关键字 <strong>DISTINCT</strong> 去除重复输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select distinct owner from pet;</span><br><span class="line">+--------+</span><br><span class="line">| owner  |</span><br><span class="line">+--------+</span><br><span class="line">| Harold |</span><br><span class="line">| Gwen   |</span><br><span class="line">| Benny  |</span><br><span class="line">| Diane  |</span><br><span class="line">| Genw   |</span><br><span class="line">+--------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;使用WHERE子句将行选择与列选择组合在一起。例如，仅获取狗和猫的出生日期，如下查询：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select name,species,birth</span><br><span class="line">    -&gt; from pet</span><br><span class="line">    -&gt; where species = &apos;dog&apos; or species = &apos;cat&apos;;</span><br><span class="line">+--------+---------+------------+</span><br><span class="line">| name   | species | birth      |</span><br><span class="line">+--------+---------+------------+</span><br><span class="line">| Fluffy | cat     | 1999-02-04 |</span><br><span class="line">| Claws  | cat     | 1994-03-17 |</span><br><span class="line">| Buffy  | dog     | 1989-05-13 |</span><br><span class="line">| Fang   | dog     | 1990-08-27 |</span><br><span class="line">| Bowser | dog     | 1990-01-01 |</span><br><span class="line">+--------+---------+------------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="4-对行排序"><a href="#4-对行排序" class="headerlink" title="4.对行排序"></a>4.对行排序</h4><p>&ensp;&ensp;当行以某种有意义的方式排序时，通常更容易查询输出。要对结果进行排序，请使用<strong>ORDER BY</strong>子句。<br>&ensp;&ensp;默认排序顺序是升序。要按反向（降序）排序，请将<strong>DESC</strong>关键字添加到要排序 的列名称后面  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select name, birth from pet order by birth;</span><br><span class="line">+--------+------------+</span><br><span class="line">| name   | birth      |</span><br><span class="line">+--------+------------+</span><br><span class="line">| Buffy  | 1989-05-13 |</span><br><span class="line">| Bowser | 1990-01-01 |</span><br><span class="line">| Fang   | 1990-08-27 |</span><br><span class="line">| Claws  | 1994-03-17 |</span><br><span class="line">| Chirpy | 1998-09-11 |</span><br><span class="line">| Fluffy | 1999-02-04 |</span><br><span class="line">+--------+------------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; select name, species, birth from pet</span><br><span class="line">    -&gt; order by species,birth desc;</span><br><span class="line">+--------+---------+------------+</span><br><span class="line">| name   | species | birth      |</span><br><span class="line">+--------+---------+------------+</span><br><span class="line">| Chirpy | bird    | 1998-09-11 |</span><br><span class="line">| Fluffy | cat     | 1999-02-04 |</span><br><span class="line">| Claws  | cat     | 1994-03-17 |</span><br><span class="line">| Fang   | dog     | 1990-08-27 |</span><br><span class="line">| Bowser | dog     | 1990-01-01 |</span><br><span class="line">| Buffy  | dog     | 1989-05-13 |</span><br><span class="line">+--------+---------+------------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;该DESC关键字仅适用于紧邻的列名（birth）; 它不会影响species列排序顺序。  </p>
+<p>&ensp;&ensp;<strong>LIMIT</strong> 子句用于限制由 SELECT 语句返回的数据数量。下面是 LIMIT 子句与 OFFSET 子句一起使用时的语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT column1, column2, columnN </span><br><span class="line">FROM table_name</span><br><span class="line">LIMIT [no of rows] OFFSET [row num]</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;引擎将返回从下一行开始直到给定的 OFFSET 为止的所有行。</p>
+<h4 id="5-日期计算"><a href="#5-日期计算" class="headerlink" title="5.日期计算"></a>5.日期计算</h4><p>&ensp;&ensp;要确定每只宠物的年龄，使用 TIMESTAMPDIFF()功能。它的参数是你所希望结果表达的 单位，以及取得差异的两个日期。以下查询显示了每只宠物的出生日期，当前日期和年龄。一个 别名（age）使得输出列更有意义。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT name, birth, CURDATE(),</span><br><span class="line">    -&gt; TIMESTAMPDIFF(YEAR,birth,CURDATE()) AS age</span><br><span class="line">    -&gt; FROM pet;</span><br><span class="line">+--------+------------+------------+------+</span><br><span class="line">| name   | birth      | CURDATE()  | age  |</span><br><span class="line">+--------+------------+------------+------+</span><br><span class="line">| Fluffy | 1999-02-04 | 2019-02-19 |   20 |</span><br><span class="line">| Claws  | 1994-03-17 | 2019-02-19 |   25 |</span><br><span class="line">| Buffy  | 1989-05-13 | 2019-02-19 |   29 |</span><br><span class="line">| Fang   | 1990-08-27 | 2019-02-19 |   28 |</span><br><span class="line">| Bowser | 1990-01-01 | 2019-02-19 |   29 |</span><br><span class="line">| Chirpy | 1998-09-11 | 2019-02-19 |   20 |</span><br><span class="line">+--------+------------+------------+------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;也可以使用order by 对age进行排序，不再演示  </p>
+<hr>
+<p>&ensp;&ensp;下面说明TIMESTAMPDIFF函数的语法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TIMESTAMPDIFF(unit,begin,end);</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;TIMESTAMPDIFF函数返回begin-end的结果，其中begin和end是DATE或DATETIME表达式。</p>
+<p>&ensp;&ensp;TIMESTAMPDIFF函数允许其参数具有混合类型，例如，begin是DATE值，end可以是DATETIME值。 如果使用DATE值，则TIMESTAMPDIFF函数将其视为时间部分为“00:00:00”的DATETIME值。</p>
+<p>&ensp;&ensp;unit参数是确定(end-begin)的结果的单位，表示为整数。 以下是有效单位：<br>MICROSECOND(微秒)、SECOND(秒)、MINUTE(分钟)、HOUR(小时)、DAY(天)、WEEK(星期)、MONTH(月)、QUARTER(季度)、YEAR(年)</p>
+<hr>
+<p>&ensp;&ensp;类似的查询可用于确定死亡动物的死亡年龄。可以通过检查death值是否为null 。然后，对于那些非NULL值的，计算death和 birth值之差： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select name,birth,death,</span><br><span class="line">    -&gt; timestampdiff(year,birth,death) as age</span><br><span class="line">    -&gt; from pet            </span><br><span class="line">    -&gt; where death is not null</span><br><span class="line">    -&gt; order by age;</span><br><span class="line">+--------+------------+------------+------+</span><br><span class="line">| name   | birth      | death      | age  |</span><br><span class="line">+--------+------------+------------+------+</span><br><span class="line">| Bowser | 1990-01-01 | 1995-07-29 |    5 |</span><br><span class="line">+--------+------------+------------+------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;MySQL提供了用于提取日期的部分，如一些功能 YEAR()， MONTH()和 DAYOFMONTH()。如下一个简单的查询birth和 MONTH(birth)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select name,birth,month(birth) from pet; </span><br><span class="line">+--------+------------+--------------+</span><br><span class="line">| name   | birth      | month(birth) |</span><br><span class="line">+--------+------------+--------------+</span><br><span class="line">| Fluffy | 1999-02-04 |            2 |</span><br><span class="line">| Claws  | 1994-03-17 |            3 |</span><br><span class="line">| Buffy  | 1989-05-13 |            5 |</span><br><span class="line">| Fang   | 1997-02-22 |            2 |</span><br><span class="line">| Bowser | 1990-01-01 |            1 |</span><br><span class="line">| Chirpy | 1998-09-11 |            9 |</span><br><span class="line">+--------+------------+--------------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; select name,birth </span><br><span class="line">    -&gt; from pet </span><br><span class="line">    -&gt; where month(birth)=5;</span><br><span class="line">+-------+------------+</span><br><span class="line">| name  | birth      |</span><br><span class="line">+-------+------------+</span><br><span class="line">| Buffy | 1989-05-13 |</span><br><span class="line">+-------+------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;DATE_ADD()可以将时间间隔添加到给定日期。如果将值添加到CURDATE()，然后提取月份部分MONTH()，结果将生成查找生日的月份：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select name,birth from pet</span><br><span class="line">    -&gt; where month(birth)=month(date_add(curdate(),interval 2 month));</span><br><span class="line">+-------+------------+</span><br><span class="line">| name  | birth      |</span><br><span class="line">+-------+------------+</span><br><span class="line">| Buffy | 1989-05-13 |</span><br><span class="line">+-------+------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="6-null-值"><a href="#6-null-值" class="headerlink" title="6.null 值"></a>6.null 值</h4><p>&ensp;&ensp;要测试NULL，请使用<strong>IS NULL</strong> 和 <strong>IS NOT NULL</strong>运算符，如下所示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT 1 IS NULL, 1 IS NOT NULL</span><br><span class="line">    -&gt; ;</span><br><span class="line">+-----------+---------------+</span><br><span class="line">| 1 IS NULL | 1 IS NOT NULL |</span><br><span class="line">+-----------+---------------+</span><br><span class="line">|         0 |             1 |</span><br><span class="line">+-----------+---------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;任何算术比较NULL的结果 也是NULL，所以你不能从这种比较中获得任何有意义的结果。<br>&ensp;&ensp;在MySQL中，0或NULL 为假，其他则为真。布尔运算的默认真值是1。</p>
+<h4 id="7-模式匹配"><a href="#7-模式匹配" class="headerlink" title="7.模式匹配"></a>7.模式匹配</h4><p>&ensp;&ensp;MySQL提供标准的SQL模式匹配以及基于扩展正则表达式的模式匹配，类似于Unix实用程序（如vi，grep和 sed）使用的扩展正则表达式 。</p>
+<p>&ensp;&ensp;SQL模式匹配可以使用 “_”  匹配任何单个字符并且%匹配任意数量的字符（包括零个字符）。在MySQL中，SQL模式默认情况下不区分大小写。使                               用SQL模式时不要使用 =或&lt;&gt;，改用LIKE或 NOT LIKE比较运算符。 </p>
+<p>&ensp;&ensp;查找以b（b%）开头。%fy（以fy结尾），%w%（包含w字符）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select  *</span><br><span class="line">    -&gt; from pet</span><br><span class="line">    -&gt; where name like &apos;b%&apos;;</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">| name   | owner  | species | sex  | birth      | death      |</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">| Buffy  | Harold | dog     | f    | 1989-05-13 | NULL       |</span><br><span class="line">| Bowser | Diane  | dog     | m    | 1990-01-01 | 1995-07-29 |</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;要查找包含五个字符的名称：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from pet where name like &apos;_____&apos;;</span><br><span class="line">+-------+--------+---------+------+------------+-------+</span><br><span class="line">| name  | owner  | species | sex  | birth      | death |</span><br><span class="line">+-------+--------+---------+------+------------+-------+</span><br><span class="line">| Claws | Gwen   | cat     | m    | 1994-03-17 | NULL  |</span><br><span class="line">| Buffy | Harold | dog     | f    | 1989-05-13 | NULL  |</span><br><span class="line">+-------+--------+---------+------+------------+-------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;MySQL提供的另一种模式匹配使用扩展的正则表达式。当为这种类型的模式测试匹配时，使用 REGEXP和NOT REGEXP运算符（或 RLIKE和 NOT RLIKE，它们是同义词）。</p>
+<p>&ensp;&ensp;以下列表描述了扩展正则表达式的一些特征：</p>
+<p>&ensp;&ensp;. 匹配任何单个字符。<br>字符类[…]匹配括号内的任何字符。例如， [abc]匹配a， b或c。[a-z] 匹配任何字母，而[0-9] 匹配任何数字。</p>
+<p>&ensp;&ensp;*匹配前面事物的零个或多个实例。例如，x<em> 匹配任意数量的x字符， [0-9]</em>匹配任意数量的数字，.*匹配任意数量的任何字符。</p>
+<p>&ensp;&ensp;如果模式与测试值中的任何位置匹配，则正则表达式模式匹配成功 。（这与LIKE模式匹配不同，仅在模式与整个值匹配时才会成功。）<br>使用锚定模式以使其与要测试的值的开头或结尾匹配，请使用模式^开头或$结尾。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from pet where name regexp &apos;^b&apos;;</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">| name   | owner  | species | sex  | birth      | death      |</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">| Buffy  | Harold | dog     | f    | 1989-05-13 | NULL       |</span><br><span class="line">| Bowser | Diane  | dog     | m    | 1990-01-01 | 1995-07-29 |</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="8-计数行"><a href="#8-计数行" class="headerlink" title="8.计数行"></a>8.计数行</h4><p>&ensp;&ensp;COUNT(*)计算行数，因此计算动物数量的查询如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select count(*) from pet;</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">|        6 |</span><br><span class="line">+----------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;计算每个人拥有几个宠物</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select owner,count(*) from pet group by owner;</span><br><span class="line">+--------+----------+</span><br><span class="line">| owner  | count(*) |</span><br><span class="line">+--------+----------+</span><br><span class="line">| Benny  |        1 |</span><br><span class="line">| Diane  |        1 |</span><br><span class="line">| Genw   |        1 |</span><br><span class="line">| Gwen   |        1 |</span><br><span class="line">| Harold |        2 |</span><br><span class="line">+--------+----------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;上述查询使用GROUP BY对每个owner进行分组。使用COUNT()结合 GROUP BY在各种分组表征数据时非常有用。 </p>
+<p>&ensp;&ensp;想要得到每种性别的动物数量仅适用于已知性别的动物：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select species,sex,count(*)                                            </span><br><span class="line">    -&gt; from pet </span><br><span class="line">    -&gt; where sex is not null</span><br><span class="line">    -&gt; group by species,sex;</span><br><span class="line">+---------+------+----------+</span><br><span class="line">| species | sex  | count(*) |</span><br><span class="line">+---------+------+----------+</span><br><span class="line">| bird    | f    |        1 |</span><br><span class="line">| cat     | f    |        1 |</span><br><span class="line">| cat     | m    |        1 |</span><br><span class="line">| dog     | f    |        1 |</span><br><span class="line">| dog     | m    |        2 |</span><br><span class="line">+---------+------+----------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="9-使用多个表"><a href="#9-使用多个表" class="headerlink" title="9.使用多个表"></a>9.使用多个表</h4><p>&ensp;&ensp;pet 表记录了宠物的基本信息，还需要一张表记录他们生活中的事件，如下所示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table event (name varchar(20),date date,type varchar(20),remark varchar(250));</span><br><span class="line">Query OK, 0 rows affected (0.30 sec)</span><br><span class="line">mysql&gt; select * from event;                                          </span><br><span class="line">+--------+------------+--------+-----------------+</span><br><span class="line">| name   | date       | type   | remark          |</span><br><span class="line">+--------+------------+--------+-----------------+</span><br><span class="line">| Fluffy | 1995-05-15 | litter | 4,3female,1male |</span><br><span class="line">| Buffy  | 1993-06-23 | litter | 4,3female,1male |</span><br><span class="line">| Buffy  | 1994-06-19 | litter | 4,3female,1male |</span><br><span class="line">| Chirpy | 1999-03-19 | daily  | go away         |</span><br><span class="line">| Fang   | 1991-10-12 | kennel | NULL            |</span><br><span class="line">| Bowser | 1991-10-12 | kennel | NULL            |</span><br><span class="line">+--------+------------+--------+-----------------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;假设你想要得到宠物下崽的年龄。宠物的下崽日期在 event表格中，但要计算她在该日期的年龄，需要她的出生日期，该日期存储在 pet表格中。这意味着查询需要两个表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select pet.name,timestampdiff(year,birth,date) as age,remark </span><br><span class="line">    -&gt; from pet inner join event </span><br><span class="line">    -&gt; on pet.name = event.name</span><br><span class="line">    -&gt; where event.type=&apos;litter&apos;;</span><br><span class="line">+--------+------+-----------------+</span><br><span class="line">| name   | age  | remark          |</span><br><span class="line">+--------+------+-----------------+</span><br><span class="line">| Fluffy |    3 | 4,3female,1male |</span><br><span class="line">| Buffy  |    4 | 4,3female,1male |</span><br><span class="line">| Buffy  |    5 | 4,3female,1male |</span><br><span class="line">+--------+------+-----------------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;该FROM子句连接两个表，因为查询需要从两个表中提取信息</p>
+<p>&ensp;&ensp;组合（连接）来自多个表的信息时，需要指定一个表中的记录如何与另一个表中的记录匹配。</p>
+<p>&ensp;&ensp;该查询使用 INNER JOIN来组合表。只有当两个表都满足ON子句中指定的条件时，内部联接才允许其中一个表中的行出现在结果中。在这个例子中， ON子句指定  pet表中的name列必须的匹配 event表的name列 。如果名称出现在一个表中但不出现在另一个表中，则该行不会出现在结果中，因为该ON 子句中的条件失败。</p>
+<p>&ensp;&ensp;由于该name列出现在两个表中，因此必须具体说明引用该列时的表。这是通过将表名添加到列名称来完成的。</p>
+<p>&ensp;&ensp;如果要将表中的记录与同一表中的其他记录进行比较，有时将表连接到自身会很有用。例如，要在宠物中找到繁殖对，可以pet自身加入表格，以生成候选对：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select p1.name,p1.sex,p2.name,p2.sex,p1.species </span><br><span class="line">    -&gt;from pet as p1 inner join pet as p2 </span><br><span class="line">    -&gt;on p1.species = p2.species </span><br><span class="line">    -&gt;and p1.sex = &apos;f&apos; and p1.death is null </span><br><span class="line">    -&gt;and p2.sex = &apos;m&apos; and p2.death is null;</span><br><span class="line">+--------+------+-------+------+---------+</span><br><span class="line">| name   | sex  | name  | sex  | species |</span><br><span class="line">+--------+------+-------+------+---------+</span><br><span class="line">| Fluffy | f    | Claws | m    | cat     |</span><br><span class="line">| Buffy  | f    | Fang  | m    | dog     |</span><br><span class="line">+--------+------+-------+------+---------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;在此查询中，我们为表名指定别名以引用列，并保持每个列引用与表关联的表的实例。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+<div>
+    
+ </div>
+ 
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/02/MySQL语句(菜鸟教程)/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="戴树谦">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile_photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="戴树谦的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/02/MySQL语句(菜鸟教程)/" itemprop="url">MySQL语句(菜鸟教程)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-02T22:43:33+08:00">
+                2019-02-02
               </time>
             
 
@@ -1369,6 +1791,320 @@
 <h4 id="表的显示"><a href="#表的显示" class="headerlink" title="表的显示"></a>表的显示</h4><p>在进入MYSQL时，提示的第二行有这样一句话” Commands end with ; or \g.”</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from dsq_table \g</span><br><span class="line">+--------+--------+------+-------+------------+------+</span><br><span class="line">| dsq_id | title  | name | hobby | date       | sex  |</span><br><span class="line">+--------+--------+------+-------+------------+------+</span><br><span class="line">|      2 | play   | zxc  | NULL  | 2000-01-01 | NULL |</span><br><span class="line">|      3 | netlab | dsq  | NULL  | 2019-03-25 | NULL |</span><br><span class="line">|      4 | netlab | dsq  | NULL  | 2019-03-25 | NULL |</span><br><span class="line">+--------+--------+------+-------+------------+------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">使用 \G 是垂直显示结果(ego       (\G) Send command to mysql server, display result vertically.)。</span><br><span class="line">mysql&gt; select * from dsq_table \G</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">dsq_id: 2</span><br><span class="line"> title: play</span><br><span class="line">  name: zxc</span><br><span class="line"> hobby: NULL</span><br><span class="line">  date: 2000-01-01</span><br><span class="line">   sex: NULL</span><br><span class="line">*************************** 2. row ***************************</span><br><span class="line">dsq_id: 3</span><br><span class="line"> title: netlab</span><br><span class="line">  name: dsq</span><br><span class="line"> hobby: NULL</span><br><span class="line">  date: 2019-03-25</span><br><span class="line">   sex: NULL</span><br><span class="line">*************************** 3. row ***************************</span><br><span class="line">dsq_id: 4</span><br><span class="line"> title: netlab</span><br><span class="line">  name: dsq</span><br><span class="line"> hobby: NULL</span><br><span class="line">  date: 2019-03-25</span><br><span class="line">   sex: NULL</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+<div>
+    
+ </div>
+ 
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/29/MySQL建库建表、数据插入/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="戴树谦">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile_photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="戴树谦的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/29/MySQL建库建表、数据插入/" itemprop="url">MySQL建库建表、数据插入</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-29T18:33:19+08:00">
+                2019-01-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  2.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="连接与断开服务器"><a href="#连接与断开服务器" class="headerlink" title="连接与断开服务器"></a>连接与断开服务器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study var]#   mysql --host=hostname  --user=user  --password</span><br><span class="line">Enter password: </span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 37</span><br><span class="line">Server version: 5.6.43 MySQL Community Server (GPL)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2017, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type &apos;help;&apos; or &apos;\h&apos; for help. Type &apos;\c&apos; to clear the current input statement.</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="输入查询"><a href="#输入查询" class="headerlink" title="输入查询"></a>输入查询</h3><p>&ensp;&ensp;介绍几个输入查询的基本原则来熟悉mysql的工作原理。<br>&ensp;&ensp;这是一个简单的查询，要求服务器说明它的版本号和当前日期。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;  SELECT VERSION(), CURRENT_DATE;</span><br><span class="line">+-----------+--------------+</span><br><span class="line">| VERSION() | CURRENT_DATE |</span><br><span class="line">+-----------+--------------+</span><br><span class="line">| 5.6.43    | 2019-02-18   |</span><br><span class="line">+-----------+--------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;关键字可以输入任何字母。以下查询是等效的，即不区分大小写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT VERSION(), CURRENT_DATE;</span><br><span class="line">mysql&gt; select version(), current_date;</span><br><span class="line">mysql&gt; SeLeCt vErSiOn(), current_DATE;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;这是另一个查询。它演示了您可以将 mysql用作简单的计算器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT SIN(PI()/4), (4+1)*5;</span><br><span class="line">+------------------+---------+</span><br><span class="line">| SIN(PI()/4)      | (4+1)*5 |</span><br><span class="line">+------------------+---------+</span><br><span class="line">| 0.70710678118655 |      25 |</span><br><span class="line">+------------------+---------+</span><br><span class="line">1 row in set (0.02 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;到目前为止显示的查询是相对较短的单行语句。也可以在一行中输入多个语句。用分号结束每一个：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT VERSION(); SELECT NOW();</span><br><span class="line">+-----------+</span><br><span class="line">| VERSION() |</span><br><span class="line">+-----------+</span><br><span class="line">| 5.6.43    |</span><br><span class="line">+-----------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">+---------------------+</span><br><span class="line">| NOW()               |</span><br><span class="line">+---------------------+</span><br><span class="line">| 2019-02-18 11:01:14 |</span><br><span class="line">+---------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;多行的冗长查询不是问题,mysql通过查找终止分号来确定语句的结束位置，而不是查找输入行的结尾。<br>这是一个简单的多行语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select </span><br><span class="line">    -&gt; user()</span><br><span class="line">    -&gt; ,</span><br><span class="line">    -&gt; current_date;</span><br><span class="line">+----------------+--------------+</span><br><span class="line">| user()         | current_date |</span><br><span class="line">+----------------+--------------+</span><br><span class="line">| web@172.19.0.3 | 2019-02-18   |</span><br><span class="line">+----------------+--------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;如果决定不想执行正在输入的查询，请键入\c以下命令取消它 ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT</span><br><span class="line">    -&gt; USER()</span><br><span class="line">    -&gt; \c</span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;在这里，也请注意提示。它会mysql&gt;在键入后切换回来 \c，提供反馈以指示mysql已为新查询做好准备。<br>&ensp;&ensp;下表显示了可能看到的每个提示，并总结了它们对mysql所处状态的含义 。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">提示</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">mysql&gt;</td>
+<td style="text-align:center">准备好进行新查询</td>
+</tr>
+<tr>
+<td style="text-align:center">-&gt;</td>
+<td style="text-align:center">等待下一行的多行查询</td>
+</tr>
+<tr>
+<td style="text-align:center">‘&gt;</td>
+<td style="text-align:center">等待下一行，以单引号（’）开头的字符串</td>
+</tr>
+<tr>
+<td style="text-align:center">“&gt;</td>
+<td style="text-align:center">等待下一行，以双引号开头的字符串（”）</td>
+</tr>
+<tr>
+<td style="text-align:center">`&gt;</td>
+<td style="text-align:center">等待下一行，以反引号（`）开头的标识符</td>
+</tr>
+<tr>
+<td style="text-align:center">/*&gt;</td>
+<td style="text-align:center">等待下一行，以/*开头的描述</td>
+</tr>
+</tbody>
+</table>
+<p>&ensp;&ensp;在MySQL中，可以编写由任一字符’或”字符包括的字符串（例如’hello’或”goodbye”),并且 mysql允许输入跨越多行的字符串。看到’&gt;或 “&gt;提示时，表示输入的行包含以a ‘ 或”quote字符开头的字符串，但没有输入终止字符串的匹配引号。这通常表明遗漏了引号字符。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM my_table WHERE name = &apos;Smith AND age &lt; 30;</span><br><span class="line">    &apos;&gt;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;通过转义字符取消查询，如果只输入\c，会被认为是引号内的内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM my_table WHERE name = &apos;Smith AND age &lt; 30;</span><br><span class="line">    &apos;&gt; &apos;\c</span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;`&gt;提示类似于 ‘&gt;和”&gt;提示，但表示你已经开始但尚未完成反引号引用的标识符。</p>
+<h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; CREATE DATABASE 16netlab;</span><br><span class="line">Query OK, 1 row affected (0.01 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;在Unix下，数据库名称是区分大小写的（不像SQL关键字）。表名也是如此。（在Windows下，此限制不适用，但必须在给定查询中使用相同的字母表引用数据库和表。但是，出于各种原因，建议的最佳做法始终是使用相同字母。）<br><strong>注意</strong>  </p>
+<ul>
+<li>如果收到错误  ERROR 1044（42000）：ERROR 1044 (42000): Access denied for user ‘micah‘@’localhost’ to database ‘menagerie’，这意味着用户帐户没有必要的权限。  </li>
+</ul>
+<p>&ensp;&ensp;要使16netlab为当前数据库，请使用以下语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; use 16netlab;</span><br><span class="line">Database changed</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;数据库只需创建一次，但每次开始mysql 会话时都必须选择它才能使用。通过如上所示的语句来完成此操作。或者可以在调用mysql时在命令行上选择数据库。需要提供的所有连接参数之后指定其名称。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# docker exec -it web mysql -h mysql2 -u web -p 16netlab</span><br><span class="line">Enter password: </span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 348</span><br><span class="line">Server version: 5.6.43 MySQL Community Server (GPL)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2017, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type &apos;help;&apos; or &apos;\h&apos; for help. Type &apos;\c&apos; to clear the current input statement.</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp; <strong>SELECT DATABASE()</strong> 查看当前选择使用哪个数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT DATABASE();</span><br><span class="line">+------------+</span><br><span class="line">| DATABASE() |</span><br><span class="line">+------------+</span><br><span class="line">| 16netlab   |</span><br><span class="line">+------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h3><p>&ensp;&ensp;创建数据库很容易，但此时它是空的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW TABLES;</span><br><span class="line">Empty set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;更难的部分是决定数据库的结构应该是什么：需要哪些表以及每个表中应该包含哪些列。<br>&ensp;&ensp;例如一张包含每只宠物记录的表格。这可以称为pet表格，它应该包含每个动物名称以及长度限制值。如果家中有多个人饲养宠物，列出每只动物的主人，记录一些基本的描述性信息，如物种和性别，年龄。随着时间的推移，年龄会发生变化，这意味着必须经常更新记录。相反，最好存储固定值，如出生日期。如果需要年龄，可以将其计算为当前日期和出生日期之间的差异。MySQL提供了进行日期算术的功能。</p>
+<p>&ensp;&ensp;你可能会想到在pet表格中有用的其他类型的信息，但到目前为止确定的信息是足够的：名称，所有者，物种，性别，出生和死亡日期。<br>&ensp;&ensp;使用<strong>CREATE TABLE</strong>语句指定表的布局：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; CREATE TABLE pet (name VARCHAR(20), owner VARCHAR(20),</span><br><span class="line">    -&gt; species VARCHAR(20), sex CHAR(1), birth DATE, death DATE);</span><br><span class="line">Query OK, 0 rows affected (0.20 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;VARCHAR数据类型对于name、 owner和species 列是不错的选择，因为列值的长度不同。定义列的长度时根据实际情况合理选择。通常，可以选择1-65535中的任何长度。</p>
+<p>&ensp;&ensp;可以选择几种类型的值来表示动物记录中的性别，例如’m’和 ‘f’，或者可能’male’和 ‘female’。最简单的是使用单个字符’m’和’f’。<br>DATE对于birth和death 列 使用数据类型是一个相当明显的选择。<br>&ensp;&ensp;创建表后，<strong>SHOW TABLES</strong>应该产生一些输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW TABLES;</span><br><span class="line">+--------------------+</span><br><span class="line">| Tables_in_16netlab |</span><br><span class="line">+--------------------+</span><br><span class="line">| pet                |</span><br><span class="line">+--------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;要验证表是否按预期方式创建，使用<strong>DESCRIBE</strong>语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; describe pet;</span><br><span class="line">+---------+-------------+------+-----+---------+-------+</span><br><span class="line">| Field   | Type        | Null | Key | Default | Extra |</span><br><span class="line">+---------+-------------+------+-----+---------+-------+</span><br><span class="line">| name    | varchar(20) | YES  |     | NULL    |       |</span><br><span class="line">| owner   | varchar(20) | YES  |     | NULL    |       |</span><br><span class="line">| species | varchar(20) | YES  |     | NULL    |       |</span><br><span class="line">| sex     | char(1)     | YES  |     | NULL    |       |</span><br><span class="line">| birth   | date        | YES  |     | NULL    |       |</span><br><span class="line">| death   | date        | YES  |     | NULL    |       |</span><br><span class="line">+---------+-------------+------+-----+---------+-------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="添加数据到表"><a href="#添加数据到表" class="headerlink" title="添加数据到表"></a>添加数据到表</h3><p>&ensp;&ensp;创建表后需要填充它。使用<strong>LOAD DATA</strong>和 <strong>INSERT</strong>语句<br>&ensp;&ensp;假设宠物记录可以如此处所示。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">名字</th>
+<th style="text-align:center">主人</th>
+<th style="text-align:center">种类</th>
+<th style="text-align:center">性别</th>
+<th style="text-align:center">出生日期</th>
+<th style="text-align:center">死亡日期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Fluffy</td>
+<td style="text-align:center">Harold</td>
+<td style="text-align:center">cat</td>
+<td style="text-align:center">f</td>
+<td style="text-align:center">1993-02-04</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Claws</td>
+<td style="text-align:center">Gwen</td>
+<td style="text-align:center">cat</td>
+<td style="text-align:center">m</td>
+<td style="text-align:center">1994-03-17</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Buffy</td>
+<td style="text-align:center">Harold</td>
+<td style="text-align:center">dog</td>
+<td style="text-align:center">f</td>
+<td style="text-align:center">1989-05-13</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Fang</td>
+<td style="text-align:center">Benny</td>
+<td style="text-align:center">dog</td>
+<td style="text-align:center">m</td>
+<td style="text-align:center">1990-08-27</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Bowser</td>
+<td style="text-align:center">Diane</td>
+<td style="text-align:center">dog</td>
+<td style="text-align:center">m</td>
+<td style="text-align:center">1979-08-31</td>
+<td style="text-align:center">1995-07-29</td>
+</tr>
+<tr>
+<td style="text-align:center">Chirpy</td>
+<td style="text-align:center">Gwen</td>
+<td style="text-align:center">bird</td>
+<td style="text-align:center">f</td>
+<td style="text-align:center">1998-09-11</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Whistler</td>
+<td style="text-align:center">Gwen</td>
+<td style="text-align:center">bird</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1997-12-09</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Slim</td>
+<td style="text-align:center">Benny</td>
+<td style="text-align:center">snake</td>
+<td style="text-align:center">m</td>
+<td style="text-align:center">1996-04-29</td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<p>&ensp;&ensp;因为从空表开始，所以填充它的一种简单方法是为每个动物创建一个包含行的文本文件，然后使用单个语句将文件内容加载到表中。</p>
+<p>&ensp;&ensp;可以创建一个文本文件pet.txt，每行包含一个记录，其值由制表符分隔，并按照<strong>CREATE TABLE</strong>语句中列出的顺序给出 。对于缺失值（例如未知性别或仍然生活的动物的死亡日期），可以使用NULL 值。要在文本文件中表示这些，请使用 \N（反斜杠，大写-N）。例如，惠斯勒鸟的记录看起来像这样（值之间的空格是单个制表符）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Whistler        Gwen    bird    \N      1997-12-09      \N</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;要将文本文件加载pet.txt到 pet表中，请使用以下语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; LOAD DATA LOCAL INFILE &apos;/path/pet.txt&apos; INTO TABLE pet;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;如果需要，可以在<strong>LOAD DATA</strong>语句中显式指定列值分隔符和行结束标记，但默认值为制表符和换行符。这些语句正确读取pet.txt。  </p>
+<p>&ensp;&ensp;如果语句失败，则默认情况下MySQL安装可能没有启用本地文件功能。  </p>
+<p>&ensp;&ensp;如果要一次添加一条新记录，该 INSERT语句很有用。在最简单的形式中，按照CREATE TABLE语句中列出的列的顺序为每列提供值 。假设黛安得到了一只名为“ Puffball ”的仓鼠。可以使用如下<strong>INSERT</strong>语句添加 ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; INSERT INTO pet</span><br><span class="line">       VALUES (&apos;Puffball&apos;,&apos;Diane&apos;,&apos;hamster&apos;,&apos;f&apos;,&apos;1999-03-30&apos;,NULL);</span><br><span class="line">字符串和日期值在此处指定为带引号的字符串。此外，可以直接插入NULL 以表示缺失值。</span><br><span class="line">mysql&gt; INSERT INTO pet</span><br><span class="line">    -&gt;  VALUES (&apos;Fluffy&apos;,&apos;Harold&apos;,&apos;cat&apos;,&apos;f&apos;,&apos;1999-02-04&apos;,NULL);</span><br><span class="line">Query OK, 1 row affected (0.02 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; INSERT INTO pet  VALUES (&apos;Claws&apos;,&apos;Gwen&apos;,&apos;cat&apos;,&apos;m&apos;,&apos;1994-03-17&apos;,NULL);</span><br><span class="line">Query OK, 1 row affected (0.03 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; INSERT INTO pet  VALUES (&apos;Buffy&apos;,&apos;Harold&apos;,&apos;dog&apos;,&apos;f&apos;,&apos;1989-05-13&apos;,NULL);</span><br><span class="line">Query OK, 1 row affected (0.03 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; INSERT INTO pet  VALUES (&apos;Fang&apos;,&apos;Benny&apos;,&apos;dog&apos;,&apos;m&apos;,&apos;1990-08-27&apos;,NULL);</span><br><span class="line">Query OK, 1 row affected (0.06 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; INSERT INTO pet  VALUES (&apos;Bowser&apos;,&apos;Diane&apos;,&apos;dog&apos;,&apos;m&apos;,&apos;1979-08-31&apos;,&apos;1995-07-29&apos;);</span><br><span class="line">Query OK, 1 row affected (0.03 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; INSERT INTO pet  VALUES (&apos;Chirpy&apos;,&apos;Genw&apos;,&apos;bird&apos;,&apos;f&apos;,&apos;1998-09-11&apos;,null);</span><br><span class="line">Query OK, 1 row affected (0.42 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; SELECT * FROM pet;</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">| name   | owner  | species | sex  | birth      | death      |</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">| Fluffy | Harold | cat     | f    | 1999-02-04 | NULL       |</span><br><span class="line">| Claws  | Gwen   | cat     | m    | 1994-03-17 | NULL       |</span><br><span class="line">| Buffy  | Harold | dog     | f    | 1989-05-13 | NULL       |</span><br><span class="line">| Fang   | Benny  | dog     | m    | 1990-08-27 | NULL       |</span><br><span class="line">| Bowser | Diane  | dog     | m    | 1979-08-31 | 1995-07-29 |</span><br><span class="line">| Chirpy | Genw   | bird    | f    | 1998-09-11 | NULL       |</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
 
           
         
@@ -1841,549 +2577,11 @@
  </div>
  
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/19/Cisco-UCS-B200-M2安装操作系统/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="戴树谦">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile_photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="戴树谦的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/19/Cisco-UCS-B200-M2安装操作系统/" itemprop="url">Cisco UCS B200 M2安装操作系统</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-19T20:18:53+08:00">
-                2019-01-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  304
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <img src="/2019/01/19/Cisco-UCS-B200-M2安装操作系统/1.png">
-<p>由于项目需要，要求把上图系统更换为 CentOS7. 踩了不少坑，折腾一天。<br> 服务器的型号为UCS B200 M2 ,需要在网页登录他的管理器，本地的java环境为jdk-6u10。6版本的每一个我都试了，只有这个可以。<br>在kvm manager的页面可以下载kvm console 的java程序，在本地运行就可以了  </p>
-<p>该刀片服务器重装\安装系统需要从本地映射镜像到服务器，也是在网上看的服务器配置指导才知道，我还想着拿个显示屏怼上呢。映射步骤如下：</p>
-<p>1.点击virtual Medis （如果报错虚拟磁盘本地库无法加载，那就是java版本的问题了）</p>
-<img src="/2019/01/19/Cisco-UCS-B200-M2安装操作系统/2.png">
-<p>2.左侧有”Add Images”，选中需要安装的系统就可以了</p>
-<img src="/2019/01/19/Cisco-UCS-B200-M2安装操作系统/3.png">
-<p>3.勾选上第一列的Mapped ，即将本地镜像文件映射到 “Virtual CD/DVD”</p>
-<img src="/2019/01/19/Cisco-UCS-B200-M2安装操作系统/4.png">
-<p>4.重启</p>
-<img src="/2019/01/19/Cisco-UCS-B200-M2安装操作系统/5.png">
-<p>5.在该界面进入boot menu ，更改启动顺序</p>
-<img src="/2019/01/19/Cisco-UCS-B200-M2安装操作系统/6.png">
-<p>6.选择”Cisco Virtual CD/DVD  1.22”，不要选择EFI那一项</p>
-<img src="/2019/01/19/Cisco-UCS-B200-M2安装操作系统/7.png">
-<p>之后就是安装CentOS的步骤了，除了在分盘的时候把之前的分区先删除干净之外，其他步骤都相同了</p>
-<img src="/2019/01/19/Cisco-UCS-B200-M2安装操作系统/8.png">
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-<div>
-    
- </div>
- 
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/16/编译安装mysql-server5-6-32/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="戴树谦">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile_photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="戴树谦的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/16/编译安装mysql-server5-6-32/" itemprop="url">编译安装mysql-server5.6.32</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-16T16:51:54+08:00">
-                2019-01-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  440
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>摘自：<a href="http://www.cnblogs.com/yaohan/p/6288620.html" target="_blank" rel="noopener">http://www.cnblogs.com/yaohan/p/6288620.html</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget http://downloads.mysql.com/archives/get/file/mysql-5.6.32.tar.gz  </span><br><span class="line">tar -zxvf mysql-5.6.32.tar.gz</span><br></pre></td></tr></table></figure>
-<p>安装编译环境</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yum install gcc gcc-c++</span><br><span class="line">yum install -y ncurses-devel</span><br><span class="line">yum install -y cmake</span><br><span class="line">yum install -y libaio</span><br><span class="line">yum install -y bison</span><br><span class="line">yum install -y perl-Module-Install.noarch</span><br></pre></td></tr></table></figure>
-<p>编译</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cmake -DCMAKE_INSTALL_PREFIX=/usr/local/mysql  </span><br><span class="line">-DMYSQL_UNIX_ADDR=/usr/local/mysql/mysql.sock  </span><br><span class="line">-DDEFAULT_CHARSET=utf8</span><br><span class="line">-DDEFAULT_COLLATION=utf8_general_ci</span><br><span class="line">-DWITH_INNOBASE_STORAGE_ENGINE=1</span><br><span class="line">-DWITH_ARCHIVE_STORAGE_ENGINE=1</span><br><span class="line">-DWITH_BLACKHOLE_STORAGE_ENGINE=1</span><br><span class="line">-DMYSQL_DATADIR=/home/mysqldata</span><br><span class="line">-DMYSQL_TCP_PORT=3306</span><br><span class="line">-DENABLE_DOWNLOADS=1</span><br></pre></td></tr></table></figure>
-<p><strong>若要重新运行配置，需要删除目录内CMakeCache.txt文件</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm CMakeCache.txt</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-<p>使用下面的命令查看是否有mysql用户及用户组</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/passwd   #查看用户列表</span><br><span class="line">cat /etc/group    #查看用户组列表</span><br><span class="line"></span><br><span class="line">如果没有就创建</span><br><span class="line">groupadd mysql</span><br><span class="line">useradd -g mysql mysql</span><br><span class="line">修改/usr/local/mysql权限</span><br><span class="line">chown -R mysql:mysql /usr/local/mysql</span><br></pre></td></tr></table></figure>
-<p>修改配置文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">cp support-files/my-default.cnf /etc/my.cnf</span><br><span class="line">vi /etc/my.cnf</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-----my.cnf begin------</span><br><span class="line">[client]</span><br><span class="line">default-character-set=utf8</span><br><span class="line">socket = /usr/local/mysql/mysql.sock</span><br><span class="line"></span><br><span class="line">[mysql]</span><br><span class="line">default-character-set=utf8</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line"># Remove leading # and set to the amount of RAM for the most important data</span><br><span class="line"># cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%.</span><br><span class="line"># innodb_buffer_pool_size = 128M</span><br><span class="line"></span><br><span class="line"># Remove leading # to turn on a very important data integrity option: logging</span><br><span class="line"># changes to the binary log between backups.</span><br><span class="line"># log_bin</span><br><span class="line"></span><br><span class="line"># These are commonly set, remove the # and set as required.</span><br><span class="line">basedir = /usr/local/mysql</span><br><span class="line">datadir = /home/mysqldata/</span><br><span class="line">port = 3306</span><br><span class="line"># server_id = .....</span><br><span class="line">socket = /usr/local/mysql/mysql.sock</span><br><span class="line">character-set-server=utf8</span><br><span class="line"># Remove leading # to set options mainly useful for reporting servers.</span><br><span class="line"># The server defaults are faster for transactions and fast SELECTs.</span><br><span class="line"># Adjust sizes as needed, experiment to find the optimal values.</span><br><span class="line"># join_buffer_size = 128M</span><br><span class="line"># sort_buffer_size = 2M</span><br><span class="line"># read_rnd_buffer_size = 2M</span><br><span class="line"></span><br><span class="line">sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</span><br><span class="line">-----my.cnf end------</span><br></pre></td></tr></table></figure>
-<p>初始化数据库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/mysql/</span><br><span class="line">./scripts/mysql_install_db --user=mysql --datadir=/home/mysqldata</span><br></pre></td></tr></table></figure>
-<p>修改文件和目录权限，否则开启服务会报错</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chown -R mysql:root /usr/local/mysql/mysql.sock</span><br><span class="line">chown -R mysql:root /usr/local/mysql</span><br></pre></td></tr></table></figure>
-<p>测试开启编译安装的Mysql</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/mysql/bin/mysqld_safe</span><br></pre></td></tr></table></figure>
-<p>运行正常则添加启动脚本</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cp support-files/mysql.server /etc/init.d/mysql</span><br><span class="line">chkconfig mysql on</span><br><span class="line">service mysql start  --启动MySQL</span><br><span class="line">ln -s /usr/local/mysql/bin/mysql /usr/bin</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-<div>
-    
- </div>
- 
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/15/harbor配置文件介绍/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="戴树谦">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile_photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="戴树谦的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/15/harbor配置文件介绍/" itemprop="url">harbor配置文件介绍</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-15T13:01:34+08:00">
-                2019-01-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  2.9k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  13
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>There are two categories of parameters in harbor.cfg, required parameters and optional parameters.<br>在harbor.cfg中有两类参数，必需参数和可选参数。</p>
-<p>required parameters: These parameters are required to be set in the configuration file. They will take effect if a user updates them in  harbor.cfg  and run the   install.sh   script to reinstall Harbor.<br>required参数：需要在配置文件中设置这些参数。如果用户更新它们harbor.cfg 并运行 install.sh 脚本以重新安装Harbor，它们将生效。</p>
-<p>optional parameters: These parameters are optional for updating, i.e. user can leave them as default and update them on Web Portal after Harbor is started. If they are set in harbor.cfg, they only take effect in the first launch of Harbor. Subsequent update to these parameters in harbor.cfg will be ignored.<br>可选参数：这些参数对于更新是可选的，即用户可以将它们保留为默认值，并在启动Harbour后在Web Portal(门户网站)上更新它们。如果它们已经启用harbor.cfg，它们只会在首次启动Harbour时生效。harbor.cfg将忽略对这些参数的后续更新。</p>
-<p>Note: If you choose to set these parameters via the Portal, be sure to do so right after Harbor is started. In particular, you must set the desired auth_mode before registering or creating any new users in Harbor. When there are users in the system (besides the default admin user), auth_mode cannot be changed.<br>注意：如果你选择通过Portal设置这些参数，请务必在Harbour启动后立即执行此操作。特别是，你必须在Harbour中注册或创建任何新用户之前设置auth_mode。当系统中有用户时（除默认管理员用户外）， 无法更改auth_mode。</p>
-<h3 id="Required-parameters-必须参数"><a href="#Required-parameters-必须参数" class="headerlink" title="Required parameters:  必须参数"></a>Required parameters:  必须参数</h3><p>hostname: The target host’s hostname, which is used to access the Portal and the registry service. It should be the IP address or the fully qualified domain name (FQDN) of your target machine, e.g., 192.168.1.10 or reg.yourdomain.com. Do NOT use localhost or 127.0.0.1 for the hostname - the registry service needs to be accessible by external clients!<br><strong>hostname</strong>：目标主机的主机名，用于访问Portal和registry服务。它应该是目标计算机的IP地址或完全限定的域名（FQDN），例如，192.168.1.10或reg.yourdomain.com。不要使用localhost或127.0.0.1作为主机名 - 外部客户端需要访问registry服务！</p>
-<p>ui_url_protocol: (http or https. Default is http) The protocol used to access the Portal and the token/notification service. If Notary is enabled, this parameter has to be https. By default, this is http.<br><strong>ui_url_protocol</strong> :( http或https。默认为http）用于访问Portal和令牌/通知服务的协议。如果启用了公证，则此参数必须为https。默认情况下是http。</p>
-<p>db_password: The root password for the PostgreSQL database used for db_auth. Change this password for any production use!<br><strong>db_password</strong>：用于db_auth的PostgreSQL数据库的root密码。生产环境中要修改密码！</p>
-<p>max_job_workers: (default value is 10) The maximum number of replication workers in job service. For each image replication job, a worker synchronizes all tags of a repository to the remote destination. Increasing this number allows more concurrent replication jobs in the system. However, since each worker consumes a certain amount of network/CPU/IO resources, please carefully pick the value of this attribute based on the hardware resource of the host.<br><strong>max_job_workers</strong> :(默认值为10）作业服务中的最大复制工作数。对于每个镜像复制作业，工作程序将存储库的所有标记同步到远程目标。增加此数量可以在系统中实现更多并发复制作业。但是，由于每个工作者都消耗一定量的网络/ CPU / IO资源，请根据主机的硬件资源仔细选择该属性的值。</p>
-<p>customize_crt: (on or off. Default is on) When this attribute is on, the prepare script creates private key and root certificate for the generation/verification of the registry’s token. Set this attribute to off when the key and root certificate are supplied by external sources.<br><strong>customize_crt</strong>：（开启或关闭，默认为开启），如果此属性开启，在准备脚本创建registry的令牌生成/验证私钥和根证书。当外部源提供密钥和根证书时，将此属性设置为off。</p>
-<p>ssl_cert: The path of SSL certificate, it’s applied only when the protocol is set to https.<br><strong>ssl_cert</strong>：SSL证书的路径，仅在协议设置为https时应用。  </p>
-<p>ssl_cert_key: The path of SSL key, it’s applied only when the protocol is set to https.<br><strong>ssl_cert_key</strong>：SSL密钥的路径，仅在协议设置为https时应用。  </p>
-<p>secretkey_path: The path of key for encrypt or decrypt the password of a remote registry in a replication policy.<br><strong>secretkey_path</strong>：用于加密或解密复制策略中远程registry密码的密钥路径。  </p>
-<p>log_rotate_count: Log files are rotated log_rotate_count times before being removed. If count is 0, old versions are removed rather than rotated.<br><strong>log_rotate_count</strong>：日志文件在被删除之前会被轮换log_rotate_count次。如果count为0，则删除旧版本而不会轮转。</p>
-<p>log_rotate_size: Log files are rotated only if they grow bigger than log_rotate_size bytes. If size is followed by k, the size is assumed to be in kilobytes. If the M is used, the size is in megabytes, and if G is used, the size is in gigabytes. So size 100, size 100k, size 100M and size 100G are all valid.<br><strong>log_rotate_size</strong>：仅当日志文件大于log_rotate_size字节时才会轮换日志文件。如果大小后跟k，则假定大小以千字节为单位。如果使用M，则大小以兆字节为单位，如果使用G，则大小为千兆字节。尺寸100，尺寸100k，尺寸100M和尺寸100G都是有效的。 </p>
-<p>http_proxy: Config http proxy for Clair, e.g. <a href="http://my.proxy.com:3128" target="_blank" rel="noopener">http://my.proxy.com:3128</a>.<br><strong>http_proxy</strong>：为Clair配置http代理，例如<a href="http://my.proxy.com:3128。" target="_blank" rel="noopener">http://my.proxy.com:3128。</a></p>
-<p>https_proxy: Config https proxy for Clair, e.g. <a href="http://my.proxy.com:3128" target="_blank" rel="noopener">http://my.proxy.com:3128</a>.<br><strong>https_proxy</strong>：为Clair配置https代理，例如<a href="http://my.proxy.com:3128。" target="_blank" rel="noopener">http://my.proxy.com:3128。</a></p>
-<p>no_proxy: Config no proxy for Clair, e.g. 127.0.0.1,localhost,core,registry.<br><strong>no_proxy</strong>：为Clair配置无代理，例如127.0.0.1,localhost,core,registry。</p>
-<h3 id="Optional-parameters-可选参数"><a href="#Optional-parameters-可选参数" class="headerlink" title="Optional parameters 可选参数"></a>Optional parameters 可选参数</h3><p>Email settings: These parameters are needed for Harbor to be able to send a user a “password reset” email, and are only necessary if that functionality is needed. Also, do note that by default SSL connectivity is not enabled - if your SMTP server requires SSL, but does not support STARTTLS, then you should enable SSL by setting email_ssl = true. Setting email_insecure = true if the email server uses a self-signed or untrusted certificate.<br><strong>电子邮件设置</strong>：Harbor需要这些参数才能向用户发送“密码重置”电子邮件，并且仅在需要该功能时才需要。另外，请注意，在默认情况下SSL连接是禁用的，如果你的SMTP服务器需要SSL，但不支持STARTTLS，那么你应该通过设置启用SSL email_ssl = TRUE。如果电子邮件服务器使用自签名证书或不受信任证书，则设置email_insecure = true。  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">email_server = smtp.mydomain.com</span><br><span class="line">email_server_port = 25</span><br><span class="line">email_identity =</span><br><span class="line">email_username = sample_admin@mydomain.com</span><br><span class="line">email_password = abc</span><br><span class="line">email_from = admin sample_admin@mydomain.com</span><br><span class="line">email_ssl = false</span><br><span class="line">email_insecure = false</span><br></pre></td></tr></table></figure>
-<p>harbor_admin_password: The administrator’s initial password. This password only takes effect for the first time Harbor launches. After that, this setting is ignored and the administrator’s password should be set in the Portal. Note that the default username/password are admin/Harbor12345 .<br><strong>harbor_admin_password</strong>：管理员的初始密码。此密码仅在Harbor首次启动时生效。之后，将忽略此设置，并且应在Portal中设置管理员密码。请注意，默认用户名/密码为admin / Harbor12345。</p>
-<p>auth_mode: The type of authentication that is used. By default, it is db_auth, i.e. the credentials are stored in a database. For LDAP authentication, set this to ldap_auth.<br><strong>auth_mode</strong>：使用的身份验证类型。默认情况下，它是db_auth，即凭据存储在数据库中。对于LDAP身份验证，请将其设置为ldap_auth.<br>IMPORTANT: When upgrading from an existing Harbor instance, you must make sure auth_mode is the same in harbor.cfg before launching the new version of Harbor. Otherwise, users may not be able to log in after the upgrade.<br>重要信息：从现有Harbor实例升级时，必须确保在启动新版本的Harbor之前harbor.cfg中的auth_mode相同。否则，用户可能无法在升级后登录。</p>
-<p>ldap_url: The LDAP endpoint URL (e.g. ldaps://ldap.mydomain.com). Only used when auth_mode is set to ldap_auth .<br><strong>ldap_url</strong>：LDAP端点URL（例如ldaps://ldap.mydomain.com）。 仅在auth_mode设置为ldap_auth时使用。  </p>
-<p>ldap_searchdn: The DN of a user who has the permission to search an LDAP/AD server (e.g. uid=admin,ou=people,dc=mydomain,dc=com).<br><strong>ldap_searchdn</strong>：具有搜索LDAP/AD服务器权限的用户的DN（例如uid=admin,ou=people,dc=mydomain,dc=com）。  </p>
-<p>ldap_search_pwd: The password of the user specified by ldap_searchdn.<br><strong>ldap_search_pwd</strong>：ldap_searchdn指定的用户密码。</p>
-<p>ldap_basedn: The base DN to look up a user, e.g. ou=people,dc=mydomain,dc=com. Only used when auth_mode is set to ldap_auth .<br><strong>ldap_basedn</strong>：查找用户的基本DN，例如ou=people,dc=mydomain,dc=com。 仅在auth_mode设置为ldap_auth时使用。</p>
-<p>ldap_filter: The search filter for looking up a user, e.g. (objectClass=person).<br><strong>ldap_filter</strong>：用于查找用户的搜索过滤器，例如(objectClass=person)</p>
-<p>ldap_uid: The attribute used to match a user during a LDAP search, it could be uid, cn, email or other attributes.<br><strong>ldap_uid</strong>：用于在LDAP搜索期间匹配用户的属性，它可以是uid，cn，email或其他属性。</p>
-<p>ldap_scope: The scope to search for a user, 0-LDAP_SCOPE_BASE, 1-LDAP_SCOPE_ONELEVEL, 2-LDAP_SCOPE_SUBTREE. Default is 2.<br><strong>ldap_scope</strong>：搜索用户的范围，0-LDAP_SCOPE_BASE，1-LDAP_SCOPE_ONELEVEL，2-LDAP_SCOPE_SUBTREE。默认值为2。</p>
-<p>ldap_timeout: Timeout (in seconds) when connecting to an LDAP Server. Default is 5.<br><strong>ldap_timeout</strong>：连接LDAP服务器时超时（以秒为单位）。默认值为5。</p>
-<p>ldap_verify_cert: Verify certificate from LDAP server. Default is true.<br><strong>ldap_verify_cert</strong>：验证来自LDAP服务器的证书。默认为true。</p>
-<p>ldap_group_basedn: The base dn from which to lookup a group in LDAP/AD, e.g. ou=group,dc=mydomain,dc=com.<br><strong>ldap_group_basedn</strong>：在LDAP / AD中查找组的基本dn，例如ou=group,dc=mydomain,dc=com。</p>
-<p>ldap_group_filter: The filter to search LDAP/AD group, e.g. objectclass=group.<br><strong>ldap_group_filter</strong>：搜索LDAP / AD组的过滤器，例如objectclass=group。</p>
-<p>ldap_group_gid: The attribute used to name a LDAP/AD group, it could be cn, name.<br><strong>ldap_group_gid</strong>：用于命名LDAP / AD组的属性，它可以是cn，name。</p>
-<p>ldap_group_scope: The scope to search for ldap groups. 0-LDAP_SCOPE_BASE, 1-LDAP_SCOPE_ONELEVEL, 2-LDAP_SCOPE_SUBTREE. Default is 2.<br><strong>ldap_group_scope</strong>：搜索ldap组的范围。0-LDAP_SCOPE_BASE，1-LDAP_SCOPE_ONELEVEL，2-LDAP_SCOPE_SUBTREE。默认值为2。</p>
-<p>self_registration: (on or off. Default is on) Enable / Disable the ability for a user to register himself/herself. When disabled, new users can only be created by the Admin user, only an admin user can create new users in Harbor. NOTE: When auth_mode is set to ldap_auth, self-registration feature is always disabled, and this flag is ignored.<br><strong>self_registration</strong> :( 打开或关闭。默认打开）启用/禁用用户注册功能。禁用时，新用户只能由管理员用户创建，只有管理员用户可以在Harbor中创建新用户。注意：当auth_mode设置为ldap_auth时，始终禁用自注册功能，并忽略此标志。</p>
-<p>token_expiration: The expiration time (in minutes) of a token created by token service, default is 30 minutes.<br><strong>token_expiration</strong>：令牌服务创建的令牌的到期时间（以分钟为单位），默认为30分钟。</p>
-<p>project_creation_restriction: The flag to control what users have permission to create projects. By default everyone can create a project, set to “adminonly” such that only admin can create project.<br><strong>project_creation_restriction</strong>：用于控制用户有权创建项目的标志。默认情况下，每个人都可以创建一个项目；设置为“adminonly”，则只有管理员才能创建项目。</p>
-<h3 id="Configuring-storage-backend-optional-配置存储后端（可选）"><a href="#Configuring-storage-backend-optional-配置存储后端（可选）" class="headerlink" title="Configuring storage backend (optional) 配置存储后端（可选）"></a>Configuring storage backend (optional) 配置存储后端（可选）</h3><p>By default, Harbor stores images on your local filesystem. In a production environment, you may consider using other storage backend instead of the local filesystem, like S3, OpenStack Swift, Ceph, etc. These parameters are configurations for registry.<br>默认情况下，Harbor将镜像存储在本地文件系统中。在生产环境中，您可以考虑使用其他存储后端而不是本地文件系统，如S3，OpenStack Swift，Ceph等。这些参数是registry的配置。</p>
-<p>registry_storage_provider_name: Storage provider name of registry, it can be filesystem, s3, gcs, azure, etc. Default is filesystem.<br><strong>registry_storage_provider_name</strong>：存储仓库名称，可以是filesystem，s3，gcs，azure等。默认为filesystem。</p>
-<p>registry_storage_provider_config: Comma separated “key: value” pairs for storage provider config, e.g. “key1: value, key2: value2”. Default is empty string.<br><strong>registry_storage_provider_config</strong>：配置分隔键值对，例如“key1：value，key2：value2”。默认为空字符串。</p>
-<p>registry_custom_ca_bundle: The path to the custom root ca certificate, which will be injected into the truststore of registry’s and chart repository’s containers. This is usually needed when the user hosts a internal storage with self signed certificate.<br><strong>registry_custom_ca_bundle</strong>：当用户使用自签名证书托管内部存储时，通常需要自定义根ca证书的路径，它将注入到registry和image存储库容器的信任库中。<br>例如，如果使用Openstack Swift作为存储后端，则参数可能如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">registry_storage_provider_name = swift</span><br><span class="line">registry_storage_provider_config = “ username：admin，password：ADMIN_PASS，authurl：http：// kestone_addr：35357 / v3 / auth，tenant：admin，domain：default，region：regionOne，container：docker_images ”</span><br></pre></td></tr></table></figure>
-<ul>
-<li style="list-style: none"><input type="checkbox"> 对于LADP以及证书不理解，需要加入到后续的学习计划。</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-<div>
-    
- </div>
- 
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2433,7 +2631,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

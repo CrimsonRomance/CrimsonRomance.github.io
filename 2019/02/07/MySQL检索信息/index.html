@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="MySQL,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="从表中检索信息&amp;ensp;&amp;ensp;该SELECT语句用于从表中提取信息。声明的一般形式是： 123SELECT what_to_selectFROM which_tableWHERE conditions_to_satisfy; &amp;ensp;&amp;ensp;what_to_select表示你想看到什么，这可以是列表中的一列， *  可以表示“ 所有列”。which_table表示要从中检索数据的表">
+<meta name="keywords" content="MySQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL检索信息">
+<meta property="og:url" content="http://yoursite.com/2019/02/07/MySQL检索信息/index.html">
+<meta property="og:site_name" content="戴树谦的博客">
+<meta property="og:description" content="从表中检索信息&amp;ensp;&amp;ensp;该SELECT语句用于从表中提取信息。声明的一般形式是： 123SELECT what_to_selectFROM which_tableWHERE conditions_to_satisfy; &amp;ensp;&amp;ensp;what_to_select表示你想看到什么，这可以是列表中的一列， *  可以表示“ 所有列”。which_table表示要从中检索数据的表">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-06T10:43:24.041Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL检索信息">
+<meta name="twitter:description" content="从表中检索信息&amp;ensp;&amp;ensp;该SELECT语句用于从表中提取信息。声明的一般形式是： 123SELECT what_to_selectFROM which_tableWHERE conditions_to_satisfy; &amp;ensp;&amp;ensp;what_to_select表示你想看到什么，这可以是列表中的一列， *  可以表示“ 所有列”。which_table表示要从中检索数据的表">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/07/MySQL检索信息/">
+
+
+
+
+
+  <title>MySQL检索信息 | 戴树谦的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">戴树谦的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/07/MySQL检索信息/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="戴树谦">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile_photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="戴树谦的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MySQL检索信息</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-07T18:33:53+08:00">
+                2019-02-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  3.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  15
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="从表中检索信息"><a href="#从表中检索信息" class="headerlink" title="从表中检索信息"></a>从表中检索信息</h3><p>&ensp;&ensp;该SELECT语句用于从表中提取信息。声明的一般形式是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT what_to_select</span><br><span class="line">FROM which_table</span><br><span class="line">WHERE conditions_to_satisfy;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;what_to_select表示你想看到什么，这可以是列表中的一列， *  可以表示“ 所有列”。which_table表示要从中检索数据的表。该WHERE 条款是可选的。如果存在，则 conditions_to_satisfy指定行必须满足的一个或多个条件才有资格进行检索。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select name</span><br><span class="line">    -&gt; from pet</span><br><span class="line">    -&gt; where sex=&apos;m&apos;；</span><br><span class="line">+--------+</span><br><span class="line">| name   |</span><br><span class="line">+--------+</span><br><span class="line">| Claws  |</span><br><span class="line">| Fang   |</span><br><span class="line">| Bowser |</span><br><span class="line">+--------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="1-选择所有数据"><a href="#1-选择所有数据" class="headerlink" title="1.选择所有数据"></a>1.选择所有数据</h4><p>&ensp;&ensp;SELECT最简单的形式从表中检索所有内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from pet;</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">| name   | owner  | species | sex  | birth      | death      |</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">| Fluffy | Harold | cat     | f    | 1999-02-04 | NULL       |</span><br><span class="line">| Claws  | Gwen   | cat     | m    | 1994-03-17 | NULL       |</span><br><span class="line">| Buffy  | Harold | dog     | f    | 1989-05-13 | NULL       |</span><br><span class="line">| Fang   | Benny  | dog     | m    | 1990-08-27 | NULL       |</span><br><span class="line">| Bowser | Diane  | dog     | m    | 1979-08-31 | 1995-07-29 |</span><br><span class="line">| Chirpy | Genw   | bird    | f    | 1998-09-11 | NULL       |</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;UPDATE语句修复错误记录 ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; update pet</span><br><span class="line">    -&gt; set birth=&apos;1990-01-01&apos;</span><br><span class="line">    -&gt; where name=&apos;Bowser&apos;;</span><br><span class="line">Query OK, 1 row affected (0.02 sec)</span><br><span class="line">Rows matched: 1  Changed: 1  Warnings: 0</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="2-选择特定行"><a href="#2-选择特定行" class="headerlink" title="2.选择特定行"></a>2.选择特定行</h4><p>&ensp;&ensp;例如，如果想验证刚才对Bowser出生日期所做的更改，请选择Bowser的记录，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select *     </span><br><span class="line">    -&gt; from pet</span><br><span class="line">    -&gt; where name=&apos;Bowser&apos;;</span><br><span class="line">+--------+-------+---------+------+------------+------------+</span><br><span class="line">| name   | owner | species | sex  | birth      | death      |</span><br><span class="line">+--------+-------+---------+------+------------+------------+</span><br><span class="line">| Bowser | Diane | dog     | m    | 1990-01-01 | 1995-07-29 |</span><br><span class="line">+--------+-------+---------+------+------------+------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;字符串比较通常不区分大小写，因此可以将名称指定为’bowser’， ‘BOWSER’等等。查询结果是一样的。</p>
+<p>&ensp;&ensp;也可以在任何列上指定条件，例如想知道1997年或之后出生的动物：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select *                                       </span><br><span class="line">    -&gt; from pet</span><br><span class="line">    -&gt; where birth &gt;= &apos;1997-02-22&apos;;</span><br><span class="line">+--------+--------+---------+------+------------+-------+</span><br><span class="line">| name   | owner  | species | sex  | birth      | death |</span><br><span class="line">+--------+--------+---------+------+------------+-------+</span><br><span class="line">| Fluffy | Harold | cat     | f    | 1999-02-04 | NULL  |</span><br><span class="line">| Chirpy | Genw   | bird    | f    | 1998-09-11 | NULL  |</span><br><span class="line">+--------+--------+---------+------+------------+-------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;还可以使用  AND  进行组合条件进行查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select *      </span><br><span class="line">    -&gt; from pet </span><br><span class="line">    -&gt; where species = &apos;dog&apos; and sex = &apos;m&apos;;</span><br><span class="line">+--------+-------+---------+------+------------+------------+</span><br><span class="line">| name   | owner | species | sex  | birth      | death      |</span><br><span class="line">+--------+-------+---------+------+------------+------------+</span><br><span class="line">| Fang   | Benny | dog     | m    | 1990-08-27 | NULL       |</span><br><span class="line">| Bowser | Diane | dog     | m    | 1990-01-01 | 1995-07-29 |</span><br><span class="line">+--------+-------+---------+------+------------+------------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;除了AND逻辑运算符还有OR。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select *                                                        </span><br><span class="line">    -&gt; from pet</span><br><span class="line">    -&gt; where species = &apos;dog&apos; or species = &apos;bird&apos;;</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">| name   | owner  | species | sex  | birth      | death      |</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">| Buffy  | Harold | dog     | f    | 1989-05-13 | NULL       |</span><br><span class="line">| Fang   | Benny  | dog     | m    | 1990-08-27 | NULL       |</span><br><span class="line">| Bowser | Diane  | dog     | m    | 1990-01-01 | 1995-07-29 |</span><br><span class="line">| Chirpy | Genw   | bird    | f    | 1998-09-11 | NULL       |</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;AND和OR可以混合，但 AND优先级高于 OR。如果同时使用这两个运算符，最好使用括号明确指出条件应如何分组。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select *     </span><br><span class="line">    -&gt; from pet</span><br><span class="line">    -&gt; where (species=&apos;dog&apos; and sex=&apos;f&apos;) or (species=&apos;bird&apos; and sex=&apos;f&apos;);</span><br><span class="line">+--------+--------+---------+------+------------+-------+</span><br><span class="line">| name   | owner  | species | sex  | birth      | death |</span><br><span class="line">+--------+--------+---------+------+------------+-------+</span><br><span class="line">| Buffy  | Harold | dog     | f    | 1989-05-13 | NULL  |</span><br><span class="line">| Chirpy | Genw   | bird    | f    | 1998-09-11 | NULL  |</span><br><span class="line">+--------+--------+---------+------+------------+-------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="3-选择特定列"><a href="#3-选择特定列" class="headerlink" title="3.选择特定列"></a>3.选择特定列</h4><p>&ensp;&ensp;如果不查看表中的整行，只需将感兴趣的列名进行逗号分隔。例如如果查询谁的动物什么时候出生，请选择name和 birth列：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT name, birth FROM pet;</span><br><span class="line">+--------+------------+</span><br><span class="line">| name   | birth      |</span><br><span class="line">+--------+------------+</span><br><span class="line">| Fluffy | 1999-02-04 |</span><br><span class="line">| Claws  | 1994-03-17 |</span><br><span class="line">| Buffy  | 1989-05-13 |</span><br><span class="line">| Fang   | 1990-08-27 |</span><br><span class="line">| Bowser | 1990-01-01 |</span><br><span class="line">| Chirpy | 1998-09-11 |</span><br><span class="line">+--------+------------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;要找出宠物属于谁，如下查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select owner from pet;</span><br><span class="line">+--------+</span><br><span class="line">| owner  |</span><br><span class="line">+--------+</span><br><span class="line">| Harold |</span><br><span class="line">| Gwen   |</span><br><span class="line">| Harold |</span><br><span class="line">| Benny  |</span><br><span class="line">| Diane  |</span><br><span class="line">| Genw   |</span><br><span class="line">+--------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;要最小化输出，请通过添加关键字 <strong>DISTINCT</strong> 去除重复输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select distinct owner from pet;</span><br><span class="line">+--------+</span><br><span class="line">| owner  |</span><br><span class="line">+--------+</span><br><span class="line">| Harold |</span><br><span class="line">| Gwen   |</span><br><span class="line">| Benny  |</span><br><span class="line">| Diane  |</span><br><span class="line">| Genw   |</span><br><span class="line">+--------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;使用WHERE子句将行选择与列选择组合在一起。例如，仅获取狗和猫的出生日期，如下查询：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select name,species,birth</span><br><span class="line">    -&gt; from pet</span><br><span class="line">    -&gt; where species = &apos;dog&apos; or species = &apos;cat&apos;;</span><br><span class="line">+--------+---------+------------+</span><br><span class="line">| name   | species | birth      |</span><br><span class="line">+--------+---------+------------+</span><br><span class="line">| Fluffy | cat     | 1999-02-04 |</span><br><span class="line">| Claws  | cat     | 1994-03-17 |</span><br><span class="line">| Buffy  | dog     | 1989-05-13 |</span><br><span class="line">| Fang   | dog     | 1990-08-27 |</span><br><span class="line">| Bowser | dog     | 1990-01-01 |</span><br><span class="line">+--------+---------+------------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="4-对行排序"><a href="#4-对行排序" class="headerlink" title="4.对行排序"></a>4.对行排序</h4><p>&ensp;&ensp;当行以某种有意义的方式排序时，通常更容易查询输出。要对结果进行排序，请使用<strong>ORDER BY</strong>子句。<br>&ensp;&ensp;默认排序顺序是升序。要按反向（降序）排序，请将<strong>DESC</strong>关键字添加到要排序 的列名称后面  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select name, birth from pet order by birth;</span><br><span class="line">+--------+------------+</span><br><span class="line">| name   | birth      |</span><br><span class="line">+--------+------------+</span><br><span class="line">| Buffy  | 1989-05-13 |</span><br><span class="line">| Bowser | 1990-01-01 |</span><br><span class="line">| Fang   | 1990-08-27 |</span><br><span class="line">| Claws  | 1994-03-17 |</span><br><span class="line">| Chirpy | 1998-09-11 |</span><br><span class="line">| Fluffy | 1999-02-04 |</span><br><span class="line">+--------+------------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; select name, species, birth from pet</span><br><span class="line">    -&gt; order by species,birth desc;</span><br><span class="line">+--------+---------+------------+</span><br><span class="line">| name   | species | birth      |</span><br><span class="line">+--------+---------+------------+</span><br><span class="line">| Chirpy | bird    | 1998-09-11 |</span><br><span class="line">| Fluffy | cat     | 1999-02-04 |</span><br><span class="line">| Claws  | cat     | 1994-03-17 |</span><br><span class="line">| Fang   | dog     | 1990-08-27 |</span><br><span class="line">| Bowser | dog     | 1990-01-01 |</span><br><span class="line">| Buffy  | dog     | 1989-05-13 |</span><br><span class="line">+--------+---------+------------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;该DESC关键字仅适用于紧邻的列名（birth）; 它不会影响species列排序顺序。  </p>
+<p>&ensp;&ensp;<strong>LIMIT</strong> 子句用于限制由 SELECT 语句返回的数据数量。下面是 LIMIT 子句与 OFFSET 子句一起使用时的语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT column1, column2, columnN </span><br><span class="line">FROM table_name</span><br><span class="line">LIMIT [no of rows] OFFSET [row num]</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;引擎将返回从下一行开始直到给定的 OFFSET 为止的所有行。</p>
+<h4 id="5-日期计算"><a href="#5-日期计算" class="headerlink" title="5.日期计算"></a>5.日期计算</h4><p>&ensp;&ensp;要确定每只宠物的年龄，使用 TIMESTAMPDIFF()功能。它的参数是你所希望结果表达的 单位，以及取得差异的两个日期。以下查询显示了每只宠物的出生日期，当前日期和年龄。一个 别名（age）使得输出列更有意义。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT name, birth, CURDATE(),</span><br><span class="line">    -&gt; TIMESTAMPDIFF(YEAR,birth,CURDATE()) AS age</span><br><span class="line">    -&gt; FROM pet;</span><br><span class="line">+--------+------------+------------+------+</span><br><span class="line">| name   | birth      | CURDATE()  | age  |</span><br><span class="line">+--------+------------+------------+------+</span><br><span class="line">| Fluffy | 1999-02-04 | 2019-02-19 |   20 |</span><br><span class="line">| Claws  | 1994-03-17 | 2019-02-19 |   25 |</span><br><span class="line">| Buffy  | 1989-05-13 | 2019-02-19 |   29 |</span><br><span class="line">| Fang   | 1990-08-27 | 2019-02-19 |   28 |</span><br><span class="line">| Bowser | 1990-01-01 | 2019-02-19 |   29 |</span><br><span class="line">| Chirpy | 1998-09-11 | 2019-02-19 |   20 |</span><br><span class="line">+--------+------------+------------+------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;也可以使用order by 对age进行排序，不再演示  </p>
+<hr>
+<p>&ensp;&ensp;下面说明TIMESTAMPDIFF函数的语法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TIMESTAMPDIFF(unit,begin,end);</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;TIMESTAMPDIFF函数返回begin-end的结果，其中begin和end是DATE或DATETIME表达式。</p>
+<p>&ensp;&ensp;TIMESTAMPDIFF函数允许其参数具有混合类型，例如，begin是DATE值，end可以是DATETIME值。 如果使用DATE值，则TIMESTAMPDIFF函数将其视为时间部分为“00:00:00”的DATETIME值。</p>
+<p>&ensp;&ensp;unit参数是确定(end-begin)的结果的单位，表示为整数。 以下是有效单位：<br>MICROSECOND(微秒)、SECOND(秒)、MINUTE(分钟)、HOUR(小时)、DAY(天)、WEEK(星期)、MONTH(月)、QUARTER(季度)、YEAR(年)</p>
+<hr>
+<p>&ensp;&ensp;类似的查询可用于确定死亡动物的死亡年龄。可以通过检查death值是否为null 。然后，对于那些非NULL值的，计算death和 birth值之差： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select name,birth,death,</span><br><span class="line">    -&gt; timestampdiff(year,birth,death) as age</span><br><span class="line">    -&gt; from pet            </span><br><span class="line">    -&gt; where death is not null</span><br><span class="line">    -&gt; order by age;</span><br><span class="line">+--------+------------+------------+------+</span><br><span class="line">| name   | birth      | death      | age  |</span><br><span class="line">+--------+------------+------------+------+</span><br><span class="line">| Bowser | 1990-01-01 | 1995-07-29 |    5 |</span><br><span class="line">+--------+------------+------------+------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;MySQL提供了用于提取日期的部分，如一些功能 YEAR()， MONTH()和 DAYOFMONTH()。如下一个简单的查询birth和 MONTH(birth)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select name,birth,month(birth) from pet; </span><br><span class="line">+--------+------------+--------------+</span><br><span class="line">| name   | birth      | month(birth) |</span><br><span class="line">+--------+------------+--------------+</span><br><span class="line">| Fluffy | 1999-02-04 |            2 |</span><br><span class="line">| Claws  | 1994-03-17 |            3 |</span><br><span class="line">| Buffy  | 1989-05-13 |            5 |</span><br><span class="line">| Fang   | 1997-02-22 |            2 |</span><br><span class="line">| Bowser | 1990-01-01 |            1 |</span><br><span class="line">| Chirpy | 1998-09-11 |            9 |</span><br><span class="line">+--------+------------+--------------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; select name,birth </span><br><span class="line">    -&gt; from pet </span><br><span class="line">    -&gt; where month(birth)=5;</span><br><span class="line">+-------+------------+</span><br><span class="line">| name  | birth      |</span><br><span class="line">+-------+------------+</span><br><span class="line">| Buffy | 1989-05-13 |</span><br><span class="line">+-------+------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;DATE_ADD()可以将时间间隔添加到给定日期。如果将值添加到CURDATE()，然后提取月份部分MONTH()，结果将生成查找生日的月份：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select name,birth from pet</span><br><span class="line">    -&gt; where month(birth)=month(date_add(curdate(),interval 2 month));</span><br><span class="line">+-------+------------+</span><br><span class="line">| name  | birth      |</span><br><span class="line">+-------+------------+</span><br><span class="line">| Buffy | 1989-05-13 |</span><br><span class="line">+-------+------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="6-null-值"><a href="#6-null-值" class="headerlink" title="6.null 值"></a>6.null 值</h4><p>&ensp;&ensp;要测试NULL，请使用<strong>IS NULL</strong> 和 <strong>IS NOT NULL</strong>运算符，如下所示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT 1 IS NULL, 1 IS NOT NULL</span><br><span class="line">    -&gt; ;</span><br><span class="line">+-----------+---------------+</span><br><span class="line">| 1 IS NULL | 1 IS NOT NULL |</span><br><span class="line">+-----------+---------------+</span><br><span class="line">|         0 |             1 |</span><br><span class="line">+-----------+---------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;任何算术比较NULL的结果 也是NULL，所以你不能从这种比较中获得任何有意义的结果。<br>&ensp;&ensp;在MySQL中，0或NULL 为假，其他则为真。布尔运算的默认真值是1。</p>
+<h4 id="7-模式匹配"><a href="#7-模式匹配" class="headerlink" title="7.模式匹配"></a>7.模式匹配</h4><p>&ensp;&ensp;MySQL提供标准的SQL模式匹配以及基于扩展正则表达式的模式匹配，类似于Unix实用程序（如vi，grep和 sed）使用的扩展正则表达式 。</p>
+<p>&ensp;&ensp;SQL模式匹配可以使用 “_”  匹配任何单个字符并且%匹配任意数量的字符（包括零个字符）。在MySQL中，SQL模式默认情况下不区分大小写。使                               用SQL模式时不要使用 =或&lt;&gt;，改用LIKE或 NOT LIKE比较运算符。 </p>
+<p>&ensp;&ensp;查找以b（b%）开头。%fy（以fy结尾），%w%（包含w字符）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select  *</span><br><span class="line">    -&gt; from pet</span><br><span class="line">    -&gt; where name like &apos;b%&apos;;</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">| name   | owner  | species | sex  | birth      | death      |</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">| Buffy  | Harold | dog     | f    | 1989-05-13 | NULL       |</span><br><span class="line">| Bowser | Diane  | dog     | m    | 1990-01-01 | 1995-07-29 |</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;要查找包含五个字符的名称：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from pet where name like &apos;_____&apos;;</span><br><span class="line">+-------+--------+---------+------+------------+-------+</span><br><span class="line">| name  | owner  | species | sex  | birth      | death |</span><br><span class="line">+-------+--------+---------+------+------------+-------+</span><br><span class="line">| Claws | Gwen   | cat     | m    | 1994-03-17 | NULL  |</span><br><span class="line">| Buffy | Harold | dog     | f    | 1989-05-13 | NULL  |</span><br><span class="line">+-------+--------+---------+------+------------+-------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;MySQL提供的另一种模式匹配使用扩展的正则表达式。当为这种类型的模式测试匹配时，使用 REGEXP和NOT REGEXP运算符（或 RLIKE和 NOT RLIKE，它们是同义词）。</p>
+<p>&ensp;&ensp;以下列表描述了扩展正则表达式的一些特征：</p>
+<p>&ensp;&ensp;. 匹配任何单个字符。<br>字符类[…]匹配括号内的任何字符。例如， [abc]匹配a， b或c。[a-z] 匹配任何字母，而[0-9] 匹配任何数字。</p>
+<p>&ensp;&ensp;*匹配前面事物的零个或多个实例。例如，x<em> 匹配任意数量的x字符， [0-9]</em>匹配任意数量的数字，.*匹配任意数量的任何字符。</p>
+<p>&ensp;&ensp;如果模式与测试值中的任何位置匹配，则正则表达式模式匹配成功 。（这与LIKE模式匹配不同，仅在模式与整个值匹配时才会成功。）<br>使用锚定模式以使其与要测试的值的开头或结尾匹配，请使用模式^开头或$结尾。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from pet where name regexp &apos;^b&apos;;</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">| name   | owner  | species | sex  | birth      | death      |</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">| Buffy  | Harold | dog     | f    | 1989-05-13 | NULL       |</span><br><span class="line">| Bowser | Diane  | dog     | m    | 1990-01-01 | 1995-07-29 |</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="8-计数行"><a href="#8-计数行" class="headerlink" title="8.计数行"></a>8.计数行</h4><p>&ensp;&ensp;COUNT(*)计算行数，因此计算动物数量的查询如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select count(*) from pet;</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">|        6 |</span><br><span class="line">+----------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;计算每个人拥有几个宠物</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select owner,count(*) from pet group by owner;</span><br><span class="line">+--------+----------+</span><br><span class="line">| owner  | count(*) |</span><br><span class="line">+--------+----------+</span><br><span class="line">| Benny  |        1 |</span><br><span class="line">| Diane  |        1 |</span><br><span class="line">| Genw   |        1 |</span><br><span class="line">| Gwen   |        1 |</span><br><span class="line">| Harold |        2 |</span><br><span class="line">+--------+----------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;上述查询使用GROUP BY对每个owner进行分组。使用COUNT()结合 GROUP BY在各种分组表征数据时非常有用。 </p>
+<p>&ensp;&ensp;想要得到每种性别的动物数量仅适用于已知性别的动物：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select species,sex,count(*)                                            </span><br><span class="line">    -&gt; from pet </span><br><span class="line">    -&gt; where sex is not null</span><br><span class="line">    -&gt; group by species,sex;</span><br><span class="line">+---------+------+----------+</span><br><span class="line">| species | sex  | count(*) |</span><br><span class="line">+---------+------+----------+</span><br><span class="line">| bird    | f    |        1 |</span><br><span class="line">| cat     | f    |        1 |</span><br><span class="line">| cat     | m    |        1 |</span><br><span class="line">| dog     | f    |        1 |</span><br><span class="line">| dog     | m    |        2 |</span><br><span class="line">+---------+------+----------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="9-使用多个表"><a href="#9-使用多个表" class="headerlink" title="9.使用多个表"></a>9.使用多个表</h4><p>&ensp;&ensp;pet 表记录了宠物的基本信息，还需要一张表记录他们生活中的事件，如下所示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table event (name varchar(20),date date,type varchar(20),remark varchar(250));</span><br><span class="line">Query OK, 0 rows affected (0.30 sec)</span><br><span class="line">mysql&gt; select * from event;                                          </span><br><span class="line">+--------+------------+--------+-----------------+</span><br><span class="line">| name   | date       | type   | remark          |</span><br><span class="line">+--------+------------+--------+-----------------+</span><br><span class="line">| Fluffy | 1995-05-15 | litter | 4,3female,1male |</span><br><span class="line">| Buffy  | 1993-06-23 | litter | 4,3female,1male |</span><br><span class="line">| Buffy  | 1994-06-19 | litter | 4,3female,1male |</span><br><span class="line">| Chirpy | 1999-03-19 | daily  | go away         |</span><br><span class="line">| Fang   | 1991-10-12 | kennel | NULL            |</span><br><span class="line">| Bowser | 1991-10-12 | kennel | NULL            |</span><br><span class="line">+--------+------------+--------+-----------------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;假设你想要得到宠物下崽的年龄。宠物的下崽日期在 event表格中，但要计算她在该日期的年龄，需要她的出生日期，该日期存储在 pet表格中。这意味着查询需要两个表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select pet.name,timestampdiff(year,birth,date) as age,remark </span><br><span class="line">    -&gt; from pet inner join event </span><br><span class="line">    -&gt; on pet.name = event.name</span><br><span class="line">    -&gt; where event.type=&apos;litter&apos;;</span><br><span class="line">+--------+------+-----------------+</span><br><span class="line">| name   | age  | remark          |</span><br><span class="line">+--------+------+-----------------+</span><br><span class="line">| Fluffy |    3 | 4,3female,1male |</span><br><span class="line">| Buffy  |    4 | 4,3female,1male |</span><br><span class="line">| Buffy  |    5 | 4,3female,1male |</span><br><span class="line">+--------+------+-----------------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;该FROM子句连接两个表，因为查询需要从两个表中提取信息</p>
+<p>&ensp;&ensp;组合（连接）来自多个表的信息时，需要指定一个表中的记录如何与另一个表中的记录匹配。</p>
+<p>&ensp;&ensp;该查询使用 INNER JOIN来组合表。只有当两个表都满足ON子句中指定的条件时，内部联接才允许其中一个表中的行出现在结果中。在这个例子中， ON子句指定  pet表中的name列必须的匹配 event表的name列 。如果名称出现在一个表中但不出现在另一个表中，则该行不会出现在结果中，因为该ON 子句中的条件失败。</p>
+<p>&ensp;&ensp;由于该name列出现在两个表中，因此必须具体说明引用该列时的表。这是通过将表名添加到列名称来完成的。</p>
+<p>&ensp;&ensp;如果要将表中的记录与同一表中的其他记录进行比较，有时将表连接到自身会很有用。例如，要在宠物中找到繁殖对，可以pet自身加入表格，以生成候选对：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select p1.name,p1.sex,p2.name,p2.sex,p1.species </span><br><span class="line">    -&gt;from pet as p1 inner join pet as p2 </span><br><span class="line">    -&gt;on p1.species = p2.species </span><br><span class="line">    -&gt;and p1.sex = &apos;f&apos; and p1.death is null </span><br><span class="line">    -&gt;and p2.sex = &apos;m&apos; and p2.death is null;</span><br><span class="line">+--------+------+-------+------+---------+</span><br><span class="line">| name   | sex  | name  | sex  | species |</span><br><span class="line">+--------+------+-------+------+---------+</span><br><span class="line">| Fluffy | f    | Claws | m    | cat     |</span><br><span class="line">| Buffy  | f    | Fang  | m    | dog     |</span><br><span class="line">+--------+------+-------+------+---------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;在此查询中，我们为表名指定别名以引用列，并保持每个列引用与表关联的表的实例。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/02/MySQL语句(菜鸟教程)/" rel="next" title="MySQL语句(菜鸟教程)">
+                <i class="fa fa-chevron-left"></i> MySQL语句(菜鸟教程)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/15/常见查询示例/" rel="prev" title="常见查询示例">
+                常见查询示例 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+<div>
+    
+    <div>
+    
+        <div style="text-align:center;color: #000000;font-size:18px;">------ end ------</div>
+    
+</div>
+
+
+    
+ </div>
+ 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/profile_photo.png" alt="戴树谦">
+            
+              <p class="site-author-name" itemprop="name">戴树谦</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CrimsonRomance" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:18632772539@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#从表中检索信息"><span class="nav-number">1.</span> <span class="nav-text">从表中检索信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-选择所有数据"><span class="nav-number">1.1.</span> <span class="nav-text">1.选择所有数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-选择特定行"><span class="nav-number">1.2.</span> <span class="nav-text">2.选择特定行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-选择特定列"><span class="nav-number">1.3.</span> <span class="nav-text">3.选择特定列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-对行排序"><span class="nav-number">1.4.</span> <span class="nav-text">4.对行排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-日期计算"><span class="nav-number">1.5.</span> <span class="nav-text">5.日期计算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-null-值"><span class="nav-number">1.6.</span> <span class="nav-text">6.null 值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-模式匹配"><span class="nav-number">1.7.</span> <span class="nav-text">7.模式匹配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-计数行"><span class="nav-number">1.8.</span> <span class="nav-text">8.计数行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-使用多个表"><span class="nav-number">1.9.</span> <span class="nav-text">9.使用多个表</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-fas fa-code"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">戴树谦</span>
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
