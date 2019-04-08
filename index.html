@@ -1143,6 +1143,191 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/01/HTTP请求方法/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="戴树谦">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile_photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="戴树谦的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/01/HTTP请求方法/" itemprop="url">HTTP请求方法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-01T19:15:58+08:00">
+                2019-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  2.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="GET方法"><a href="#GET方法" class="headerlink" title="GET方法"></a>GET方法</h3><p>&ensp;&ensp;GET是最常用的方法，GET 方法意思是获取被请求 URI（Request-URI）指定的信息（以实体的格式），常用于请求服务器发送某个资源。GET请求中不会呈现数据。</p>
+<p>&ensp;&ensp;最常用于向服务器查询某些信息。必要时，可以将查询字符串参数追加到URL末尾，以便将信息发送给服务器。  </p>
+<p>&ensp;&ensp;使用GET请求时经常会发生的一个错误，就是查询字符串的格式有问题。查询字符串中每个参数的名称和值都必须使用encodeURLComponent()进行编码，然后才能放到URL的末尾；而且所有的名-值对都必须由（&amp;）分离。</p>
+<img src="/2019/03/01/HTTP请求方法/1.png"> 
+<img src="/2019/03/01/HTTP请求方法/2.png"> 
+<p>&ensp;&ensp;追踪HTTP流后，显示如下，响应报文中包含请求的页面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">GET / HTTP/1.1</span><br><span class="line">Host: 172.18.74.92</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">DNT: 1</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">Cache-Control: max-age=0</span><br><span class="line"></span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Date: Sun, 07 Apr 2019 06:24:06 GMT</span><br><span class="line">Server: Apache/2.4.6 (CentOS) OpenSSL/1.0.2k-fips mod_fcgid/2.3.9 PHP/5.4.16</span><br><span class="line">X-Powered-By: PHP/5.4.16</span><br><span class="line">Content-Length: 743</span><br><span class="line">Keep-Alive: timeout=5, max=100</span><br><span class="line">Connection: Keep-Alive</span><br><span class="line">Content-Type: text/html; charset=UTF-8</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html;charset=UTF-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;产品添加-JD产品管理系统&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h3&gt;JD产品管理&lt;/h3&gt;</span><br><span class="line">&lt;form action=&quot;deal.php&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;</span><br><span class="line">图书名称：&lt;input type=&apos;text&apos; name=&apos;title&apos; /&gt;</span><br><span class="line">&lt;hr /&gt;</span><br><span class="line">销售价格：&lt;input type=&quot;text&quot; name=&apos;price&apos; /&gt;</span><br><span class="line">&lt;hr /&gt;</span><br><span class="line">市场价格：&lt;input type=&quot;text&quot; name=&apos;market_price&apos; /&gt;</span><br><span class="line">&lt;hr /&gt;</span><br><span class="line">&lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;添加&quot; /&gt;</span><br><span class="line">&lt;input type=&quot;reset&quot; name=&quot;reset&quot; value=&quot;重置&quot; /&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="HEAD方法"><a href="#HEAD方法" class="headerlink" title="HEAD方法"></a>HEAD方法</h3><p>&ensp;&ensp;HEAD方法与GET方法的行为很类似，但在服务器响应中只会返回收首部，不会返回实体的主体部分。这就允许客户端在未获取实际资源的情况下，对资源首部进行检查。使用HEAD 可以：</p>
+<ul>
+<li>在不获取资源的情况下了解资源的情况(例如，对类型的判断)</li>
+<li>通过查看响应中的状态码，看看某个对象是否存在</li>
+<li>通过查看首部，测试资源是否被修改</li>
+</ul>
+<img src="/2019/03/01/HTTP请求方法/3.png"> 
+<h3 id="PUT方法"><a href="#PUT方法" class="headerlink" title="PUT方法"></a>PUT方法</h3><p>&ensp;&ensp;与GET从服务器读取文档相反，PUT方法会向服务器写入文档。有些发布系统允许用户创建Web页面，并用PUT直接将其安装到Web服务器上去。</p>
+<p>&ensp;&ensp;PUT方法的语义是让服务器用请求的主体部分来创建一个由所请求的URL命名的新文档，或者如果那个URL已经存在的话，就用这个主体来替代它。</p>
+<p>&ensp;&ensp;我猜测，如果在某公司的招聘网站提交简历应该会用到PUT方法，因为PUT用于向服务器上的资源中存储数据。<br><img src="/2019/03/01/HTTP请求方法/4.png"> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">PUT /personal-center/resumeInfo HTTP/1.1</span><br><span class="line">Host: hr.某ya.com</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0</span><br><span class="line">Accept: application/json</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Referer: http://hr.某ya.com/campus_apply/某ya/4112</span><br><span class="line">Content-Type: application/json</span><br><span class="line">X-Tingyun-Id: BuYww-5RqXA;r=619819948</span><br><span class="line">Content-Length: 331</span><br><span class="line">DNT: 1</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Cookie: 略</span><br><span class="line"></span><br><span class="line">&#123;&quot;uploadInfo&quot;:&#123;&quot;resumeKey&quot;:&quot;&quot;,&quot;attachments&quot;:[]&#125;,&quot;basicInfo&quot;:&#123;&quot;name&quot;:&quot;netlab&quot;,&quot;phone&quot;:&quot;&quot;…………&quot;&#125;HTTP/1.1 200 OK</span><br><span class="line">Server: Tengine/2.1.2</span><br><span class="line">Date: Sun, 07 Apr 2019 06:50:19 GMT</span><br><span class="line">Content-Type: application/json; charset=utf-8</span><br><span class="line">Transfer-Encoding: chunked</span><br><span class="line">Connection: keep-alive</span><br><span class="line">ETag: W/&quot;41c-l2UjHwiWvnbdwUn1PQuGkg&quot;</span><br><span class="line">set-cookie: 略</span><br><span class="line">Vary: Accept-Encoding</span><br><span class="line">Content-Encoding: gzip</span><br><span class="line"></span><br><span class="line">&#123;&quot;id&quot;:779573,&quot;name&quot;:&quot;netlab&quot;,&quot;email&quot;:null,&quot;phone&quot;:&quot;&quot;…………&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="POST方法"><a href="#POST方法" class="headerlink" title="POST方法"></a>POST方法</h3><p>&ensp;&ensp;POST方法期初是用来向服务器输入数据的，实际上，通常会用他来支持HTML的表单。表单中填好的数据通常会被送给服务器，然后由服务器将其发送到它要去的地方(例如发送到数据库中存储)。POST用于向服务器发送数据。<br><img src="/2019/03/01/HTTP请求方法/5.png"><br><img src="/2019/03/01/HTTP请求方法/6.png"> </p>
+<p>&ensp;&ensp;追踪HTTP流后。可以看到使用POST方法提交的数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">POST /deal.php HTTP/1.1</span><br><span class="line">Host: 172.18.74.92</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Referer: http://172.18.74.92/</span><br><span class="line">Content-Type: multipart/form-data; boundary=------------------25762159945006</span><br><span class="line">Content-Length: 446</span><br><span class="line">DNT: 1</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line"></span><br><span class="line">-----------------------------25762159945006</span><br><span class="line">Content-Disposition: form-data; name=&quot;title&quot;</span><br><span class="line"></span><br><span class="line">10 #title中提交的内容           </span><br><span class="line">-----------------------------25762159945006</span><br><span class="line">Content-Disposition: form-data; name=&quot;price&quot;</span><br><span class="line"></span><br><span class="line">20 #price中提交的内容</span><br><span class="line">-----------------------------25762159945006</span><br><span class="line">Content-Disposition: form-data; name=&quot;market_price&quot;</span><br><span class="line"></span><br><span class="line">3 #market_price中提交的内容</span><br><span class="line">-----------------------------25762159945006</span><br><span class="line">Content-Disposition: form-data; name=&quot;submit&quot;</span><br><span class="line"></span><br><span class="line">添加</span><br><span class="line">-----------------------------25762159945006--</span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Date: Sun, 07 Apr 2019 05:55:36 GMT</span><br><span class="line">Server: Apache/2.4.6 (CentOS) OpenSSL/1.0.2k-fips mod_fcgid/2.3.9 PHP/5.4.16</span><br><span class="line">X-Powered-By: PHP/5.4.16</span><br><span class="line">Content-Length: 12</span><br><span class="line">Keep-Alive: timeout=5, max=100</span><br><span class="line">Connection: Keep-Alive</span><br><span class="line">Content-Type: text/html; charset=utf-8</span><br><span class="line"></span><br><span class="line">添加成功</span><br></pre></td></tr></table></figure>
+<h3 id="DELECT方法"><a href="#DELECT方法" class="headerlink" title="DELECT方法"></a>DELECT方法</h3><p>&ensp;&ensp;顾名思义，DELECT方法所做的就是请服务器删除请求URL所指定的资源。但是客户端应用程序无法保证删除操作一定会执行。因为HTTP规范允许服务器在不通知客户的端的情况下撤销操作。</p>
+<p>&ensp;&ensp;如果响应里包含描述成功的实体，响应应该是 200（OK）；如果 DELETE 动作还没有执行，应该以 202（已接受）响应；如果 DELETE 请求方法已经执行但响应不包含实体，那么应该以204（无内容）响应。</p>
+<img src="/2019/03/01/HTTP请求方法/7.png"> 
+<h3 id="TRACE方法"><a href="#TRACE方法" class="headerlink" title="TRACE方法"></a>TRACE方法</h3><p>&ensp;&ensp;客户端发起一个请求时，这个请求可能要穿过防火墙、代理、网关或其他一些应用程序。每个中间节点都可能会修改原始HTTP请求。TRACE方法允许客户端在最终将请求发送给服务器时看看它变成了什么样子。</p>
+<p>&ensp;&ensp;TRACE请求会在目的服务器端发起一个”环回”诊断。行程最后一站的服务器会弹回一条TRACE响应，并在响应主体中携带它所收到的原始请求报文。这样客户端就可以查看在所有中间HTTP应用程序组成的请求/响应链上，原始报文是否以及如何被毁坏或修改过。</p>
+<p>&ensp;&ensp;TRACE方法主要用于诊断，也就是说，用于验证请求是否如愿穿过了请求/响应链。它是一种很好的工具，可以用来查看代理和其他应用程序对客户请求所产生的效果。</p>
+<p>&ensp;&ensp;尽管TRACE可以很方便的用于诊断，但它也存在缺点，他假定中间应用程序对各类不同的类型请求的处理方式是相同的。很多HTTP应用程序会根据方法的不同做出不同的事情，比如代理可能会将POST请求直接发给服务器，而将GET请求发送给另一个HTTP应用程序。TRACE并不提供区分这些方法的机制。通常中间应用程序会自行决定对TRACE 请求的处理方式。</p>
+<img src="/2019/03/01/HTTP请求方法/8.png"> 
+<h3 id="OPTION方法"><a href="#OPTION方法" class="headerlink" title="OPTION方法"></a>OPTION方法</h3><p>&ensp;&ensp;OPTION方法请求Web服务器告知其支持的各种功能。可以询问服务器通常支持哪些方法，或者对某些特殊资源支持哪些方法。(有些服务器可能只支持对一些特殊类型对象使用特定操作)<br> &ensp;&ensp;这为客户端应用程序提供了一种手段，使其不用实际访问那些资源就能判定访问各种资源的最优方式。</p>
+<img src="/2019/03/01/HTTP请求方法/9.png"> 
+<h3 id="CONNECT方法"><a href="#CONNECT方法" class="headerlink" title="CONNECT方法"></a>CONNECT方法</h3><p>&ensp;&ensp;HTTP1.1 协议规范保留了 CONNECT 方法，此方法是为了能用于能动态切换到隧道的代理</p>
+<pre><code>参考HTTP权威指南
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+<div>
+    
+ </div>
+ 
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/15/常见查询示例/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2368,217 +2553,6 @@
  </div>
  
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/23/MySQL介绍/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="戴树谦">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile_photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="戴树谦的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/23/MySQL介绍/" itemprop="url">MySQL介绍</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-23T20:13:18+08:00">
-                2019-01-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  1.8k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  6
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="什么是MySQL"><a href="#什么是MySQL" class="headerlink" title="什么是MySQL"></a>什么是MySQL</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;MySQL 是最流行的关系型数据库管理系统，在 WEB 应用方面 MySQL 是最好的关系数据库管理系统(RDBMS)应用软件之一。</p>
-<h3 id="MySQL数据库是关系型的"><a href="#MySQL数据库是关系型的" class="headerlink" title="MySQL数据库是关系型的"></a>MySQL数据库是关系型的</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;关系数据库将数据存储在单独的表中，而不是将所有数据放在一个大的库房中。数据库结构被组织成针对速度优化的物理文件。逻辑模型具有数据库，表，视图，行和列等对象，可提供灵活的编程环境。可以设置管理不同数据字段之间关系的规则，例如一对一，一对多，唯一，必需或可选，以及不同表之间的”指针”。数据库强制执行这些规则，因此使用设计良好的数据库，应用程序永远不会看到不一致，重复，孤立，过时或丢失的数据。  </p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;”MYSQL” 的SQL部分代表 “ 结构化查询语言 ”。SQL是用于访问数据库的最常用的标准化语言。根据编程环境，可以直接输入SQL（例如，生成报告），将SQL语句嵌入到用其他语言编写的代码中，或使用隐藏SQL语法的特定于语言的API。</p>
-<h3 id="MySQL数据库服务器非常快速，可靠，可扩展且易于使用"><a href="#MySQL数据库服务器非常快速，可靠，可扩展且易于使用" class="headerlink" title="MySQL数据库服务器非常快速，可靠，可扩展且易于使用"></a>MySQL数据库服务器非常快速，可靠，可扩展且易于使用</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;MySQL Server最初是为了比现有解决方案更快地处理大型数据库而开发的，并且已经成功地在高要求的生产环境中使用了好几年。虽然在不断发展的今天，MySQL服务器提供了丰富而有用的功能集。它的连接性，速度和安全性使MySQL Server非常适合访问Internet上的数据库。</p>
-<h3 id="MySQL-Server适用于客户端-服务器或嵌入式系统。"><a href="#MySQL-Server适用于客户端-服务器或嵌入式系统。" class="headerlink" title="MySQL Server适用于客户端/服务器或嵌入式系统。"></a>MySQL Server适用于客户端/服务器或嵌入式系统。</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;MySQL数据库软件是一个C/S系统，由支持不同后端的多线程SQL服务器，几个不同的客户端程序和库，管理工具以及各种应用程序编程接口（API）组成。<br>MySQL Server作为嵌入式多线程库，可以将其链接到应用程序，以获得更小，更快，更易于管理的独立产品。</p>
-<h3 id="MySQL特点"><a href="#MySQL特点" class="headerlink" title="MySQL特点"></a>MySQL特点</h3><ul>
-<li>内部和可移植性</li>
-<li>用C和C ++编写。</li>
-<li>经过多种不同编译器的测试。</li>
-<li>适用于许多不同的平台。</li>
-<li>为了便于携带，在MySQL 5.5及更高版本中使用CMake。以前的系列使用GNU Automake，Autoconf和Libtool。</li>
-<li>使用Purify（商业内存泄漏检测器）以及GPL工具Valgrind（<a href="http://developer.kde.org/~sewardj/）进行测试。" target="_blank" rel="noopener">http://developer.kde.org/~sewardj/）进行测试。</a></li>
-<li>使用具有独立模块的多层服务器设计。</li>
-<li>设计为使用内核线程完全多线程，以便在可用时轻松使用多个CPU。</li>
-<li>提供事务性和非事务性存储引擎。</li>
-<li>使用非常快的 B-tree 磁盘表 (MyISAM）实现索引压缩。</li>
-<li>旨在使添加其他存储引擎相对容易。如果要为内部数据库提供SQL接口，这非常有用。</li>
-<li>使用非常快速的基于线程的内存分配系统。</li>
-<li>使用优化的嵌套循环连接执行速度非常快。</li>
-<li>实现内存中的哈希表用作临时表。</li>
-<li>使用应尽可能快的高度优化的类库实现SQL函数。通常在查询初始化之后根本没有内存分配。</li>
-<li>将服务器作为单独的程序提供，用于客户端/服务器网络环境，以及作为可嵌入（链接）到独立应用程序的库。此类应用程序可以单独使用，也可以在没有网络的环境中使用。</li>
-</ul>
-<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><ul>
-<li>许多数据类型：有符号/无符号整数，8个字节长的数据，float(浮点型)， double(双精度型)， char(字符)， varchar(变长字符串)， binary(二进制)，varbinary(可变二进制)， text(文本)， blob， date， time， datetime， timestamp， year， set， enum，和开放GIS空间类型。</li>
-<li>固定长度和可变长度的字符串类型。</li>
-</ul>
-<h3 id="函数和语句"><a href="#函数和语句" class="headerlink" title="函数和语句"></a>函数和语句</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;SELECT列表和 WHERE子句查询中的 完整运算符和函数支持 。例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT CONCAT(first_name, &apos; &apos;, last_name)</span><br><span class="line">    -&gt; FROM citizen</span><br><span class="line">    -&gt; WHERE income/dependents &gt; 10000 AND age &gt; 30;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>完全支持SQL GROUP BY和 ORDER BY子句。支持基函数（COUNT()， AVG()， STD()， SUM()， MAX()， MIN()，和GROUP_CONCAT()）。</li>
-<li>支持LEFT OUTER JOIN和 RIGHT OUTER JOIN使用标准SQL和ODBC语法。</li>
-<li>根据标准SQL的要求支持表和列上的别名。</li>
-<li>支持DELETE， INSERT， REPLACE，和 UPDATE以返回更改（受影响）的行数，或返回通过连接到服务器时设置标志，而不是匹配的行的数量。</li>
-<li>支持特定于MySQL的SHOW语句，用于检索有关数据库，存储引擎，表和索引的信息。支持 INFORMATION_SCHEMA数据库，根据标准SQL实现。</li>
-<li>一个EXPLAIN语句来显示优化器如何解决一个查询。</li>
-<li>表名或列名中函数名的独立性。例如，ABS是一个有效的列名。唯一的限制是，对于函数调用，函数名和它后面的“ (”之间不允许有空格 。</li>
-<li>可以在同一语句中引用来自不同数据库的表。</li>
-</ul>
-<h3 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h3><ul>
-<li>特权和密码系统，非常灵活和安全，可以进行基于主机的验证。</li>
-<li>连接到服务器时加密所有密码流量的密码安全性。</li>
-</ul>
-<h3 id="可扩展性和限制"><a href="#可扩展性和限制" class="headerlink" title="可扩展性和限制"></a>可扩展性和限制</h3><ul>
-<li>支持大型数据库。我们将MySQL Server与包含5000万条记录的数据库结合使用。</li>
-<li>每个表最多支持64个索引。每个索引可以包含1到16列或部分列。InnoDB表的最大索引宽度为767字节或3072字节。MyISAM表的最大索引宽度为1000个字节。索引可使用的柱的前缀CHAR， VARCHAR， BLOB，或 TEXT列类型。</li>
-</ul>
-<h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><ul>
-<li>客户端可以使用多种协议连接到MySQL Server:<br>  i. 客户端可以在任何平台上使用TCP / IP套接字进行连接。<br>  ii. 在Windows系统上，如果使用该–enable-named-pipe选项启动服务器，则客户端可以使用命名管道进行连接。如果使用该–shared-memory选项启动，Windows服务器也支持共享内存连接。客户端可以使用该–protocol=memory选项通过共享内存进行连接。<br>  iii. 在Unix系统上，客户端可以使用Unix域套接字文件进行连接。</li>
-</ul>
-<ul>
-<li>MySQL客户端程序可以用多种语言编写。用C编写的客户端库可用于用C或C ++编写的客户端，或者用于提供C绑定的任何语言。</li>
-<li>提供C，C ++，Eiffel，Java，Perl，PHP，Python，Ruby和Tcl的API，使MySQL客户端能够以多种语言编写。</li>
-</ul>
-<h3 id="客户端和工具"><a href="#客户端和工具" class="headerlink" title="客户端和工具"></a>客户端和工具</h3><ul>
-<li>MySQL包括几个客户端和实用程序。这些包括命令行程序，如 mysqldump和 mysqladmin，以及图形程序，如 MySQL Workbench。</li>
-<li>MySQL Server内置支持SQL语句来检查，优化和修复表。这些语句可以从命令行通过 mysqlcheck客户端获得。MySQL还包括myisamchk，这是一个非常快速的命令行实用程序，用于在MyISAM 表上执行这些操作。</li>
-<li>可以使用–help 或-?选项调用MySQL程序以获取在线帮助。</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-<div>
-    
- </div>
- 
-    
   </section>
 
   
@@ -2633,7 +2607,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -2646,7 +2620,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
