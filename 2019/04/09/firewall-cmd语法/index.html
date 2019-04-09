@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Firewall,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="firewall-cmd&amp;ensp;&amp;ensp;firewall-cmd是firewalld的主要命令行工具。它可用于获取有关firewalld的状态信息，获取运行时和永久环境的防火墙配置，以及更改这些信息。&amp;ensp;&amp;ensp;根据所选策略，需要通过身份验证才能访问或更改firewalld配置。它仅在firewalld运行时才可用 常规参数&amp;ensp;&amp;ensp;-h &amp;ensp; 打印简短的">
+<meta name="keywords" content="Firewall">
+<meta property="og:type" content="article">
+<meta property="og:title" content="firewall-cmd语法">
+<meta property="og:url" content="http://yoursite.com/2019/04/09/firewall-cmd语法/index.html">
+<meta property="og:site_name" content="戴树谦的博客">
+<meta property="og:description" content="firewall-cmd&amp;ensp;&amp;ensp;firewall-cmd是firewalld的主要命令行工具。它可用于获取有关firewalld的状态信息，获取运行时和永久环境的防火墙配置，以及更改这些信息。&amp;ensp;&amp;ensp;根据所选策略，需要通过身份验证才能访问或更改firewalld配置。它仅在firewalld运行时才可用 常规参数&amp;ensp;&amp;ensp;-h &amp;ensp; 打印简短的">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-09T07:13:32.495Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="firewall-cmd语法">
+<meta name="twitter:description" content="firewall-cmd&amp;ensp;&amp;ensp;firewall-cmd是firewalld的主要命令行工具。它可用于获取有关firewalld的状态信息，获取运行时和永久环境的防火墙配置，以及更改这些信息。&amp;ensp;&amp;ensp;根据所选策略，需要通过身份验证才能访问或更改firewalld配置。它仅在firewalld运行时才可用 常规参数&amp;ensp;&amp;ensp;-h &amp;ensp; 打印简短的">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/09/firewall-cmd语法/">
+
+
+
+
+
+  <title>firewall-cmd语法 | 戴树谦的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">戴树谦的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/09/firewall-cmd语法/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="戴树谦">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile_photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="戴树谦的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">firewall-cmd语法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-09T15:11:55+08:00">
+                2019-04-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  5.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  22
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="firewall-cmd"><a href="#firewall-cmd" class="headerlink" title="firewall-cmd"></a>firewall-cmd</h3><p>&ensp;&ensp;firewall-cmd是firewalld的主要命令行工具。它可用于获取有关firewalld的状态信息，获取运行时和永久环境的防火墙配置，以及更改这些信息。<br>&ensp;&ensp;根据所选策略，需要通过身份验证才能访问或更改firewalld配置。它仅在firewalld运行时才可用</p>
+<h4 id="常规参数"><a href="#常规参数" class="headerlink" title="常规参数"></a>常规参数</h4><p>&ensp;&ensp;<strong>-h</strong> &ensp; 打印简短的帮助文本并退出</p>
+<p>&ensp;&ensp;<strong>-V</strong> &ensp; 打印firewalld的版本字符串。此选项不能与其他选项组合使用 </p>
+<p>&ensp;&ensp;<strong>-q</strong>  &ensp;不要打印状态消息</p>
+<h5 id="状态参数"><a href="#状态参数" class="headerlink" title="状态参数"></a>状态参数</h5><p>&ensp;&ensp;<strong>–state</strong>&ensp; 检查firewalld守护程序是否处于运行状态 </p>
+<p>&ensp;&ensp;<strong>–reload</strong> &ensp; 重新加载防火墙规则并保留状态信息。当前的系统配置将成为新的运行时配置，如果当前配置未处于永久配置中会因重新加载而丢失  </p>
+<p>&ensp;&ensp;<strong>–complete-reload</strong> &ensp; 完全重新加载防火墙，甚至netfilter内核模块。这会终止活动连接，此选项只应在防火墙出现严重问题时使用 </p>
+<p>&ensp;&ensp;<strong>–runtime-to-permanent</strong> &ensp; 保存当前运行时配置并重写系统配置，该方法的工作原理是，在配置firewalld时只进行运行时配置更改，一旦对配置满意并测试了它的工作方式，就可以将其保存到系统配置中</p>
+<h4 id="拒绝日志参数"><a href="#拒绝日志参数" class="headerlink" title="拒绝日志参数"></a>拒绝日志参数</h4><p>&ensp;&ensp;通过使用<strong>LogDenied</strong>选项，firewalld可以为拒绝的数据包添加简单的日志记录机制。这些是被拒绝或丢弃的数据包。 </p>
+<p>&ensp;&ensp;<strong>–get-log-denied</strong>  &ensp;打印拒绝日志</p>
+<p>&ensp;&ensp;<strong>–set-log-denied=value</strong> &ensp; value的值可以为all，unicast，broadcast，multicast和off。默认设置为off，禁用日志记录。all为所有。这会改变运行时配置和系统配置，并会重新加载防火墙以开启日志规则。</p>
+<h4 id="系统选项"><a href="#系统选项" class="headerlink" title="系统选项"></a>系统选项</h4><p>&ensp;&ensp;<strong>–permanent</strong>&ensp; 用于设置系统选项，仅在系统重启或服务restart/reload后生效，如果不加该参数则只是运行时配置的一部分</p>
+<h4 id="Zone"><a href="#Zone" class="headerlink" title="Zone"></a>Zone</h4><p>&ensp;&ensp;<strong>–get-default-zone</strong>  &ensp;打印连接和接口的默认区域</p>
+<p>&ensp;&ensp;<strong>–set-default-zone=zone</strong>  &ensp; 为没有选择区域的连接和接口设置默认区域。也可以更改连接或接口默认区域。这会改变运行配置和系统配置</p>
+<p>&ensp;&ensp;<strong>–get-active-zones</strong>  &ensp;打印当前区域以及区域中使用的接口和源。该是与接口或源绑定的区域</p>
+<p>&ensp;&ensp;<strong>[–permanent] –get-zones</strong>  &ensp; 将预定义的区域打印为空格分隔的列表(firewalld将网卡对应到不同的区域（zone），zone 默认共有9个:block、dmz、drop、external、home、internal、public、trusted、work</p>
+<p>&ensp;&ensp;<strong>[–permanent] –get-services</strong>&ensp;   将预定义的服务打印为空格分隔的列表</p>
+<p>&ensp;&ensp;<strong>[–permanent] –get-icmptypes</strong>&ensp;   将预定义的icmptypes打印为空格分隔的列表。</p>
+<p>&ensp;&ensp;<strong>[–permanent] –get-zone-of-interface=interface</strong>&ensp;    打印接口绑定的区域名称</p>
+<p>&ensp;&ensp;<strong>[–permanent] –get-zone-of-source=source[/mask]|MAC|ipset:ipset</strong>&ensp;  打印源绑定的区域</p>
+<p>&ensp;&ensp;<strong>[–permanent] –info-zone=zone</strong>&ensp;  打印指定Zone的相关信息</p>
+<p>&ensp;&ensp;<strong>[–permanent] –list-all-zones</strong>&ensp;   列出所有区域添加和开启的所有内容</p>
+<p>&ensp;&ensp;<strong>–permanent –new-zone=zone</strong>&ensp;  添加新的系统配置和空区域</p>
+<p>&ensp;&ensp;<strong>–permanent –new-zone-from-file=filename [–name=zone]</strong>&ensp;   从已准备的区域文件中添加新永久区域</p>
+<p>&ensp;&ensp;<strong>–permanent –delete-zone=zone</strong>&ensp;    删除现有的永久区域</p>
+<p>&ensp;&ensp;<strong>–permanent –load-zone-defaults=zone</strong>&ensp;   加载区域默认设置或报告NO_DEFAULTS错误</p>
+<p>&ensp;&ensp;<strong>–permanent –path-zone=zone</strong>&ensp;   打印区域配置文件的路径</p>
+<p>&ensp;&ensp;<strong>–permanent –zone=zone –set-description=description</strong>&ensp;   为区域添加描述信息</p>
+<p>&ensp;&ensp;<strong>–permanent –zone=zone –get-description</strong>&ensp;   打印区域描述信息</p>
+<p>&ensp;&ensp;<strong>–permanent [–zone=zone] –get-target</strong>&ensp;   获得永久的目标区域</p>
+<p>&ensp;&ensp;<strong>–permanent [–zone=zone] –set-target=target</strong>&ensp;   设定一个永久区域的目标。参数为：default, ACCEPT, DROP, REJECT</p>
+<h4 id="更改和查询区域的参数"><a href="#更改和查询区域的参数" class="headerlink" title="更改和查询区域的参数"></a>更改和查询区域的参数</h4><p>&ensp;&ensp;本节中的选项只影响一个特定区域。如果与 –zone=zone选项一起使用，则会影响指定zone。如果省略该选项，则会影响默认区域(–get-default-zone)。</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –list-all</strong>&ensp;    列出在指定区域的所有内容</p>
+<h5 id="service"><a href="#service" class="headerlink" title="service"></a>service</h5><p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –list-services</strong>&ensp;  列出区域中添加的服务</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –add-service=service [–timeout=timeval]</strong>&ensp;   为Zone添加指定服务。可以多次指定此选项。也可指定时间，规则将在指定的时间内处于活动状态，并在之后自动删除。timeval格式为10s，20m或1h。<br>–timeout不能与–permanent组合使用</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –remove-service=service</strong>&ensp; 从区域中删除服务</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –query-service=service</strong>&ensp;  查询是否为Znoe添加了服务。如果为真，返回0，否则返回1</p>
+<h5 id="port"><a href="#port" class="headerlink" title="port"></a>port</h5><p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –list-ports</strong>&ensp;  列出区域中添加的端口，格式为”端口号/协议”</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –add-port=portid[-portid]/protocol [–timeout=timeval]</strong>&ensp;  将端口添加到区域，并设定超时时间<br>，可以是单个端口也可以是端口范围。协议可以是  tcp, udp, sctp ， dccp等，–timeout不能与–permanent组合使用</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –remove-port=portid[-portid]/protocol</strong>&ensp; 从ZONE中删除端口</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –query-port=portid[-portid]/protocol</strong>&ensp;   查询是Znoe是否包含指定端口。如果为真，返回0，否则返回1</p>
+<h5 id="protocol"><a href="#protocol" class="headerlink" title="protocol"></a>protocol</h5><p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –list-protocols</strong>&ensp; 列出Zone中包含的协议</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –add-protocol=protocol [–timeout=timeval]</strong>&ensp;  为Zone添加指定协议。可以多次指定此选项。也可指定时间，规则将在指定的时间内处于活动状态，并在之后自动删除。timeval格式为10s，20m或1h。<br>–timeout不能与–permanent组合使用</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –remove-protocol=protocol</strong>&ensp;   从ZONE中删除协议</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –query-protocol=protocol</strong>&ensp;  查询是Znoe是否包含指定协议。如果为真，返回0，否则返回1</p>
+<h5 id="source-port"><a href="#source-port" class="headerlink" title="source-port"></a>source-port</h5><p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –list-source-ports</strong>&ensp;   列出区域中添加的源端口，格式为”端口号/协议”</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –add-source-port=portid[-portid]/protocol [–timeout=timeval]</strong>&ensp;  将源端口添加到区域，并设定超时时间<br>，可以是单个端口也可以是端口范围。协议可以是  tcp, udp, sctp ， dccp等，–timeout不能与–permanent组合使用</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –remove-source-port=portid[-portid]/protocol</strong>&ensp; 从ZONE中删除源端口</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –query-source-port=portid[-portid]/protocol</strong>&ensp;   查询是Znoe是否包含指定源端口。如果为真，返回0，否则返回1</p>
+<h5 id="icmp-block"><a href="#icmp-block" class="headerlink" title="icmp-block"></a>icmp-block</h5><p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –list-icmp-blocks</strong>&ensp;   列出Zone中的ICMP协议块</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –add-icmp-block=icmptype [–timeout=timeval]</strong>&ensp;  为Zone的icmp块添加icmptype，可以多次指定此选项。也可指定时间，规则将在指定的时间内处于活动状态，并在之后自动删除。timeval格式为10s，20m或1h。<br>–timeout不能与–permanent组合使用</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –remove-icmp-block=icmptype</strong>&ensp; 从Zone的icmp块中删除icmptype</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –query-icmp-block=icmptype</strong>&ensp;   查询是Zone中是否包含指定icmptype。如果为真，返回0，否则返回1</p>
+<h5 id="forward-ports"><a href="#forward-ports" class="headerlink" title="forward-ports"></a>forward-ports</h5><p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –list-forward-ports</strong>&ensp;  列出Zone中的IPv4转发端口</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –add-forward-port=port=portid[-portid]:proto=protocol[:toport=portid[-portid]][:toaddr=address[/mask]] [–timeout=timeval]</strong>&ensp;  在Zone中添加端口转发，可以多次指定此选项。也可指定时间，规则将在指定的时间内处于活动状态，并在之后自动删除。timeval格式为10s，20m或1h。<br>–timeout不能与–permanent组合使用。<br>&ensp;&ensp;端口可以是单个端口号，也可以是端口范围portid-portid。协议可以是tcp、udp、sctp或dccp。目标地址是一个简单的IP地址。</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –remove-forward-port=port=portid[-portid]:proto=protocol[:toport=portid[-portid]][:toaddr=address[/mask]]</strong>&ensp;  删除端口转发</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –query-forward-port=port=portid[-portid]:proto=protocol[:toport=portid[-portid]][:toaddr=address[/mask]]</strong>&ensp;   查询端口转发，如果为真，返回0，否则返回1</p>
+<h5 id="masquerade"><a href="#masquerade" class="headerlink" title="masquerade"></a>masquerade</h5><p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –add-masquerade [–timeout=timeval]</strong> &ensp; 设置IPv4地址转换，可指定时间，规则将在指定的时间内处于活动状态，并在之后自动删除。timeval格式为10s，20m或1h。</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –remove-masquerade</strong>&ensp;  关闭Zone中的Ipv4地址转换，当其超时了也会被关闭</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –query-masquerade</strong>&ensp;  查询Zone中是否开启了IPv4地址转换，如果为真，返回0，否则返回1</p>
+<h5 id="rich-rule"><a href="#rich-rule" class="headerlink" title="rich-rule"></a>rich-rule</h5><p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –list-rich-rules</strong>&ensp;  列出Zone中的rich-rule</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –add-rich-rule=’rule’ [–timeout=timeval]</strong>&ensp;  为Zone中添加rich-rule</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –remove-rich-rule=’rule’</strong>&ensp;   删除 Zone中的rich-rule</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –query-rich-rule=’rule’</strong>&ensp;  查询Zone中是否有rich-rule，如果为真，返回0，否则返回1</p>
+<h4 id="接口绑定参数"><a href="#接口绑定参数" class="headerlink" title="接口绑定参数"></a>接口绑定参数</h4><p>&ensp;&ensp;将接口绑定到Zone意味着此Zone设置用于限制通过接口的流量。<br>&ensp;&ensp;本节中的选项只影响一个特定区域。如果与 –zone=zone选项一起使用，则会影响指定zone。如果省略该选项，则会影响默认区域(–get-default-zone)。使用firewall-cmd –get-zones</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –list-interfaces</strong>&ensp;  列出绑定到Zone的接口</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –add-interface=interface</strong>&ensp;   绑定接口到Zone。如果接口受NetworkManager控制，则首先连接到接口更改其连接区域。如果失败，则在防火墙中创建区域绑定。对于不受NetworkManager控制的接口，firewalld尝试更改ifcfg文件中的区域设置（如果该文件存在）。  </p>
+<p>&ensp;&ensp;作为终端用户，在大多数情况下不需要这样做，当没有设定NM_CONTROLLED=no时，NetworkManager会自动根据ifcfg接口文件中的zone=option向Zone中添加接口，只有在没有/etc/sysconfig/network scripts/ifcfg接口文件的情况下才应该这样做。如果存在这样的文件，并且使用–add-interface选项将接口添加到区域中，请确保在这两种情况下区域是相同的，否则行为将是未定义的。</p>
+<p>&ensp;&ensp;<strong>[–zone=zone] –change-interface=interface</strong>&ensp;  如果接口受NetworkManager控制，则首先连接到接口更改其连接区域。如果失败，则在防火墙中创建区域绑定。对于不受NetworkManager控制的接口，firewalld尝试更改ifcfg文件中的区域设置（如果该文件存在）。.</p>
+<p>&ensp;&ensp;更改接口绑定的区域。步骤是–remove-interface然后–add-interface。如果接口以前没有绑定到Zone，那么它类似于–add-interface</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –query-interface=interface</strong>&ensp;  查询接口是否和该Zone绑定</p>
+<p>&ensp;&ensp;<strong>[–permanent] –remove-interface=interface</strong>&ensp;  仅用于删除不受NetworkManager控制的接口，firewalld不会更改ifcfg文件中的区域设置</p>
+<h4 id="绑定源-source-的参数"><a href="#绑定源-source-的参数" class="headerlink" title="绑定源(source)的参数"></a>绑定源(source)的参数</h4><p>&ensp;&ensp;将源绑定到Zone意味着此区域设置用于限制来自此源的流量。</p>
+<p>&ensp;&ensp;源地址是IP地址或地址范围，要么是带有IPv4或IPv6掩码的网络IP地址，或者是MAC地址，或者是ipset: prefix。对于IPv4，掩码可以是网络掩码，也可以是普通数字。对于IPv6，掩码是一个普通的数字。不支持使用主机名。</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –list-sources</strong>&ensp; 列出绑定到Zone的源</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –add-source=source[/mask]|MAC|ipset:ipset</strong>&ensp;  将源绑定到Zone</p>
+<p>&ensp;&ensp;<strong>[–zone=zone] –change-source=source[/mask]|MAC|ipset:ipset</strong>&ensp;   改变区域中绑定的源</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –query-source=source[/mask]|MAC|ipset:ipset</strong>&ensp;   查询源是否在Zone中</p>
+<p>&ensp;&ensp;<strong>[–permanent] –remove-source=source[/mask]|MAC|ipset:ipset</strong>&ensp;  删除源</p>
+<h4 id="IPSet-参数"><a href="#IPSet-参数" class="headerlink" title="IPSet 参数"></a>IPSet 参数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --get-ipset-types  #打印出ipset类型</span><br><span class="line">hash:ip hash:ip,mark hash:ip,port hash:ip,port,ip hash:ip,port,net hash:mac hash:net hash:net,iface hash:net,net hash:net,port hash:net,port,net</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;<strong>–permanent –new-ipset=ipset –type=type [–family=inet|inet6] [–option=key[=value]]</strong>&ensp;  添加永久的ipset，以及指定各种参数</p>
+<p>&ensp;&ensp;<strong>–permanent –new-ipset-from-file=filename [–name=ipset]</strong>&ensp;  从文件中添加永久ipset配置</p>
+<p>&ensp;&ensp;<strong>–permanent –delete-ipset=ipset</strong>&ensp;  删除已存在的ipset配置</p>
+<p>&ensp;&ensp;<strong>–permanent –load-ipset-defaults=ipset</strong>&ensp;   加载ipset 默认配置或者报告NO_DEFAULTS</p>
+<p>&ensp;&ensp;<strong>[–permanent] –info-ipset=ipset</strong>&ensp;   打印ipset的信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ipset</span><br><span class="line">  type: type</span><br><span class="line">  options: option1[=value1] ..</span><br><span class="line">  entries: entry1 ..</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;<strong>[–permanent] –get-ipsets</strong>&ensp;  打印预定义的ipset</p>
+<p>&ensp;&ensp;<strong>–permanent –ipset=ipset –set-description=description</strong>&ensp; 为ipset添加描述</p>
+<p>&ensp;&ensp;<strong>–permanent –ipset=ipset –get-description</strong>&ensp;  打印ipset的描述</p>
+<p>&ensp;&ensp;<strong>[–permanent] –ipset=ipset –add-entry=entry</strong>&ensp;  为ipset添加新条目</p>
+<p>&ensp;&ensp;Adding an entry to an ipset with option timeout is permitted, but these entries are not tracked by firewalld.</p>
+<p>&ensp;&ensp;<strong>[–permanent] –ipset=ipset –remove-entry=entry</strong>&ensp; 删除ipset中的一个条目</p>
+<p>&ensp;&ensp;<strong>[–permanent] –ipset=ipset –query-entry=entry</strong>&ensp;  查询ipset中是否包含指定条目。Querying an ipset with a timeout will yield an error. Entries are not tracked for ipsets with a timeout.</p>
+<p>&ensp;&ensp;<strong>[–permanent] –ipset=ipset –get-entries</strong>&ensp; 列出ipset的所有条目</p>
+<p>&ensp;&ensp;<strong>[–permanent] –ipset=ipset –add-entries-from-file=filename</strong>&ensp;  使用文件向ipset添加条目，对于文件中列出的条目在ipset中已经存在的时候，打印警告。以#号、分号开头的行以及空白行会被忽略</p>
+<p>&ensp;&ensp;<strong>[–permanent] –ipset=ipset –remove-entries-from-file=filename</strong>&ensp;   使用文件从ipset删除条目，对于文件中列出的条目在ipset中已经存在的时候，打印警告。以#号、分号开头的行以及空白行会被忽略</p>
+<p>&ensp;&ensp;<strong>–permanent –path-ipset=ipset</strong>&ensp;  打印ipset配置文件的路径</p>
+<h4 id="Service参数"><a href="#Service参数" class="headerlink" title="Service参数"></a>Service参数</h4><p>&ensp;&ensp;此部分中的选项仅影响一个特定服务。</p>
+<p>&ensp;&ensp;<strong>[–permanent] –info-service=service</strong>&ensp;  打印Service相关信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">service</span><br><span class="line">  ports: port1 ..</span><br><span class="line">  protocols: protocol1 ..</span><br><span class="line">  source-ports: source-port1 ..</span><br><span class="line">  modules: module1 ..</span><br><span class="line">  destination: ipv1:address1 ..</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;<strong>–permanent –new-service=service</strong>&ensp;系统配置中添加服务</p>
+<p>&ensp;&ensp;<strong>–permanent –new-service-from-file=filename [–name=service]</strong>&ensp; 通过文件项系统配置中添加服务</p>
+<p>&ensp;&ensp;<strong>–permanent –delete-service=service</strong>&ensp;  删除已存在的服务</p>
+<p>&ensp;&ensp;<strong>–permanent –load-service-defaults=service</strong>&ensp;  加载服务默认设置或者报告NO_DEFAULTS错误</p>
+<p>&ensp;&ensp;<strong>–permanent –path-service=service</strong>&ensp;  打印服务配置文件的路径</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –set-description=description</strong>&ensp;  为服务添加描述</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –get-description</strong>&ensp;  打印服务的描述</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –add-port=portid[-portid]/protocol</strong>&ensp;  向服务中添加端口</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –remove-port=portid[-portid]/protocol</strong>&ensp;  从指定的服务中移除某端口</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –query-port=portid[-portid]/protocol</strong>&ensp;  查询端口是否添加到服务中</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –get-ports</strong>&ensp;  列出服务中添加的端口</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –add-protocol=protocol</strong>&ensp;  向服务中添加协议</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –remove-protocol=protocol</strong>&ensp;  从服务中删除某协议</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –query-protocol=protocol</strong>&ensp;查询服务中是否包含某协议</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –get-protocols</strong>&ensp;列出服务中包含的协议</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –add-source-port=portid[-portid]/protocol</strong>&ensp;  向某服务中添加源端口</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –remove-source-port=portid[-portid]/protocol</strong>&ensp;从某服务中删除源端口</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –query-source-port=portid[-portid]/protocol</strong>&ensp;查询源端口是否添加到服务中</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –get-source-ports</strong>&ensp;  列出某服务中的添加的源端口</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –add-module=module</strong>&ensp;  向服务中添加模块</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –remove-module=module</strong>&ensp;  从服务中删除模块</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –query-module=module</strong>&ensp;  查询模块是否已经添加到服务</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –get-modules</strong>&ensp;   列出服务中添加的模块</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –set-destination=ipv:address[/mask]</strong>&ensp;  为某服务设置目的地址</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –remove-destination=ipv</strong>&ensp;  从某服务中删除目的地址</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –query-destination=ipv:address[/mask]</strong>&ensp;   查询目的地址是否存在于服务设置中</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –get-destinations</strong>&ensp;  列出服务中添加的目的地址</p>
+<h4 id="Internet-Control-Message-Protocol-ICMP-类型选项"><a href="#Internet-Control-Message-Protocol-ICMP-类型选项" class="headerlink" title="Internet Control Message Protocol (ICMP)类型选项"></a>Internet Control Message Protocol (ICMP)类型选项</h4><p>&ensp;&ensp;Options in this section affect only one particular icmptype.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --get-icmptypes  #获取所有支持的ICMP类型</span><br><span class="line">[root@docker-study ~]# firewall-cmd --get-icmptypes</span><br><span class="line">address-unreachable bad-header communication-prohibited destination-unreachable </span><br><span class="line">echo-reply echo-request fragmentation-needed host-precedence-violation host-prohibited </span><br><span class="line">host-redirect host-unknown host-unreachable ip-header-bad neighbour-advertisement </span><br><span class="line">neighbour-solicitation network-prohibited network-redirect network-unknown network-unreachable</span><br><span class="line"> no-route packet-too-big parameter-problem port-unreachable precedence-cutoff protocol-unreachable </span><br><span class="line">redirect required-option-missing router-advertisement router-solicitation source-quench </span><br><span class="line">source-route-failed time-exceeded timestamp-reply timestamp-request tos-host-redirect </span><br><span class="line">tos-host-unreachable tos-network-redirect tos-network-unreachable ttl-zero-during-reassembly </span><br><span class="line">ttl-zero-during-transit unknown-header-type unknown-option</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;<strong>[–permanent] –info-icmptype=icmptype</strong> &ensp; 打印有关ICMPtype 的信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# firewall-cmd --info-icmptype=bad-header</span><br><span class="line">bad-header</span><br><span class="line">  destination: ipv6</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;<strong>–permanent –new-icmptype=icmptype</strong> &ensp; 添加新的ICMPtype</p>
+<p>&ensp;&ensp;<strong>–permanent –new-icmptype-from-file=filename [–name=icmptype]</strong> &ensp; 用过文件添加新的ICMPtype</p>
+<p>&ensp;&ensp;<strong>–permanent –delete-icmptype=icmptype</strong>  &ensp;删除已存在的ICMPtype</p>
+<p>&ensp;&ensp;<strong>–permanent –load-icmptype-defaults=icmptype</strong> &ensp;  加载icmptype默认设置或报告NO_DEFAULTS错误</p>
+<p>&ensp;&ensp;<strong>–permanent –icmptype=icmptype –set-description=description</strong>&ensp;&ensp; 为ICMPtype 设置新的描述</p>
+<p>&ensp;&ensp;<strong>–permanent –icmptype=icmptype –get-description</strong> &ensp; 打印指定ICMPtype的描述</p>
+<p>&ensp;&ensp;<strong>–permanent –icmptype=icmptype –add-destination=ipv</strong>&ensp; 在ICMPtype中开启目的地址，可以是ipv4 或 ipv6</p>
+<p>&ensp;&ensp;<strong>–permanent –icmptype=icmptype –remove-destination=ipv</strong> &ensp; 在ICMPtype中禁用目的地址，可以是ipv4 或 ipv6</p>
+<p>&ensp;&ensp;<strong>–permanent –icmptype=icmptype –query-destination=ipv</strong>&ensp; 返回在ICMPtype中是否开启ipv4 或ipv6目的地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# firewall-cmd --permanent --icmptype=bad-header --query-destination=ipv4</span><br><span class="line">no</span><br><span class="line">[root@docker-study ~]# firewall-cmd --permanent --icmptype=bad-header --query-destination=ipv6</span><br><span class="line">yes</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;<strong>–permanent –icmptype=icmptype –get-destinations</strong> &ensp; List destinations in permanent icmptype.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# firewall-cmd --permanent --icmptype=bad-header --get-destinations</span><br><span class="line">ipv6</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;<strong>–permanent –path-icmptype=icmptype</strong>&ensp;  打印出icmptype配置文件的路径。</p>
+<h4 id="锁定-Lockdown-参数"><a href="#锁定-Lockdown-参数" class="headerlink" title="锁定(Lockdown)参数"></a>锁定(Lockdown)参数</h4><p>&ensp;&ensp;如果本地应用程序或服务以根用户身份运行（例如：libvirt）或使用policykit进行身份验证，则它们可以更改防火墙配置。使用此功能，管理员可以锁定防火墙配置，以便只有锁定白名单上的应用程序才能请求防火墙更改。  </p>
+<p>&ensp;&ensp;锁定访问检查限制了正在更改防火墙规则的D-Bus方法。查询、列表和get方法不受限制。</p>
+<p>&ensp;&ensp;锁定功能是firewalld用户和应用程序策略的一个非常轻量级的版本，默认情况下是关闭的。<br>&ensp;&ensp;<strong>–lockdown-on</strong>&ensp;<br>启用锁定。注意 , 如果启用锁定时firewall-cmd不在锁定白名单中，则无法使用firewall-cmd再次禁用它，需要编辑firewalld.conf。这是运行时和永久性更改。</p>
+<p>&ensp;&ensp;<strong>–lockdown-off</strong>&ensp;禁用锁定。这是运行时和永久性更改。</p>
+<p>&ensp;&ensp;<strong>–query-lockdown</strong>&ensp;查询是否启用了锁定。如果启用了锁定，则返回0，否则返回1。</p>
+<h4 id="锁定白名单-Lockdown-Whitelist-参数"><a href="#锁定白名单-Lockdown-Whitelist-参数" class="headerlink" title="锁定白名单(Lockdown Whitelist)参数"></a>锁定白名单(Lockdown Whitelist)参数</h4><p>&ensp;&ensp;该锁定白名单可以包括commands，contexts，users和user ids。<br>如果白名单上的命令条目以星号“*”结尾，那么以该命令开头的所有命令行都将匹配。如果没有“*”，则必须匹配绝对命令包含的参数。</p>
+<p>&ensp;&ensp;用户root和其他用户的命令并不总是相同。示例：root使用 /bin/firewall-cmd，在Fedora上的普通用户使用 /usr/bin/firewall-cmd。</p>
+<p>&ensp;&ensp;<strong>[ –permanent]–list-lockdown-whitelist-commands</strong>&ensp;<br>列出白名单中的所有命令。</p>
+<p>&ensp;&ensp;<strong>[ –permanent] –add-lockdown-whitelist-command=command</strong>&ensp;<br>添加command到白名单。</p>
+<p>&ensp;&ensp;<strong>[ –permanent] –remove-lockdown-whitelist-command=command</strong>&ensp;<br>command从白名单中 删除。</p>
+<p>&ensp;&ensp;<strong>[ –permanent] –query-lockdown-whitelist-command=command</strong>&ensp;<br>查询是否command在白名单中。如果为true则返回0，否则返回1。</p>
+<p>&ensp;&ensp;<strong>[ –permanent]–list-lockdown-whitelist-contexts</strong>&ensp;<br>列出白名单中的所有环境。</p>
+<p>&ensp;&ensp;<strong>[ –permanent] –add-lockdown-whitelist-context=context</strong>&ensp;<br>添加context到白名单。</p>
+<p>&ensp;&ensp;<strong>[ –permanent] –remove-lockdown-whitelist-context=context</strong>&ensp;<br>从白名单中 删除context。</p>
+<p>&ensp;&ensp;<strong>[ –permanent] –query-lockdown-whitelist-context=context</strong>&ensp;<br>查询context是否在白名单中。如果为true则返回0，否则返回1。</p>
+<p>&ensp;&ensp;<strong>[ –permanent]–list-lockdown-whitelist-uids</strong>&ensp;<br>列出白名单中的所有用户ID。</p>
+<p>&ensp;&ensp;<strong>[ –permanent] –add-lockdown-whitelist-uid=uid</strong>&ensp;<br>添加uid到白名单。</p>
+<p>&ensp;&ensp;<strong>[ –permanent] –remove-lockdown-whitelist-uid=uid</strong>&ensp;<br>从白名单中 删除用户ID 。</p>
+<p>&ensp;&ensp;<strong>[ –permanent] –query-lockdown-whitelist-uid=uid</strong>&ensp;<br>查询用户uid标识是否在白名单中。如果为true则返回0，否则返回1。</p>
+<p>&ensp;&ensp;<strong>[ –permanent]–list-lockdown-whitelist-users</strong>&ensp;<br>列出白名单中的所有用户名。</p>
+<p>&ensp;&ensp;<strong>[ –permanent] –add-lockdown-whitelist-user=user</strong>&ensp;<br>添加user到白名单。</p>
+<p>&ensp;&ensp;<strong>[ –permanent] –remove-lockdown-whitelist-user=user</strong>&ensp;<br>从白名单中 删除用户。</p>
+<p>&ensp;&ensp;<strong>[ –permanent] –query-lockdown-whitelist-user=user</strong>&ensp;<br>查询user是否在白名单中。如果为true则返回0，否则返回1。</p>
+<h4 id="紧急参数"><a href="#紧急参数" class="headerlink" title="紧急参数"></a>紧急参数</h4><p>&ensp;&ensp;<strong>–panic-on</strong> &ensp; 开启紧急模式，所有进出包都被丢弃，活动连接将超时。只有在网络环境出现严重问题时才启用此功能。例如，黑客入侵。<br>这是运行时配置的更改</p>
+<p>&ensp;&ensp;<strong>–panic-off</strong>&ensp;  禁用紧急选项</p>
+<p>&ensp;&ensp;<strong>–query-panic</strong>&ensp;  查询是否开启紧急模式</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Firewall/" rel="tag"># Firewall</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/05/firewalld概念及配置项/" rel="next" title="firewalld概念及配置项">
+                <i class="fa fa-chevron-left"></i> firewalld概念及配置项
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+<div>
+    
+    <div>
+    
+        <div style="text-align:center;color: #000000;font-size:18px;">------ end ------</div>
+    
+</div>
+
+
+    
+ </div>
+ 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/profile_photo.png" alt="戴树谦">
+            
+              <p class="site-author-name" itemprop="name">戴树谦</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CrimsonRomance" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:18632772539@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#firewall-cmd"><span class="nav-number">1.</span> <span class="nav-text">firewall-cmd</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#常规参数"><span class="nav-number">1.1.</span> <span class="nav-text">常规参数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#状态参数"><span class="nav-number">1.1.1.</span> <span class="nav-text">状态参数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拒绝日志参数"><span class="nav-number">1.2.</span> <span class="nav-text">拒绝日志参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统选项"><span class="nav-number">1.3.</span> <span class="nav-text">系统选项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Zone"><span class="nav-number">1.4.</span> <span class="nav-text">Zone</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更改和查询区域的参数"><span class="nav-number">1.5.</span> <span class="nav-text">更改和查询区域的参数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#service"><span class="nav-number">1.5.1.</span> <span class="nav-text">service</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#port"><span class="nav-number">1.5.2.</span> <span class="nav-text">port</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#protocol"><span class="nav-number">1.5.3.</span> <span class="nav-text">protocol</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#source-port"><span class="nav-number">1.5.4.</span> <span class="nav-text">source-port</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#icmp-block"><span class="nav-number">1.5.5.</span> <span class="nav-text">icmp-block</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#forward-ports"><span class="nav-number">1.5.6.</span> <span class="nav-text">forward-ports</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#masquerade"><span class="nav-number">1.5.7.</span> <span class="nav-text">masquerade</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#rich-rule"><span class="nav-number">1.5.8.</span> <span class="nav-text">rich-rule</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#接口绑定参数"><span class="nav-number">1.6.</span> <span class="nav-text">接口绑定参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#绑定源-source-的参数"><span class="nav-number">1.7.</span> <span class="nav-text">绑定源(source)的参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IPSet-参数"><span class="nav-number">1.8.</span> <span class="nav-text">IPSet 参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Service参数"><span class="nav-number">1.9.</span> <span class="nav-text">Service参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Internet-Control-Message-Protocol-ICMP-类型选项"><span class="nav-number">1.10.</span> <span class="nav-text">Internet Control Message Protocol (ICMP)类型选项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#锁定-Lockdown-参数"><span class="nav-number">1.11.</span> <span class="nav-text">锁定(Lockdown)参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#锁定白名单-Lockdown-Whitelist-参数"><span class="nav-number">1.12.</span> <span class="nav-text">锁定白名单(Lockdown Whitelist)参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#紧急参数"><span class="nav-number">1.13.</span> <span class="nav-text">紧急参数</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-fas fa-code"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">戴树谦</span>
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

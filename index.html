@@ -271,6 +271,328 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/09/firewall-cmd语法/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="戴树谦">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile_photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="戴树谦的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/09/firewall-cmd语法/" itemprop="url">firewall-cmd语法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-09T15:11:55+08:00">
+                2019-04-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  5.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  22
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="firewall-cmd"><a href="#firewall-cmd" class="headerlink" title="firewall-cmd"></a>firewall-cmd</h3><p>&ensp;&ensp;firewall-cmd是firewalld的主要命令行工具。它可用于获取有关firewalld的状态信息，获取运行时和永久环境的防火墙配置，以及更改这些信息。<br>&ensp;&ensp;根据所选策略，需要通过身份验证才能访问或更改firewalld配置。它仅在firewalld运行时才可用</p>
+<h4 id="常规参数"><a href="#常规参数" class="headerlink" title="常规参数"></a>常规参数</h4><p>&ensp;&ensp;<strong>-h</strong> &ensp; 打印简短的帮助文本并退出</p>
+<p>&ensp;&ensp;<strong>-V</strong> &ensp; 打印firewalld的版本字符串。此选项不能与其他选项组合使用 </p>
+<p>&ensp;&ensp;<strong>-q</strong>  &ensp;不要打印状态消息</p>
+<h5 id="状态参数"><a href="#状态参数" class="headerlink" title="状态参数"></a>状态参数</h5><p>&ensp;&ensp;<strong>–state</strong>&ensp; 检查firewalld守护程序是否处于运行状态 </p>
+<p>&ensp;&ensp;<strong>–reload</strong> &ensp; 重新加载防火墙规则并保留状态信息。当前的系统配置将成为新的运行时配置，如果当前配置未处于永久配置中会因重新加载而丢失  </p>
+<p>&ensp;&ensp;<strong>–complete-reload</strong> &ensp; 完全重新加载防火墙，甚至netfilter内核模块。这会终止活动连接，此选项只应在防火墙出现严重问题时使用 </p>
+<p>&ensp;&ensp;<strong>–runtime-to-permanent</strong> &ensp; 保存当前运行时配置并重写系统配置，该方法的工作原理是，在配置firewalld时只进行运行时配置更改，一旦对配置满意并测试了它的工作方式，就可以将其保存到系统配置中</p>
+<h4 id="拒绝日志参数"><a href="#拒绝日志参数" class="headerlink" title="拒绝日志参数"></a>拒绝日志参数</h4><p>&ensp;&ensp;通过使用<strong>LogDenied</strong>选项，firewalld可以为拒绝的数据包添加简单的日志记录机制。这些是被拒绝或丢弃的数据包。 </p>
+<p>&ensp;&ensp;<strong>–get-log-denied</strong>  &ensp;打印拒绝日志</p>
+<p>&ensp;&ensp;<strong>–set-log-denied=value</strong> &ensp; value的值可以为all，unicast，broadcast，multicast和off。默认设置为off，禁用日志记录。all为所有。这会改变运行时配置和系统配置，并会重新加载防火墙以开启日志规则。</p>
+<h4 id="系统选项"><a href="#系统选项" class="headerlink" title="系统选项"></a>系统选项</h4><p>&ensp;&ensp;<strong>–permanent</strong>&ensp; 用于设置系统选项，仅在系统重启或服务restart/reload后生效，如果不加该参数则只是运行时配置的一部分</p>
+<h4 id="Zone"><a href="#Zone" class="headerlink" title="Zone"></a>Zone</h4><p>&ensp;&ensp;<strong>–get-default-zone</strong>  &ensp;打印连接和接口的默认区域</p>
+<p>&ensp;&ensp;<strong>–set-default-zone=zone</strong>  &ensp; 为没有选择区域的连接和接口设置默认区域。也可以更改连接或接口默认区域。这会改变运行配置和系统配置</p>
+<p>&ensp;&ensp;<strong>–get-active-zones</strong>  &ensp;打印当前区域以及区域中使用的接口和源。该是与接口或源绑定的区域</p>
+<p>&ensp;&ensp;<strong>[–permanent] –get-zones</strong>  &ensp; 将预定义的区域打印为空格分隔的列表(firewalld将网卡对应到不同的区域（zone），zone 默认共有9个:block、dmz、drop、external、home、internal、public、trusted、work</p>
+<p>&ensp;&ensp;<strong>[–permanent] –get-services</strong>&ensp;   将预定义的服务打印为空格分隔的列表</p>
+<p>&ensp;&ensp;<strong>[–permanent] –get-icmptypes</strong>&ensp;   将预定义的icmptypes打印为空格分隔的列表。</p>
+<p>&ensp;&ensp;<strong>[–permanent] –get-zone-of-interface=interface</strong>&ensp;    打印接口绑定的区域名称</p>
+<p>&ensp;&ensp;<strong>[–permanent] –get-zone-of-source=source[/mask]|MAC|ipset:ipset</strong>&ensp;  打印源绑定的区域</p>
+<p>&ensp;&ensp;<strong>[–permanent] –info-zone=zone</strong>&ensp;  打印指定Zone的相关信息</p>
+<p>&ensp;&ensp;<strong>[–permanent] –list-all-zones</strong>&ensp;   列出所有区域添加和开启的所有内容</p>
+<p>&ensp;&ensp;<strong>–permanent –new-zone=zone</strong>&ensp;  添加新的系统配置和空区域</p>
+<p>&ensp;&ensp;<strong>–permanent –new-zone-from-file=filename [–name=zone]</strong>&ensp;   从已准备的区域文件中添加新永久区域</p>
+<p>&ensp;&ensp;<strong>–permanent –delete-zone=zone</strong>&ensp;    删除现有的永久区域</p>
+<p>&ensp;&ensp;<strong>–permanent –load-zone-defaults=zone</strong>&ensp;   加载区域默认设置或报告NO_DEFAULTS错误</p>
+<p>&ensp;&ensp;<strong>–permanent –path-zone=zone</strong>&ensp;   打印区域配置文件的路径</p>
+<p>&ensp;&ensp;<strong>–permanent –zone=zone –set-description=description</strong>&ensp;   为区域添加描述信息</p>
+<p>&ensp;&ensp;<strong>–permanent –zone=zone –get-description</strong>&ensp;   打印区域描述信息</p>
+<p>&ensp;&ensp;<strong>–permanent [–zone=zone] –get-target</strong>&ensp;   获得永久的目标区域</p>
+<p>&ensp;&ensp;<strong>–permanent [–zone=zone] –set-target=target</strong>&ensp;   设定一个永久区域的目标。参数为：default, ACCEPT, DROP, REJECT</p>
+<h4 id="更改和查询区域的参数"><a href="#更改和查询区域的参数" class="headerlink" title="更改和查询区域的参数"></a>更改和查询区域的参数</h4><p>&ensp;&ensp;本节中的选项只影响一个特定区域。如果与 –zone=zone选项一起使用，则会影响指定zone。如果省略该选项，则会影响默认区域(–get-default-zone)。</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –list-all</strong>&ensp;    列出在指定区域的所有内容</p>
+<h5 id="service"><a href="#service" class="headerlink" title="service"></a>service</h5><p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –list-services</strong>&ensp;  列出区域中添加的服务</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –add-service=service [–timeout=timeval]</strong>&ensp;   为Zone添加指定服务。可以多次指定此选项。也可指定时间，规则将在指定的时间内处于活动状态，并在之后自动删除。timeval格式为10s，20m或1h。<br>–timeout不能与–permanent组合使用</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –remove-service=service</strong>&ensp; 从区域中删除服务</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –query-service=service</strong>&ensp;  查询是否为Znoe添加了服务。如果为真，返回0，否则返回1</p>
+<h5 id="port"><a href="#port" class="headerlink" title="port"></a>port</h5><p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –list-ports</strong>&ensp;  列出区域中添加的端口，格式为”端口号/协议”</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –add-port=portid[-portid]/protocol [–timeout=timeval]</strong>&ensp;  将端口添加到区域，并设定超时时间<br>，可以是单个端口也可以是端口范围。协议可以是  tcp, udp, sctp ， dccp等，–timeout不能与–permanent组合使用</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –remove-port=portid[-portid]/protocol</strong>&ensp; 从ZONE中删除端口</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –query-port=portid[-portid]/protocol</strong>&ensp;   查询是Znoe是否包含指定端口。如果为真，返回0，否则返回1</p>
+<h5 id="protocol"><a href="#protocol" class="headerlink" title="protocol"></a>protocol</h5><p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –list-protocols</strong>&ensp; 列出Zone中包含的协议</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –add-protocol=protocol [–timeout=timeval]</strong>&ensp;  为Zone添加指定协议。可以多次指定此选项。也可指定时间，规则将在指定的时间内处于活动状态，并在之后自动删除。timeval格式为10s，20m或1h。<br>–timeout不能与–permanent组合使用</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –remove-protocol=protocol</strong>&ensp;   从ZONE中删除协议</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –query-protocol=protocol</strong>&ensp;  查询是Znoe是否包含指定协议。如果为真，返回0，否则返回1</p>
+<h5 id="source-port"><a href="#source-port" class="headerlink" title="source-port"></a>source-port</h5><p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –list-source-ports</strong>&ensp;   列出区域中添加的源端口，格式为”端口号/协议”</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –add-source-port=portid[-portid]/protocol [–timeout=timeval]</strong>&ensp;  将源端口添加到区域，并设定超时时间<br>，可以是单个端口也可以是端口范围。协议可以是  tcp, udp, sctp ， dccp等，–timeout不能与–permanent组合使用</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –remove-source-port=portid[-portid]/protocol</strong>&ensp; 从ZONE中删除源端口</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –query-source-port=portid[-portid]/protocol</strong>&ensp;   查询是Znoe是否包含指定源端口。如果为真，返回0，否则返回1</p>
+<h5 id="icmp-block"><a href="#icmp-block" class="headerlink" title="icmp-block"></a>icmp-block</h5><p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –list-icmp-blocks</strong>&ensp;   列出Zone中的ICMP协议块</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –add-icmp-block=icmptype [–timeout=timeval]</strong>&ensp;  为Zone的icmp块添加icmptype，可以多次指定此选项。也可指定时间，规则将在指定的时间内处于活动状态，并在之后自动删除。timeval格式为10s，20m或1h。<br>–timeout不能与–permanent组合使用</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –remove-icmp-block=icmptype</strong>&ensp; 从Zone的icmp块中删除icmptype</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –query-icmp-block=icmptype</strong>&ensp;   查询是Zone中是否包含指定icmptype。如果为真，返回0，否则返回1</p>
+<h5 id="forward-ports"><a href="#forward-ports" class="headerlink" title="forward-ports"></a>forward-ports</h5><p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –list-forward-ports</strong>&ensp;  列出Zone中的IPv4转发端口</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –add-forward-port=port=portid[-portid]:proto=protocol[:toport=portid[-portid]][:toaddr=address[/mask]] [–timeout=timeval]</strong>&ensp;  在Zone中添加端口转发，可以多次指定此选项。也可指定时间，规则将在指定的时间内处于活动状态，并在之后自动删除。timeval格式为10s，20m或1h。<br>–timeout不能与–permanent组合使用。<br>&ensp;&ensp;端口可以是单个端口号，也可以是端口范围portid-portid。协议可以是tcp、udp、sctp或dccp。目标地址是一个简单的IP地址。</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –remove-forward-port=port=portid[-portid]:proto=protocol[:toport=portid[-portid]][:toaddr=address[/mask]]</strong>&ensp;  删除端口转发</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –query-forward-port=port=portid[-portid]:proto=protocol[:toport=portid[-portid]][:toaddr=address[/mask]]</strong>&ensp;   查询端口转发，如果为真，返回0，否则返回1</p>
+<h5 id="masquerade"><a href="#masquerade" class="headerlink" title="masquerade"></a>masquerade</h5><p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –add-masquerade [–timeout=timeval]</strong> &ensp; 设置IPv4地址转换，可指定时间，规则将在指定的时间内处于活动状态，并在之后自动删除。timeval格式为10s，20m或1h。</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –remove-masquerade</strong>&ensp;  关闭Zone中的Ipv4地址转换，当其超时了也会被关闭</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –query-masquerade</strong>&ensp;  查询Zone中是否开启了IPv4地址转换，如果为真，返回0，否则返回1</p>
+<h5 id="rich-rule"><a href="#rich-rule" class="headerlink" title="rich-rule"></a>rich-rule</h5><p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –list-rich-rules</strong>&ensp;  列出Zone中的rich-rule</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –add-rich-rule=’rule’ [–timeout=timeval]</strong>&ensp;  为Zone中添加rich-rule</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –remove-rich-rule=’rule’</strong>&ensp;   删除 Zone中的rich-rule</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –query-rich-rule=’rule’</strong>&ensp;  查询Zone中是否有rich-rule，如果为真，返回0，否则返回1</p>
+<h4 id="接口绑定参数"><a href="#接口绑定参数" class="headerlink" title="接口绑定参数"></a>接口绑定参数</h4><p>&ensp;&ensp;将接口绑定到Zone意味着此Zone设置用于限制通过接口的流量。<br>&ensp;&ensp;本节中的选项只影响一个特定区域。如果与 –zone=zone选项一起使用，则会影响指定zone。如果省略该选项，则会影响默认区域(–get-default-zone)。使用firewall-cmd –get-zones</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –list-interfaces</strong>&ensp;  列出绑定到Zone的接口</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –add-interface=interface</strong>&ensp;   绑定接口到Zone。如果接口受NetworkManager控制，则首先连接到接口更改其连接区域。如果失败，则在防火墙中创建区域绑定。对于不受NetworkManager控制的接口，firewalld尝试更改ifcfg文件中的区域设置（如果该文件存在）。  </p>
+<p>&ensp;&ensp;作为终端用户，在大多数情况下不需要这样做，当没有设定NM_CONTROLLED=no时，NetworkManager会自动根据ifcfg接口文件中的zone=option向Zone中添加接口，只有在没有/etc/sysconfig/network scripts/ifcfg接口文件的情况下才应该这样做。如果存在这样的文件，并且使用–add-interface选项将接口添加到区域中，请确保在这两种情况下区域是相同的，否则行为将是未定义的。</p>
+<p>&ensp;&ensp;<strong>[–zone=zone] –change-interface=interface</strong>&ensp;  如果接口受NetworkManager控制，则首先连接到接口更改其连接区域。如果失败，则在防火墙中创建区域绑定。对于不受NetworkManager控制的接口，firewalld尝试更改ifcfg文件中的区域设置（如果该文件存在）。.</p>
+<p>&ensp;&ensp;更改接口绑定的区域。步骤是–remove-interface然后–add-interface。如果接口以前没有绑定到Zone，那么它类似于–add-interface</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –query-interface=interface</strong>&ensp;  查询接口是否和该Zone绑定</p>
+<p>&ensp;&ensp;<strong>[–permanent] –remove-interface=interface</strong>&ensp;  仅用于删除不受NetworkManager控制的接口，firewalld不会更改ifcfg文件中的区域设置</p>
+<h4 id="绑定源-source-的参数"><a href="#绑定源-source-的参数" class="headerlink" title="绑定源(source)的参数"></a>绑定源(source)的参数</h4><p>&ensp;&ensp;将源绑定到Zone意味着此区域设置用于限制来自此源的流量。</p>
+<p>&ensp;&ensp;源地址是IP地址或地址范围，要么是带有IPv4或IPv6掩码的网络IP地址，或者是MAC地址，或者是ipset: prefix。对于IPv4，掩码可以是网络掩码，也可以是普通数字。对于IPv6，掩码是一个普通的数字。不支持使用主机名。</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –list-sources</strong>&ensp; 列出绑定到Zone的源</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –add-source=source[/mask]|MAC|ipset:ipset</strong>&ensp;  将源绑定到Zone</p>
+<p>&ensp;&ensp;<strong>[–zone=zone] –change-source=source[/mask]|MAC|ipset:ipset</strong>&ensp;   改变区域中绑定的源</p>
+<p>&ensp;&ensp;<strong>[–permanent] [–zone=zone] –query-source=source[/mask]|MAC|ipset:ipset</strong>&ensp;   查询源是否在Zone中</p>
+<p>&ensp;&ensp;<strong>[–permanent] –remove-source=source[/mask]|MAC|ipset:ipset</strong>&ensp;  删除源</p>
+<h4 id="IPSet-参数"><a href="#IPSet-参数" class="headerlink" title="IPSet 参数"></a>IPSet 参数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --get-ipset-types  #打印出ipset类型</span><br><span class="line">hash:ip hash:ip,mark hash:ip,port hash:ip,port,ip hash:ip,port,net hash:mac hash:net hash:net,iface hash:net,net hash:net,port hash:net,port,net</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;<strong>–permanent –new-ipset=ipset –type=type [–family=inet|inet6] [–option=key[=value]]</strong>&ensp;  添加永久的ipset，以及指定各种参数</p>
+<p>&ensp;&ensp;<strong>–permanent –new-ipset-from-file=filename [–name=ipset]</strong>&ensp;  从文件中添加永久ipset配置</p>
+<p>&ensp;&ensp;<strong>–permanent –delete-ipset=ipset</strong>&ensp;  删除已存在的ipset配置</p>
+<p>&ensp;&ensp;<strong>–permanent –load-ipset-defaults=ipset</strong>&ensp;   加载ipset 默认配置或者报告NO_DEFAULTS</p>
+<p>&ensp;&ensp;<strong>[–permanent] –info-ipset=ipset</strong>&ensp;   打印ipset的信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ipset</span><br><span class="line">  type: type</span><br><span class="line">  options: option1[=value1] ..</span><br><span class="line">  entries: entry1 ..</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;<strong>[–permanent] –get-ipsets</strong>&ensp;  打印预定义的ipset</p>
+<p>&ensp;&ensp;<strong>–permanent –ipset=ipset –set-description=description</strong>&ensp; 为ipset添加描述</p>
+<p>&ensp;&ensp;<strong>–permanent –ipset=ipset –get-description</strong>&ensp;  打印ipset的描述</p>
+<p>&ensp;&ensp;<strong>[–permanent] –ipset=ipset –add-entry=entry</strong>&ensp;  为ipset添加新条目</p>
+<p>&ensp;&ensp;Adding an entry to an ipset with option timeout is permitted, but these entries are not tracked by firewalld.</p>
+<p>&ensp;&ensp;<strong>[–permanent] –ipset=ipset –remove-entry=entry</strong>&ensp; 删除ipset中的一个条目</p>
+<p>&ensp;&ensp;<strong>[–permanent] –ipset=ipset –query-entry=entry</strong>&ensp;  查询ipset中是否包含指定条目。Querying an ipset with a timeout will yield an error. Entries are not tracked for ipsets with a timeout.</p>
+<p>&ensp;&ensp;<strong>[–permanent] –ipset=ipset –get-entries</strong>&ensp; 列出ipset的所有条目</p>
+<p>&ensp;&ensp;<strong>[–permanent] –ipset=ipset –add-entries-from-file=filename</strong>&ensp;  使用文件向ipset添加条目，对于文件中列出的条目在ipset中已经存在的时候，打印警告。以#号、分号开头的行以及空白行会被忽略</p>
+<p>&ensp;&ensp;<strong>[–permanent] –ipset=ipset –remove-entries-from-file=filename</strong>&ensp;   使用文件从ipset删除条目，对于文件中列出的条目在ipset中已经存在的时候，打印警告。以#号、分号开头的行以及空白行会被忽略</p>
+<p>&ensp;&ensp;<strong>–permanent –path-ipset=ipset</strong>&ensp;  打印ipset配置文件的路径</p>
+<h4 id="Service参数"><a href="#Service参数" class="headerlink" title="Service参数"></a>Service参数</h4><p>&ensp;&ensp;此部分中的选项仅影响一个特定服务。</p>
+<p>&ensp;&ensp;<strong>[–permanent] –info-service=service</strong>&ensp;  打印Service相关信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">service</span><br><span class="line">  ports: port1 ..</span><br><span class="line">  protocols: protocol1 ..</span><br><span class="line">  source-ports: source-port1 ..</span><br><span class="line">  modules: module1 ..</span><br><span class="line">  destination: ipv1:address1 ..</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;<strong>–permanent –new-service=service</strong>&ensp;系统配置中添加服务</p>
+<p>&ensp;&ensp;<strong>–permanent –new-service-from-file=filename [–name=service]</strong>&ensp; 通过文件项系统配置中添加服务</p>
+<p>&ensp;&ensp;<strong>–permanent –delete-service=service</strong>&ensp;  删除已存在的服务</p>
+<p>&ensp;&ensp;<strong>–permanent –load-service-defaults=service</strong>&ensp;  加载服务默认设置或者报告NO_DEFAULTS错误</p>
+<p>&ensp;&ensp;<strong>–permanent –path-service=service</strong>&ensp;  打印服务配置文件的路径</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –set-description=description</strong>&ensp;  为服务添加描述</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –get-description</strong>&ensp;  打印服务的描述</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –add-port=portid[-portid]/protocol</strong>&ensp;  向服务中添加端口</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –remove-port=portid[-portid]/protocol</strong>&ensp;  从指定的服务中移除某端口</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –query-port=portid[-portid]/protocol</strong>&ensp;  查询端口是否添加到服务中</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –get-ports</strong>&ensp;  列出服务中添加的端口</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –add-protocol=protocol</strong>&ensp;  向服务中添加协议</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –remove-protocol=protocol</strong>&ensp;  从服务中删除某协议</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –query-protocol=protocol</strong>&ensp;查询服务中是否包含某协议</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –get-protocols</strong>&ensp;列出服务中包含的协议</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –add-source-port=portid[-portid]/protocol</strong>&ensp;  向某服务中添加源端口</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –remove-source-port=portid[-portid]/protocol</strong>&ensp;从某服务中删除源端口</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –query-source-port=portid[-portid]/protocol</strong>&ensp;查询源端口是否添加到服务中</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –get-source-ports</strong>&ensp;  列出某服务中的添加的源端口</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –add-module=module</strong>&ensp;  向服务中添加模块</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –remove-module=module</strong>&ensp;  从服务中删除模块</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –query-module=module</strong>&ensp;  查询模块是否已经添加到服务</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –get-modules</strong>&ensp;   列出服务中添加的模块</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –set-destination=ipv:address[/mask]</strong>&ensp;  为某服务设置目的地址</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –remove-destination=ipv</strong>&ensp;  从某服务中删除目的地址</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –query-destination=ipv:address[/mask]</strong>&ensp;   查询目的地址是否存在于服务设置中</p>
+<p>&ensp;&ensp;<strong>–permanent –service=service –get-destinations</strong>&ensp;  列出服务中添加的目的地址</p>
+<h4 id="Internet-Control-Message-Protocol-ICMP-类型选项"><a href="#Internet-Control-Message-Protocol-ICMP-类型选项" class="headerlink" title="Internet Control Message Protocol (ICMP)类型选项"></a>Internet Control Message Protocol (ICMP)类型选项</h4><p>&ensp;&ensp;Options in this section affect only one particular icmptype.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --get-icmptypes  #获取所有支持的ICMP类型</span><br><span class="line">[root@docker-study ~]# firewall-cmd --get-icmptypes</span><br><span class="line">address-unreachable bad-header communication-prohibited destination-unreachable </span><br><span class="line">echo-reply echo-request fragmentation-needed host-precedence-violation host-prohibited </span><br><span class="line">host-redirect host-unknown host-unreachable ip-header-bad neighbour-advertisement </span><br><span class="line">neighbour-solicitation network-prohibited network-redirect network-unknown network-unreachable</span><br><span class="line"> no-route packet-too-big parameter-problem port-unreachable precedence-cutoff protocol-unreachable </span><br><span class="line">redirect required-option-missing router-advertisement router-solicitation source-quench </span><br><span class="line">source-route-failed time-exceeded timestamp-reply timestamp-request tos-host-redirect </span><br><span class="line">tos-host-unreachable tos-network-redirect tos-network-unreachable ttl-zero-during-reassembly </span><br><span class="line">ttl-zero-during-transit unknown-header-type unknown-option</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;<strong>[–permanent] –info-icmptype=icmptype</strong> &ensp; 打印有关ICMPtype 的信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# firewall-cmd --info-icmptype=bad-header</span><br><span class="line">bad-header</span><br><span class="line">  destination: ipv6</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;<strong>–permanent –new-icmptype=icmptype</strong> &ensp; 添加新的ICMPtype</p>
+<p>&ensp;&ensp;<strong>–permanent –new-icmptype-from-file=filename [–name=icmptype]</strong> &ensp; 用过文件添加新的ICMPtype</p>
+<p>&ensp;&ensp;<strong>–permanent –delete-icmptype=icmptype</strong>  &ensp;删除已存在的ICMPtype</p>
+<p>&ensp;&ensp;<strong>–permanent –load-icmptype-defaults=icmptype</strong> &ensp;  加载icmptype默认设置或报告NO_DEFAULTS错误</p>
+<p>&ensp;&ensp;<strong>–permanent –icmptype=icmptype –set-description=description</strong>&ensp;&ensp; 为ICMPtype 设置新的描述</p>
+<p>&ensp;&ensp;<strong>–permanent –icmptype=icmptype –get-description</strong> &ensp; 打印指定ICMPtype的描述</p>
+<p>&ensp;&ensp;<strong>–permanent –icmptype=icmptype –add-destination=ipv</strong>&ensp; 在ICMPtype中开启目的地址，可以是ipv4 或 ipv6</p>
+<p>&ensp;&ensp;<strong>–permanent –icmptype=icmptype –remove-destination=ipv</strong> &ensp; 在ICMPtype中禁用目的地址，可以是ipv4 或 ipv6</p>
+<p>&ensp;&ensp;<strong>–permanent –icmptype=icmptype –query-destination=ipv</strong>&ensp; 返回在ICMPtype中是否开启ipv4 或ipv6目的地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# firewall-cmd --permanent --icmptype=bad-header --query-destination=ipv4</span><br><span class="line">no</span><br><span class="line">[root@docker-study ~]# firewall-cmd --permanent --icmptype=bad-header --query-destination=ipv6</span><br><span class="line">yes</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;<strong>–permanent –icmptype=icmptype –get-destinations</strong> &ensp; List destinations in permanent icmptype.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# firewall-cmd --permanent --icmptype=bad-header --get-destinations</span><br><span class="line">ipv6</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;<strong>–permanent –path-icmptype=icmptype</strong>&ensp;  打印出icmptype配置文件的路径。</p>
+<h4 id="锁定-Lockdown-参数"><a href="#锁定-Lockdown-参数" class="headerlink" title="锁定(Lockdown)参数"></a>锁定(Lockdown)参数</h4><p>&ensp;&ensp;如果本地应用程序或服务以根用户身份运行（例如：libvirt）或使用policykit进行身份验证，则它们可以更改防火墙配置。使用此功能，管理员可以锁定防火墙配置，以便只有锁定白名单上的应用程序才能请求防火墙更改。  </p>
+<p>&ensp;&ensp;锁定访问检查限制了正在更改防火墙规则的D-Bus方法。查询、列表和get方法不受限制。</p>
+<p>&ensp;&ensp;锁定功能是firewalld用户和应用程序策略的一个非常轻量级的版本，默认情况下是关闭的。<br>&ensp;&ensp;<strong>–lockdown-on</strong>&ensp;<br>启用锁定。注意 , 如果启用锁定时firewall-cmd不在锁定白名单中，则无法使用firewall-cmd再次禁用它，需要编辑firewalld.conf。这是运行时和永久性更改。</p>
+<p>&ensp;&ensp;<strong>–lockdown-off</strong>&ensp;禁用锁定。这是运行时和永久性更改。</p>
+<p>&ensp;&ensp;<strong>–query-lockdown</strong>&ensp;查询是否启用了锁定。如果启用了锁定，则返回0，否则返回1。</p>
+<h4 id="锁定白名单-Lockdown-Whitelist-参数"><a href="#锁定白名单-Lockdown-Whitelist-参数" class="headerlink" title="锁定白名单(Lockdown Whitelist)参数"></a>锁定白名单(Lockdown Whitelist)参数</h4><p>&ensp;&ensp;该锁定白名单可以包括commands，contexts，users和user ids。<br>如果白名单上的命令条目以星号“*”结尾，那么以该命令开头的所有命令行都将匹配。如果没有“*”，则必须匹配绝对命令包含的参数。</p>
+<p>&ensp;&ensp;用户root和其他用户的命令并不总是相同。示例：root使用 /bin/firewall-cmd，在Fedora上的普通用户使用 /usr/bin/firewall-cmd。</p>
+<p>&ensp;&ensp;<strong>[ –permanent]–list-lockdown-whitelist-commands</strong>&ensp;<br>列出白名单中的所有命令。</p>
+<p>&ensp;&ensp;<strong>[ –permanent] –add-lockdown-whitelist-command=command</strong>&ensp;<br>添加command到白名单。</p>
+<p>&ensp;&ensp;<strong>[ –permanent] –remove-lockdown-whitelist-command=command</strong>&ensp;<br>command从白名单中 删除。</p>
+<p>&ensp;&ensp;<strong>[ –permanent] –query-lockdown-whitelist-command=command</strong>&ensp;<br>查询是否command在白名单中。如果为true则返回0，否则返回1。</p>
+<p>&ensp;&ensp;<strong>[ –permanent]–list-lockdown-whitelist-contexts</strong>&ensp;<br>列出白名单中的所有环境。</p>
+<p>&ensp;&ensp;<strong>[ –permanent] –add-lockdown-whitelist-context=context</strong>&ensp;<br>添加context到白名单。</p>
+<p>&ensp;&ensp;<strong>[ –permanent] –remove-lockdown-whitelist-context=context</strong>&ensp;<br>从白名单中 删除context。</p>
+<p>&ensp;&ensp;<strong>[ –permanent] –query-lockdown-whitelist-context=context</strong>&ensp;<br>查询context是否在白名单中。如果为true则返回0，否则返回1。</p>
+<p>&ensp;&ensp;<strong>[ –permanent]–list-lockdown-whitelist-uids</strong>&ensp;<br>列出白名单中的所有用户ID。</p>
+<p>&ensp;&ensp;<strong>[ –permanent] –add-lockdown-whitelist-uid=uid</strong>&ensp;<br>添加uid到白名单。</p>
+<p>&ensp;&ensp;<strong>[ –permanent] –remove-lockdown-whitelist-uid=uid</strong>&ensp;<br>从白名单中 删除用户ID 。</p>
+<p>&ensp;&ensp;<strong>[ –permanent] –query-lockdown-whitelist-uid=uid</strong>&ensp;<br>查询用户uid标识是否在白名单中。如果为true则返回0，否则返回1。</p>
+<p>&ensp;&ensp;<strong>[ –permanent]–list-lockdown-whitelist-users</strong>&ensp;<br>列出白名单中的所有用户名。</p>
+<p>&ensp;&ensp;<strong>[ –permanent] –add-lockdown-whitelist-user=user</strong>&ensp;<br>添加user到白名单。</p>
+<p>&ensp;&ensp;<strong>[ –permanent] –remove-lockdown-whitelist-user=user</strong>&ensp;<br>从白名单中 删除用户。</p>
+<p>&ensp;&ensp;<strong>[ –permanent] –query-lockdown-whitelist-user=user</strong>&ensp;<br>查询user是否在白名单中。如果为true则返回0，否则返回1。</p>
+<h4 id="紧急参数"><a href="#紧急参数" class="headerlink" title="紧急参数"></a>紧急参数</h4><p>&ensp;&ensp;<strong>–panic-on</strong> &ensp; 开启紧急模式，所有进出包都被丢弃，活动连接将超时。只有在网络环境出现严重问题时才启用此功能。例如，黑客入侵。<br>这是运行时配置的更改</p>
+<p>&ensp;&ensp;<strong>–panic-off</strong>&ensp;  禁用紧急选项</p>
+<p>&ensp;&ensp;<strong>–query-panic</strong>&ensp;  查询是否开启紧急模式</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+<div>
+    
+ </div>
+ 
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/05/firewalld概念及配置项/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2329,230 +2651,6 @@
  </div>
  
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/25/使用Docker在linux上部署MySQL/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="戴树谦">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile_photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="戴树谦的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/25/使用Docker在linux上部署MySQL/" itemprop="url">使用Docker在linux上部署MySQL</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-25T12:17:46+08:00">
-                2019-01-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  3.3k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  14
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="下载MySQL服务器Docker镜像"><a href="#下载MySQL服务器Docker镜像" class="headerlink" title="下载MySQL服务器Docker镜像"></a>下载MySQL服务器Docker镜像</h3><p>使用命令下载MYSQL-Community：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull mysql/mysql-server:tag</span><br></pre></td></tr></table></figure>
-<p>&nbsp;&nbsp;&nbsp;tag是你想拉的镜像版本的标签（例如5.5， 5.6，5.7， 8.0，或latest）。如果省略则会下载最新GA版本的MySQL-community-server的镜像。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# docker pull mysql/mysql-server:5.6</span><br><span class="line">5.6: Pulling from mysql/mysql-server</span><br><span class="line">a8d84c1f755a: Pull complete </span><br><span class="line">36934cee5f0d: Pull complete </span><br><span class="line">5a6871e55c04: Pull complete </span><br><span class="line">7c67030deb6e: Pull complete </span><br><span class="line">Digest: sha256:5a1cfc50ab8d147cb163c32558c7334519f5bb69ea82587d480f9f7050b77047</span><br><span class="line">Status: Downloaded newer image for mysql/mysql-server:5.6</span><br></pre></td></tr></table></figure>
-<p>&nbsp;&nbsp;使用以下命令列出下载的Docker镜像：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# docker image ls</span><br><span class="line">REPOSITORY                      TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">mysql/mysql-server              5.6                 ad62049ce4ab        6 weeks ago         217MB</span><br><span class="line">[root@docker-study ~]#</span><br></pre></td></tr></table></figure>
-<h3 id="启动MySQL服务器实例"><a href="#启动MySQL服务器实例" class="headerlink" title="启动MySQL服务器实例"></a>启动MySQL服务器实例</h3><p>&nbsp;&nbsp;&nbsp;将MySQL镜像启动为容器：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# docker run --name=mysql1 -d mysql/mysql-server:5.6</span><br><span class="line">321d33b946e7eb8ebea4fe829d1cfb953c6dd5663021088fb9cff21bcea2a112</span><br><span class="line">[root@docker-study ~]#</span><br></pre></td></tr></table></figure>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;–name用于为容器提供自定义名称，该选项是可选的;，如果没有提供容器名称，则生成随机的名称。如果先前的docker pull或docker run 命令未下载指定名称和标记的镜像， 则现在下载该图像。下载完成后，开始初始化容器，并在运行docker ps命令时容器显示在正在运行的容器列表中 ; 例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# docker container ls</span><br><span class="line">CONTAINER ID        IMAGE                                COMMAND                  CREATED             STATUS                             PORTS                       NAMES</span><br><span class="line">321d33b946e7        mysql/mysql-server:5.6               &quot;/entrypoint.sh mysq…&quot;   3 minutes ago       Up 3 minutes (healthy)             3306/tcp                    mysql1</span><br><span class="line">[root@docker-study ~]#</span><br></pre></td></tr></table></figure>
-<p>&nbsp;&nbsp;&nbsp;初始化完成后，命令的输出将包含为root用户生成的随机密码; 例如，使用以下命令检查密码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# docker logs mysql1 2&gt;&amp;1 | grep GENERATED</span><br><span class="line">[Entrypoint] GENERATED ROOT PASSWORD: mOkuHorEKBEh4plym@KYsXYk%Ih</span><br><span class="line">[root@docker-study ~]#</span><br></pre></td></tr></table></figure>
-<h3 id="连接到Container内的MySQL服务器"><a href="#连接到Container内的MySQL服务器" class="headerlink" title="连接到Container内的MySQL服务器"></a>连接到Container内的MySQL服务器</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;服务器准备就绪后，可以在刚刚启动的MySQL Server容器中运行 mysql客户端，并将其连接到MySQL服务器。使用<strong>docker exec -it</strong>命令在已启动的Docker容器中进入 mysql客户端，输入生成的root密码。因为<strong>MYSQL_ONETIME_PASSWORD</strong> 默认情况下该选项为true，所以在将mysql客户端连接 到服务器之后，重置服务器root密码，如下所示。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# docker exec -it mysql1 mysql -uroot -p</span><br><span class="line">Enter password: </span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 50</span><br><span class="line">Server version: 5.6.43</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type &apos;help;&apos; or &apos;\h&apos; for help. Type &apos;\c&apos; to clear the current input statement.</span><br><span class="line"></span><br><span class="line">mysql&gt;  SET PASSWORD FOR &apos;root&apos;@&apos;localhost&apos; = PASSWORD(&apos;123456&apos;);</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h3 id="容器shell访问"><a href="#容器shell访问" class="headerlink" title="容器shell访问"></a>容器shell访问</h3><p>&nbsp;&nbsp;&nbsp;要使用shell访问MySQL Server容器，请使用 docker exec -it命令在容器内启动bash shell：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# docker exec -it mysql1 bash</span><br><span class="line">bash-4.2#</span><br></pre></td></tr></table></figure>
-<p>&nbsp;&nbsp;&nbsp;然后可以在容器内运行Linux命令。例如，要查看容器内server数据目录中的内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bash-4.2# ls /var/lib/mysql</span><br><span class="line">auto.cnf  ib_logfile0  ib_logfile1  ibdata1  mysql  mysql.sock  performance_schema  test</span><br><span class="line">bash-4.2#</span><br></pre></td></tr></table></figure>
-<h3 id="停止和删除MySQL容器"><a href="#停止和删除MySQL容器" class="headerlink" title="停止和删除MySQL容器"></a>停止和删除MySQL容器</h3><p>&nbsp;&nbsp;&nbsp;使用以下命令停止创建的MySQL Server容器：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# docker stop mysql1</span><br><span class="line">mysql1</span><br><span class="line">[root@docker-study ~]#</span><br></pre></td></tr></table></figure>
-<p>&nbsp;&nbsp;&nbsp;docker stop向 mysqld进程发送SIGTERM信号 ，以便正常关闭服务器。  </p>
-<p>&nbsp;&nbsp;&nbsp;另请注意，当容器的主进程（MySQL服务器容器中的mysqld）停止时，Docker容器会自动停止。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">要再次启动MySQL Server容器：</span><br><span class="line">docker start mysql1</span><br><span class="line"></span><br><span class="line">使用单个命令停止并重新启动MySQL Server容器：</span><br><span class="line">docker restart mysql1</span><br><span class="line"></span><br><span class="line">要删除MySQL容器，请先将其停止，然后使用 docker rm命令：</span><br><span class="line">docker stop mysql1</span><br><span class="line">docker rm mysql1</span><br><span class="line"></span><br><span class="line">如果希望同时删除服务器数据目录的 Docker卷，请将该-v选项添加到 docker rm命令。</span><br><span class="line">docker rm -v mysql1</span><br></pre></td></tr></table></figure>
-<h3 id="配置MySQL服务器"><a href="#配置MySQL服务器" class="headerlink" title="配置MySQL服务器"></a>配置MySQL服务器</h3><p>&nbsp;&nbsp;&nbsp;启动MySQL Docker容器时，可以通过docker run命令将配置选项传递给服务器; 例如，对于MySQL服务器：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# docker run --name mysql1 -d mysql/mysql-server:5.6 --character-set-server=utf8mb4 --collation-server=utf8mb4_col</span><br><span class="line">ae491dde8ad07c8db420facc6a7b6546b3ae375d7e37430e4a01a6b4c34913f3</span><br><span class="line">[root@docker-study ~]#</span><br></pre></td></tr></table></figure>
-<p>&nbsp;&nbsp;&nbsp;该命令启动MySQL服务器 utf8mb4作为默认字符集和 utf8mb4_col数据库的默认排序规则。  </p>
-<p>&nbsp;&nbsp;&nbsp;配置MySQL服务器的另一种方法是准备配置文件并将其安装在容器内的服务器配置文件的位置。</p>
-<h3 id="持久化数据和配置更改"><a href="#持久化数据和配置更改" class="headerlink" title="持久化数据和配置更改"></a>持久化数据和配置更改</h3><p>&nbsp;&nbsp;&nbsp;Docker容器原则上是短暂的，如果容器被删除或损坏，预计会丢失任何数据或配置。 但是，Docker卷提供了一种机制来保存在Docker容器中创建的数据。在初始化时，MySQL Server容器为服务器数据目录创建一个Docker卷。在容器上运行docker inspect命令的JSON输出有一个 Mount键，其值提供有关数据目录卷的信息：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# docker inspect mysql1</span><br><span class="line">[</span><br><span class="line">…………</span><br><span class="line">        &quot;Mounts&quot;: [</span><br><span class="line">            &#123;</span><br><span class="line">                &quot;Type&quot;: &quot;volume&quot;,</span><br><span class="line">                &quot;Name&quot;: &quot;4ae57cb3823bf75c18b2212530fee42bc7d851446a5fee48406542c04df62221&quot;,</span><br><span class="line">                &quot;Source&quot;: &quot;/var/lib/docker/volumes/4ae57cb3823bf75c18b2212530fee42bc7d851446a5fee48406542c04df62221/_data&quot;,</span><br><span class="line">                &quot;Destination&quot;: &quot;/var/lib/mysql&quot;,</span><br><span class="line">                &quot;Driver&quot;: &quot;local&quot;,</span><br><span class="line">                &quot;Mode&quot;: &quot;&quot;,</span><br><span class="line">                &quot;RW&quot;: true,</span><br><span class="line">                &quot;Propagation&quot;: &quot;&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        ],…………</span><br></pre></td></tr></table></figure>
-<p>&nbsp;&nbsp;&nbsp;输出显示/var/lib/docker/volumes/4ae57cb3823bf75c18b2212530fee42bc7d<br>851446a5fee48406542c04df62221/_data主机文件夹（主机上持有数据）已安装在 /var/lib/mysql容器内的服务器数据目录中。  </p>
-<p>&nbsp;&nbsp;&nbsp;保留数据的另一种方法是 在创建容器时 使用–mount绑定安装主机目录。可以使用相同的技术来持久保存服务器的配置。以下命令创建MySQL Server容器并绑定安装数据目录和服务器配置文件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]#  ls</span><br><span class="line">anaconda-ks.cfg  datadir  docker  initial-setup-ks.cfg  my.cnf  src</span><br><span class="line">[root@docker-study ~]# cat my.cnf </span><br><span class="line">[client]</span><br><span class="line">default-character-set=utf8</span><br><span class="line">socket = /usr/local/mysql/mysql.sock</span><br><span class="line">[mysql]</span><br><span class="line">default-character-set=utf8</span><br><span class="line">[mysqld]</span><br><span class="line">basedir = /usr/local/mysql</span><br><span class="line">datadir = /var/lib/mysql</span><br><span class="line">port = 3306</span><br><span class="line">socket = /usr/local/mysql/mysql.sock</span><br><span class="line">character-set-server=utf8</span><br><span class="line">sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</span><br><span class="line">[root@docker-study ~]# docker run --name=mysql1 \</span><br><span class="line">--mount type=bind,src=/root/my.cnf,dst=/etc/my.cnf \</span><br><span class="line">--mount type=bind,src=/root/datadir,dst=/var/lib/mysql \</span><br><span class="line">-d mysql/mysql-server:5.6</span><br><span class="line">58d707e7a9f75b38516d17dc54ee3685e00052969c01c887b40f0ac8f819a936</span><br><span class="line">[root@docker-study ~]# ls datadir/</span><br><span class="line">ibdata1  ib_logfile0  ib_logfile1  mysql  performance_schema  test</span><br><span class="line">[root@docker-study ~]#</span><br></pre></td></tr></table></figure>
-<p>&nbsp;&nbsp;&nbsp;安装 path-on-host-machine/my.cnf 到/etc/my.cnf（容器内部的配置文件），同时 path-on-host-machine/datadir 到/var/lib/mysql（数据容器内的目录）。必须满足以下条件才能使绑定安装正常工作：  </p>
-<p>&nbsp;&nbsp;&nbsp;配置文件 path-on-host-machine/my.cnf 必须已存在，并且必须包含使用用户启动mysql服务器的规范：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">user=mysql</span><br><span class="line">…………</span><br></pre></td></tr></table></figure>
-<p>&nbsp;&nbsp;&nbsp;数据目录 path-on-host-machine/datadir 必须已存在。要进行服务器初始化，目录必须为空。还可以安装预先填充数据的目录并启动服务器; 但是必须确保使用与创建数据的服务器相同的配置来启动Docker容器，并在启动容器时装入所需的任何主机文件或目录。</p>
-<h3 id="运行其他初始化脚本"><a href="#运行其他初始化脚本" class="headerlink" title="运行其他初始化脚本"></a>运行其他初始化脚本</h3><p>如果在创建数据库后立即要在数据库上运行任何.sh或 .sql脚本，则可以将它们放入主机目录，然后将目录 /docker-entrypoint-initdb.d/挂载在容器内部。例如，对于MySQL Server容器：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run --name=mysql1 \</span><br><span class="line">--mount type=bind,src=/path-on-host-machine/scripts/,dst=/docker-entrypoint-initdb.d/ \</span><br><span class="line">-d mysql/mysql-server:tag</span><br></pre></td></tr></table></figure>
-<h3 id="从另一个Docker容器中的应用程序连接到MySQL"><a href="#从另一个Docker容器中的应用程序连接到MySQL" class="headerlink" title="从另一个Docker容器中的应用程序连接到MySQL"></a>从另一个Docker容器中的应用程序连接到MySQL</h3><p>&nbsp;&nbsp;&nbsp;通过设置Docker网络，您可以允许多个Docker容器相互通信，以便另一个Docker容器中的客户端应用程序可以访问服务器容器中的MySQL Server。首先，创建一个Docker网络：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# docker network create my-custom-net</span><br><span class="line">e78c79012d0e865acc06f043f03e9a900a5a478780fc0d7fb30a82ae0c644303</span><br><span class="line">[root@docker-study ~]#</span><br></pre></td></tr></table></figure>
-<p>&nbsp;&nbsp;&nbsp;然后，在创建和启动服务器和客户端容器时，使用该–network选项将它们放在您创建的网络上。例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# docker run --name=mysql2 --network=my-custom-net -d mysql/mysql-server:5.6</span><br><span class="line">80415ae4ba16a3e89f3b7afc5d1f4ffde028fc65a66ff7f03810828070e6a17f</span><br><span class="line">[root@docker-study ~]# docker run --name=web --network=my-custom-net -d  httpd</span><br><span class="line">264833168ac671eda95d0dd10547ce9bfa18bf83bc97531f85de202f72886088</span><br><span class="line">[root@docker-study ~]#</span><br></pre></td></tr></table></figure>
-<p>&nbsp;&nbsp;在mysql容器中设置web用户</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create user web@172.19.0.3 identified by &apos;123456&apos;;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;  grant all privileges on *.* to web@172.19.0.3;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>&nbsp;&nbsp;&nbsp;然后，web容器可以使用mysql2主机名连接到mysql2容器， 反之亦然，因为Docker会自动为给定的容器名称设置DNS。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study var]# docker exec -it web  mysql --host=mysql2 --user=web --password</span><br><span class="line">Enter password: </span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 37</span><br><span class="line">Server version: 5.6.43 MySQL Community Server (GPL)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2017, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type &apos;help;&apos; or &apos;\h&apos; for help. Type &apos;\c&apos; to clear the current input statement.</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="服务器错误日志"><a href="#服务器错误日志" class="headerlink" title="服务器错误日志"></a>服务器错误日志</h3><p>&nbsp;&nbsp;&nbsp;首次使用服务器容器启动MySQL服务器时， 如果满足以下任一条件，则不会生成服务器错误日志：</p>
-<ul>
-<li>已装入主机的服务器配置文件，但该文件不包含系统变量 log_error。</li>
-<li>尚未安装主机的服务器配置文件，但Docker环境变量 MYSQL_LOG_CONSOLE 是true（MySQL 5.6服务器容器的变量的默认状态false）。然后将MySQL服务器的错误日志重定向到 stderr，以便错误日志进入Docker容器的日志，并使用docker logs mysqld-container 命令查看 。  </li>
-</ul>
-<p>&nbsp;&nbsp;&nbsp;要使MySQL Server在两个条件之一为真时生成错误日志，请使用该 –log-error 选项 ，配置服务器以在容器内的特定位置生成错误日志。要保留错误日志，请将主机文件挂载到容器内错误日志的位置，如上文中所述。但是必须确保其容器内的MySQL Server具有对挂载的主机文件有写访问权。</p>
-<h3 id="Docker环境变量"><a href="#Docker环境变量" class="headerlink" title="Docker环境变量"></a>Docker环境变量</h3><p>&nbsp;&nbsp;&nbsp;创建MySQL Server容器时，可以使用–env选项（-e简而言之）配置MySQL实例，并指定以下一个或多个环境变量。</p>
-<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><p>&nbsp;&nbsp;&nbsp;如果挂载的数据目录不为空，则以下变量都不会产生任何影响，因为之后不会尝试进行服务器初始化。在容器启动期间，不会修改文件夹中任何预先存在的内容，包括任何旧服务器设置。</p>
-<p>&nbsp;&nbsp;&nbsp;布尔变量包括 MYSQL_RANDOM_ROOT_PASSWORD, MYSQL_ONETIME_PASSWORD和MYSQL_ALLOW_EMPTY_PASSWORD， MYSQL_LOG_CONSOLE 通过使用任何非零长度的字符串设置它们来实现。<br>例如”0”，”false”或 “no”不会使它们为假，但实际上使它们成立。这是MySQL Server容器的已知问题。</p>
-<ul>
-<li>MYSQL_RANDOM_ROOT_PASSWORD：当此变量为true（这是默认状态，除非 MYSQL_ROOT_PASSWORD 或MYSQL_ALLOW_EMPTY_PASSWORD 设置为true）时，将在启动Docker容器时生成服务器root用户的随机密码。密码打印到stdout容器中，可以通过查看容器的日志找到。</li>
-<li>MYSQL_ONETIME_PASSWORD：当变量为true（这是默认状态，除非 MYSQL_ROOT_PASSWORD 已设置或MYSQL_ALLOW_EMPTY_PASSWORD 设置为true）时，root用户的密码设置为expired，必须先更改才能正常使用MySQL。</li>
-<li>MYSQL_DATABASE：此变量允许指定要在镜像启动时创建的数据库的名称。如果用户名和密码均由 MYSQL_USER 和MYSQL_PASSWORD提供，创建用户并授予该数据库（对应于超级用户权限GRANT ALL）。指定的数据库由 CREATE DATABASE IF NOT EXIST语句创建，因此如果数据库已存在，则该变量无效。</li>
-<li>MYSQL_USER， MYSQL_PASSWORD：这些变量结合使用来创建用户并设置该用户的密码，并为该用户授予该MYSQL_DATABASE 变量指定的数据库的超级用户权限 。MYSQL_USER 和 MYSQL_PASSWORD 用于创建用户，如果这两个变量没有设置，则忽略。如果两个变量都已设置但未设置 MYSQL_DATABASE ，则创建用户时没有任何权限。</li>
-</ul>
-<h4 id="注意-1"><a href="#注意-1" class="headerlink" title="注意"></a>注意</h4><p>&nbsp;&nbsp;没有必要使用这种机制创建root用户，这是MYSQL_ROOT_PASSWORD 和 MYSQL_RANDOM_ROOT_PASSWORD两种机制默认创建的，除非 MYSQL_ALLOW_EMPTY_PASSWORD = ture。</p>
-<ul>
-<li>MYSQL_ROOT_HOST：默认情况下，MySQL会创建 ‘root‘@’localhost’帐户。此帐户只能从容器内部连接。要允许来自其他主机的根连接，请设置此环境变量。例如，该值 为172.17.0.1允许来自运行容器的主机的连接。该选项仅接受一个参数，但允许使用通配符（例如， MYSQL_ROOT_HOST=172.<em>.</em>.*或MYSQL_ROOT_HOST=%）。</li>
-<li>MYSQL_LOG_CONSOLE：当变量为true（变量的MySQL 5.6服务器容器的默认状态为false）时，MySQL服务器的错误日志被重定向到 stderr，以便错误日志进入Docker容器的日志，并且可以使用docker logs mysqld-container 命令查看 。  </li>
-</ul>
-<h4 id="注意-2"><a href="#注意-2" class="headerlink" title="注意"></a>注意</h4><p>&nbsp;&nbsp;&nbsp;如果已挂载主机的服务器配置文件，则该变量无效。<br>MYSQL_ROOT_PASSWORD：此变量指定为MySQL root帐户设置的密码。</p>
-<h4 id="警告"><a href="#警告" class="headerlink" title="警告"></a>警告</h4><p>&nbsp;&nbsp;&nbsp;在命令行上设置MySQL root用户密码是不安全的。作为显式指定密码的替代方法，可以使用容器文件路径为密码文件设置变量，然后从主机中装入包含容器文件路径密码的文件。这仍然不是很安全，因为密码文件的位置仍然暴露。最好使用默认设置， MYSQL_RANDOM_ROOT_PASSWORD=true 并且 MYSQL_ONETIME_PASSWORD=true。</p>
-<ul>
-<li>MYSQL_ALLOW_EMPTY_PASSWORD。将其设置为true以允许使用root用户的空密码启动容器。  </li>
-</ul>
-<h4 id="警告-1"><a href="#警告-1" class="headerlink" title="警告"></a>警告</h4><p>&nbsp;&nbsp;&nbsp;将此变量设置为true是不安全的，因为它会使MySQL实例完全不受保护，从而允许任何人获得完整的超级用户访问权限。最好使用默认设置， MYSQL_RANDOM_ROOT_PASSWORD=true 并且MYSQL_ONETIME_PASSWORD=true 。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-<div>
-    
- </div>
- 
-    
   </section>
 
   
@@ -2607,7 +2705,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
