@@ -1465,6 +1465,224 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/03/虚拟化与云计算/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="戴树谦">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile_photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="戴树谦的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/03/虚拟化与云计算/" itemprop="url">虚拟化与云计算</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-03T20:46:58+08:00">
+                2019-03-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  2.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="虚拟化"><a href="#虚拟化" class="headerlink" title="虚拟化"></a>虚拟化</h3><p>&ensp;&ensp;虚拟化指对计算资源进行抽象的一个广义概念。虚拟化对上层应用或用户隐藏了计算资源的底层属性。它既包括使单个的资源（比如一个服务器，一个操作系统，一个应用程序，一个存储设备）划分成多个虚拟资源，也包括将多个资源（比如存储设备或服务器）整合成一个虚拟资源。  </p>
+<p>&ensp;&ensp;虚拟化技术是指实现虚拟化的具体的技术性手段和方法的集合性概念。虚拟化技术根据对象可以分成存储虚拟化、计算虚拟化、网络虚拟化等。计算虚拟化可以分为操作系统级虚拟化，应用程序级，和虚拟机管理器。虚拟机管理器分为宿主虚拟机和客户虚拟机。</p>
+<h4 id="虚拟化技术原理"><a href="#虚拟化技术原理" class="headerlink" title="虚拟化技术原理"></a>虚拟化技术原理</h4><p>&ensp;&ensp;在操作系统中加入一个虚拟化层，一种位于物理机和操作系统之间的软件，允许多个操作系统共享一套基础硬件，也叫虚拟机监视器（Virtual Machine Monitor，即VMM）。该虚拟化层可以对主机的物理硬件资源（包括物理CPU、内存、磁盘、网卡、显卡等）进行封装和隔离，将其抽象为另一种形式的逻辑资源，然后提供给虚拟机使用。本质上，虚拟化层是联系主机和虚拟机的一个中间件。</p>
+<p>&ensp;&ensp;虚拟机一般称为GuestOS（客户机），作为GuestOS载体的物理主机称为HostOS（宿主机）。</p>
+<h4 id="虚拟化技术的特点"><a href="#虚拟化技术的特点" class="headerlink" title="虚拟化技术的特点"></a>虚拟化技术的特点</h4><ul>
+<li><p>同质：虚拟机的本质与物理机的本质相同。例如，二者CPU的ISA（指令集架构 Instruction Set Architecture）是相同的。</p>
+</li>
+<li><p>高效：虚拟机的性能与物理机接近，在虚拟机上执行的大多数指令有直接在硬件上执行的权限和能力，只有少数的敏感指令会由VMM来处理。</p>
+</li>
+<li><p>资源可控：VMM对物理机和虚拟机的资源都是绝对可控的。</p>
+</li>
+<li><p>移植方便：如果物理主机发生故障或者因为其他原因需要停机，虚拟机可以迅速移植到其他物理主机上，从而确保生产或者服务不会停止；物理主机故障修复后，还可以迅速移植回去，从而充分利用硬件资源。</p>
+</li>
+</ul>
+<h4 id="虚拟化的实现层次"><a href="#虚拟化的实现层次" class="headerlink" title="虚拟化的实现层次"></a>虚拟化的实现层次</h4><p>&ensp;&ensp;一般而言，CPU都可以分为用户态和内核态两种基本状态，而X86 CPU更是可以细分为Ring3~0四种状态（如图）。</p>
+<pre><code>图片摘自http://www.cnblogs.com/pannengzhi/p/5790350.html
+</code></pre><ol>
+<li>Ring1和Ring2是驱动层，不涉及应用程序，与虚拟化的实现关系不大。</li>
+<li>Ring3用户态（User Mode）：所有用户程序都运行在用户态，运行的代码受CPU的检查。程序调用硬件设备时，CPU通过专用接口调用核心态代码，然后对硬件设备进行操作。如果应用程序直接调用硬件设备，宿主机操作系统捕捉并触发异常报告。</li>
+<li>Ring0核心态（Kernel Mode）：宿主机操作系统内核运行的模式，运行在核心态的代码可以无限制地对系统内存、设备驱动程序、网卡接口、显卡接口等外围设备进行访问。</li>
+</ol>
+<h4 id="虚拟化实现方式"><a href="#虚拟化实现方式" class="headerlink" title="虚拟化实现方式"></a>虚拟化实现方式</h4><h5 id="全虚拟化（Full-virtualization）："><a href="#全虚拟化（Full-virtualization）：" class="headerlink" title="全虚拟化（Full virtualization）："></a>全虚拟化（Full virtualization）：</h5><p>&ensp;&ensp;GuestOS可直接在VMM上运行而不需要对其本身做任何修改。全虚拟化的GuestOS具有完全的物理机特性。</p>
+<p>&ensp;&ensp;典型的全虚拟化软件有VMWare、Hyper-V、KVM-X86（复杂指令集）等。</p>
+<h5 id="半虚拟化（Paravirtualization）"><a href="#半虚拟化（Paravirtualization）" class="headerlink" title="半虚拟化（Paravirtualization）:"></a>半虚拟化（Paravirtualization）:</h5><p>&ensp;&ensp;半虚拟化需要GuestOS协助的虚拟化技术，因为在半虚拟化VMM中运行的GuestOS内核都经过了特别的修改，修改的主要是GuestOS内核指令集中包括敏感指令在内的内核态指令，从而高效地避免执行错误。</p>
+<p>&ensp;&ensp;典型的半虚拟化软件如Xen、KVM-PowerPC（简易指令集）等。</p>
+<p>&ensp;&ensp;除修改GuestOS内核以外，半虚拟化还有另一种实现方式，即在每一个GuestOS中安装特定的半虚拟化软件，如VMTools、RHEVTools等。</p>
+<h5 id="硬件辅助虚拟化（HVM）"><a href="#硬件辅助虚拟化（HVM）" class="headerlink" title="硬件辅助虚拟化（HVM）"></a>硬件辅助虚拟化（HVM）</h5><p>&ensp;&ensp;Intel提出并开发了由CPU直接支持的虚拟化技术，该技术引入了新的CPU运行模式和新的指令集，使VMM和GuestOS运行在不同的模式之下（VMM运行在Ring0之下的根模式；GuestOS运行在Ring0的非根模式），GuestOS运行于受控模式，其内核指令集中的敏感指令会全部陷入VMM，由VMM进行模拟。</p>
+<p>&ensp;&ensp;CPU硬件辅助虚拟化技术解决了部分非内核态敏感指令的陷入模拟难题，模式切换时上下文的保存恢复工作也由硬件来完成，这样就大大提高了陷入模拟时上下文切换的效率。</p>
+<p>目前，硬件辅助虚拟化技术的主要分类如下：</p>
+<ul>
+<li><p>Intel VT-x：Intel的CPU硬件辅助虚拟化技术，包括IntelVTFlexPriority（Intel灵活任务优先级）、IntelVTFlexMigration（Intel虚拟化灵活迁移技术）和ExtendedPageTables（IntelVT扩展页表）三大功能。</p>
+</li>
+<li><p>AMD-V：AMD的CPU硬件辅助虚拟化技术，是针对X86处理器系统架构开发的一组硬件扩展和硬件辅助虚拟化技术。</p>
+</li>
+</ul>
+<h5 id="内存虚拟化"><a href="#内存虚拟化" class="headerlink" title="内存虚拟化"></a>内存虚拟化</h5><p>&ensp;&ensp;内存虚拟化的映射（内存地址转换）涉及三类地址：</p>
+<ul>
+<li>虚拟地址（VA）：GuestOS提供给其应用程序使用的线性地址空间。</li>
+<li>物理地址（PA）：经VMM抽象的，虚拟机看到的伪物理地址。</li>
+<li>机器地址（MA）：真实的机器物理地址，即地址总线上出现的地址信号。</li>
+</ul>
+<p>&ensp;&ensp;宿主机到虚拟机的内存地址映射关系如下：</p>
+<ul>
+<li>GuestOS：GuestOS负责VA到PA的映射。</li>
+<li>VMM：VMM负责PA到MA的映射。</li>
+</ul>
+<h5 id="总线虚拟化："><a href="#总线虚拟化：" class="headerlink" title="总线虚拟化："></a>总线虚拟化：</h5><p>&ensp;&ensp;总线虚拟化技术可以将一块网卡分给若干个GuestOS使用，每个虚拟机分得网卡性能的1/N，这种技术直接把物理设备划分给GuestOS，无须经过VMM，性能高，接近真机。</p>
+<h5 id="容器虚拟化："><a href="#容器虚拟化：" class="headerlink" title="容器虚拟化："></a>容器虚拟化：</h5><p>&ensp;&ensp;容器虚拟化是一种不同于虚拟机方式的虚拟化方法。容器虚拟化可以为应用程序提供隔离的运行空间，且一个容器内的变动不会影响其他容器。容器比虚拟机更轻量，效率更高，部署也更加快捷方便，但容器是将应用打包并以进程的形式运行在操作系统上的，应用和应用之间并非完全隔离，这是容器虚拟化的一个缺陷。</p>
+<h3 id="云计算"><a href="#云计算" class="headerlink" title="云计算"></a>云计算</h3><p>&ensp;&ensp;云计算(Cloud Computing)是一种新兴的商业计算模型。它将计算任务分布在大量计算机构成的资源池上，使各种应用系统能够根据需要获取计算力、存储空间和各种软件服务。通过服务器集群，包括计算服务器、存储服务器、宽带资源等虚拟计算资源的自我维护和管理，降低整个系统的单位处理能力成本。</p>
+<p>&ensp;&ensp;云计算（Cloud Computing）是一种基于互联网的相关服务的增加、使用和交付模式，它依赖于虚拟化，通常会涉及通过互联网来提供动态易扩展且经常是虚拟化的资源。通过虚拟化技术，把服务器等硬件资源构建成一个虚拟资源池，从而实现共同计算和共享资源，就实现了云计算。</p>
+<h4 id="云计算的实现模式"><a href="#云计算的实现模式" class="headerlink" title="云计算的实现模式"></a>云计算的实现模式</h4><h5 id="IaaS–基础设施即服务："><a href="#IaaS–基础设施即服务：" class="headerlink" title="IaaS–基础设施即服务："></a>IaaS–基础设施即服务：</h5><p>&ensp;&ensp;由一些硬件、网络和操作系统资源集成。此模式下，用户不必自行采购硬件设备，也不用担心安装OS、配置防火墙、网络升级、更换硬件等事务，只需选择自己所需的硬件配置，如操作系统、带宽等，就可以使用相应的硬件资源。</p>
+<h5 id="PaaS–平台即服务："><a href="#PaaS–平台即服务：" class="headerlink" title="PaaS–平台即服务："></a>PaaS–平台即服务：</h5><p>&ensp;&ensp;PaaS在IaaS的基础上加入了中间件和数据库资源，用户选择PaaS时只要考虑习惯使用什么语言的数据库，然后关心程序的开发和部署即可。</p>
+<h5 id="SaaS–软件即服务："><a href="#SaaS–软件即服务：" class="headerlink" title="SaaS–软件即服务："></a>SaaS–软件即服务：</h5><p>&ensp;&ensp;在SaaS模式下，用户使用的软件并不需自己安装，也不用自己维护，而是只需要登录即可使用。</p>
+<h5 id="FaaS"><a href="#FaaS" class="headerlink" title="FaaS"></a>FaaS</h5><p>&ensp;&ensp;可以广义的理解为功能服务化，也可以解释为函数服务化</p>
+<pre><code>见https://aws.amazon.com/cn/blogs/china/iaas-faas-serverless/
+</code></pre><h4 id="云平台的主要特性"><a href="#云平台的主要特性" class="headerlink" title="云平台的主要特性"></a>云平台的主要特性</h4><h5 id="可用性高："><a href="#可用性高：" class="headerlink" title="可用性高："></a>可用性高：</h5><p>&ensp;&ensp;当一台主机的虚拟化层出现故障时，云平台自动将上面的虚拟机迁移到另一虚拟化层上。控制面板服务器离线时，虽然不能对虚拟机进行任何管理操作，但虚拟机依旧可以正常运行。</p>
+<h5 id="管理灵活："><a href="#管理灵活：" class="headerlink" title="管理灵活："></a>管理灵活：</h5><p>&ensp;&ensp;云平台具有高度的扩展性，可在云系统中任意添加和删除虚拟化层、数据存储设备和其他资源，如CPU和内存等。</p>
+<h5 id="用户管理方便："><a href="#用户管理方便：" class="headerlink" title="用户管理方便："></a>用户管理方便：</h5><p>&ensp;&ensp;云平台为用户提供精细的控制选项，设置不同类型的用户和用户组，定制不同用户与用户组的访问和功能。</p>
+<h5 id="负载均衡："><a href="#负载均衡：" class="headerlink" title="负载均衡："></a>负载均衡：</h5><p>&ensp;&ensp;云平台的负载均衡功能，提高了应用程序的可用性和可扩展性。</p>
+<h5 id="安全可靠："><a href="#安全可靠：" class="headerlink" title="安全可靠："></a>安全可靠：</h5><p>&ensp;&ensp;基础设施的虚拟机之间完全隔离，各自访问自己的硬盘。存储虚拟机的服务器上安装有反欺骗防火墙。在控制面板中可以给用户设置不同的角色，并为其配置不同级别的访问权限。</p>
+<h5 id="计费功能完善："><a href="#计费功能完善：" class="headerlink" title="计费功能完善："></a>计费功能完善：</h5><p>&ensp;&ensp;面向第三方的云平台有强大的计费功能，拥有完整的账单系统，支持多种货币类型，实现资源的计划使用和自动结算。</p>
+<h5 id="集成丰富的API："><a href="#集成丰富的API：" class="headerlink" title="集成丰富的API："></a>集成丰富的API：</h5><p>云平台集成了多种应用软件接口，允许用户自行在云端进行应用开发。</p>
+<h5 id="支持移动接入："><a href="#支持移动接入：" class="headerlink" title="支持移动接入："></a>支持移动接入：</h5><p>&ensp;&ensp;云平台一般都支持iPhone/Android应用，用户可以通过移动设备连接云系统，管理自己的云资源和在云中的操作</p>
+<h3 id="虚拟化与云计算"><a href="#虚拟化与云计算" class="headerlink" title="虚拟化与云计算"></a>虚拟化与云计算</h3><p>&ensp;&ensp;虚拟化是云计算的关键技术之一，实现云计算必须使用虚拟化技术，实现资源的动态弹性分配。任何一个云计算管理平台，都是构建在虚拟化管理平台的基础之上的。</p>
+<p>&ensp;&ensp;虚拟化资源使用需要管理员进行管理和分配，云计算是用用户自助管理和使用。</p>
+<p>&ensp;&ensp;云计算完全解除了的软件和硬件耦合度，所有基础设施资源均虚拟化后通过资源池进行配额衡量，与硬件无关。虚拟化虽然实现了资源池化，但资源的分配仍旧需要与硬件存在一定程度上的关联。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+<div>
+    
+ </div>
+ 
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/01/HTTP请求方法/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2337,320 +2555,6 @@
  </div>
  
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/29/MySQL建库建表、数据插入/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="戴树谦">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile_photo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="戴树谦的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/29/MySQL建库建表、数据插入/" itemprop="url">MySQL建库建表、数据插入</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-29T18:33:19+08:00">
-                2019-01-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  2.6k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  11
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="连接与断开服务器"><a href="#连接与断开服务器" class="headerlink" title="连接与断开服务器"></a>连接与断开服务器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study var]#   mysql --host=hostname  --user=user  --password</span><br><span class="line">Enter password: </span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 37</span><br><span class="line">Server version: 5.6.43 MySQL Community Server (GPL)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2017, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type &apos;help;&apos; or &apos;\h&apos; for help. Type &apos;\c&apos; to clear the current input statement.</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="输入查询"><a href="#输入查询" class="headerlink" title="输入查询"></a>输入查询</h3><p>&ensp;&ensp;介绍几个输入查询的基本原则来熟悉mysql的工作原理。<br>&ensp;&ensp;这是一个简单的查询，要求服务器说明它的版本号和当前日期。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;  SELECT VERSION(), CURRENT_DATE;</span><br><span class="line">+-----------+--------------+</span><br><span class="line">| VERSION() | CURRENT_DATE |</span><br><span class="line">+-----------+--------------+</span><br><span class="line">| 5.6.43    | 2019-02-18   |</span><br><span class="line">+-----------+--------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
-<p>&ensp;&ensp;关键字可以输入任何字母。以下查询是等效的，即不区分大小写：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT VERSION(), CURRENT_DATE;</span><br><span class="line">mysql&gt; select version(), current_date;</span><br><span class="line">mysql&gt; SeLeCt vErSiOn(), current_DATE;</span><br></pre></td></tr></table></figure>
-<p>&ensp;&ensp;这是另一个查询。它演示了您可以将 mysql用作简单的计算器：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT SIN(PI()/4), (4+1)*5;</span><br><span class="line">+------------------+---------+</span><br><span class="line">| SIN(PI()/4)      | (4+1)*5 |</span><br><span class="line">+------------------+---------+</span><br><span class="line">| 0.70710678118655 |      25 |</span><br><span class="line">+------------------+---------+</span><br><span class="line">1 row in set (0.02 sec)</span><br></pre></td></tr></table></figure>
-<p>&ensp;&ensp;到目前为止显示的查询是相对较短的单行语句。也可以在一行中输入多个语句。用分号结束每一个：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT VERSION(); SELECT NOW();</span><br><span class="line">+-----------+</span><br><span class="line">| VERSION() |</span><br><span class="line">+-----------+</span><br><span class="line">| 5.6.43    |</span><br><span class="line">+-----------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">+---------------------+</span><br><span class="line">| NOW()               |</span><br><span class="line">+---------------------+</span><br><span class="line">| 2019-02-18 11:01:14 |</span><br><span class="line">+---------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>&ensp;&ensp;多行的冗长查询不是问题,mysql通过查找终止分号来确定语句的结束位置，而不是查找输入行的结尾。<br>这是一个简单的多行语句：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select </span><br><span class="line">    -&gt; user()</span><br><span class="line">    -&gt; ,</span><br><span class="line">    -&gt; current_date;</span><br><span class="line">+----------------+--------------+</span><br><span class="line">| user()         | current_date |</span><br><span class="line">+----------------+--------------+</span><br><span class="line">| web@172.19.0.3 | 2019-02-18   |</span><br><span class="line">+----------------+--------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>&ensp;&ensp;如果决定不想执行正在输入的查询，请键入\c以下命令取消它 ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT</span><br><span class="line">    -&gt; USER()</span><br><span class="line">    -&gt; \c</span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
-<p>&ensp;&ensp;在这里，也请注意提示。它会mysql&gt;在键入后切换回来 \c，提供反馈以指示mysql已为新查询做好准备。<br>&ensp;&ensp;下表显示了可能看到的每个提示，并总结了它们对mysql所处状态的含义 。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">提示</th>
-<th style="text-align:center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">mysql&gt;</td>
-<td style="text-align:center">准备好进行新查询</td>
-</tr>
-<tr>
-<td style="text-align:center">-&gt;</td>
-<td style="text-align:center">等待下一行的多行查询</td>
-</tr>
-<tr>
-<td style="text-align:center">‘&gt;</td>
-<td style="text-align:center">等待下一行，以单引号（’）开头的字符串</td>
-</tr>
-<tr>
-<td style="text-align:center">“&gt;</td>
-<td style="text-align:center">等待下一行，以双引号开头的字符串（”）</td>
-</tr>
-<tr>
-<td style="text-align:center">`&gt;</td>
-<td style="text-align:center">等待下一行，以反引号（`）开头的标识符</td>
-</tr>
-<tr>
-<td style="text-align:center">/*&gt;</td>
-<td style="text-align:center">等待下一行，以/*开头的描述</td>
-</tr>
-</tbody>
-</table>
-<p>&ensp;&ensp;在MySQL中，可以编写由任一字符’或”字符包括的字符串（例如’hello’或”goodbye”),并且 mysql允许输入跨越多行的字符串。看到’&gt;或 “&gt;提示时，表示输入的行包含以a ‘ 或”quote字符开头的字符串，但没有输入终止字符串的匹配引号。这通常表明遗漏了引号字符。例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM my_table WHERE name = &apos;Smith AND age &lt; 30;</span><br><span class="line">    &apos;&gt;</span><br></pre></td></tr></table></figure>
-<p>&ensp;&ensp;通过转义字符取消查询，如果只输入\c，会被认为是引号内的内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM my_table WHERE name = &apos;Smith AND age &lt; 30;</span><br><span class="line">    &apos;&gt; &apos;\c</span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
-<p>&ensp;&ensp;`&gt;提示类似于 ‘&gt;和”&gt;提示，但表示你已经开始但尚未完成反引号引用的标识符。</p>
-<h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; CREATE DATABASE 16netlab;</span><br><span class="line">Query OK, 1 row affected (0.01 sec)</span><br></pre></td></tr></table></figure>
-<p>&ensp;&ensp;在Unix下，数据库名称是区分大小写的（不像SQL关键字）。表名也是如此。（在Windows下，此限制不适用，但必须在给定查询中使用相同的字母表引用数据库和表。但是，出于各种原因，建议的最佳做法始终是使用相同字母。）<br><strong>注意</strong>  </p>
-<ul>
-<li>如果收到错误  ERROR 1044（42000）：ERROR 1044 (42000): Access denied for user ‘micah‘@’localhost’ to database ‘menagerie’，这意味着用户帐户没有必要的权限。  </li>
-</ul>
-<p>&ensp;&ensp;要使16netlab为当前数据库，请使用以下语句：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; use 16netlab;</span><br><span class="line">Database changed</span><br></pre></td></tr></table></figure>
-<p>&ensp;&ensp;数据库只需创建一次，但每次开始mysql 会话时都必须选择它才能使用。通过如上所示的语句来完成此操作。或者可以在调用mysql时在命令行上选择数据库。需要提供的所有连接参数之后指定其名称。例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# docker exec -it web mysql -h mysql2 -u web -p 16netlab</span><br><span class="line">Enter password: </span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 348</span><br><span class="line">Server version: 5.6.43 MySQL Community Server (GPL)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2017, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type &apos;help;&apos; or &apos;\h&apos; for help. Type &apos;\c&apos; to clear the current input statement.</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
-<p>&ensp;&ensp; <strong>SELECT DATABASE()</strong> 查看当前选择使用哪个数据库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT DATABASE();</span><br><span class="line">+------------+</span><br><span class="line">| DATABASE() |</span><br><span class="line">+------------+</span><br><span class="line">| 16netlab   |</span><br><span class="line">+------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h3><p>&ensp;&ensp;创建数据库很容易，但此时它是空的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW TABLES;</span><br><span class="line">Empty set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>&ensp;&ensp;更难的部分是决定数据库的结构应该是什么：需要哪些表以及每个表中应该包含哪些列。<br>&ensp;&ensp;例如一张包含每只宠物记录的表格。这可以称为pet表格，它应该包含每个动物名称以及长度限制值。如果家中有多个人饲养宠物，列出每只动物的主人，记录一些基本的描述性信息，如物种和性别，年龄。随着时间的推移，年龄会发生变化，这意味着必须经常更新记录。相反，最好存储固定值，如出生日期。如果需要年龄，可以将其计算为当前日期和出生日期之间的差异。MySQL提供了进行日期算术的功能。</p>
-<p>&ensp;&ensp;你可能会想到在pet表格中有用的其他类型的信息，但到目前为止确定的信息是足够的：名称，所有者，物种，性别，出生和死亡日期。<br>&ensp;&ensp;使用<strong>CREATE TABLE</strong>语句指定表的布局：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; CREATE TABLE pet (name VARCHAR(20), owner VARCHAR(20),</span><br><span class="line">    -&gt; species VARCHAR(20), sex CHAR(1), birth DATE, death DATE);</span><br><span class="line">Query OK, 0 rows affected (0.20 sec)</span><br></pre></td></tr></table></figure>
-<p>&ensp;&ensp;VARCHAR数据类型对于name、 owner和species 列是不错的选择，因为列值的长度不同。定义列的长度时根据实际情况合理选择。通常，可以选择1-65535中的任何长度。</p>
-<p>&ensp;&ensp;可以选择几种类型的值来表示动物记录中的性别，例如’m’和 ‘f’，或者可能’male’和 ‘female’。最简单的是使用单个字符’m’和’f’。<br>DATE对于birth和death 列 使用数据类型是一个相当明显的选择。<br>&ensp;&ensp;创建表后，<strong>SHOW TABLES</strong>应该产生一些输出：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW TABLES;</span><br><span class="line">+--------------------+</span><br><span class="line">| Tables_in_16netlab |</span><br><span class="line">+--------------------+</span><br><span class="line">| pet                |</span><br><span class="line">+--------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>&ensp;&ensp;要验证表是否按预期方式创建，使用<strong>DESCRIBE</strong>语句：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; describe pet;</span><br><span class="line">+---------+-------------+------+-----+---------+-------+</span><br><span class="line">| Field   | Type        | Null | Key | Default | Extra |</span><br><span class="line">+---------+-------------+------+-----+---------+-------+</span><br><span class="line">| name    | varchar(20) | YES  |     | NULL    |       |</span><br><span class="line">| owner   | varchar(20) | YES  |     | NULL    |       |</span><br><span class="line">| species | varchar(20) | YES  |     | NULL    |       |</span><br><span class="line">| sex     | char(1)     | YES  |     | NULL    |       |</span><br><span class="line">| birth   | date        | YES  |     | NULL    |       |</span><br><span class="line">| death   | date        | YES  |     | NULL    |       |</span><br><span class="line">+---------+-------------+------+-----+---------+-------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="添加数据到表"><a href="#添加数据到表" class="headerlink" title="添加数据到表"></a>添加数据到表</h3><p>&ensp;&ensp;创建表后需要填充它。使用<strong>LOAD DATA</strong>和 <strong>INSERT</strong>语句<br>&ensp;&ensp;假设宠物记录可以如此处所示。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">名字</th>
-<th style="text-align:center">主人</th>
-<th style="text-align:center">种类</th>
-<th style="text-align:center">性别</th>
-<th style="text-align:center">出生日期</th>
-<th style="text-align:center">死亡日期</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Fluffy</td>
-<td style="text-align:center">Harold</td>
-<td style="text-align:center">cat</td>
-<td style="text-align:center">f</td>
-<td style="text-align:center">1993-02-04</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">Claws</td>
-<td style="text-align:center">Gwen</td>
-<td style="text-align:center">cat</td>
-<td style="text-align:center">m</td>
-<td style="text-align:center">1994-03-17</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">Buffy</td>
-<td style="text-align:center">Harold</td>
-<td style="text-align:center">dog</td>
-<td style="text-align:center">f</td>
-<td style="text-align:center">1989-05-13</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">Fang</td>
-<td style="text-align:center">Benny</td>
-<td style="text-align:center">dog</td>
-<td style="text-align:center">m</td>
-<td style="text-align:center">1990-08-27</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">Bowser</td>
-<td style="text-align:center">Diane</td>
-<td style="text-align:center">dog</td>
-<td style="text-align:center">m</td>
-<td style="text-align:center">1979-08-31</td>
-<td style="text-align:center">1995-07-29</td>
-</tr>
-<tr>
-<td style="text-align:center">Chirpy</td>
-<td style="text-align:center">Gwen</td>
-<td style="text-align:center">bird</td>
-<td style="text-align:center">f</td>
-<td style="text-align:center">1998-09-11</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">Whistler</td>
-<td style="text-align:center">Gwen</td>
-<td style="text-align:center">bird</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">1997-12-09</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">Slim</td>
-<td style="text-align:center">Benny</td>
-<td style="text-align:center">snake</td>
-<td style="text-align:center">m</td>
-<td style="text-align:center">1996-04-29</td>
-<td style="text-align:center"></td>
-</tr>
-</tbody>
-</table>
-<p>&ensp;&ensp;因为从空表开始，所以填充它的一种简单方法是为每个动物创建一个包含行的文本文件，然后使用单个语句将文件内容加载到表中。</p>
-<p>&ensp;&ensp;可以创建一个文本文件pet.txt，每行包含一个记录，其值由制表符分隔，并按照<strong>CREATE TABLE</strong>语句中列出的顺序给出 。对于缺失值（例如未知性别或仍然生活的动物的死亡日期），可以使用NULL 值。要在文本文件中表示这些，请使用 \N（反斜杠，大写-N）。例如，惠斯勒鸟的记录看起来像这样（值之间的空格是单个制表符）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Whistler        Gwen    bird    \N      1997-12-09      \N</span><br></pre></td></tr></table></figure>
-<p>&ensp;&ensp;要将文本文件加载pet.txt到 pet表中，请使用以下语句：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; LOAD DATA LOCAL INFILE &apos;/path/pet.txt&apos; INTO TABLE pet;</span><br></pre></td></tr></table></figure>
-<p>&ensp;&ensp;如果需要，可以在<strong>LOAD DATA</strong>语句中显式指定列值分隔符和行结束标记，但默认值为制表符和换行符。这些语句正确读取pet.txt。  </p>
-<p>&ensp;&ensp;如果语句失败，则默认情况下MySQL安装可能没有启用本地文件功能。  </p>
-<p>&ensp;&ensp;如果要一次添加一条新记录，该 INSERT语句很有用。在最简单的形式中，按照CREATE TABLE语句中列出的列的顺序为每列提供值 。假设黛安得到了一只名为“ Puffball ”的仓鼠。可以使用如下<strong>INSERT</strong>语句添加 ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; INSERT INTO pet</span><br><span class="line">       VALUES (&apos;Puffball&apos;,&apos;Diane&apos;,&apos;hamster&apos;,&apos;f&apos;,&apos;1999-03-30&apos;,NULL);</span><br><span class="line">字符串和日期值在此处指定为带引号的字符串。此外，可以直接插入NULL 以表示缺失值。</span><br><span class="line">mysql&gt; INSERT INTO pet</span><br><span class="line">    -&gt;  VALUES (&apos;Fluffy&apos;,&apos;Harold&apos;,&apos;cat&apos;,&apos;f&apos;,&apos;1999-02-04&apos;,NULL);</span><br><span class="line">Query OK, 1 row affected (0.02 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; INSERT INTO pet  VALUES (&apos;Claws&apos;,&apos;Gwen&apos;,&apos;cat&apos;,&apos;m&apos;,&apos;1994-03-17&apos;,NULL);</span><br><span class="line">Query OK, 1 row affected (0.03 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; INSERT INTO pet  VALUES (&apos;Buffy&apos;,&apos;Harold&apos;,&apos;dog&apos;,&apos;f&apos;,&apos;1989-05-13&apos;,NULL);</span><br><span class="line">Query OK, 1 row affected (0.03 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; INSERT INTO pet  VALUES (&apos;Fang&apos;,&apos;Benny&apos;,&apos;dog&apos;,&apos;m&apos;,&apos;1990-08-27&apos;,NULL);</span><br><span class="line">Query OK, 1 row affected (0.06 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; INSERT INTO pet  VALUES (&apos;Bowser&apos;,&apos;Diane&apos;,&apos;dog&apos;,&apos;m&apos;,&apos;1979-08-31&apos;,&apos;1995-07-29&apos;);</span><br><span class="line">Query OK, 1 row affected (0.03 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; INSERT INTO pet  VALUES (&apos;Chirpy&apos;,&apos;Genw&apos;,&apos;bird&apos;,&apos;f&apos;,&apos;1998-09-11&apos;,null);</span><br><span class="line">Query OK, 1 row affected (0.42 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; SELECT * FROM pet;</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">| name   | owner  | species | sex  | birth      | death      |</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">| Fluffy | Harold | cat     | f    | 1999-02-04 | NULL       |</span><br><span class="line">| Claws  | Gwen   | cat     | m    | 1994-03-17 | NULL       |</span><br><span class="line">| Buffy  | Harold | dog     | f    | 1989-05-13 | NULL       |</span><br><span class="line">| Fang   | Benny  | dog     | m    | 1990-08-27 | NULL       |</span><br><span class="line">| Bowser | Diane  | dog     | m    | 1979-08-31 | 1995-07-29 |</span><br><span class="line">| Chirpy | Genw   | bird    | f    | 1998-09-11 | NULL       |</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-<div>
-    
- </div>
- 
-    
   </section>
 
   
@@ -2705,7 +2609,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
