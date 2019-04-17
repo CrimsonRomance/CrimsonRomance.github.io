@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Docker,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;ensp;&amp;ensp;上一篇文章中的警告在这里展开，警告内容如下：   1234WARNING: API is accessible on http://0.0.0.0:2376 without encryption.         Access to the remote API is equivalent to root access on the host. Refer">
+<meta name="keywords" content="Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker 配置 TLS 认证">
+<meta property="og:url" content="http://yoursite.com/2019/04/04/Docker-配置-TLS-认证/index.html">
+<meta property="og:site_name" content="戴树谦的博客">
+<meta property="og:description" content="&amp;ensp;&amp;ensp;上一篇文章中的警告在这里展开，警告内容如下：   1234WARNING: API is accessible on http://0.0.0.0:2376 without encryption.         Access to the remote API is equivalent to root access on the host. Refer">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-17T08:50:27.122Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker 配置 TLS 认证">
+<meta name="twitter:description" content="&amp;ensp;&amp;ensp;上一篇文章中的警告在这里展开，警告内容如下：   1234WARNING: API is accessible on http://0.0.0.0:2376 without encryption.         Access to the remote API is equivalent to root access on the host. Refer">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/04/Docker-配置-TLS-认证/">
+
+
+
+
+
+  <title>Docker 配置 TLS 认证 | 戴树谦的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">戴树谦的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/04/Docker-配置-TLS-认证/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="戴树谦">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile_photo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="戴树谦的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Docker 配置 TLS 认证</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-04T16:39:56+08:00">
+                2019-04-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  3.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  17
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&ensp;&ensp;上一篇文章中的警告在这里展开，警告内容如下：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">WARNING: API is accessible on http://0.0.0.0:2376 without encryption.</span><br><span class="line">         Access to the remote API is equivalent to root access on the host. Refer</span><br><span class="line">         to the &apos;Docker daemon attack surface&apos; section in the documentation for</span><br><span class="line">         more information: https://docs.docker.com/engine/security/security/#docker-daemon-attack-surface</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;这样所有 ip 都能通过 docker -H &lt;remote-dcoker-server_ip&gt;:6379 [OPTION]命令与远程的 docker 守护进程通信，操作 docker 容器，生产上不提倡这种做法。</p>
+<h3 id="TLS"><a href="#TLS" class="headerlink" title="TLS"></a>TLS</h3><p>&ensp;&ensp;传输层安全性协议（英语：Transport Layer Security，缩写作TLS），及其前身安全套接层（Secure Sockets Layer，缩写作SSL）是一种安全协议，目的是为互联网通信提供安全及数据完整性保障。</p>
+<p>&ensp;&ensp;CA是证书的签发机构。CA是负责签发证书、认证证书、管理已颁发证书的机关。它要制定政策和具体步骤来验证、识别用户身份，并对用户证书进行签名，以确保证书持有者的身份和公钥的拥有权。</p>
+<p>&ensp;&ensp;CA 也拥有一个证书（内含公钥）和私钥。网上的公众用户通过验证 CA 的签字从而信任 CA ，任何人都可以得到 CA 的证书（含公钥），用以验证它所签发的证书。</p>
+<p>&ensp;&ensp;证书包含以下信息：申请者公钥、申请者的组织信息和个人信息、签发机构 CA 的信息、有效时间、证书序列号等信息的明文，同时包含一个签名。</p>
+<p>&ensp;签名的产生算法：首先，使用散列函数计算公开的明文信息的信息摘要，然后，采用 CA 的私钥对信息摘要进行加密，密文即签名。</p>
+<p>&ensp;&ensp;整个过程为：</p>
+<ul>
+<li><p>1.服务器向CA机构获取证书，当浏览器首次请求服务器的时候，服务器返回证书给浏览器。（证书包含：公钥+申请者与颁发者的相关信息+签名）</p>
+</li>
+<li><p>2.浏览器得到证书后，开始验证证书的相关信息。</p>
+</li>
+<li><p>3.验证完证书后，如果证书有效，客户端是生成一个随机数，然后用证书中的公钥进行加密，加密后，发送给服务器，服务器用私钥进行解密，得到随机数。之后双方便开始用该随机数作为钥匙，对要传递的数据进行加密、解密。</p>
+</li>
+</ul>
+<p>&ensp;&ensp;我们需要在远程 docker 服务器使用CA 认证来生成客户端和服务端证书、服务器密钥，然后自签名，再颁发证书给需要连接远程 docker ademon  的客户端。</p>
+<pre><code>以上内容部分摘自https://www.cnblogs.com/yunlongaimeng/p/9417276.html
+</code></pre><h3 id="TLS验证"><a href="#TLS验证" class="headerlink" title="TLS验证"></a>TLS验证</h3><p>&ensp;&ensp;文档中指出：Docker over TLS should run on TCP port 2376.</p>
+<h4 id="服务端（CA机构、Docker-Daemon在同一台服务器）"><a href="#服务端（CA机构、Docker-Daemon在同一台服务器）" class="headerlink" title="服务端（CA机构、Docker Daemon在同一台服务器）"></a>服务端（CA机构、Docker Daemon在同一台服务器）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">#1.生成CA私钥ca-key.pem（rsa加密）</span><br><span class="line">root@admin-dsq:~/CA# openssl genrsa -aes256 -out ca-key.pem 4096 </span><br><span class="line">Generating RSA private key, 4096 bit long modulus</span><br><span class="line">.................................................................++</span><br><span class="line">....................................................................</span><br><span class="line">.................................................................................................++</span><br><span class="line">e is 65537 (0x10001)</span><br><span class="line">Enter pass phrase for ca-key.pem:</span><br><span class="line">Verifying - Enter pass phrase for ca-key.pem:</span><br><span class="line"></span><br><span class="line">#2.生成CA自签名证书ca.pem（其中包含证书信息、公钥信息）</span><br><span class="line">root@admin-dsq:~/CA# openssl req -new -x509 -days 365 -key ca-key.pem -sha256 -out ca.pem</span><br><span class="line">Enter pass phrase for ca-key.pem:</span><br><span class="line">You are about to be asked to enter information that will be incorporated</span><br><span class="line">into your certificate request.</span><br><span class="line">What you are about to enter is what is called a Distinguished Name or a DN.</span><br><span class="line">There are quite a few fields but you can leave some blank</span><br><span class="line">For some fields there will be a default value,</span><br><span class="line">If you enter &apos;.&apos;, the field will be left blank.</span><br><span class="line">-----</span><br><span class="line">Country Name (2 letter code) [AU]:CH</span><br><span class="line">State or Province Name (full name) [Some-State]:HB</span><br><span class="line">Locality Name (eg, city) []:SJZ</span><br><span class="line">Organization Name (eg, company) [Internet Widgits Pty Ltd]:HEUET</span><br><span class="line">Organizational Unit Name (eg, section) []:NETLAB</span><br><span class="line">Common Name (e.g. server FQDN or YOUR name) []:admin-dsq</span><br><span class="line">Email Address []:</span><br><span class="line"></span><br><span class="line">#3.生成服务器私钥server-key.pem</span><br><span class="line">root@admin-dsq:~/local_p_key# openssl genrsa -out server-key.pem 4096</span><br><span class="line">Generating RSA private key, 4096 bit long modulus</span><br><span class="line">.....................................++</span><br><span class="line">...........................................++</span><br><span class="line">e is 65537 (0x10001)</span><br><span class="line"></span><br><span class="line">#4. 生成服务器申请文件server.csr</span><br><span class="line">root@admin-dsq:~/local_p_key# openssl req -subj &quot;/CN=admin-dsq&quot; -sha256 -new -key server-key.pem -out server.csr</span><br><span class="line"></span><br><span class="line">#5.由于可以通过IP地址和DNS名称建立TLS连接，因此在创建证书时需要指定IP地址</span><br><span class="line">#即允许通过admin-dsq、172.18.74.62/127.0.0.1建立TLS连接</span><br><span class="line">root@admin-dsq:~/local_p_key# echo subjectAltName = DNS:admin-dsq,IP:172.18.74.62,IP:127.0.0.1 &gt;&gt; extfile.cnf</span><br><span class="line"></span><br><span class="line">#6.将Docker守护程序密钥的扩展使用情况属性设置为仅用于服务器身份验证</span><br><span class="line">root@admin-dsq:~/local_p_key# echo extendedKeyUsage = serverAuth &gt;&gt; extfile.cnf</span><br><span class="line"></span><br><span class="line">#7.向服务器颁发CA证书server-cert.pem</span><br><span class="line">root@admin-dsq:~/local_p_key# openssl x509 -req -days 365 -sha256 -in server.csr -CA /root/CA/ca.pem -CAkey \</span><br><span class="line">/root/CA/ca-key.pem -CAcreateserial -out server-cert.pem -extfile extfile.cnf</span><br><span class="line">Signature ok</span><br><span class="line">subject=/CN=admin-dsq</span><br><span class="line">Getting CA Private Key</span><br><span class="line">Enter pass phrase for ca-key.pem:</span><br><span class="line"></span><br><span class="line">#8.现在，可以使Docker守护程序仅接受来自提供CA信任的证书的客户端的连接</span><br><span class="line">root@admin-dsq:~/local_p_key# dockerd --tlsverify --tlscacert=/root/CA/ca.pem --tlscert=server-cert.pem --tlskey=server-key.pem -H 0.0.0.0:2376</span><br><span class="line">INFO[2019-04-03T10:37:04.136031407+08:00] parsed scheme: &quot;unix&quot;                         module=grpc</span><br><span class="line">INFO[2019-04-03T10:37:04.136192758+08:00] scheme &quot;unix&quot; not registered, fallback to default scheme  module=grpc</span><br><span class="line">INFO[2019-04-03T10:37:04.136474710+08:00] parsed scheme: &quot;unix&quot;                         module=grpc</span><br><span class="line">INFO[2019-04-03T10:37:04.136532152+08:00] scheme &quot;unix&quot; not registered, fallback to default scheme  module=grpc</span><br><span class="line">INFO[2019-04-03T10:37:04.137278333+08:00] ccResolverWrapper: sending new addresses to cc: [&#123;unix:///run/containerd/containerd.sock 0  &lt;nil&gt;&#125;]  module=grpc</span><br><span class="line">INFO[2019-04-03T10:37:04.140277683+08:00] [graphdriver] using prior storage driver: overlay2 </span><br><span class="line">INFO[2019-04-03T10:37:04.140248053+08:00] ClientConn switching balancer to &quot;pick_first&quot;  module=grpc</span><br><span class="line">INFO[2019-04-03T10:37:04.140963667+08:00] pickfirstBalancer: HandleSubConnStateChange: 0xc4205fc620, CONNECTING  module=grpc</span><br><span class="line">INFO[2019-04-03T10:37:04.141777530+08:00] pickfirstBalancer: HandleSubConnStateChange: 0xc4205fc620, READY  module=grpc</span><br><span class="line">INFO[2019-04-03T10:37:04.142772412+08:00] ccResolverWrapper: sending new addresses to cc: [&#123;unix:///run/containerd/containerd.sock 0  &lt;nil&gt;&#125;]  module=grpc</span><br><span class="line">INFO[2019-04-03T10:37:04.142836434+08:00] ClientConn switching balancer to &quot;pick_first&quot;  module=grpc</span><br><span class="line">INFO[2019-04-03T10:37:04.142922653+08:00] pickfirstBalancer: HandleSubConnStateChange: 0xc4205fc8e0, CONNECTING  module=grpc</span><br><span class="line">INFO[2019-04-03T10:37:04.143886004+08:00] pickfirstBalancer: HandleSubConnStateChange: 0xc4205fc8e0, READY  module=grpc</span><br><span class="line">INFO[2019-04-03T10:37:04.179907069+08:00] Graph migration to content-addressability took 0.00 seconds </span><br><span class="line">WARN[2019-04-03T10:37:04.180499617+08:00] Your kernel does not support cgroup rt period </span><br><span class="line">WARN[2019-04-03T10:37:04.180563168+08:00] Your kernel does not support cgroup rt runtime </span><br><span class="line">INFO[2019-04-03T10:37:04.181663787+08:00] Loading containers: start.                   </span><br><span class="line">INFO[2019-04-03T10:37:04.463375483+08:00] Default bridge (docker0) is assigned with an IP address 172.17.0.0/16. Daemon option --bip can be used to set a preferred IP address </span><br><span class="line">INFO[2019-04-03T10:37:04.607165080+08:00] Loading containers: done.                    </span><br><span class="line">INFO[2019-04-03T10:37:04.669799451+08:00] Docker daemon                                 commit=e8ff056 graphdriver(s)=overlay2 version=18.09.5</span><br><span class="line">INFO[2019-04-03T10:37:04.669985943+08:00] Daemon has completed initialization          </span><br><span class="line">INFO[2019-04-03T10:37:04.702975124+08:00] API listen on [::]:2376</span><br><span class="line">#此时docker daemon已经启动监听2376端口</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;使用scp将ca.pem，ca-key.pem发送到客户端服务器。其实应该先将服务器和客户端的申请文件发送至CA，由CA认证后向二者发放CA证书。</p>
+<h4 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h4><p>&ensp;&ensp;对于客户端身份验证，应创建客户端密钥和证书签名请求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">#1.生成客户端私钥client-key.pem</span><br><span class="line">[root@docker-study client]# openssl genrsa -out client-key.pem 4096</span><br><span class="line">Generating RSA private key, 4096 bit long modulus</span><br><span class="line">......................................................++</span><br><span class="line">.......................++</span><br><span class="line">e is 65537 (0x10001)</span><br><span class="line"></span><br><span class="line">#2.生成客户端申请文件client.csr</span><br><span class="line">[root@docker-study client]# openssl req -subj &apos;/CN=docker-study&apos; -new -key client-key.pem -out client.csr</span><br><span class="line"></span><br><span class="line">#3.使密钥适合客户端身份验证</span><br><span class="line">[root@docker-study client]# echo extendedKeyUsage = clientAuth &gt; extfile-client.cnf</span><br><span class="line"></span><br><span class="line">#4.向客户端颁发CA证书client-cert.pem</span><br><span class="line">[root@docker-study client]# openssl x509 -req -days 365 -sha256 -in client.csr -CA /root/ca.pem -CAkey \</span><br><span class="line">/root/ca-key.pem -CAcreateserial -out client-cert.pem -extfile extfile-client.cnf</span><br><span class="line">Signature ok</span><br><span class="line">subject=/CN=docker-study</span><br><span class="line">Getting CA Private Key</span><br><span class="line">Enter pass phrase for ../ca-key.pem:</span><br><span class="line"></span><br><span class="line">#5.向Docker Daemon连接，要携带CA自签名证书、客户端CA证书、客户端私钥</span><br><span class="line">[root@docker-study client]# docker --tlsverify --tlscacert=/root/ca.pem --tlscert=client-cert.pem --tlskey=client-key.pem -H 172.18.74.62 info </span><br><span class="line">Containers: 0</span><br><span class="line"> Running: 0</span><br><span class="line"> Paused: 0</span><br><span class="line"> Stopped: 0</span><br><span class="line">Images: 0</span><br><span class="line">Server Version: 18.09.5</span><br><span class="line">Storage Driver: overlay2</span><br><span class="line"> Backing Filesystem: extfs</span><br><span class="line"> Supports d_type: true</span><br><span class="line"> Native Overlay Diff: true</span><br><span class="line">Logging Driver: json-file</span><br><span class="line">Cgroup Driver: cgroupfs</span><br><span class="line">Plugins:</span><br><span class="line"> Volume: local</span><br><span class="line"> Network: bridge host macvlan null overlay</span><br><span class="line"> Log: awslogs fluentd gcplogs gelf journald json-file local logentries splunk syslog</span><br><span class="line">Swarm: inactive</span><br><span class="line">Runtimes: runc</span><br><span class="line">Default Runtime: runc</span><br><span class="line">Init Binary: docker-init</span><br><span class="line">containerd version: bb71b10fd8f58240ca47fbb579b9d1028eea7c84</span><br><span class="line">runc version: 2b18fe1d885ee5083ef9f0838fee39b62d653e30</span><br><span class="line">init version: fec3683</span><br><span class="line">Security Options:</span><br><span class="line"> apparmor</span><br><span class="line"> seccomp</span><br><span class="line">  Profile: default</span><br><span class="line">Kernel Version: 4.4.0-145-generic</span><br><span class="line">Operating System: Ubuntu 16.04.5 LTS</span><br><span class="line">OSType: linux</span><br><span class="line">Architecture: x86_64</span><br><span class="line">CPUs: 2</span><br><span class="line">Total Memory: 4.031GiB</span><br><span class="line">Name: admin-dsq</span><br><span class="line">ID: 26JC:YRWW:2HL7:W5AA:6FGM:UZEZ:EXMR:IR6A:GA2Z:IJBS:S5OA:QYKA</span><br><span class="line">Docker Root Dir: /var/lib/docker</span><br><span class="line">Debug Mode (client): false</span><br><span class="line">Debug Mode (server): false</span><br><span class="line">Registry: https://index.docker.io/v1/</span><br><span class="line">Labels:</span><br><span class="line">Experimental: false</span><br><span class="line">Insecure Registries:</span><br><span class="line"> 127.0.0.0/8</span><br><span class="line">Live Restore Enabled: false</span><br><span class="line">Product License: Community Engine</span><br><span class="line"></span><br><span class="line">#文章开头出的警告以消失</span><br></pre></td></tr></table></figure>
+<h4 id="默认安全连接"><a href="#默认安全连接" class="headerlink" title="默认安全连接"></a>默认安全连接</h4><p>&ensp;&ensp;为简化操作，不必每次都对-H tcp://$host，–tls等参数进行调用，可以按下面步骤更改</p>
+<p>&ensp;&ensp;服务端：将安全验证添加到/lib/systemd/system/docker.service中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">root@admin-dsq:~/.docker# ls # 此处为CA自签名证书、服务器证书、服务器密钥</span><br><span class="line">ca.pem  cert.pem  key.pem</span><br><span class="line">root@admin-dsq:~/.docker# cat /lib/systemd/system/docker.service |grep ExecStart</span><br><span class="line">ExecStart=/usr/bin/dockerd --tlsverify --tlscacert=/root/.docker/ca.pem --tlscert=/root/.docker/cert.pem \</span><br><span class="line">--tlskey=/root/.docker/key.pem -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock</span><br><span class="line">root@admin-dsq:~/.docker# systemctl daemon-reload #重载守护进程</span><br><span class="line">root@admin-dsq:~/.docker# systemctl restart docker</span><br><span class="line">root@admin-dsq:~/.docker# systemctl status docker</span><br><span class="line">● docker.service - Docker Application Container Engine</span><br><span class="line">   Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)</span><br><span class="line">   Active: active (running) since Wed 2019-04-04 09:03:25 CST; 5min ago</span><br><span class="line">     Docs: https://docs.docker.com</span><br><span class="line"> Main PID: 15180 (dockerd)</span><br><span class="line">    Tasks: 10</span><br><span class="line">   Memory: 30.5M</span><br><span class="line">      CPU: 779ms</span><br><span class="line">   CGroup: /system.slice/docker.service</span><br><span class="line">           └─15180 /usr/bin/dockerd --tlsverify --tlscacert=/root/.docker/ca.pem --tlscert=/root/.docker/cert.pem --tlskey=/root/.docker/key.pem </span><br><span class="line">           ………………</span><br><span class="line">root@admin-dsq:~/local_p_key# docker info | grep Name </span><br><span class="line">Name: admin-dsq</span><br><span class="line">root@admin-dsq:~/.docker# docker version</span><br><span class="line">Client:</span><br><span class="line"> Version:           18.09.5</span><br><span class="line"> API version:       1.39</span><br><span class="line"> Go version:        go1.10.8</span><br><span class="line"> Git commit:        e8ff056</span><br><span class="line"> Built:             Thu Apr 11 04:44:24 2019</span><br><span class="line"> OS/Arch:           linux/amd64</span><br><span class="line"> Experimental:      false</span><br><span class="line"></span><br><span class="line">Server: Docker Engine - Community</span><br><span class="line"> Engine:</span><br><span class="line">  Version:          18.09.5</span><br><span class="line">  API version:      1.39 (minimum version 1.12)</span><br><span class="line">  Go version:       go1.10.8</span><br><span class="line">  Git commit:       e8ff056</span><br><span class="line">  Built:            Thu Apr 11 04:10:53 2019</span><br><span class="line">  OS/Arch:          linux/amd64</span><br><span class="line">  Experimental:     false</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;客户端：如果要在默认情况下保护Docker客户端连接，可以将文件移动到.docker目录中，并设置 DOCKER_HOST和DOCKER_TLS_VERIFY变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study .docker]# ls #此处为CA自签名证书、客户端证书、客户端密钥</span><br><span class="line">ca.pem  cert.pem  key.pem</span><br><span class="line"></span><br><span class="line"># 添加环境变量，设置远程主机和开启TLS验证</span><br><span class="line">[root@docker-study .docker]# export DOCKER_HOST=tcp://172.18.74.62:2376 DOCKER_TLS_VERIFY=1</span><br><span class="line">[root@docker-study .docker]# docker version # 连接到了远程服务端</span><br><span class="line">Client:</span><br><span class="line"> Version:           18.09.0</span><br><span class="line"> API version:       1.39</span><br><span class="line"> Go version:        go1.10.4</span><br><span class="line"> Git commit:        4d60db4</span><br><span class="line"> Built:             Wed Nov  7 00:48:22 2018</span><br><span class="line"> OS/Arch:           linux/amd64</span><br><span class="line"> Experimental:      false</span><br><span class="line"></span><br><span class="line">Server: Docker Engine - Community</span><br><span class="line"> Engine:</span><br><span class="line">  Version:          18.09.5</span><br><span class="line">  API version:      1.39 (minimum version 1.12)</span><br><span class="line">  Go version:       go1.10.8</span><br><span class="line">  Git commit:       e8ff056</span><br><span class="line">  Built:            Thu Apr 11 04:10:53 2019</span><br><span class="line">  OS/Arch:          linux/amd64</span><br><span class="line">  Experimental:     false</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;Docker现在默认安全连接</p>
+<h3 id="过程中出现的错误"><a href="#过程中出现的错误" class="headerlink" title="过程中出现的错误"></a>过程中出现的错误</h3><ul>
+<li>CA自签名证书默认路径为/root/.docker，服务器或客户端的CA证书和密钥也应该放在此目录下</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# docker --tlsverify -H 172.18.74.62 info</span><br><span class="line">could not read CA certificate &quot;/root/.docker/ca.pem&quot;: open /root/.docker/ca.pem: no such file or directory</span><br></pre></td></tr></table></figure>
+<ul>
+<li>info：x509: cannot validate certificate for 172.18.74.62 because it doesn’t contain any IP SANs</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study /]# docker --tlsverify -H 172.18.74.62 info</span><br><span class="line">error during connect: Get https://172.18.74.62:2376/v1.39/info: x509: cannot validate certificate for 172.18.74.62 because it doesn&apos;t contain any IP SANs</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;在指定证书的过程中要指定IP地址，参照：<a href="https://stackoverflow.com/questions/42116783/x509-cannot-validate-certificate-because-it-doesnt-contain-any-ip-sans" target="_blank" rel="noopener">https://stackoverflow.com/questions/42116783/x509-cannot-validate-certificate-because-it-doesnt-contain-any-ip-sans</a> 或者可以按照Docker文档中所给出的步骤即上述中的过程。</p>
+<ul>
+<li>在客户端连接Docker Daemon时未成功，在Docker Daemon端报出如下信息：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">客户端：</span><br><span class="line">[root@docker-study .docker]# docker --tlsverify --tlscacert=ca.pem --tlscert=server-cert.pem --tlskey=server-key.pem -H 172.18.74.62 info</span><br><span class="line">The server probably has client authentication (--tlsverify) enabled. Please check your TLS client certification settings: \</span><br><span class="line">Get https://172.18.74.62:2376/v1.39/info: remote error: tls: bad certificate</span><br><span class="line"></span><br><span class="line">服务端显示：</span><br><span class="line">2019-04-16 10:45:46.370039 I | http: TLS handshake error from 172.18.74.101:44292: tls: client didn&apos;t provide a certificate</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;Docker Daemon 使用 dockerd –tlsverify –tlscacert=/root/CA/ca.pem –tlscert=server-cert.pem –tlskey=server-key.pem -H 0.0.0.0:2376 启动后仅接受来自提供CA信任的客户端的连接，所以客户端也需要进行CA认证，二者所使用的CA自签名证书是一样的。</p>
+<p>&ensp;&ensp;当ca.pem不同时有如下报错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study .docker]# docker info</span><br><span class="line">error during connect: Get https://172.18.74.62:2376/v1.39/info: x509: certificate signed by unknown authority</span><br></pre></td></tr></table></figure>
+<ul>
+<li>报错为私钥和公钥不匹配</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study client]# docker --tlsverify --tlscacert=../ca.pem --tlscert=../server-cert.pem --tlskey=key.pem -H 172.18.74.62 info</span><br><span class="line">Could not load X509 key pair: tls: private key does not match public key</span><br></pre></td></tr></table></figure>
+<ul>
+<li>curl: (60) Peer’s Certificate issuer is not recognized.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study ~]# curl https://172.18.74.62:2376/info</span><br><span class="line">curl: (60) Peer&apos;s Certificate issuer is not recognized.</span><br><span class="line">More details here: http://curl.haxx.se/docs/sslcerts.html</span><br><span class="line"></span><br><span class="line">curl performs SSL certificate verification by default, using a &quot;bundle&quot;</span><br><span class="line"> of Certificate Authority (CA) public keys (CA certs). If the default</span><br><span class="line"> bundle file isn&apos;t adequate, you can specify an alternate file</span><br><span class="line"> using the --cacert option.</span><br><span class="line">If this HTTPS server uses a certificate signed by a CA represented in</span><br><span class="line"> the bundle, the certificate verification probably failed due to a</span><br><span class="line"> problem with the certificate (it might be expired, or the name might</span><br><span class="line"> not match the domain name in the URL).</span><br><span class="line">If you&apos;d like to turn off curl&apos;s verification of the certificate, use</span><br><span class="line"> the -k (or --insecure) option.</span><br></pre></td></tr></table></figure>
+<p>&ensp;&ensp;报错为无法识别证书颁发者，因为是自己制作的证书，系统对CA没有认证，所以无法识别。<br>&ensp;&ensp;解决办法是将签发该证书的私有CA公钥cacert.pem文件内容，追加到/etc/pki/tls/certs/ca-bundle.crt下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#ubuntu下</span><br><span class="line">root@admin-dsq:~/.docker# cat ca.pem &gt;&gt; /etc/ssl/certs/ca-certificates.crt</span><br><span class="line">#centos下</span><br><span class="line">[root@docker-study .docker]# cat ca.pem &gt;&gt; /etc/pki/tls/certs/ca-bundle.crt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>curl: (58) NSS: client certificate not found (nickname not specified)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study .docker]# curl https://172.18.74.62:2376/version</span><br><span class="line">curl: (58) NSS: client certificate not found (nickname not specified)</span><br></pre></td></tr></table></figure>
+<p>没有找到客户端认证，加–cert参数指定下路径就行了</p>
+<ul>
+<li>NSS error -8178 (SEC_ERROR_BAD_KEY)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@docker-study .docker]# curl --cert /root/.docker/cert.pem https://172.18.74.62:2376/version</span><br><span class="line">curl: (58) unable to load client key: -8178 (SEC_ERROR_BAD_KEY)</span><br><span class="line">[root@docker-study .docker]# curl -v --cert /root/.docker/cert.pem https://172.18.74.62:2376/version</span><br><span class="line">* About to connect() to 172.18.74.62 port 2376 (#0)</span><br><span class="line">*   Trying 172.18.74.62...</span><br><span class="line">* Connected to 172.18.74.62 (172.18.74.62) port 2376 (#0)</span><br><span class="line">* Initializing NSS with certpath: sql:/etc/pki/nssdb</span><br><span class="line">*   CAfile: /etc/pki/tls/certs/ca-bundle.crt</span><br><span class="line">  CApath: none</span><br><span class="line">* unable to load client key: -8178 (SEC_ERROR_BAD_KEY)</span><br><span class="line">* NSS error -8178 (SEC_ERROR_BAD_KEY)</span><br><span class="line">* Peer&apos;s public key is invalid.</span><br><span class="line">* Closing connection 0</span><br><span class="line">curl: (58) unable to load client key: -8178 (SEC_ERROR_BAD_KEY)</span><br></pre></td></tr></table></figure>
+<pre><code>参考：https://stackoverflow.com/questions/22499425/ssl-certificate-generated-with-openssl-not-working-on-nss?answertab=active#tab-top
+</code></pre><p>我尝试了无密码和另外的des3 加密算法都没有成功，仍然是这个错误，待更新。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Docker/" rel="tag"># Docker</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/01/Docker远程访问/" rel="next" title="Docker远程访问">
+                <i class="fa fa-chevron-left"></i> Docker远程访问
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/05/firewalld概念及配置项/" rel="prev" title="firewalld概念及配置项">
+                firewalld概念及配置项 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+<div>
+    
+    <div>
+    
+        <div style="text-align:center;color: #000000;font-size:18px;">------ end ------</div>
+    
+</div>
+
+
+    
+ </div>
+ 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/profile_photo.png" alt="戴树谦">
+            
+              <p class="site-author-name" itemprop="name">戴树谦</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CrimsonRomance" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:18632772539@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#TLS"><span class="nav-number">1.</span> <span class="nav-text">TLS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TLS验证"><span class="nav-number">2.</span> <span class="nav-text">TLS验证</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#服务端（CA机构、Docker-Daemon在同一台服务器）"><span class="nav-number">2.1.</span> <span class="nav-text">服务端（CA机构、Docker Daemon在同一台服务器）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#客户端"><span class="nav-number">2.2.</span> <span class="nav-text">客户端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#默认安全连接"><span class="nav-number">2.3.</span> <span class="nav-text">默认安全连接</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过程中出现的错误"><span class="nav-number">3.</span> <span class="nav-text">过程中出现的错误</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-fas fa-code"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">戴树谦</span>
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
